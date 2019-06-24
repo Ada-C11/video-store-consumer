@@ -8,6 +8,7 @@ class HomePage extends Component {
         <h3>HomePage</h3>
         <p>
           <Link to="/movies">Movies</Link>
+          <Link to="/movies/search">Search for a Movie</Link>
           <Link to="/customers">Customers</Link>
         </p>
       </div>
