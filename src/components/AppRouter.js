@@ -3,6 +3,8 @@ import React, { Component } from 'react';
 // import './AppRouter.css';
 
 import Search from './Search';
+import Library from './Library';
+import Customers from './Customers';
 
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 
@@ -14,13 +16,13 @@ function Index() {
 //   return <h2>Search Movies</h2>;
 // }
 
-function Library() {
-  return <h2>Movie Library</h2>;
-}
+// function Library() {
+//   return <h2>Movie Library</h2>;
+// }
 
-function Customers() {
-  return <h2>Customers</h2>;
-}
+// function Customers() {
+//   return <h2>Customers</h2>;
+// }
 
 function AppRouter() {
   return (
@@ -45,7 +47,11 @@ function AppRouter() {
 
         <Route path="/" exact component={Index} />
         <Route path="/search/" component={Search} />
-        <Route path="/library/" component={Library} />
+        <Route 
+          path="/library/"
+          // component={Library}
+          render={(props) => <Library thing="thingy" />}
+        />
         <Route path="/customers/" component={Customers} />
       </div>
     </Router>
