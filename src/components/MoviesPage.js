@@ -1,18 +1,17 @@
 import React, { Component } from 'react';
 import { Route, Link } from "react-router-dom";
 
-class HomePage extends Component {
+class MoviesPage extends Component {
   render() {
     return (
       <div>
-        <h3>HomePage</h3>
+        <h3>MoviesPage</h3>
         <p>
-          <Link to="/movies">Movies</Link>
-          <Link to="/customers">Customers</Link>
+          Movies 
         </p>
       </div>
     );
   }
 }
 
-export default HomePage;
+export default MoviesPage;
