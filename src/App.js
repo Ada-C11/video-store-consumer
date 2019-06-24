@@ -24,7 +24,7 @@ class App extends Component {
                   <Link to='/movielibrary'>Movie Library</Link>
                 </li>
                 <li>
-                  <Link to='/customers'>Customers</Link>
+                  <Link to='/customers'>Customer List</Link>
                 </li>
                 <li>
                   <Link to='/checkout'>Checkout</Link>
