@@ -20,8 +20,25 @@ function Home() {
   return <h2>Home</h2>;
 }
 
-function Search() {
-  return <h2>Search</h2>;
+class Search extends Component {
+  constructor() {
+    super();
+    this.state = {
+      title: ""
+    }
+  }
+  render () {
+    return (
+      <div>
+        <h2>Search</h2>
+        <form>
+          <label htmlFor="title">Title</label>
+          <input name="title" type="text" value={this.state.title}/>
+          <input type="submit" value="Search" />
+        </form>
+      </div>
+    );
+  }
 }
 
 function Movie (props) {
@@ -30,7 +47,7 @@ function Movie (props) {
 
 class Library extends Component {
   constructor() {
-    super();
+    super()
   
     this.state = {
       movieList: [],
@@ -84,7 +101,8 @@ class Customers extends Component {
   generateCustomerList = () => {
     return this.state.customerList.map((customer) => {
       return (<Customer 
-      name={customer.name}
+        key={customer.id}
+        name={customer.name}
       />)
     })
   }
