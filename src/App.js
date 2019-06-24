@@ -11,7 +11,7 @@ class App extends Component {
     return (
       <div className="App">
         <header className="App-header">
-          <Router>
+        <Router>
             <nav>
               <ul>
                 <li>
@@ -31,7 +31,7 @@ class App extends Component {
                 </li>
               </ul>
             </nav>
-            <Route path="/" exact component={App} />
+           
             <Route path="/search" component={Search} />
             <Route path="/movielibrary" component={MovieLibrary} />
             <Route path="/customers" component={Customer} />

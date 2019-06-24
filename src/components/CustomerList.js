@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-class Search extends Component {
+class CustomerList extends Component {
   constructor() {
     super();
     this.state = {
@@ -9,11 +9,11 @@ class Search extends Component {
   render() {
     return(
       <div>
-        Search
+        Customer List
       </div>
     )
 
   }
 }
 
-export default Search;
+export default CustomerList;
