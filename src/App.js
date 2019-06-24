@@ -2,26 +2,26 @@ import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import logo from './logo.svg';
 import './App.css';
-import  VideoStore from './components/VideoStore'
+import VideoStore from './components/VideoStore'
 import MovieLibrary from './components/MovieLibrary';
 
 
 function App() {
   return (
     <section>
-    <Router>
-      <div>
-        <Header />
+      <Router>
+        <div>
+          <Header />
 
-        <Route exact path="/" component={Home} />
-        <Route path="/customers" component={Customers} />
-        <Route path="/library" component={Library} />
-        <Route path="/search" component={Search} />
+          <Route exact path="/" component={Home} />
+          <Route path="/customers" component={Customers} />
+          <Route path="/library" component={Library} />
+          <Route path="/search" component={Search} />
 
-      </div>
-    </Router>
+        </div>
+      </Router>
 
-    <MovieLibrary url="http://localhost:3000/"/>
+      <VideoStore url="http://localhost:3000/" />
     </section>
   );
 }

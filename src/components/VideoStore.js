@@ -9,7 +9,9 @@ class VideoStore extends Component {
 
         this.state = {
             currentMovie: "",
-            currentCustomer: 0
+            currentCustomer: 0,
+            customers: [],
+            movies: [],
 
         };
     }
@@ -34,6 +36,7 @@ class VideoStore extends Component {
         return (
             <section className="movielibrary-button">
                 <MovieLibrary
+
                     currentMovieCallback={this.currentMovieCallback}
                     currentCustomerCallback={this.currentCustomerCallback}
                 />
