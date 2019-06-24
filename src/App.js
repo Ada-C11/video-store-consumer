@@ -5,7 +5,7 @@ import './App.css';
 import axios from 'axios';
 import Customers from './components/Customers';
 
-
+const URL = process.env.REACT_APP_API_URL
 
 class App extends Component {
   constructor(props) {
@@ -19,15 +19,20 @@ class App extends Component {
 
   componentDidMount() {
     // get request for all cards on this board
-    const URL = process.env.REACT_APP_API_URL
+    
     console.log(URL);
-    axios.get(`${URL}/customers`)
-    .then((response) => {
-      console.log('hopefully working...')
-      const customers = response.data.map((customer) => {
-          return customer.name;
-      });
-      this.setState({ customers: customers });
+    
+    axios.all([this.getCustomers(), this.getMovies()])
+    .then(([response1, response2]) => {
+      console.log(response1);
+      console.log(response2);
+      // make a function that does a .map and save each in a variable
+      // update state with new arrays. woo!
+      
+      // const customers = response.data.map((customer) => {
+      //     return customer;
+      // });
+      // this.setState({ customers: customers });
       console.log(this.state.customers)
     })
     .catch((error) => {
@@ -41,6 +46,13 @@ class App extends Component {
     });
   }
 
+  getCustomers() {
+    return axios.get(`http://localhost:3000/customers`);
+  }
+
+  getMovies() {
+    return axios.get(`http://localhost:3000/movies`);
+  }
 
   render() {
     return (
