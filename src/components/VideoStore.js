@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import MovieLibrary from './MovieLibrary';
-import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 
 
 class VideoStore extends Component {
@@ -11,6 +10,7 @@ class VideoStore extends Component {
         this.state = {
             currentMovie: "",
             currentCustomer: 0
+
         };
     }
 

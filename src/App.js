@@ -3,10 +3,12 @@ import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import logo from './logo.svg';
 import './App.css';
 import  VideoStore from './components/VideoStore'
+import MovieLibrary from './components/MovieLibrary';
 
 
 function App() {
   return (
+    <section>
     <Router>
       <div>
         <Header />
@@ -18,6 +20,9 @@ function App() {
 
       </div>
     </Router>
+
+    <MovieLibrary url="http://localhost:3000/"/>
+    </section>
   );
 }
 
@@ -54,6 +59,7 @@ function Header() {
       </li>
     </ul>
   );
+
 }
 
 export default App;
