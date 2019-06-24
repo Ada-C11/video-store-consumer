@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import SearchResults from './SearchResults';
 
 class Search extends Component {
     constructor() {
@@ -8,6 +9,12 @@ class Search extends Component {
         this.state = {
             searchResults: [],
         }
+    }
+
+    render() {
+        return (
+            <SearchResults />
+        );
     }
 }
 
