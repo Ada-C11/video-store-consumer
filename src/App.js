@@ -28,6 +28,7 @@ class App extends Component {
           return customer.name;
       });
       this.setState({ customers: customers });
+      console.log(this.state.customers)
     })
     .catch((error) => {
       // Show an error
@@ -45,10 +46,7 @@ class App extends Component {
     return (
       <Router>
         <div className="App">
-          <header className="App-header">
-            <img src={logo} className="App-logo" alt="logo" />
-            <h1 className="App-title">Welcome to React</h1>
-          </header>
+      
           <nav>
             <ul>
               <li>
@@ -59,15 +57,11 @@ class App extends Component {
               </li>
             </ul>
           </nav>
-          <p className="App-intro">
-            To get started, edit <code>src/App.js</code> and save to reload.
-            {this.state.customers}
-          </p>
-
+        
           <Route exact={true} path="/" render={() => (
             <h1>Welcome</h1>
           )} />
-          <Route path="/customers" component={Customers} />
+          <Route path="/customers" render={(props) => <Customers {...props} customerList={this.state.customers} /> } />
         </div>
       </Router>
     );
