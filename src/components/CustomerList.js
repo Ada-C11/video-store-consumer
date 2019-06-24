@@ -5,16 +5,14 @@ import axios from 'axios';
 // import './CustomerList.css';
 
 
-class CustomerList extends Component {
-  constructor() {
-    super();
+const CustomerList = (props) => {
+  return (
 
-    this.state = {
-
-    };
-  }
-
-  componentDidMount() {
-    
-  }
+  );
 }
+
+CustomerList.propTypes = {
+    
+}
+
+export default CustomerList;
