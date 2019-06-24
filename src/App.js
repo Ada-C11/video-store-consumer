@@ -5,6 +5,7 @@ import './App.css';
 import axios from 'axios';
 
 
+
 class App extends Component {
   constructor(props) {
     super(props);
@@ -17,7 +18,9 @@ class App extends Component {
 
   componentDidMount() {
     // get request for all cards on this board
-    axios.get('http://localhost:3000/customers')
+    const URL = process.env.REACT_APP_API_URL
+    console.log(URL);
+    axios.get(`${URL}/customers`)
     .then((response) => {
       console.log('hopefully working...')
       const customers = response.data.map((customer) => {
