@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 import './App.css';
+
 import Search from './components/Search';
 import MovieLibrary from './components/MovieLibrary';
 import Customer from './components/Customer';
