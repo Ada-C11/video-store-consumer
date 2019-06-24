@@ -9,13 +9,28 @@ class Search extends Component {
     };
   }
 
+  queryChanged = (event) => {
+    const queryString = event.target.value;
+    
+    this.setState({
+      queryString
+    })
+
+    // this.props.searchCallback(queryString);
+  }
 
   // Api calls?
 
   render() {
     return (
       <section>
-
+        <h2>Search Page</h2>
+        <label>
+          Search Movie Titles <input name="search"
+                        type="text"
+                        value={this.state.queryString}
+                        onChange={this.queryChanged} />
+        </label>
       </section>  
     );
   }

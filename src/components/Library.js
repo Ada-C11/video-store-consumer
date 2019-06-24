@@ -3,7 +3,7 @@ import React from 'react';
 const Library = (props) => {
   return (
     <div>
-      <p>placeholder</p>
+      <p>Movie Library</p>
     </div>
   );
 };

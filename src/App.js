@@ -1,7 +1,10 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
-import logo from './logo.svg';
 import './App.css';
+import Search from './components/Search';
+import Library from './components/Library';
+import CustomerList from './components/CustomerList';
+
 
 class App extends Component {
   constructor(props) {
@@ -30,18 +33,37 @@ class App extends Component {
  // Api call to get single movie
 
  // Api call to get all movies
-
+r
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
-      </div>
+      <Router>
+        <div className="App">
+          <header>
+              <h1>Video Store Consumer</h1>
+          </header>
+          <nav>
+            <ul className="nav-list">
+              <li>
+                <Link to="/"> Home </Link>
+              </li>
+              <li>
+                <Link to="/search/"> Search </Link>
+              </li>
+              <li>
+                <Link to="/library/"> Movie Library </Link>
+              </li>
+              <li>
+                <Link to="/customers/"> Customer List </Link>
+              </li>
+            </ul>
+          </nav>
+
+          <Route path="/search/" component={Search} />
+          <Route path="/library/" component={Library} />
+          <Route path="/customers/" component={CustomerList} />
+
+        </div>
+      </Router>
     );
   }
 }
