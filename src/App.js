@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import logo from './logo.svg';
 import './App.css';
+import  VideoStore from './components/VideoStore'
+
 
 function App() {
   return (
@@ -13,6 +15,7 @@ function App() {
         <Route path="/customers" component={Customers} />
         <Route path="/library" component={Library} />
         <Route path="/search" component={Search} />
+
       </div>
     </Router>
   );
