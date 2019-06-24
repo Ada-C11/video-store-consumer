@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import "./App.css";
 import MovieLibrary from "./components/MovieLibrary";
+import MovieSearch from "./components/MovieSearch"
 
 class App extends Component {
   render() {
@@ -11,6 +12,8 @@ class App extends Component {
         </header>
         {/* <MovieSearch /> */}
         <MovieLibrary />
+        <MovieSearch />
+        {/* <MovieLibrary /> */}
         {/* <CustomerList /> */}
       </div>
     );
