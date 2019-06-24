@@ -1,8 +1,36 @@
 import React, { Component } from 'react';
+import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import logo from './logo.svg';
 import './App.css';
 
 class App extends Component {
+  constructor(props) {
+    super(props); 
+    
+    this.state = {
+      movieLibrary: [],
+      customerList: [],
+      selectedMovie: null,
+      selectedCustotmer: null,
+    }
+  }
+
+  addMovieToLibrary = () => {
+
+  }
+
+  selectMovie = () => {
+
+  }
+
+  selectCustomer = () => {
+
+  }
+
+ // Api call to get single movie
+
+ // Api call to get all movies
+
   render() {
     return (
       <div className="App">
