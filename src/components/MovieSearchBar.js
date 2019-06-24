@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Route, Link } from "react-router-dom";
 
-class MoviesSearchBar extends Component {
+class MovieSearchBar extends Component {
   render() {
     return (
       <div>
@@ -15,4 +15,4 @@ class MoviesSearchBar extends Component {
   }
 }
 
-export default MoviesSearchBar;
+export default MovieSearchBar;

@@ -1,22 +1,22 @@
 import React, { Component } from 'react';
 import { Route, Link } from "react-router-dom";
-import MoviesSearchBar from './MoviesSearchBar'
+import MovieSearchBar from './MovieSearchBar'
 
-class MoviesSearchPage extends Component {
+class MovieSearchPage extends Component {
   constructor () {
     super();
     this.state = {
-      searchResults = [];
+      searchResults: [],
     }
   }
   render() {
     return (
       <div>
         <h3>MoviesSearchPage</h3>
-        <MoviesSearchBar />
+        <MovieSearchBar />
       </div>
     );
   }
 }
 
-export default MoviesSearchPage;
+export default MovieSearchPage;

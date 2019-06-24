@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Route, Link } from "react-router-dom";
 
-class MoviesPage extends Component {
+class RentalLibraryPage extends Component {
 
   render() {
     return (
@@ -15,4 +15,4 @@ class MoviesPage extends Component {
   }
 }
 
-export default MoviesPage;
+export default RentalLibraryPage;
