@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 import logo from './logo.svg';
 import './App.css';
 import axios from 'axios';
+import Customers from './components/Customers';
 
 
 
@@ -54,7 +55,7 @@ class App extends Component {
                 <Link to="/">Home</Link>
               </li>
               <li>
-                {/* <Link to="/customers/">Customers List</Link> */}
+                <Link to="/customers/">Customers List</Link>
               </li>
             </ul>
           </nav>
@@ -63,10 +64,10 @@ class App extends Component {
             {this.state.customers}
           </p>
 
-          <Route path="/" render={() => (
+          <Route exact={true} path="/" render={() => (
             <h1>Welcome</h1>
           )} />
-          {/* <Route path="/customers" component={Customers} /> */}
+          <Route path="/customers" component={Customers} />
         </div>
       </Router>
     );
