@@ -24,42 +24,92 @@ function Search() {
   return <h2>Search</h2>;
 }
 
-function Library() {
-  return <h2>Library</h2>;
+function Movie (props) {
+  return <p>{props.title}</p>
 }
 
-// function Topic({ match }) {
-//   return <h3>Requested Param: {match.params.id}</h3>;
-// }
+class Library extends Component {
+  constructor() {
+    super();
+  
+    this.state = {
+      movieList: [],
+    };
+  }
 
-function Customer () {
-  return <p>props.customer.name</p>
+    generateMovieList = () => {
+      return this.state.movieList.map((movie) => {
+        return (<Movie 
+        key={movie.id}
+        title={movie.title}
+        />)
+      })
+    }
+
+    componentDidMount() { 
+      axios.get("http://localhost:3090/movies") 
+      .then((response)=>{
+        const movieList = response.data.map((movie) => {
+          return movie
+        })
+      this.setState({movieList})
+    })
+  
+  }
+
+
+render () {
+  return (
+  <div>
+  <h2>Library</h2>
+  <h2>{this.generateMovieList()}</h2>
+  </div>
+  );
+  }
 }
 
-function Customers() {
+function Customer (props) {
+  return <p>{props.name}</p>
+}
 
-  const generateCustomerList = () => {
-    const result = axios.get("http://localhost:3090/customers") 
+class Customers extends Component {
+  constructor() {
+    super();
+    
+    this.state = {
+      customerList: [],
+    };
+  }
+
+  generateCustomerList = () => {
+    return this.state.customerList.map((customer) => {
+      return (<Customer 
+      name={customer.name}
+      />)
+    })
+  }
+
+  componentDidMount() { 
+    axios.get("http://localhost:3090/customers") 
     .then((response)=>{
     const customerList = response.data.map((customer) => {
       return customer
     })
     console.log(customerList)
-    return customerList
-    // return customerList.map((customer) => {
-    //   return <Customer customer={customer}/>
-    // })
-  })
-  console.log(result)
-  return <p>{result}</p>
+    this.setState({customerList})
 
-  }
-  return (
+  })
+
+}
+ 
+  render () {
+    return (
     <div>
       <h2>Hi check this</h2>
-      <h2>{generateCustomerList()}</h2>
+      <h2>{this.generateCustomerList()}</h2>
     </div>
   );
+}
 }
 
 function Header() {
