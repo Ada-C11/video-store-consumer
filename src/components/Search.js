@@ -15,7 +15,7 @@ class Search extends Component {
 
   searchCallback = (queryString) => {
     this.setState(queryString);
-    url = 'https://video-store-api-sh.herokuapp.com/'
+    const url = 'https://video-store-api-sh.herokuapp.com/'
 
     axios.get(url, {query: queryString})
     .then((response) => {
@@ -51,5 +51,7 @@ class Search extends Component {
 }
 
 Search.propTypes = {
-  url = PropTypes.string,
+  url: PropTypes.string,
 }
+
+export default Search;

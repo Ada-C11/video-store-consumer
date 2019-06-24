@@ -34,7 +34,7 @@ class SearchForm extends Component {
   };
 };
 
-SearchBar.propTypes = {
+SearchForm.propTypes = {
   searchCallback: PropTypes.func.isRequired
 }
 

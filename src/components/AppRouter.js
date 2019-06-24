@@ -2,15 +2,17 @@ import React, { Component } from 'react';
 // import logo from './logo.svg';
 // import './AppRouter.css';
 
+import Search from './Search';
+
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 
 function Index() {
   return <h2>Home</h2>;
 }
 
-function Search() {
-  return <h2>Search Movies</h2>;
-}
+// function Search() {
+//   return <h2>Search Movies</h2>;
+// }
 
 function Library() {
   return <h2>Movie Library</h2>;
