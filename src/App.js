@@ -1,6 +1,7 @@
-import React from "react";
+import React, {Component} from "react";
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import Library from './components/Library'
+
 
 function Index() {
   return <h2>Home</h2>;
@@ -14,7 +15,27 @@ function Users() {
   return <h2>Users</h2>;
 }
 
-function AppRouter() {
+class AppRouter extends Component {
+
+  constructor (props) {
+    super(props);
+    this.state = {
+      currentMovie: {},
+    }
+  }
+
+  onSelectMovie = (movieData) => {
+    this.setState ({
+      currentMovie: {
+        title: movieData.title,
+
+      },
+    });
+    
+  }
+
+  render () {
+    console.log (this.state.currentMovie.title);
   return (
     <Router>
       <div>
@@ -33,11 +54,11 @@ function AppRouter() {
         </nav>
 
         <Route path="/" exact component={Index} />
-        <Route path="/library/" component={Library} />
+  <Route path="/library/" render={(props) => <Library {...props} onSelectMovieCallback={this.onSelectMovie} />} />
         <Route path="/users/" component={Users} />
       </div>
     </Router>
-  );
+  )};
 }
 
 export default AppRouter;

@@ -30,6 +30,7 @@ class Library extends Component {
                         id={movie.id}
                         releaseDate={movie.release_date}
                         imageURL = {movie.image_url}
+                        onSelectMovieCallback = {this.props.onSelectMovieCallback}
                     />
                 });
                 this.setState({ movies: moviesList });
@@ -58,6 +59,7 @@ class Library extends Component {
                 <div className='movie-item-container'>
                     {this.state.movies}
                 </div>
+
             </div>
         )
     }
@@ -65,8 +67,7 @@ class Library extends Component {
 }
 
 Library.propTypes = {
-    url: PropTypes.string.isRequired,
-    LibraryName: PropTypes.string.isRequired
+    onSelectMovieCallback: PropTypes.func.isRequired,
 };
 
 export default Library;
