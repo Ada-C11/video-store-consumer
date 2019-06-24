@@ -42,37 +42,4 @@ class VideoStore extends Component {
     }
 }
 
-
-// function Home() {
-//     return <h3>Home</h3>
-// }
-
-// function Search() {
-//     return <h3>Search Movies</h3>
-// }
-
-// function MovieLibrary() {
-//     return <h3>Movie Library</h3>
-// }
-
-// function CustomerList() {
-//     return <h3>Customer List</h3>
-// }
-
-// function VideoStoreRouter() {
-//     return (
-//         <Router>
-//             <div>
-//                 <nav>
-//                     <ul>
-//                         <li>
-//                             <Link to="/">Home</Link>
-//                         </li>
-//                     </ul>
-//                 </nav>
-//             </div>
-//         </Router>
-//     )
-// }
-
 export default VideoStore;
