@@ -20,7 +20,8 @@ class AppRouter extends Component {
   constructor (props) {
     super(props);
     this.state = {
-      currentMovie: {},
+      currentMovie: undefined,
+
     }
   }
 
@@ -28,14 +29,14 @@ class AppRouter extends Component {
     this.setState ({
       currentMovie: {
         title: movieData.title,
-
       },
+
     });
     
   }
 
   render () {
-    console.log (this.state.currentMovie.title);
+    
   return (
     <Router>
       <div>
@@ -53,11 +54,13 @@ class AppRouter extends Component {
           </ul>
         </nav>
 
+        <span>{this.state.currentMovie ? `Selected Movie: ${this.state.currentMovie.title}` : ""}</span>
         <Route path="/" exact component={Index} />
   <Route path="/library/" render={(props) => <Library {...props} onSelectMovieCallback={this.onSelectMovie} />} />
         <Route path="/users/" component={Users} />
       </div>
     </Router>
+
   )};
 }
 
