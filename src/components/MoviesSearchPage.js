@@ -3,6 +3,12 @@ import { Route, Link } from "react-router-dom";
 import MoviesSearchBar from './MoviesSearchBar'
 
 class MoviesSearchPage extends Component {
+  constructor () {
+    super();
+    this.state = {
+      searchResults = [];
+    }
+  }
   render() {
     return (
       <div>
