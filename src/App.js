@@ -1,14 +1,17 @@
 import React, { Component } from "react";
-import logo from "./logo.svg";
 import "./App.css";
+import MovieLibrary from "./components/MovieLibrary";
 
 class App extends Component {
   render() {
     return (
       <div className="App">
-        <MovieSearch />
+        <header className="App__header">
+          <h1 className="App__title">BitaRos Amazing VideoStore</h1>
+        </header>
+        {/* <MovieSearch /> */}
         <MovieLibrary />
-        <CustomerList />
+        {/* <CustomerList /> */}
       </div>
     );
   }
