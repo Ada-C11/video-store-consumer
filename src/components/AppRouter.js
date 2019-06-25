@@ -5,7 +5,7 @@ import React, { Component } from 'react';
 import Movie from './Movie'
 import Search from './Search';
 import Library from './Library';
-import Customers from './Customers';
+import CustomerList from './CustomerList';
 
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 
@@ -83,7 +83,7 @@ class AppRouter extends Component {
           <Route 
             path="/customers/" 
             render={(props) => 
-              <Customers 
+              <CustomerList 
                 url={ VIDEO_STORE_API_URL } 
               />}
           />

@@ -2,7 +2,9 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import axios from 'axios';
 
-class Customer extends Component {
+import Customer from './Customer';
+
+class CustomerList extends Component {
   constructor(props) {
     super(props);
 
@@ -44,11 +46,19 @@ class Customer extends Component {
   generateCustomers = () => {
     return this.state.customers.map((customer, i) => {
       return (
-        <ul>
-          <h3>{customer.name}</h3>
-          <li>{customer.id}</li>
-          <li></li>
-        </ul>
+        <Customer
+          key={i}
+          name={customer.name}
+          id={customer.id}
+          registeredAt={customer.registeredAt}
+          address={customer.address}
+          city={customer.city}
+          state={customer.state}
+          zip={customer.zip}
+          phone={customer.phone}
+          accountCredit={customer.accountCredit}
+          moviesCheckedOutCount={customer.moviesCheckedOutCount}
+        />
       )
       });
   };
@@ -63,8 +73,8 @@ class Customer extends Component {
   }
 }
 
-Customer.propTypes = {
-  url: PropTypes.string,
-}
+CustomerList.propTypes = {
+  url: PropTypes.string
+  }
 
-export default Customer;
+export default CustomerList;
