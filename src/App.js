@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 
+import MovieLibrary from './MovieLibrary'
+
 import './App.css';
 
 //  Below code is modified from React Router Tutorial https://reacttraining.com/react-router/web/guides/quick-start
@@ -11,9 +13,6 @@ function Index() {
 
 function Search() {
   return <h2>Search</h2>;
-}
-function Library() {
-  return <h2>Library</h2>;
 }
 
 function Customers() {
@@ -43,7 +42,7 @@ function AppRouter() {
 
         <Route path="/" exact component={Index} />
         <Route path="/search/" exact component={Search} />
-        <Route path="/library/" component={Library} />
+        <Route path="/library/" component={MovieLibrary} />
         <Route path="/customers/" component={Customers} />
       </div>
     </Router>
