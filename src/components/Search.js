@@ -17,7 +17,8 @@ class Search extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            movieSearch: ''
+            movieSearch: '',
+            shouldRedirect: undefined,
         }
     }
 
@@ -67,7 +68,9 @@ class Search extends Component {
 
         axios.post(MOVIE_URL, movie_params)
             .then((response) => {
-                return <Redirect to='/library/' />
+                this.setState({
+                    shouldRedirect: true,
+                })
             })
             .catch((error) => {
                 console.log(error);
@@ -75,6 +78,10 @@ class Search extends Component {
       }
 
     render() {
+
+        if(this.state.shouldRedirect) {
+            return <Redirect to='/library/' />
+        }
 
         return (
             <div>
