@@ -1,5 +1,28 @@
 body {
   margin: 0;
   padding: 0;
-  font-family: sans-serif;
+  font-family: 'Open Sans', sans-serif;
+
+}
+
+h1 {
+  font-family: 'Luckiest Guy', cursive;
+  font-size: 4.5em;
+  text-align: center;
+}
+
+.nav-menu {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  list-style: none;
+  background-color:#DC5107;
+  color: white;
+  list-style: none;
+  line-height: 4em;
+}
+
+a:active {
+  color: none;
+  text-decoration: none;
 }

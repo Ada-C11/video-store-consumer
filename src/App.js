@@ -3,6 +3,7 @@ import {Route, Switch, Link} from 'react-router-dom'
 import './App.css';
 import CustomerList from './components/CustomerList'
 import Library from './components/Library'
+import image from './images/image.jpeg'
 
 
 class App extends Component {
@@ -40,7 +41,10 @@ class App extends Component {
   render() {
     return (
       <div>
-        <h1> Rewind Movies Home Page </h1>
+        <h1> Rewind Movies</h1>
+        <div className="container">
+          <img src={image} alt="theater"/>
+        </div>
       </div>
     );
   }

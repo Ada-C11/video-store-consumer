@@ -6,14 +6,15 @@ import App from './App';
 import Library from './components/Library'
 import CustomerList from './components/CustomerList'
 
+
 import registerServiceWorker from './registerServiceWorker';
 
 const routing = (
   <Router>
     <div>
-      <ul>
+      <ul className="nav-menu">
         <li className="nav-link">
-          <Link to="/">Rewind Movies</Link>
+          <Link to="/">Home</Link>
         </li>
         <li className="nav-link">
           <Link to="/movies">Movies</Link>
@@ -28,6 +29,7 @@ const routing = (
     </div>
   </Router>
 )
+
 ReactDOM.render( routing, document.getElementById('root')
 );
 registerServiceWorker();
