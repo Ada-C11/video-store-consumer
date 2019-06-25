@@ -68,10 +68,11 @@ class App extends Component {
   onSelectMovie = (movie) => {
     // let currentSelectedMovie = this.state.selectedMovie;
     // currentSelectedMovie = movie;
-
-    this.setState({ 
-      selectedMovie: movie
-    });
+    
+      this.setState({ 
+        selectedMovie: movie
+      });
+    
 
     console.log('im in app and the movie clicked was:', movie.title)
   }
@@ -82,12 +83,6 @@ class App extends Component {
         selectedCustomer: customer
       });
   }
-  // mapApiResponse(response) {
-  //   return response.data.map((apiObject) => {
-  //     // console.log(apiObject);
-  //     return apiObject;
-  //   });
-  // }
 
   onClickUnselect = (unselect) => {
     const updatedState = {};
@@ -119,15 +114,20 @@ class App extends Component {
             </ul>
           </nav>
 
-          <div className='currently-selected-items'>
-            {this.state.selectedMovie && 
-              <p>Selected Movie: {this.state.selectedMovie.title}</p>   
-            } 
-            {this.state.selectedCustomer &&
+          <div className='currently-selected-items'>  
+               
+          {this.state.selectedMovie && 
+            <div className='currently-selected-items'>
+              <p>Selected Movie: {this.state.selectedMovie.title}</p>
+              <button onClick={() => { this.setState({ selectedMovie: null}) }}>Remove Movie from Rental</button>
+            </div>
+          }
+          {this.state.selectedCustomer &&
               <p>Selected Customer: {this.state.selectedCustomer.name}</p>
-              <button onClick={() => this.setState({ selectedCustomer: null })}>Unselect</button>
+              <button onClick={() => { this.setState({ selectedCustomer: null}) }}>Unselect</button>
             }
-          </div>      
+
+          </div>
         
           <Route exact={true} path="/" render={() => (
             <h1>Welcome</h1>
