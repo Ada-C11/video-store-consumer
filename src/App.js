@@ -11,13 +11,7 @@ class App extends Component {
     this.state = {
       movies: [],
       customers: [],
-    };
-  }
-
-  constructor(props) {
-    super(props);
-    this.state = {
-      movies: [],
+      error: null
     };
   }
 
@@ -43,6 +37,9 @@ class App extends Component {
 
   render() {
 
+    const errorSection = (this.state.error) ?
+    (<section>Error: {this.state.error}</section>) : null;
+
     return (
       <Router>
         <div>
@@ -52,6 +49,7 @@ class App extends Component {
           <Route path="/search" component={Search} />
           <Route path="/library" component={Library} />
           <Route path="/customers" component={Customers} />
+          {errorSection}
         </div>
       </Router>
     );
