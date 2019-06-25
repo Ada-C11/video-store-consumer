@@ -10,6 +10,7 @@ class App extends Component {
 
     this.state = {
       movies: [],
+      externalMovies: [],
       customers: [],
       error: null
     };
@@ -18,7 +19,7 @@ class App extends Component {
   componentDidMount() {
     axios.get('http://localhost:3001/movies')
     .then((response) => {
-      console.log(response);
+      // console.log(response);
       this.setState({ movies: response.data });
     })
     .catch((error) => {
@@ -27,13 +28,15 @@ class App extends Component {
 
     axios.get('http://localhost:3001/customers')
     .then((response) => {
-      console.log(response);
+      // console.log(response);
       this.setState({ customers: response.data });
     })
     .catch((error) => {
       this.setState({ error: error.message });
     });
+
   }
+
 
   render() {
 
@@ -46,7 +49,7 @@ class App extends Component {
           <Header />
 
           <Route exact path="/" component={Home} />
-          <Route path="/search" component={Search} />
+          <Route path="/search" render={() => <Search />}/>
           <Route path="/library" component={Library} />
           <Route path="/customers" component={Customers} />
           {errorSection}
@@ -59,7 +62,6 @@ class App extends Component {
 function Home() {
   return <h2>Home</h2>;
 }
-
 
 
 function Library() {
