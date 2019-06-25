@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 import './App.css';
 import axios from 'axios';
+import SearchMovie from './components/SearchMovie';
 import CustomerList from './components/CustomerList';
 import Movies from './components/Movies';
 
@@ -106,6 +107,9 @@ class App extends Component {
                 <Link to="/">Home</Link>
               </li>
               <li>
+                <Link to="/search">Search for Movie</Link>
+              </li>
+              <li>
                 <Link to="/customers/">Customer List</Link>
               </li>
               <li>
@@ -132,6 +136,7 @@ class App extends Component {
           <Route exact={true} path="/" render={() => (
             <h1>Welcome</h1>
           )} />
+          <Route path="/search" render={(props) => <SearchMovie {...props} /> } />
           <Route path="/customers" render={(props) => <CustomerList {...props} customers={this.state.customers} onSelectCustomerCallback={this.onSelectCustomer} /> } />
           <Route path="/library" render={(props) => <Movies {...props} movieList={this.state.movies} onSelectMovieCallback={this.onSelectMovie} /> } />
         </body>
