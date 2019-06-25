@@ -1,12 +1,14 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
-import axios from "axios"
+import { LinkContainer } from 'react-router-bootstrap'
 
 import MovieLibrary from './components/MovieLibrary'
 import CustomerList from './components/CustomerList'
 import Search from './components/Search'
 
 import './App.css';
+
+import { Nav } from 'react-bootstrap'
 
 //  Below code is modified from React Router Tutorial https://reacttraining.com/react-router/web/guides/quick-start
 
@@ -18,22 +20,30 @@ function AppRouter() {
   return (
     <Router>
       <div>
-        <nav>
-          <ul>
-            <li>
-              <Link to="/">Home</Link>
-            </li>
-            <li>
-              <Link to='/search/'>Search</Link>
-            </li>
-            <li>
-              <Link to="/library/">Library</Link>
-            </li>
-            <li>
-              <Link to="/customers/">Customers</Link>
-            </li>
-          </ul>
-        </nav>
+      <Nav variant="tabs" as="ul"> 
+        <Nav.Item as="li">
+          <LinkContainer to="/home">
+            <Nav.Link>Home</Nav.Link>
+          </LinkContainer>
+              
+        </Nav.Item>
+        <Nav.Item as="li" >
+          <LinkContainer to="/search">
+              <Nav.Link>Search</Nav.Link>  
+          </LinkContainer>
+        </Nav.Item>
+        <Nav.Item as="li" eventKey="/library">
+          <LinkContainer to="/library">
+                <Nav.Link>Library</Nav.Link>  
+          </LinkContainer>
+        </Nav.Item>
+        <Nav.Item as="li">
+          <LinkContainer to="/customers">
+                <Nav.Link>Customers</Nav.Link>  
+          </LinkContainer>
+        </Nav.Item>
+
+      </Nav>
 
         <Route path="/" exact component={Index} />
         <Route path="/search/" component={Search} />

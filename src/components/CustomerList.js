@@ -10,7 +10,7 @@ class CustomerList extends Component {
         super(props);
         this.state = {
             customers: [],
-            selected: ""
+            selected: undefined
         }
     }
 
@@ -18,24 +18,25 @@ class CustomerList extends Component {
         this.setState({
             selected: customer,
         });
+        console.log(this.state.selected);
     }
 
-    componentDidMount() {
+    getCustomers() {
         const endpoint = 'http://localhost:3000/customers'
 
         axios.get(endpoint)
         .then((response) => {
             const customerList = response.data.map((customer) => {
-                return(
+                return (
                 < Customer 
                     key= {customer.id}
                     id= {customer.id}
                     name = {customer.name}
                     city= {customer.city}
-                    state= {customer.state}
+                    stateName= {customer.state}
                     phone= {customer.phone}
                     accountCredit= {customer.account_credit}
-                    moviesCheckedOutCount={customer.movies}
+                    moviesCheckedOutCount={customer.movies_checked_out_count}
                     selectCustomerCallback={this.selectCustomer}
                     />
                 );
@@ -46,13 +47,17 @@ class CustomerList extends Component {
         })
         .catch((error)=>{
 
-        })   
+        });   
+    }
+    componentDidMount() {
+        this.getCustomers();
     }
 
     render() {
+        const customerList = this.state.customers;
         return (
             <div className="customer-list">
-            {this.state.customers}
+                {customerList}
             </div>
             
         );
