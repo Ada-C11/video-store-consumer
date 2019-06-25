@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import axios from 'axios';
 import MovieItem from './MovieItem'
+import './Library.css'
 
 
 
@@ -55,12 +56,12 @@ class Library extends Component {
 
     render() {
         return (
-            <div>
+            
                 <div className='movie-item-container'>
                     {this.state.movies}
                 </div>
 
-            </div>
+            
         )
     }
 

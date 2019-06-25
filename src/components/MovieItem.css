@@ -1,0 +1,17 @@
+.movie-item {
+  width: 300px;
+  min-height: 350px;
+  background-color: white;
+  padding: 20px;
+  margin: 20px;
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+
+}
+
+.movie-item img {
+  display: block;
+  align-self: center;
+  margin-bottom: 20px;
+}
