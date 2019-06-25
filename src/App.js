@@ -73,20 +73,23 @@ class App extends Component {
     return () => { 
       this.setState({
       selectedMovie: title
-    });
-}
+      });
+    }
     // const movie = this.state.movieLibrary.find(movie => movie.id === movieId)
-
-
     // console.log(this.state.selectedMovie)
   }
 
   selectCustomer = (customerId) => {
-    const customer = this.state.customerLibrary.find(customer => customer.id === customerId)
+    return () => { 
+      this.setState({
+      selectedCustomer: customerId
+      });
+    }
+    // const customer = this.state.customerLibrary.find(customer => customer.id === customerId)
 
-    this.setState({
-      selectedCustomer: customer
-    });
+    // this.setState({
+    //   selectedCustomer: customer
+    // });
   }
 
   render() {
@@ -123,7 +126,8 @@ class App extends Component {
           />
           <Route 
             path="/customers/" 
-            render={(props) => <CustomerList {...props} customerList={this.state.customerList} />}
+            render={(props) => <CustomerList {...props} selectCustomer={this.selectCustomer}
+            customerList={this.state.customerList} />}
           />
 
 
