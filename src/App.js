@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import axios from "axios"
 
 import MovieLibrary from './components/MovieLibrary'
 import CustomerList from './components/CustomerList'
+import Search from './components/Search'
 
 import './App.css';
 
@@ -11,11 +13,6 @@ import './App.css';
 function Index() {
   return <h2>Home</h2>;
 }
-
-function Search() {
-  return <h2>Search</h2>;
-}
-
 
 function AppRouter() {
   return (
@@ -27,7 +24,7 @@ function AppRouter() {
               <Link to="/">Home</Link>
             </li>
             <li>
-              <Link to="/search/">Search</Link>
+              <Link to='/search/'>Search</Link>
             </li>
             <li>
               <Link to="/library/">Library</Link>
@@ -39,7 +36,7 @@ function AppRouter() {
         </nav>
 
         <Route path="/" exact component={Index} />
-        <Route path="/search/" exact component={Search} />
+        <Route path="/search/" component={Search} />
         <Route path="/library/" component={MovieLibrary} />
         <Route path="/customers/" component={CustomerList} />
       </div>
