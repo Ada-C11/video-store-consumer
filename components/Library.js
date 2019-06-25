@@ -2,6 +2,7 @@ import React from 'react';
 import axios from 'axios';
 import Movie from './Movie';
 import './Library.css';
+import { workers } from 'cluster';
 
 class Library extends React.Component {
   constructor(props) {
@@ -22,7 +23,12 @@ class Library extends React.Component {
     })
   }
 
-  // TO DO: find movie for the rental
+  // TO DO: confirm this works
+  findMovieForRental = (movieId) => {
+    console.log(`In Library ${movieId}`);
+    const clickedMovie = this.state.movies.find( movie => movie.id === movieId)
+    this.props.selectedMovie(clickedMovie.title)
+  }
   
   render() {
     console.log(this.props)
