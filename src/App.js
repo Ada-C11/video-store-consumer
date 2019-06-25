@@ -24,10 +24,18 @@ class App extends Component {
   onSelectMovie = (movieTitle) => {
     this.setState({selectedMovie: movieTitle});
   }
-
-  onCheckOutClick = () => {
-    const url = "http://localhost:3001/movies"
-    axios.post()
+  
+  onCheckOutClick = (rentalInfo) => {
+    const url = "http://localhost:3001/rentals/"+this.state.selectedMovie+"/check-out"
+    
+    console.log(Date.now())
+    axios.post(url, rentalInfo)
+      .then((response) => {
+        console.log("success")
+      })
+      .catch((error) => {
+        console.log("failure")
+      });
   }
   
   
@@ -42,7 +50,7 @@ class App extends Component {
     </section>) : null;
     const checkOut = (this.state.selectedCustomer && this.state.selectedMovie) ? 
       (<section>
-        <button className="btn btn-primary">Check Out</button>
+        <button className="btn btn-primary" onClick={this.onCheckOutClick}>Check Out</button>
       </section>) : null;
     return (
       <div>
