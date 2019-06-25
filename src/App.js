@@ -5,6 +5,14 @@ import axios from 'axios';
 import Search from './components/Search';
 
 class App extends Component {
+  constructor() {
+    super();
+
+    this.state = {
+      movies: [],
+      customers: [],
+    };
+  }
 
   constructor(props) {
     super(props);
@@ -17,8 +25,22 @@ class App extends Component {
     axios.get('http://localhost:3001/movies')
     .then((response) => {
       console.log(response);
+      this.setState({ movies: response.data });
     })
+    .catch((error) => {
+      this.setState({ error: error.message });
+    });
+
+    axios.get('http://localhost:3001/customers')
+    .then((response) => {
+      console.log(response);
+      this.setState({ customers: response.data });
+    })
+    .catch((error) => {
+      this.setState({ error: error.message });
+    });
   }
+
   render() {
 
     return (
