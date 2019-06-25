@@ -3,9 +3,14 @@ import PropTypes from 'prop-types';
 
 const Movie = (props) => {
   const onMovieSelect = (event) => {
-    const movie = props.title;
+    // const movie = props.title;
 
-    this.props.onMovieSelectCallback(movie)
+    // console.log("Inside onMovieSelect:")
+    // console.log(props.title);
+
+    props.selectMovieCallback(props.title);
+
+    // this.props.onMovieSelectCallback(movie)
   }
 
   return (
@@ -17,7 +22,7 @@ const Movie = (props) => {
       <input
         type="button"
         value="Select this Movie"
-        onClick={props.onMovieSelect}
+        onClick={onMovieSelect}
       />
     </div>
   )
@@ -28,7 +33,7 @@ Movie.propTypes = {
   overview: PropTypes.string,
   release_date: PropTypes.string,
   image_url: PropTypes.string,
-  onMovieSelectCallback: PropTypes.func
+  selectMovieCallback: PropTypes.func
 }
 
 export default Movie

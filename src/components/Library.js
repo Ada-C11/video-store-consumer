@@ -34,6 +34,11 @@ class Library extends Component {
       })
   }
 
+  selectMovie = (title) => {
+    console.log("Inside LIBRARY")
+    console.log(title);
+  }
+
   render() {
     const movieComponents = this.state.movies.map((movie, index) => {
         return (
@@ -43,6 +48,7 @@ class Library extends Component {
           overview={movie.overview}
           release_date={movie.release_date}
           image_url={movie.image_url}
+          selectMovieCallback={this.selectMovie}
           />
         )
     })
