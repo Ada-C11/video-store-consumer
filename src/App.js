@@ -92,11 +92,6 @@ class App extends Component {
     this.setState(updatedState);
   }
 
-  onSearch = (searchTerm) => {
-    console.log('this is what i searched: ', searchTerm)
-  }
-
-
   render() {
     return (
       <Router>
@@ -140,7 +135,7 @@ class App extends Component {
           <Route exact={true} path="/" render={() => (
             <h1>Welcome</h1>
           )} />
-          <Route path="/search" render={(props) => <SearchMovie {...props} onSearchCallback={this.onSearch}/> } />
+          <Route path="/search" render={(props) => <SearchMovie {...props}/> } />
           <Route path="/customers" render={(props) => <CustomerList {...props} customers={this.state.customers} onSelectCustomerCallback={this.onSelectCustomer} /> } />
           <Route path="/library" render={(props) => <Movies {...props} movieList={this.state.movies} onSelectMovieCallback={this.onSelectMovie} /> } />
         </body>
