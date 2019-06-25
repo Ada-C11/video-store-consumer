@@ -1,33 +1,9 @@
 import React, { Component } from 'react';
-import axios from 'axios';
 import Customer from './Customer'
 class Customers extends Component {
-  constructor() {
-    super();
-    this.state = {
-      customers: [],
-    };
-  }
-
-  componentDidMount() {
-    this.updateCustomers()
-  }
-
-  updateCustomers = () => {
-    const url = `http://localhost:3000/customers`
-    axios.get(url)
-      .then((response) => {
-        this.setState({ customers: response.data });
-      })
-      .catch((error) => {
-        this.setState({ error: error.message });
-      });
-  }
-
 
   render() {
-    console.log(this.props.selectCustomerCallBack)
-    const allCustomers = this.state.customers.map((customer, i) => {
+    const allCustomers = this.props.customers.map((customer, i) => {
       return <Customer
                 key={i}
                 content={customer}
