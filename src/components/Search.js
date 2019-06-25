@@ -9,7 +9,6 @@ class Search extends Component {
     this.state = {
       queryString: "",
       searchResults: [],
-      addMovieCallback: props.addMovieCallback,
     };
   }
 
@@ -42,7 +41,7 @@ class Search extends Component {
       return (
         <div>
           <MovieCard key={index} movie={movie} selectMovie={this.props.selectMovie}/>
-          <button type="button" onClick={this.state.addMovieCallback}>Add Movie to Library</button>
+          <button type="button" onClick={() => {this.props.addMovieCallback(movie.title)}}>Add Movie to Library</button>
         </div>
       )
     })

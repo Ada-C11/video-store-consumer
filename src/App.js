@@ -56,10 +56,10 @@ class App extends Component {
   addMovieToLibrary = (title) => {
     axios.post(`/movies/${title}`)
     .then(response => {
-      console.log(response)
-      this.setState({
-        customerList: response.data
-      })
+      // console.log(response)
+      // this.setState({
+      //   movieLibrary: response.data
+      // })
     })
     .catch(error => console.log(error))
   }
