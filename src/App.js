@@ -4,6 +4,7 @@ import './App.css';
 import Search from './components/Search';
 import Library from './components/Library';
 import CustomerList from './components/CustomerList';
+import MovieCard from './components/MovieCard';
 import axios from 'axios';
 
 
@@ -54,16 +55,16 @@ class App extends Component {
   }
 
   //Api call to search movies
-  searchMovies = (query) => {
-    axios.get(`/movies?query=${query}`)
-      .then(response => {
-        console.log(response)
-        this.setState({
-          customerList: response.data
-        })
-      })
-      .catch(error => console.log(error))
-  }
+  // searchMovies = (query) => {
+  //   axios.get(`/movies?query=${query}`)
+  //     .then(response => {
+  //       console.log(response)
+  //       this.setState({
+  //         customerList: response.data
+  //       })
+  //     })
+  //     .catch(error => console.log(error))
+  // }
 
   addMovieToLibrary = () => {
 
