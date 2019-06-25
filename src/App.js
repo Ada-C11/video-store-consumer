@@ -23,6 +23,23 @@ class App extends Component {
     this.setState({selectedMovie: props.title})
   }
 
+  onCustomerSelect = (name) => {
+    console.log("Inside APP:")
+    console.log(name);
+
+    const selectedCustomer = name;
+
+    this.setState({selectedCustomer})
+  }
+
+  myCustomersComponent = () => {
+    return (
+      <Customers
+        selectCustomerCallback={this.onCustomerSelect.bind(this)} 
+      />
+    );
+  }
+
   render() {
 
     return (
@@ -50,13 +67,20 @@ class App extends Component {
                 }
  
               </div>
+              <div>
+                {this.state.selectedCustomer.length > 0 &&
+                  <p>{this.state.selectedCustomer}</p>
+                }
+ 
+              </div>
             </section>
           </nav>
   
           <Route path="/" exact component={Index} />
           <Route path="/search/" component={Search} />
           <Route path="/library/" component={Library} />
-          <Route path="/customers/" component={Customers} />
+          {/* <Route path="/customers/" component={Customers} /> */}
+          <Route path="/customers/" render={this.myCustomersComponent} />
         </div>
       </Router>
     );

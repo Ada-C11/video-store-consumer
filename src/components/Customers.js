@@ -42,8 +42,9 @@ class Customers extends Component {
     }
 
     selectCustomer = (name) => {
-        console.log("Inside CustomerSSSS:")
-        console.log(name);
+        // console.log("Inside CustomerSSSS:")
+        // console.log(name);
+        this.props.selectCustomerCallback(name);
     }
 
     render() {
@@ -65,3 +66,7 @@ class Customers extends Component {
 }
 
 export default Customers
+
+Customers.propTypes = {
+    selectCustomerCallback: PropTypes.func,
+}
