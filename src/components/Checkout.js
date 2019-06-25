@@ -3,8 +3,12 @@ import React from 'react';
 const Checkout = (props) => {
   return(
     <div>
-      Customer
-      Movie
+      <div>
+        Selected Customer: {props.selectedCustomer ? props.selectedCustomer.name : ''}
+      </div>
+      <div>
+        Movie
+      </div>
     </div>
   );
 }

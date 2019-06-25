@@ -25,7 +25,7 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <header className="App-header">
+        
         <Router>
             <nav>
               <ul>
@@ -49,11 +49,10 @@ class App extends Component {
             <Route path="/customerlist" render={(props) => <CustomerList {...props} selectedCustomer={this.selectCustomer} />} />
 
           </Router>
-        </header>
 
-        <section>
-          <Checkout />
-        </section>
+          <section>
+            <Checkout selectedCustomer={this.state.selectedCustomer}/>
+          </section>
       </div>
     );
   }

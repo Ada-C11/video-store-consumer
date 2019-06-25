@@ -10,6 +10,7 @@ class CustomerList extends Component {
     this.state = {
       allCustomers: [],
       errorMessage: [],
+      selectedCustomer: '',
     }
   }
 
@@ -33,21 +34,35 @@ class CustomerList extends Component {
     })
   }
 
+  updateSelected = (customerId) => {
+    this.state.allCustomers.forEach((customer) => {
+      if(customer.id === customerId) {
+        console.log('anything here?');
+        console.log(customer.name);
+        this.setState({
+          selectedCustomer: customer.name,
+        })
+      }
+    })
+  }
+
   displayCustomers = () => {
     const displayedCustomers = this.state.allCustomers.map((customer) => {
       return(
         <div>
           <Customer
             key={customer.id}
+            customerId={customer.id}
             name={customer.name}
-            isSelected={false}
+            selectedCallback={this.updateSelected}
+            isSelected = {this.state.selectedCustomer}
           />
         </div>
       )
     })
     return (
       <form>
-        {displayedCustomers}
+        { displayedCustomers }
       </form>
     );
   }

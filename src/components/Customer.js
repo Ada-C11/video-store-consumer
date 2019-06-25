@@ -1,30 +1,30 @@
 import React, {Component} from 'react';
 
 class Customer extends Component {
+
   constructor (props) {
     super(props);
-
     this.state = {
-      selectedCustomer: undefined,
+      selectedOption: '',
     }
   }
 
   onChangeHandler = (event) => {
-    console.log('anything changing?');
     console.log(event.target.value);
+    this.props.selectedCallback(this.props.customerId);
     this.setState({
-      selectedCustomer: event.target.value,
+      selectedOption: this.props.name,
     })
   }
 
-  render() {
+  render () {
     return(
       <label>
         <input 
           type="radio" 
-          value={this.props.name} 
-          onChange={this.onChangeHandler} 
-          checked={this.state.selectedCustomer === this.props.name} 
+          value={this.props.customerId} 
+          onChange={this.onChangeHandler}
+          checked={this.props.isSelected ===  this.selectedOption} 
         />
         {this.props.name}
       </label>
