@@ -6,34 +6,59 @@ import Movie from './components/Movie';
 import Customer from './components/Customer';
 
 
-function App() {
-  return (
-    <section>
-      <Router>
-        <div>
-          <Header />
+class App extends Component {
+  constructor() {
+    super();
 
-          <Route exact path="/" component={Home} />
-          <Route path="/customers" component={Customers} />
-          <Route path="/library" component={Library} />
-          <Route path="/search" component={Search} />
+    this.state = {
+      currentCustomer: "",
+      currentMovie: "",
+    }
+  }
 
-        </div>
-      </Router>
+  currentCustomerCallback = (customerID) => {
+    return () => {
+      this.setState({
+        currentCustomer: customerID,
+      })
+    }
+  }
+
+  render() {
+    return (
+      <section>
+        <Router>
+          <div>
+            {this.state.currentCustomer}
+            <Header />
 
 
-    </section>
-  );
+            <Route exact path="/" component={Home} />
+            <Route path="/customers" render={(routeProps) => (
+              <Customer {...routeProps} currentCustomerCallback={this.currentCustomerCallback} />
+            )} />
+            <Route path="/library" component={Library} />
+            <Route path="/search" component={Search} />
+
+          </div>
+        </Router>
+
+
+      </section>
+    );
+  }
 }
 
 
 function Home() {
-  return <VideoStore url="http://localhost:3000/" />;
+  return <VideoStore
+    url="http://localhost:3000/"
+  />;
 }
 
-function Customers() {
-  return <Customer />;
-}
+// function Customers() {
+//   return;
+// }
 
 function Library() {
   return <Movie />;
@@ -43,7 +68,7 @@ function Search() {
   return <h2>Search</h2>;
 }
 
-function Header() {
+function Header(props) {
   return (
     <ul>
       <li>
@@ -59,6 +84,7 @@ function Header() {
         <Link to="/search">Search</Link>
       </li>
     </ul>
+
   );
 
 }

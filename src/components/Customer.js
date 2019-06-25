@@ -6,11 +6,11 @@ import axios from 'axios';
 
 
 class Customer extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
 
     this.state = {
-      customers: []
+      customers: [],
     }
   }
 
@@ -41,13 +41,18 @@ class Customer extends Component {
       });
   }
 
+
+  // onCustomerClick = () => {
+  //   this.props.currentCustomerCallback(this.props.id)
+  // }
+
   render() {
     const displayCustomers = this.state.customers.map((customer) => {
       const { id, name, city, address, postal_code, phone, account_credit, movies_checked_out_count } = customer;
       return (
-        <div className="customer">
+        <div key={id} className="customer">
           {id}
-          {name}
+          <button onClick={this.props.currentCustomerCallback(id)}>{name}</button>
           {city}
           {address}
           {postal_code}
@@ -68,8 +73,8 @@ class Customer extends Component {
 }
 
 Customer.propTypes = {
-  id: PropTypes.number.isRequired,
-  name: PropTypes.string.isRequired,
+  id: PropTypes.number,
+  name: PropTypes.string,
   registered_at: PropTypes.instanceOf(Date),
   address: PropTypes.string,
   city: PropTypes.string,
