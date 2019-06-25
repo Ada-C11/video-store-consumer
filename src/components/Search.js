@@ -9,6 +9,7 @@ class Search extends Component {
     this.state = {
       queryString: "",
       searchResults: [],
+      addMovieCallback: props.addMovieCallback,
     };
   }
 
@@ -38,7 +39,12 @@ class Search extends Component {
 
   render() {
     const searchResultList = this.state.searchResults.map((movie, index) => {
-      return <MovieCard key={index} movie={movie} />
+      return (
+        <div>
+          <MovieCard key={index} movie={movie} selectMovie={this.props.selectMovie}/>
+          <button type="button" onClick={this.state.addMovieCallback}>Add Movie to Library</button>
+        </div>
+      )
     })
     return (
       <section>

@@ -53,20 +53,15 @@ class App extends Component {
       .catch(error => console.log(error))
   }
 
-  //Api call to search movies
-  // searchMovies = (query) => {
-  //   axios.get(`/movies?query=${query}`)
-  //     .then(response => {
-  //       console.log(response)
-  //       this.setState({
-  //         customerList: response.data
-  //       })
-  //     })
-  //     .catch(error => console.log(error))
-  // }
-
-  addMovieToLibrary = () => {
-
+  addMovieToLibrary = (title) => {
+    axios.post(`/movies/${title}`)
+    .then(response => {
+      console.log(response)
+      this.setState({
+        customerList: response.data
+      })
+    })
+    .catch(error => console.log(error))
   }
 
   selectMovie = (title) => {
@@ -118,7 +113,9 @@ class App extends Component {
             </ul>
           </nav>
 
-          <Route path="/search/" component={Search} />
+          <Route path="/search/"
+            render={(props) => <Search {...props} selectMovie={this.selectMovie} addMovieCallback={this.addMovieToLibrary}/>}
+          />
           <Route 
             path="/library/" 
             render={(props) => <Library {...props} selectMovie={this.selectMovie}
