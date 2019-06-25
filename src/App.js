@@ -27,13 +27,30 @@ class Search extends Component {
       title: ""
     }
   }
+
+  onChangeTitle = (event) => {
+    let title = this.state.title;
+    // const field = event.target.name;
+    const value = event.target.value;
+    title = value;
+    this.setState({title})
+
+  }
+
+  onFormSubmit = () => {
+    axios.get('http://localhost:3090/movies/' + this.state.title.toString())
+    .then((response) => {
+      console.log(response)
+
+    })
+  }
   render () {
     return (
       <div>
         <h2>Search</h2>
-        <form>
+        <form onSubmit={onFormSubmit}>
           <label htmlFor="title">Title</label>
-          <input name="title" type="text" value={this.state.title}/>
+          <input name="title" type="text" value={this.state.title} onChange={this.onChangeTitle}/>
           <input type="submit" value="Search" />
         </form>
       </div>
@@ -113,7 +130,6 @@ class Customers extends Component {
     const customerList = response.data.map((customer) => {
       return customer
     })
-    console.log(customerList)
     this.setState({customerList})
 
   })
@@ -123,7 +139,6 @@ class Customers extends Component {
   render () {
     return (
     <div>
-      <h2>Hi check this</h2>
       <h2>{this.generateCustomerList()}</h2>
     </div>
   );
