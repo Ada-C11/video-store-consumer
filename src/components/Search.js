@@ -42,24 +42,53 @@ class Search extends Component {
     }
 
     addToLibraryCallback = (title, overview, image_url, release_date) => {
-        const movie = {
-            title: title,
-            overview: overview,
-            release_date: release_date,
-            inventory: 1,
-            image_url: image_url,
-        }
-        console.log(movie)
-
-        const fullUrl = "http://localhost:3000/movies/"
-        axios.post(fullUrl, movie)
+        const fullUrl = "http://localhost:3000/movies"
+        axios.get(fullUrl)
             .then((response) => {
-                console.log(response)
+                const movies = response.data.map((movie) => {
+                    const newMovie = {
+                        title: movie.title,
+                        id: movie.id,
+                    }
+                    return newMovie;
+                })
+                console.log(movies)
+                let found = movies.find(movie => movie.title === title);
+                console.log(found)
+                if (!found) {
+                    const newMovie = {
+                        title: title,
+                        overview: overview,
+                        release_date: release_date,
+                        inventory: 1,
+                        image_url: image_url,
+                    }
+                    console.log(newMovie)
+
+                    const fullUrl = "http://localhost:3000/movies/"
+                    axios.post(fullUrl, newMovie)
+                        .then((response) => {
+                            console.log(response)
+                            return(
+                                < div class="alert alert-success" >
+                                    {`${title} has been added to the Library`}
+                                </div >
+                            );
+                        })
+                        .catch((error) => {
+                            this.setState({ errorMessages: error.message });
+                            console.log(error)
+                        });
+                } else {
+                    console.log("already added!")
+                    return (
+                        <div class="alert alert-danger">
+                            Your movie has already been added to the library!
+                        </div>
+                    )
+                }
+
             })
-            .catch((error) => {
-                this.setState({ errorMessages: error.message });
-                console.log(error)
-            });
     }
 
 
@@ -67,13 +96,9 @@ class Search extends Component {
     displayMovies = (movies) => {
         const searchedMovies = movies.map((movie) => {
             const { title, overview, image_url, release_date, external_id } = movie;
-            // const title = movie.title
-            // const external_id = movie.external_id
-
-            // const movieParams = [title, overview, image_url, release_date]
             return (
                 <div key={external_id}>
-                    <img src={image_url} alt="movie poster" />
+                    <img src={image_url} alt="movie poster" className="movie-poster" />
                     <p>{title}</p>
                     <p>{release_date}</p>
                     <p>{overview}</p>
@@ -106,7 +131,7 @@ class Search extends Component {
 
     render() {
         return (
-            <div className="search-form">
+            <div className="grid-container">
                 <div className="search-form__header">
                     Search for a Movie!
                 </div>
@@ -118,7 +143,7 @@ class Search extends Component {
                         <input type="submit" value="Search" className="search-form__form-button" />
                     </div>
                 </form>
-                <section>
+                <section className="">
                     {this.displayMovies(this.state.returnedMovies)}
                 </section>
             </div>
