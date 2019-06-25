@@ -13,42 +13,31 @@ function Index() {
   return <h2>Home</h2>;
 }
 
-// function Search() {
-//   return <h2>Search Movies</h2>;
-// }
-
-// function Library() {
-//   return <h2>Movie Library</h2>;
-// }
-
-// function Customers() {
-//   return <h2>Customers</h2>;
-// }
-const generateMovieComponents = (movieList) => {
-  return movieList.map((movie, i) => {
-    return (
-      <Movie
-        key={movie.id}
-        index={i}
-        id={movie.id}
-        title={movie.title}
-        overview={movie.overview}
-        release_date={movie.release_date}
-        image_url={movie.image_url}
-      />
-    )
-  })
-
-}
+const VIDEO_STORE_API_URL = 'https://video-store-api-sh.herokuapp.com/';
 
 class AppRouter extends Component {
-
   constructor(props) {
     super(props);
     this.state = {
 
     }
 
+  }
+
+  generateMovieComponents = (movieList) => {
+    return movieList.map((movie, i) => {
+      return (
+        <Movie
+          key={movie.id}
+          index={i}
+          id={movie.id}
+          title={movie.title}
+          overview={movie.overview}
+          release_date={movie.release_date}
+          image_url={movie.image_url}
+        />
+      )
+    })
   }
 
   render() {
@@ -76,12 +65,20 @@ class AppRouter extends Component {
           <Route
             path="/search/"
             // component={Search} 
-            render={(props) => <Search generateMovieComponentsCallback={generateMovieComponents} />}
+            render={(props) => 
+              <Search 
+                generateMovieComponentsCallback={this.generateMovieComponents} 
+                url={ VIDEO_STORE_API_URL } 
+              />}
           />
           <Route
             path="/library/"
             // component={Library}
-            render={(props) => <Library thing="thingy" />}
+            render={(props) => 
+              <Library 
+                generateMovieComponentsCallback={this.generateMovieComponents} 
+                url={ VIDEO_STORE_API_URL } 
+              />}
           />
           <Route path="/customers/" component={Customers} />
         </div>
