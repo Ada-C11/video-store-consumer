@@ -1,20 +1,54 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 import './App.css';
+import axios from 'axios';
 
 import Search from './components/Search';
 import MovieLibrary from './components/MovieLibrary';
 import Checkout from './components/Checkout';
+import SearchResult from './components/SearchResult';
 import CustomerList from './components/CustomerList';
-import Customer from './components/Customer';
+
+
+const URL = 'http://localhost:4000/movies'
 
 class App extends Component {
-  constructor(props) {
-    super(props);
+
+  constructor(){
+    super();
     this.state = {
       selectedCustomer: '',
+      searchResults: [],
     }
   }
+
+  onSearchButtonCallback = (searchInput) => {
+
+    axios.get(URL, {params: {query: searchInput}})
+    .then((response) => {
+      console.log(response.data);
+ 
+     
+
+      
+
+      this.displaySearchResults(response.data)
+
+    })
+    .catch((error) => {
+      console.log(error)  
+    })
+  
+    
+  }
+
+  displaySearchResults = (result) => {
+    console.log(result)
+    this.setState({
+        searchResults: result,
+      });
+  }
+
 
   selectCustomer = (customerName) => {
     console.log(customerName);
@@ -24,9 +58,10 @@ class App extends Component {
   }
 
   render() {
+ 
     return (
       <div className="App">
-        
+        <header>
         <Router>
             <nav>
               <ul>
@@ -44,18 +79,17 @@ class App extends Component {
                 </li>
               </ul>
             </nav>
-           
-            <Route path="/search" component={Search} />
+            <Route path="/search" render={(props) => <Search onSearchButtonCallback={this.onSearchButtonCallback}/>} />
             <Route path="/movielibrary" component={MovieLibrary} />
             <Route path="/customerlist" render={(props) => <CustomerList {...props} selectedCustomer={this.selectCustomer} />} />
-
           </Router>
-
-          <section>
-            <Checkout selectedCustomer={this.state.selectedCustomer}/>
-          </section>
+        </header>
+        <section>
+          <SearchResult result={this.state.searchResults}/>
+          <Checkout selectedCustomer={this.state.selectedCustomer}/>
+        </section>
       </div>
-    );
+    )
   }
 }
 
