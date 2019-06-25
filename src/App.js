@@ -2,16 +2,25 @@ import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import './App.css';
 import axios from 'axios';
+import Search from './components/Search';
 
 class App extends Component {
 
+  constructor(props) {
+    super(props);
+    this.state = {
+      movies: [],
+    };
+  }
+
   componentDidMount() {
-    axios.get('http://localhost:3001/')
+    axios.get('http://localhost:3001/movies')
     .then((response) => {
       console.log(response);
     })
   }
   render() {
+
     return (
       <Router>
         <div>
@@ -31,9 +40,7 @@ function Home() {
   return <h2>Home</h2>;
 }
 
-function Search() {
-  return <h2>Search</h2>;
-}
+
 
 function Library() {
   return <h2>Library</h2>;
