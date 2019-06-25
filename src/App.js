@@ -18,23 +18,19 @@ class App extends Component {
     super();
     this.state = {
       selectedCustomer: '',
+      selectedMovie: '',
       searchResults: [],
     }
   }
 
   onSearchButtonCallback = (searchInput) => {
-
     axios.get(URL, {params: {query: searchInput}})
     .then((response) => {
-      console.log(response.data);
-
       this.displaySearchResults(response.data)
-
     })
     .catch((error) => {
       console.log(error)  
     })
-    
   }
 
   displaySearchResults = (result) => {
@@ -46,7 +42,6 @@ class App extends Component {
 
 
   selectCustomer = (customerName) => {
-    console.log(customerName);
     this.setState({
       selectedCustomer: customerName,
     });
@@ -57,27 +52,31 @@ class App extends Component {
     let addedMovieData = {
       ...movieToAdd
     }
-
     console.log(addedMovieData)
 
     axios.post(URL, addedMovieData)
     .then((response) => {
       console.log(response)
-
-
     })
     .catch((error)=>{
       console.log(error)
     })
-
-
   }
+
+  selectMovie = (movieTitle) => {
+    console.log(movieTitle);
+    this.setState({
+      selectedMovie: movieTitle,
+    });
+  }
+  
 
   render() {
  
     return (
       <div className="App">
         <header>
+        
         <Router>
             <nav>
               <ul>
@@ -95,11 +94,20 @@ class App extends Component {
                 </li>
               </ul>
             </nav>
+
+            <section>
+              <Checkout 
+                selectedCustomer={this.state.selectedCustomer}
+                selectedMovie={this.state.selectedMovie}
+                />
+            </section>
+           
+            <Route path="/movielibrary" render={(props) => <MovieLibrary {...props} selectedMovie={this.selectMovie} />} />
             <Route path="/search" render={(props) => <Search onSearchButtonCallback={this.onSearchButtonCallback}/>} />
-            <Route path="/movielibrary" component={MovieLibrary} />
             <Route path="/customerlist" render={(props) => <CustomerList {...props} selectedCustomer={this.selectCustomer} />} />
           </Router>
         </header>
+        
         <section>
           <SearchResult result={this.state.searchResults} addMovieToLibraryCallback={this.addMovieToLibraryCallback}/>
           <Checkout selectedCustomer={this.state.selectedCustomer}/>

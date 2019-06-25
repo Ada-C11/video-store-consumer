@@ -12,7 +12,7 @@ class Customer extends Component {
   render () {
     return(
       <label>
-        <input 
+        <input
           type="radio" 
           value={this.props.customerId} 
           onChange={this.onChangeHandler}
