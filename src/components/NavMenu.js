@@ -1,12 +1,10 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
-import Selection from './Selection';
 import './NavMenu.css';
 
 const NavMenu = (props) => {
   return (
     <div>
-      <ul className="nav-menu">
+      {/* <ul className="nav-menu">
         <li>
         <h1>Rewind Video</h1></li>
         <li>
@@ -32,8 +30,8 @@ const NavMenu = (props) => {
         <li>
           {/* Something like this...? */}
           {/* <Selection selectedMovie={props.selectedMovie} selectedCustomer={props.selectedCustomer} /> */}
-        </li>
-      </ul>
+        {/* </li> */}
+      {/* </ul> */}
     </div>
   )
 }
