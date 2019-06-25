@@ -47,4 +47,8 @@ class SearchForm extends Component {
   }
 }
 
+SearchForm.propTypes = {
+  movieSearchCallback: PropTypes.func.isRequired,
+}
+
 export default SearchForm
