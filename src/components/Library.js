@@ -35,8 +35,9 @@ class Library extends Component {
   }
 
   selectMovie = (title) => {
-    console.log("Inside LIBRARY")
-    console.log(title);
+    // console.log("Inside LIBRARY")
+    // console.log(title);
+    this.props.selectMovieCallback(title);
   }
 
   render() {
@@ -61,7 +62,7 @@ class Library extends Component {
 }
 
 Library.propTypes = {
-  onMovieSelectCallback: PropTypes.func
+  selectMovieCallback: PropTypes.func
 }
 
 export default Library

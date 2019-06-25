@@ -19,8 +19,13 @@ class App extends Component {
     }
   }
 
-  onMovieSelect = (props) => {
-    this.setState({selectedMovie: props.title})
+  onMovieSelect = (title) => {
+    // this.setState({selectedMovie: props.title})
+    // console.log("Inside APP:")
+    // console.log(title);
+
+    const selectedMovie = title;
+    this.setState({selectedMovie})
   }
 
   onCustomerSelect = (name) => {
