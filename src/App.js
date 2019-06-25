@@ -1,6 +1,7 @@
 import React, {Component} from "react";
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
-import Library from './components/Library'
+import Library from './components/Library';
+import Customer from './components/Customer';
 
 
 function Index() {
@@ -21,6 +22,7 @@ class AppRouter extends Component {
     super(props);
     this.state = {
       currentMovie: undefined,
+      currentCustomer: undefined,
 
     }
   }
@@ -33,6 +35,13 @@ class AppRouter extends Component {
 
     });
     
+    onSelectCustomer = (customerData) => {
+      this.setState ({
+        currentCustomer: {
+          name: customerData.name,
+        },
+  
+      });
   }
 
   render () {
@@ -49,7 +58,7 @@ class AppRouter extends Component {
               <Link to="/library/">Library</Link>
             </li>
             <li>
-              <Link to="/users/">Users</Link>
+              <Link to="/customers/">Customers</Link>
             </li>
           </ul>
         </nav>
@@ -57,7 +66,7 @@ class AppRouter extends Component {
         <span>{this.state.currentMovie ? `Selected Movie: ${this.state.currentMovie.title}` : ""}</span>
         <Route path="/" exact component={Index} />
   <Route path="/library/" render={(props) => <Library {...props} onSelectMovieCallback={this.onSelectMovie} />} />
-        <Route path="/users/" component={Users} />
+  <Route path="/customers/" render={(props) => <Customer {...props} onSelectCustomerCallback={this.onSelectCustomer} />} />
       </div>
     </Router>
 
