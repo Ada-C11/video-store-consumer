@@ -4,7 +4,7 @@ import 'bootstrap/dist/css/bootstrap.css';
 
 class Movie extends Component {
   render() {
-    const {id, title, overview, release_date} = this.props;
+    const {id, title, overview, release_date, buttonName} = this.props;
     return (
       <tr>
         <th scope="row">{id}</th>
@@ -13,7 +13,7 @@ class Movie extends Component {
         <td>{release_date}</td>
         <td>
           <button className="btn btn-primary" >
-            Select
+            {buttonName}
           </button>
         </td>
       </tr>
