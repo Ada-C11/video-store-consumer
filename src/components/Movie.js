@@ -5,12 +5,12 @@ import axios from 'axios';
 // import './Movie.css';
 
 class Movie extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
 
     this.state = {
       movies: [],
-      
+
     }
   }
 
@@ -35,13 +35,21 @@ class Movie extends Component {
   }
 
   render() {
-    const displayMovies = this.state.movies.map((data) => {
-      const { id, title } = data;
+    const displayMovies = this.state.movies.map((movie) => {
+      const { id, title, overview, release_date, external_id, image_url } = movie;
+
       return (
-        <div className="movie">
-          {id}
-          {title}
-        </div>
+        <article className="movie_data" key={id}>
+          <ul>
+            <li>{image_url}</li>
+            <li>{id}</li>
+            <li>{title}</li>
+            <li>Overview: {overview}</li>
+            <li>Release date: {release_date}</li>
+            <li>External ID: {external_id}</li>
+            <button className="select_movie_button" onClick={this.props.currentMovieCallback(movie)} > Select this Movie </button>
+          </ul>
+        </article>
       )
     })
     return (

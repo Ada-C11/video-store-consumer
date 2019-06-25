@@ -20,7 +20,16 @@ class App extends Component {
 
     return () => {
       this.setState({
-        currentCustomer: customer.name,
+        currentCustomer: customer,
+      })
+    }
+  }
+
+  currentMovieCallback = (movie) => {
+
+    return () => {
+      this.setState({
+        currentMovie: movie,
       })
     }
   }
@@ -34,14 +43,24 @@ class App extends Component {
             <Header />
 
             <div className="current_selections">
-              {this.state.currentCustomer}
+              <p>{this.state.currentCustomer.name}</p>
+              <p>{this.state.currentMovie.title}</p>
             </div>
 
             <Route exact path="/" component={Home} />
-            <Route path="/customers" render={(routeProps) => (
-              <Customer {...routeProps} currentCustomerCallback={this.currentCustomerCallback} />
-            )} />
-            <Route path="/library" component={Library} />
+            <Route
+              path="/customers"
+              render={(routeProps) => (
+                <Customer {...routeProps}
+                  currentCustomerCallback={this.currentCustomerCallback} />
+              )}
+            />
+            <Route
+              path="/library"
+              render={(routeProps) => (
+                <Movie {...routeProps}
+                  currentMovieCallback={this.currentMovieCallback} />
+              )} />
             <Route path="/search" component={Search} />
 
           </div>
@@ -65,15 +84,15 @@ function Home() {
 //   return;
 // }
 
-function Library() {
-  return <Movie />;
-}
+// function Library() {
+//   return <Movie />;
+// }
 
 function Search() {
   return <h2>Search</h2>;
 }
 
-function Header(props) {
+function Header() {
   return (
     <ul>
       <li>
