@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import Library from './components/Library';
 import Customer from './components/Customer';
 import Search from './components/Search'
-
+import axios from "axios";
 
 function Index() {
   return <h2>Home</h2>;
@@ -72,7 +72,7 @@ class AppRouter extends Component {
           <Route path="/" exact component={Index} />
           <Route path="/library/" render={(props) => <Library {...props} onSelectMovieCallback={this.onSelectMovie} />} />
           <Route path="/customers/" render={(props) => <Customer {...props} onSelectCustomerCallback={this.onSelectCustomer} />} />
-          <Route path="/search/" render={(props) => <Search {...props} />} />
+          <Route path="/search/" render={(props) => <Search {...props}  />} />
         </div>
       </Router>
     )

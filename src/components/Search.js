@@ -2,8 +2,15 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import axios from 'axios';
 import SearchItem from './SearchItem';
+import {
+    Redirect
+} from 'react-router-dom';
 
-const SEARCH_URL = 'localhost:3001/movies?query='
+const SEARCH_URL = 'http://localhost:3001/movies?query='
+const MOVIE_URL = 'http://localhost:3001/movies'
+
+// 'http://localhost:3000/movies?query=harry%20potter' 
+//                      '/movies?query=<search term></search>'
 
 class Search extends Component {
 
@@ -30,21 +37,42 @@ class Search extends Component {
             .then((response) => {
                 const searchList = response.data.map((movie) => {
                     return <SearchItem
-                        key={movie.id}
+                        key={movie.external_id}
                         title={movie.title}
                         overview={movie.overview}
-                        id={movie.id}
                         releaseDate={movie.release_date}
                         imageURL={movie.image_url}
-                        // AddMovieCallback={this.props.AddMovieCallback}
+                        // external_id={movie.external_id}
+                        addMovieCallback={this.addMovie}
                     />
                 });
-                this.setState({searchList: searchList})
+                this.setState({searchList: searchList, movieSearch: ''})
             })
             .catch((error) => {
                 console.log(error);
             })
     }
+
+    addMovie = (movie) => {
+        const movie_params = {
+            'title': movie.title,
+            'overview': movie.overview,
+            'release_date': movie.releaseDate,
+            'image_url': movie.imageURL,
+            // 'external_id': movie.external_id,
+        }
+
+        console.log('in addmovie');
+        console.log(movie_params)
+
+        axios.post(MOVIE_URL, movie_params)
+            .then((response) => {
+                return <Redirect to='/library/' />
+            })
+            .catch((error) => {
+                console.log(error);
+            })
+      }
 
     render() {
 
