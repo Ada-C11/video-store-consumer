@@ -24,10 +24,8 @@ class SearchMovie extends Component {
   
     handleSubmit = (event) => {
       event.preventDefault();
-
-    //   const newCard = this.state;
   
-    //   this.props.onFormSubmitCallback(newCard);
+      this.props.onSearchCallback(this.state.searchTerm);
   
       this.setState({
         searchTerm: ''
@@ -40,8 +38,7 @@ class SearchMovie extends Component {
         <div className='search-movie-form'>
           <h3>Search by Movie Title:</h3>
   
-          <form>
-          {/* <form onSubmit={this.handleSubmit}> */}
+          <form onSubmit={this.handleSubmit}>
         
                 <input
                   className='movie-search-area'
