@@ -31,7 +31,7 @@ class MovieSearchPage extends Component {
     const movieList = searchResults.map((result) => {
       const {external_id, title, overview, release_date} = result;
       return ( <Movie key={external_id} title={title}
-              overview={overview} release_date={release_date} buttonName="Add to Library" />)
+              overview={overview} release_date={release_date} />)
     });
 
     const errorSection = (this.state.error) ? 
