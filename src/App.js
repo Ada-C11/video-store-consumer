@@ -86,7 +86,10 @@ class App extends Component {
   render() {
     return (
       <Router>
-        <div className="App">
+        <body className="App">
+          <header>
+            <h1>Last Resort Video Store</h1>
+          </header>
       
           <nav>
             <ul>
@@ -102,17 +105,19 @@ class App extends Component {
             </ul>
           </nav>
 
-          {this.state.selectedMovie && <div className='currently-selected-items'>
-            <p>Selected Movie: {this.state.selectedMovie.title}</p>
-    
-          </div>}
+          {this.state.selectedMovie && 
+            <div className='currently-selected-items'>
+              <p>Selected Movie: {this.state.selectedMovie.title}</p>
+      
+            </div>
+          }
         
           <Route exact={true} path="/" render={() => (
             <h1>Welcome</h1>
           )} />
           <Route path="/customers" render={(props) => <Customers {...props} customerList={this.state.customers} /> } />
           <Route path="/library" render={(props) => <Movies {...props} movieList={this.state.movies} onSelectMovieCallback={this.onSelectMovie}/> } />
-        </div>
+        </body>
       </Router>
     );
   }
