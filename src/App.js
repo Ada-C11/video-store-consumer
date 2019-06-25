@@ -4,13 +4,35 @@ import './App.css';
 import axios from 'axios';
 
 class App extends Component {
+  constructor() {
+    super();
+
+    this.state = {
+      movies: [],
+      customers: [],
+    };
+  }
 
   componentDidMount() {
-    axios.get('http://localhost:3001/')
+    axios.get('http://localhost:3001/movies')
     .then((response) => {
       console.log(response);
+      this.setState({ movies: response.data });
     })
+    .catch((error) => {
+      this.setState({ error: error.message });
+    });
+
+    axios.get('http://localhost:3001/customers')
+    .then((response) => {
+      console.log(response);
+      this.setState({ customers: response.data });
+    })
+    .catch((error) => {
+      this.setState({ error: error.message });
+    });
   }
+
   render() {
     return (
       <Router>
