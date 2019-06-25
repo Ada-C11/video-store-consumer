@@ -48,7 +48,7 @@ class Search extends Component {
     return (
       <div>
         <h2>Search</h2>
-        <form onSubmit={onFormSubmit}>
+        <form onSubmit={this.onFormSubmit}>
           <label htmlFor="title">Title</label>
           <input name="title" type="text" value={this.state.title} onChange={this.onChangeTitle}/>
           <input type="submit" value="Search" />
