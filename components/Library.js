@@ -12,7 +12,17 @@ class Library extends React.Component {
     };
   }
 
-  // TO DO: add componentDidMount function with axios to retrieve movies
+  componentDidMount() {
+    axios.get('http://localhost:3000/movies')
+    .then((response) => {
+      this.setState({movies: response.data})
+    })
+    .catch((error) => {
+      this.setState({error: error.message})
+    })
+  }
+
+  // TO DO: find movie for the rental
   
   render() {
     console.log(this.props)
