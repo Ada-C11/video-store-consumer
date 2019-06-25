@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import Customer from './Customer'
 class Customers extends Component {
   constructor() {
     super();
@@ -25,17 +26,13 @@ class Customers extends Component {
 
 
   render() {
+    console.log(this.props.selectCustomerCallBack)
     const allCustomers = this.state.customers.map((customer, i) => {
-       return <li>{customer.name}</li>
-
-
-      // return <Card
-      //           key={i}
-      //           id={card["card"["id"]]}
-      //           text={card["card"]["text"]}
-      //           emoji={card["card"]["emoji"]}
-      //           deleteCardCallBack = {this.state.deleteCardCallBack}
-      // />
+      return <Customer
+                key={i}
+                content={customer}
+                selectCustomerCallBack={this.props.selectCustomerCallBack}
+      />
     })
     return (
       <div className="App">

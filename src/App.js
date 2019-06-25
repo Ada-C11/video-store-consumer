@@ -7,18 +7,24 @@ import logo from './logo.svg';
 import './App.css';
 
 class App extends Component {
+  constructor() {
+    super();
+    this.state = {
+      selected_customer: "none",
+      selectCustomerCallBack: this.selectCustomer
+    };
+  }
+
+  selectCustomer = (customer) => {
+    console.log(customer["name"])
+    const newSelected = customer
+    this.setState({selected_customer: newSelected});
+  }
+
+
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
-      
-
+      <div>
       <Router>
         <div>
           <nav>
@@ -35,12 +41,15 @@ class App extends Component {
           <li>
             <Link to="/customers/">Customers</Link>
           </li>
+          <li>
+            Selected Customer: {this.state.selected_customer["name"]}
+          </li>
         </ul>
       </nav>
 {/* <Route path="/" exact component={Index} /> */}
       <Route path="/search/" component={Search} />
       <Route path="/library/" component={Library} />
-      <Route path="/customers/" component={Customers} />
+    <Route path="/customers/" render={(props) => <Customers {...props} selectCustomerCallBack={this.state.selectCustomerCallBack} />} />
       </div>
       </Router>
       </div>
