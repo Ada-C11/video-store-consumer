@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import axios from 'axios'
+import { thisExpression } from '@babel/types';
 
 class App extends Component {
   constructor() {
@@ -12,13 +13,24 @@ class App extends Component {
   }
 
   onCheckoutClick = () => {
-    axios.post('https://localhost:3090/rentals/' + this.state.movieTitle + '/check-out', {
-    title: this.state.movieTitle,
-    customer_id: this.state.customer.id,
-    name: this.state.customer.name,
-    postal_code: this.state.customer.postal_code,
-    checkout_date: new Date(), 
-    due_date: new Date() + 7
+    console.log('https://localhost:3090/rentals/' + this.state.movieTitle + '/check-out')
+    console.log(this.state.movieTitle)
+    console.log(this.state.customer.id)
+    console.log(new Date() + 7)
+    let today = new Date()
+    let newdate = new Date();
+    newdate.setDate(today.getDate()+7);
+    axios.post('http://localhost:3090/rentals/' + this.state.movieTitle + '/check-out', 
+    
+      {
+        title: this.state.movieTitle,
+        customer_id: this.state.customer.id,
+        due_date: newdate
+      }
+    )
+
+    .then((response) => {
+      console.log(response)
     })
   }
 
