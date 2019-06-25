@@ -60,6 +60,7 @@ class App extends Component {
     return (
       <div className="App">
         <header>
+        
         <Router>
             <nav>
               <ul>
@@ -78,23 +79,21 @@ class App extends Component {
               </ul>
             </nav>
 
+            <section>
+              <Checkout 
+                selectedCustomer={this.state.selectedCustomer}
+                selectedMovie={this.state.selectedMovie}
+                />
+            </section>
            
-            <Route path="/search" component={Search} />
             <Route path="/movielibrary" render={(props) => <MovieLibrary {...props} selectedMovie={this.selectMovie} />} />
             <Route path="/search" render={(props) => <Search onSearchButtonCallback={this.onSearchButtonCallback}/>} />
             <Route path="/customerlist" render={(props) => <CustomerList {...props} selectedCustomer={this.selectCustomer} />} />
           </Router>
-
-          <section>
-            <Checkout 
-              selectedCustomer={this.state.selectedCustomer}
-              selectedMovie={this.state.selectedMovie}
-              />
-          </section>
         </header>
+        
         <section>
           <SearchResult result={this.state.searchResults}/>
-          <Checkout selectedCustomer={this.state.selectedCustomer}/>
         </section>
       </div>
     )
