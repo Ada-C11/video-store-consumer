@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Route, Link } from "react-router-dom";
 import MovieSearchBar from './MovieSearchBar';
-import Movie from './Movie';
+import SearchResult from './SearchResult';
 import Axios from 'axios';
 
 const baseURL = `http://localhost:3001`;
@@ -10,6 +10,8 @@ class MovieSearchPage extends Component {
     super();
     this.state = {
       searchResults: [],
+      rentalAddedMessage: false,
+      rentalToAdd: {}
     }
   };
 
@@ -26,12 +28,34 @@ class MovieSearchPage extends Component {
         });
   };
 
+  addRental = (movieData) => {
+    console.log(movieData);
+    const rental = {
+      title: movieData.title,
+      overview: movieData.overview,
+      release_date: movieData.release_date,
+      image_url: movieData.image_url,
+      external_id: movieData.external_id
+    };
+
+    Axios.post(`${baseURL}/movies`, rental)
+    .then((response) => {
+      console.log(response);
+    })
+  }
+
   render() {
     const {searchResults} = this.state;
-    const movieList = searchResults.map((result) => {
-      const {external_id, title, overview, release_date} = result;
-      return ( <Movie key={external_id} title={title}
-              overview={overview} release_date={release_date} />)
+    const resultList = searchResults.map((result) => {
+      const {external_id, title, overview, release_date, image_url} = result;
+      return ( <SearchResult 
+              key={external_id} 
+              title={title}
+              overview={overview} 
+              release_date={release_date} 
+              image_url={image_url}
+              external_id={external_id}
+              onSelectHandler={this.addRental} />)
     });
 
     const errorSection = (this.state.error) ? 
@@ -50,7 +74,7 @@ class MovieSearchPage extends Component {
         <MovieSearchBar searchCallback={this.submitSearchQuery} />
       </div>
       <div>
-        <table class="table table-striped">
+        <table className="table table-striped">
           <thead>
           <tr>
             <th scope="col">Title</th>
@@ -59,7 +83,7 @@ class MovieSearchPage extends Component {
           </tr>
           </thead>
           <tbody>
-            {movieList}
+            {resultList}
           </tbody>
         </table>
       </div>
