@@ -29,6 +29,16 @@ class App extends Component {
         })
       })
       .catch(error => console.log(error))
+      
+      // Api call to get all customers
+      axios.get('/customers')
+      .then(response => {
+        console.log(response)
+        this.setState({
+          customerList: response.data
+        })
+      })
+      .catch(error => console.log(error))
   }
 
   // Api call to get single movie
