@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 import './App.css';
 import axios from 'axios';
-import Customers from './components/Customers';
+import CustomerList from './components/CustomerList';
 import Movies from './components/Movies';
 
 const URL = process.env.REACT_APP_API_URL
@@ -24,7 +24,6 @@ class App extends Component {
     .then(([response1, response2]) => {
       // const customers = response1.data
       // const movies = response2.data
-      console.log(response1)
       // const customers = this.mapApiResponse(response1);
       // const movies = this.mapApiResponse(response2);
 
@@ -33,7 +32,7 @@ class App extends Component {
         return apiObject;
       });
 
-      console.log(customers);
+  
 
       this.setState({ customers: customers, });
       // console.log(this.state.customers)
@@ -75,7 +74,7 @@ class App extends Component {
                 <Link to="/">Home</Link>
               </li>
               <li>
-                <Link to="/customers/">Customers List</Link>
+                <Link to="/customers/">Customer List</Link>
               </li>
               <li>
                 <Link to='/movies/'>Movie Library</Link>
@@ -86,7 +85,7 @@ class App extends Component {
           <Route exact={true} path="/" render={() => (
             <h1>Welcome</h1>
           )} />
-          <Route path="/customers" render={(props) => <Customers {...props} customerList={this.state.customers} /> } />
+          <Route path="/customers" render={(props) => <CustomerList {...props} customers={this.state.customers} /> } />
           <Route path="/movies" render={(props) => <Movies {...props} movieList={this.state.movies} /> } />
         </div>
       </Router>
