@@ -6,8 +6,22 @@ import Search from './components/Search';
 import MovieLibrary from './components/MovieLibrary';
 import Checkout from './components/Checkout';
 import CustomerList from './components/CustomerList';
+import Customer from './components/Customer';
 
 class App extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      selectedCustomer: undefined,
+    }
+  }
+
+  selectCustomer = (customer) => {
+    this.setState({
+      selectedCustomer: customer,
+    });
+  }
+
   render() {
     return (
       <div className="App">
@@ -27,24 +41,19 @@ class App extends Component {
                 <li>
                   <Link to='/customerlist'>Customer List</Link>
                 </li>
-                <li>
-                  <Link to='/checkout'>Checkout</Link>
-                </li>
               </ul>
             </nav>
            
             <Route path="/search" component={Search} />
             <Route path="/movielibrary" component={MovieLibrary} />
-            <Route path="/customerlist" component={CustomerList} />
-            <Route path="/checkout" component={Checkout} />
+            <Route path="/customerlist" render={(props) => <CustomerList {...props} selectedCustomer={this.selectCustomer} />} />
 
           </Router>
         </header>
 
-
-
-
-      
+        <section>
+          <Checkout />
+        </section>
       </div>
     );
   }

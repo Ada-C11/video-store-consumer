@@ -36,14 +36,20 @@ class CustomerList extends Component {
   displayCustomers = () => {
     const displayedCustomers = this.state.allCustomers.map((customer) => {
       return(
-        <Customer
-          key={customer.id}
-          customerId = {customer.id}
-          name ={customer.name}
-        />
+        <div>
+          <Customer
+            key={customer.id}
+            name={customer.name}
+            isSelected={false}
+          />
+        </div>
       )
     })
-    return displayedCustomers;
+    return (
+      <form>
+        {displayedCustomers}
+      </form>
+    );
   }
 
   render() {
