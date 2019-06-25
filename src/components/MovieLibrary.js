@@ -15,8 +15,7 @@ class MovieLibrary extends Component {
         "dog"
       ],
 
-      selected: false,
-      selectedMovie: []
+      selectedMovie: ""
     };
   }
 
@@ -27,11 +26,12 @@ class MovieLibrary extends Component {
     this.setState(newState);
   };
 
-  selectToAddToCheckout = () => {
+  selectToAddToCheckout = movie => {
     this.setState({
-      selectedMovie: this.state.selectedMovie,
-      selected: true
+      selectedMovie: movie
     });
+
+    this.props.rentMovieCallback(movie);
   };
 
   render() {
@@ -47,7 +47,7 @@ class MovieLibrary extends Component {
               type="button"
               className="btn btn-danger"
               aria-label="Close"
-              onClick={this.selectToAddToCheckout}
+              onClick={() => this.selectToAddToCheckout(movie)}
             >
               SELECT
             </button>
