@@ -3,18 +3,21 @@ import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 
 import './App.css';
 
-//  Below code is copied from React Router Tutorial https://reacttraining.com/react-router/web/guides/quick-start
+//  Below code is modified from React Router Tutorial https://reacttraining.com/react-router/web/guides/quick-start
 
 function Index() {
   return <h2>Home</h2>;
 }
 
-function About() {
-  return <h2>About</h2>;
+function Search() {
+  return <h2>Search</h2>;
+}
+function Library() {
+  return <h2>Library</h2>;
 }
 
-function Users() {
-  return <h2>Users</h2>;
+function Customers() {
+  return <h2>Customers</h2>;
 }
 
 function AppRouter() {
@@ -27,17 +30,21 @@ function AppRouter() {
               <Link to="/">Home</Link>
             </li>
             <li>
-              <Link to="/about/">About</Link>
+              <Link to="/search/">Search</Link>
             </li>
             <li>
-              <Link to="/users/">Users</Link>
+              <Link to="/library/">Library</Link>
+            </li>
+            <li>
+              <Link to="/customers/">Customers</Link>
             </li>
           </ul>
         </nav>
 
         <Route path="/" exact component={Index} />
-        <Route path="/about/" component={About} />
-        <Route path="/users/" component={Users} />
+        <Route path="/search/" exact component={Search} />
+        <Route path="/library/" component={Library} />
+        <Route path="/customers/" component={Customers} />
       </div>
     </Router>
   );
