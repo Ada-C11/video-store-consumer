@@ -14,13 +14,13 @@ const MovieCard = (props) => {
   }
 
   return (
-    <div class="card" style={{width: 18 + 'rem'}}>
-      <img class="card-img-top" src={image_url} alt="Card image cap"/>
-      <div class="card-body">
-        <h5 class="card-title">{title}</h5>
-        <p class="card-text">{overview}</p>
-        <p class="card-text">{release_date}</p>
-        <p class="card-text">Inventory: {inventory}</p>
+    <div className="card" style={{width: 18 + 'rem'}}>
+      <img className="card-img-top" src={image_url} alt="Card image cap"/>
+      <div className="card-body">
+        <h5 className="card-title">{title}</h5>
+        <p className="card-text">{overview}</p>
+        <p className="card-text">{release_date}</p>
+        <p className="card-text">Inventory: {inventory}</p>
         <button onClick={ onSelectButtonClick }
           className="btn btn-primary select-movie-btn"
         >Select</button>
