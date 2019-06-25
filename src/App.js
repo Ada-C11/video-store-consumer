@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import './App.css';
+import PropTypes from 'prop-types';
+import Library from './components/Library';
 import axios from 'axios';
 
 class App extends Component {
@@ -9,15 +11,22 @@ class App extends Component {
 
     this.state = {
       movies: [],
+      rentedMovie: undefined,
       customers: [],
     };
+  }
+
+  onSelectCallback = (index) => {
+    const selectedMovie = this.state.movies[index]
+    this.setState({ rentedMovie: selectedMovie });
   }
 
   componentDidMount() {
     axios.get('http://localhost:3001/movies')
     .then((response) => {
       console.log(response);
-      this.setState({ movies: response.data });
+
+      this.setState({ movies: response.data});
     })
     .catch((error) => {
       this.setState({ error: error.message });
@@ -37,12 +46,13 @@ class App extends Component {
     return (
       <Router>
         <div>
+          { this.state.rentedMovie && <p>Movie Selection: {this.state.rentedMovie.title}</p>}
           <Header />
 
           <Route exact path="/" component={Home} />
           <Route path="/search" component={Search} />
-          <Route path="/library" component={Library} />
-          <Route path="/customers" component={Customers} />
+          <Route path="/library" render={() => <Library library={this.state.movies} onSelectCallback={this.onSelectCallback} />} />
+          <Route path="/customers" render={() => <Customers customers={this.state.customers} />} />
         </div>
       </Router>
     );
@@ -55,10 +65,6 @@ function Home() {
 
 function Search() {
   return <h2>Search</h2>;
-}
-
-function Library() {
-  return <h2>Library</h2>;
 }
 
 function Customers() {
