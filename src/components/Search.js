@@ -29,19 +29,22 @@ class Search extends Component {
   }
 
    onSearch = (title) => {
-    const endpoint = 'http://localhost:3000/movies?query=' + title
+    const API_KEY = process.env.REACT_APP_API_KEY
+    const IMAGE_URL = 'https://image.tmdb.org/t/p/w185'
+
+    const endpoint = `https://api.themoviedb.org/3/search/movie?api_key=${API_KEY}&query=${title}`
   
     axios.get(endpoint)
+
       .then((response) => {
-        const newSearchResults = response.data.map((movie) => {
+        const newSearchResults = response.data.results.map((movie) => {
           
           const newMovie = { 
-            id: movie.id,
             title: movie.title,
             overview: movie.overview,
             release_date: movie.release_date,
-            image_url: movie.image_url,
-            external_id: movie.external_id,
+            image_url: IMAGE_URL + movie.poster_path,
+            external_id: movie.id,
             inventory: movie.inventory
           }
           
