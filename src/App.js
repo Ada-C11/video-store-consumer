@@ -15,7 +15,7 @@ class App extends Component {
       movieLibrary: [],
       customerList: [],
       selectedMovie: null,
-      selectedCustotmer: null,
+      selectedCustomer: null,
     }
   }
 
@@ -77,7 +77,7 @@ class App extends Component {
     });
   }
 
-  selectCustomer = (CustomerId) => {
+  selectCustomer = (customerId) => {
     const customer = this.state.customerLibrary.find(customer => customer.id === customerId)
 
     this.setState({
@@ -111,7 +111,11 @@ class App extends Component {
 
           <Route path="/search/" component={Search} />
           <Route path="/library/" component={Library} />
-          <Route path="/customers/" component={CustomerList} />
+          <Route 
+            path="/customers/" 
+            render={(props) => <CustomerList {...props} customerList={this.state.customerList} />}
+          />
+
 
         </div>
       </Router>
