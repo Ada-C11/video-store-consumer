@@ -4,17 +4,28 @@ import MovieLibrary from "./components/MovieLibrary";
 import MovieSearch from "./components/MovieSearch";
 import RentalCheckout from "./components/RentalCheckout";
 import CustomerList from "./components/CustomerList";
+import MovieSearchForm from "./components/MovieSearchForm";
 
 class App extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
+      movies: [],
       displayOption: null,
       hasMovie: null,
-      hasCustomer: null
+      hasCustomer: null,
+      searchComplete: false
     };
   }
+
+  getresult = movies => {
+    movies.map(movie => {
+      this.state.movies.push(movie);
+    });
+
+    this.setState({ searchComplete: true });
+  };
 
   setDisplay = option => {
     this.setState({ displayOption: option });
@@ -28,14 +39,6 @@ class App extends Component {
     this.setState({ hasCustomer: customer });
   };
 
-    searchMovie = movie => {
-    const newState = this.state;
-    newState.movies.push(movie);
-
-    this.setState(newState);
-  };
-
-
   render() {
     let optionalComponent;
 
@@ -44,7 +47,9 @@ class App extends Component {
         <MovieLibrary rentMovieWithMovieCallback={this.rentMovieWithMovie} />
       );
     } else if (this.state.displayOption === "search") {
-      optionalComponent = <MovieSearch />;
+      optionalComponent = (
+        <MovieSearchForm getresultcallback={this.getresult} />
+      );
     } else if (this.state.displayOption === "list") {
       optionalComponent = (
         <CustomerList
@@ -62,6 +67,13 @@ class App extends Component {
           selectedCustomer={this.state.hasCustomer}
         />
       );
+    }
+
+    let searchResults = "";
+    if (this.state.searchComplete === true) {
+      searchResults = this.state.movies.map(movie => {
+        return movie["title"];
+      });
     }
 
     return (
@@ -95,6 +107,8 @@ class App extends Component {
             CustomerList
           </button>
         </section>
+        <p>{searchResults} </p>
+
         {optionalComponent}
         <section>{rentalMovie}</section>
       </div>
