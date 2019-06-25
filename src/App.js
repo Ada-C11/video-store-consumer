@@ -27,10 +27,6 @@ class App extends Component {
     axios.get(URL, {params: {query: searchInput}})
     .then((response) => {
       console.log(response.data);
- 
-     
-
-      
 
       this.displaySearchResults(response.data)
 
@@ -38,7 +34,6 @@ class App extends Component {
     .catch((error) => {
       console.log(error)  
     })
-  
     
   }
 
@@ -55,6 +50,27 @@ class App extends Component {
     this.setState({
       selectedCustomer: customerName,
     });
+  }
+
+  addMovieToLibraryCallback = (movieToAdd) =>{
+  
+    let addedMovieData = {
+      ...movieToAdd
+    }
+
+    console.log(addedMovieData)
+
+    axios.post(URL, addedMovieData)
+    .then((response) => {
+      console.log(response)
+
+
+    })
+    .catch((error)=>{
+      console.log(error)
+    })
+
+
   }
 
   render() {
@@ -85,7 +101,7 @@ class App extends Component {
           </Router>
         </header>
         <section>
-          <SearchResult result={this.state.searchResults}/>
+          <SearchResult result={this.state.searchResults} addMovieToLibraryCallback={this.addMovieToLibraryCallback}/>
           <Checkout selectedCustomer={this.state.selectedCustomer}/>
         </section>
       </div>
