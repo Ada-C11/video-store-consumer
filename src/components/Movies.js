@@ -9,6 +9,7 @@ class Movies extends Component {
 
     this.state = {
       movieList: [],
+      currentMovie: undefined,
     }
   }
 
@@ -40,6 +41,13 @@ class Movies extends Component {
     })
   }
 
+  onMovieSelect = (movieID) => {
+    const currentMovie = this.state.movieList.filter(movie => movie.id === movieID)[0]
+
+    console.log(currentMovie)
+    this.setState({ currentMovie });
+  };
+
   render() {
     const displayMovies = this.state.movieList.map((movie, i) => {
       return <Movie
@@ -50,10 +58,15 @@ class Movies extends Component {
                 release_date = {movie.release_date}
                 image_url = {movie.image_url}
                 external_id = {movie.external_id}
+                onMovieSelect = {this.onMovieSelect}
                 />
     })
+
+    const displayCurrMovie = (this.state.currentMovie === undefined) ? "None" : this.state.currentMovie.title
+    
     return (
       <div>
+        Currently selected movie: { displayCurrMovie }
         { displayMovies }
       </div>
     )

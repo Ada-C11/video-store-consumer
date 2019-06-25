@@ -5,7 +5,7 @@ class Movie extends Component {
   render() {
 
     return (
-      <section>
+      <section onClick = {() => this.props.onMovieSelect(this.props.id)}>
         <h3> { this.props.id }. {this.props.title} </h3>
         <p>
           Overview: {this.props.overview }
@@ -29,6 +29,7 @@ Movie.propTypes ={
   release_date: PropTypes.string,
   image_url: PropTypes.string,
   external_id: PropTypes.number,
+  onMovieSelect: PropTypes.func,
 }
 
 export default Movie;
