@@ -41,42 +41,53 @@ const generateMovieComponents = (movieList) => {
 
 }
 
-function AppRouter() {
-  return (
-    <Router>
-      <div>
-        <nav>
-          <ul>
-            <li>
-              <Link to="/">Home</Link>
-            </li>
-            <li>
-              <Link to="/search/">Search Movies</Link>
-            </li>
-            <li>
-              <Link to="/library/">Movie Library</Link>
-            </li>
-            <li>
-              <Link to="/customers/">Customers</Link>
-            </li>
-          </ul>
-        </nav>
+class AppRouter extends Component {
 
-        <Route path="/" exact component={Index} />
-        <Route
-          path="/search/"
-          // component={Search} 
-          render={(props) => <Search generateMovieComponentsCallback={generateMovieComponents} />}
-        />
-        <Route
-          path="/library/"
-          // component={Library}
-          render={(props) => <Library thing="thingy" />}
-        />
-        <Route path="/customers/" component={Customers} />
-      </div>
-    </Router>
-  );
-}
+  constructor(props) {
+    super(props);
+    this.state = {
+
+    }
+
+  }
+
+  render() {
+    return (
+      <Router>
+        <div>
+          <nav>
+            <ul>
+              <li>
+                <Link to="/">Home</Link>
+              </li>
+              <li>
+                <Link to="/search/">Search Movies</Link>
+              </li>
+              <li>
+                <Link to="/library/">Movie Library</Link>
+              </li>
+              <li>
+                <Link to="/customers/">Customers</Link>
+              </li>
+            </ul>
+          </nav>
+
+          <Route path="/" exact component={Index} />
+          <Route
+            path="/search/"
+            // component={Search} 
+            render={(props) => <Search generateMovieComponentsCallback={generateMovieComponents} />}
+          />
+          <Route
+            path="/library/"
+            // component={Library}
+            render={(props) => <Library thing="thingy" />}
+          />
+          <Route path="/customers/" component={Customers} />
+        </div>
+      </Router>
+    );
+  };
+};
 
 export default AppRouter;
