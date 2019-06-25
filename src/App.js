@@ -14,6 +14,7 @@ class App extends Component {
     this.state = {
       customers: [],
       movies: [],
+      selectedMovie: null,
       message: '',
     }
   }
@@ -64,6 +65,17 @@ class App extends Component {
     return axios.get(`${URL}/movies`);
   }
 
+  onSelectMovie = (movie) => {
+    let currentSelectedMovie = this.state.selectedMovie;
+    currentSelectedMovie = movie;
+
+    this.setState({ 
+      selectedMovie: currentSelectedMovie
+    });
+
+    console.log(movie.id)
+  }
+
   // mapApiResponse(response) {
   //   return response.data.map((apiObject) => {
   //     // console.log(apiObject);
@@ -94,7 +106,7 @@ class App extends Component {
             <h1>Welcome</h1>
           )} />
           <Route path="/customers" render={(props) => <Customers {...props} customerList={this.state.customers} /> } />
-          <Route path="/library" render={(props) => <Movies {...props} movieList={this.state.movies} /> } />
+          <Route path="/library" render={(props) => <Movies {...props} movieList={this.state.movies} onSelectMovieCallback={this.onSelectMovie}/> } />
         </div>
       </Router>
     );

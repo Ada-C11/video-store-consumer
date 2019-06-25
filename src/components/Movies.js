@@ -1,15 +1,17 @@
 import React from 'react';
+import Movie from './Movie';
 
 const Movies = (props) => {
     console.log(props.movieList)
 
+    // const selectMovie = (event) => {
+    //     props.onSelectMovieCallback(event.target.value)
+    // }
+
     const listOfMovies = props.movieList.map((movie, i) => {
         return (
             <li key={i}>
-                <img src={movie.image_url} alt={`movie poster for ${movie.title}`}/>
-                <h4>{movie.title}</h4>
-                <p>{movie.release_date}</p>
-                <p>{movie.overview}</p>
+                <Movie movie={movie}/>
             </li>
         )
     })
