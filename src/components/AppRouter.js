@@ -80,7 +80,13 @@ class AppRouter extends Component {
                 url={ VIDEO_STORE_API_URL } 
               />}
           />
-          <Route path="/customers/" component={Customers} />
+          <Route 
+            path="/customers/" 
+            render={(props) => 
+              <Customers 
+                url={ VIDEO_STORE_API_URL } 
+              />}
+          />
         </div>
       </Router>
     );
