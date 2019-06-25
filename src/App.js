@@ -114,20 +114,20 @@ class App extends Component {
             </ul>
           </nav>
 
-          <div className='currently-selected-items'>  
-               
-          {this.state.selectedMovie && 
-            <div className='currently-selected-items'>
-              <p>Selected Movie: {this.state.selectedMovie.title}</p>
-              <button onClick={() => { this.setState({ selectedMovie: null}) }}>Remove Movie from Rental</button>
-            </div>
-          }
-          {this.state.selectedCustomer &&
-              <p>Selected Customer: {this.state.selectedCustomer.name}</p>
-              <button onClick={() => { this.setState({ selectedCustomer: null}) }}>Unselect</button>
+          <section className='currently-selected-items'>    
+            {this.state.selectedMovie && 
+              <div>
+                <p>Selected Movie: {this.state.selectedMovie.title}</p>
+                <button onClick={() => { this.setState({ selectedMovie: null}) }}>Remove Movie from Rental</button>
+              </div>
             }
-
-          </div>
+            {this.state.selectedCustomer &&
+              <div>
+                <p>Selected Customer: {this.state.selectedCustomer.name}</p>
+                <button onClick={() => { this.setState({ selectedCustomer: null}) }}>Remove Customer from Rental</button>
+              </div>
+            }
+          </section>
         
           <Route exact={true} path="/" render={() => (
             <h1>Welcome</h1>

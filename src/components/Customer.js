@@ -17,7 +17,7 @@ const Customer = (props) => {
         {customer.name}
       </td>
       <td>
-        <button onClick={onClickCustomer}>Select</button>
+        <button onClick={onClickCustomer}>Select for Rental</button>
       </td>
       <td>
         {customer.phone}
