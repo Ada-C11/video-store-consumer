@@ -3,7 +3,10 @@ import PropTypes from 'prop-types';
 
 const Customer = (props) => {
     return (
-            <div>{props.name}</div>
+            <section>
+              {props.name}
+              {<button >Select</button>}
+            </section>
     );
 }
 
