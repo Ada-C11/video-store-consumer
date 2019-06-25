@@ -41,13 +41,18 @@ class Customers extends Component {
           });
     }
 
+    selectCustomer = (name) => {
+        console.log("Inside CustomerSSSS:")
+        console.log(name);
+    }
+
     render() {
 
         const customerComponents = this.state.customers.map((customer, index) => {
             return (
                 // <li key={index}>{customer.name}</li>
                 <li key={index}>
-                   <Customer name={customer.name} id={customer.id} />
+                   <Customer name={customer.name} id={customer.id} selectCustomerCallback={this.selectCustomer} />
                 </li>
             )
         })
