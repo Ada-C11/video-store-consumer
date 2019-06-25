@@ -19,9 +19,9 @@ class AppRouter extends Component {
   constructor(props) {
     super(props);
     this.state = {
-
+      selectedCustomer: null,
+      selectedMovie: null,
     }
-
   }
 
   generateMovieComponents = (movieList) => {
@@ -40,7 +40,15 @@ class AppRouter extends Component {
     })
   }
 
+  selectCustomer = (customer) => {
+    this.setState({
+      selectedCustomer: customer,
+    })
+  }
+
   render() {
+    console.log(this.state.selectedCustomer);
+    
     return (
       <Router>
         <div>
@@ -85,6 +93,7 @@ class AppRouter extends Component {
             render={(props) => 
               <CustomerList 
                 url={ VIDEO_STORE_API_URL } 
+                selectCustomerCallback={this.selectCustomer}
               />}
           />
         </div>

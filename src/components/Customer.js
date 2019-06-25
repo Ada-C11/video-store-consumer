@@ -1,9 +1,21 @@
-import React from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
-const Customer = (props) => {
-  console.log(props);
-  const { name, id, registeredAt, address, city, state, zip, phone, accountCredit, moviesCheckedOutCount } = props;
+
+class Customer extends Component {
+  // onSelect = (event) => {
+  //   event.preventDefault();
+  
+  //   const selected = event.target.value;
+  //   console.log(selected);
+
+  //   this.props.customerSelectCallback(selected);
+  // }
+
+  render() {
+  // console.log(this.props);
+  // console.log(this.props.selectACustomerCallback);
+  const { index, name, id, registeredAt, address, city, state, zip, phone, accountCredit, moviesCheckedOutCount, selectACustomerCallback } = this.props;
 
   return (
     <section>
@@ -12,8 +24,13 @@ const Customer = (props) => {
         <li>{ id }</li>
         <li> this will be more things!</li>
       </ul>
+      <button
+        value={id}
+        onClick={ () => { selectACustomerCallback(index) } }
+      >Select</button>
+
     </section>
-  )
+  )};
 }
 
 export default Customer; 

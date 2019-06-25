@@ -43,11 +43,18 @@ class CustomerList extends Component {
     })
   }
 
+  selectACustomer = (index) => {
+    const selectedCustomer = this.state.customers[index];
+
+    this.props.selectCustomerCallback(selectedCustomer);
+  }
+
   generateCustomers = () => {
     return this.state.customers.map((customer, i) => {
       return (
         <Customer
           key={i}
+          index={i}
           name={customer.name}
           id={customer.id}
           registeredAt={customer.registeredAt}
@@ -58,6 +65,7 @@ class CustomerList extends Component {
           phone={customer.phone}
           accountCredit={customer.accountCredit}
           moviesCheckedOutCount={customer.moviesCheckedOutCount}
+          selectACustomerCallback={this.selectACustomer}
         />
       )
       });
