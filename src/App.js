@@ -47,6 +47,22 @@ class App extends Component {
     });
   }
 
+  addMovieToLibraryCallback = (movieToAdd) =>{
+  
+    let addedMovieData = {
+      ...movieToAdd
+    }
+    console.log(addedMovieData)
+
+    axios.post(URL, addedMovieData)
+    .then((response) => {
+      console.log(response)
+    })
+    .catch((error)=>{
+      console.log(error)
+    })
+  }
+
   selectMovie = (movieTitle) => {
     console.log(movieTitle);
     this.setState({
@@ -93,7 +109,8 @@ class App extends Component {
         </header>
         
         <section>
-          <SearchResult result={this.state.searchResults}/>
+          <SearchResult result={this.state.searchResults} addMovieToLibraryCallback={this.addMovieToLibraryCallback}/>
+          <Checkout selectedCustomer={this.state.selectedCustomer}/>
         </section>
       </div>
     )
