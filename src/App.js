@@ -4,6 +4,7 @@ import './App.css';
 import PropTypes from 'prop-types';
 import Library from './components/Library';
 import axios from 'axios';
+import Search from './components/Search';
 
 class App extends Component {
   constructor() {
@@ -13,6 +14,7 @@ class App extends Component {
       movies: [],
       rentedMovie: undefined,
       customers: [],
+      error: null
     };
   }
 
@@ -43,6 +45,10 @@ class App extends Component {
   }
 
   render() {
+
+    const errorSection = (this.state.error) ?
+    (<section>Error: {this.state.error}</section>) : null;
+
     return (
       <Router>
         <div>
@@ -53,6 +59,7 @@ class App extends Component {
           <Route path="/search" component={Search} />
           <Route path="/library" render={() => <Library library={this.state.movies} onSelectCallback={this.onSelectCallback} />} />
           <Route path="/customers" render={() => <Customers customers={this.state.customers} />} />
+          {errorSection}
         </div>
       </Router>
     );
@@ -63,9 +70,7 @@ function Home() {
   return <h2>Home</h2>;
 }
 
-function Search() {
-  return <h2>Search</h2>;
-}
+
 
 function Customers() {
   return <h2>Customers</h2>;
