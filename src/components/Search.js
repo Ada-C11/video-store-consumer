@@ -42,6 +42,23 @@ class Search extends Component {
       })
   };
 
+  generateMovieComponents = () => {
+    return this.state.movies.map((movie, i) => {
+      return (
+        <Movie
+          key={movie.id}
+          index={i}
+          id={movie.id}
+          title={movie.title}
+          overview={movie.overview}
+          release_date={movie.release_date}
+          image_url={movie.image_url}
+        />
+      )
+    })
+
+  }
+
 
   render() {
     return (
