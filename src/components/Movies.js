@@ -2,16 +2,16 @@ import React from 'react';
 import Movie from './Movie';
 
 const Movies = (props) => {
-    console.log(props.movieList)
+    // console.log(props.movieList)
 
-    // const selectMovie = (event) => {
-    //     props.onSelectMovieCallback(event.target.value)
-    // }
+    const onSelectMovieClick = (movie) => {
+        props.onSelectMovieCallback(movie)
+    }
 
     const listOfMovies = props.movieList.map((movie, i) => {
         return (
             <li key={i}>
-                <Movie movie={movie}/>
+                <Movie movie={movie} onSelectMovieClick={onSelectMovieClick}/>
             </li>
         )
     })

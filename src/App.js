@@ -66,14 +66,14 @@ class App extends Component {
   }
 
   onSelectMovie = (movie) => {
-    let currentSelectedMovie = this.state.selectedMovie;
-    currentSelectedMovie = movie;
+    // let currentSelectedMovie = this.state.selectedMovie;
+    // currentSelectedMovie = movie;
 
     this.setState({ 
-      selectedMovie: currentSelectedMovie
+      selectedMovie: movie
     });
 
-    console.log(movie.id)
+    console.log('im in app and the movie clicked was:', movie.title)
   }
 
   // mapApiResponse(response) {

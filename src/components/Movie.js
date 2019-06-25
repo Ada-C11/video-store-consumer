@@ -4,8 +4,9 @@ const Movie = (props) => {
     const movie = props.movie;
 
     const onHandleClick = () => {
-        console.log('i\'m in movie and i\'ve been clicked!')
-        console.log('i have clicked movie', movie.title)
+        console.log('i\'m in movie and i\'ve been clicked!');
+        console.log('i have clicked movie', movie.title);
+        props.onSelectMovieClick(movie);
     }
 
     return (
