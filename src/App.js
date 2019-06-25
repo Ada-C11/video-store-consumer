@@ -33,9 +33,16 @@ class App extends Component {
         return apiObject;
       });
 
+      const movies = response2.data.map((apiObject) => {
+        return apiObject;
+      })
+
       console.log(customers);
 
-      this.setState({ customers: customers, });
+      this.setState({ 
+        customers: customers, 
+        movies: movies
+      });
       // console.log(this.state.customers)
     })
     .catch((error) => {
@@ -50,11 +57,11 @@ class App extends Component {
   }
 
   getCustomers() {
-    return axios.get(`http://localhost:3000/customers`);
+    return axios.get(`${URL}/customers`);
   }
 
   getMovies() {
-    return axios.get(`http://localhost:3000/movies`);
+    return axios.get(`${URL}/movies`);
   }
 
   // mapApiResponse(response) {
@@ -78,7 +85,7 @@ class App extends Component {
                 <Link to="/customers/">Customers List</Link>
               </li>
               <li>
-                <Link to='/movies/'>Movie Library</Link>
+                <Link to='/library/'>Movie Library</Link>
               </li>
             </ul>
           </nav>
@@ -87,7 +94,7 @@ class App extends Component {
             <h1>Welcome</h1>
           )} />
           <Route path="/customers" render={(props) => <Customers {...props} customerList={this.state.customers} /> } />
-          <Route path="/movies" render={(props) => <Movies {...props} movieList={this.state.movies} /> } />
+          <Route path="/library" render={(props) => <Movies {...props} movieList={this.state.movies} /> } />
         </div>
       </Router>
     );
