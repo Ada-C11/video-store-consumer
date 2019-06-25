@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import axios from 'axios';
+import MovieCard from './MovieCard';
 
 class Search extends Component {
   constructor(props){
@@ -17,27 +19,54 @@ class Search extends Component {
       queryString
     })
 
-    // this.props.searchMoviesCallback(queryString);
   }
 
   onFormSubmit = (event) => {
-    event.preventDefault()
+    event.preventDefault();
+
+    // const URL = `http://localhost:3000/movies?query=${this.state.queryString}`;
+
+    axios.get(`/movies?query=${this.state.queryString}`)
+      .then((response) => {
+        console.log(response)
+        this.setState({
+          searchResults: response.data
+        })
+      })
+      .catch(error => console.log(error))
   }
-  // Api calls?
 
   render() {
+    const searchResultList = this.state.searchResults.map((movie, index) => {
+      return <MovieCard key={index} movie={movie} />
+    })
     return (
       <section>
         <h2>Search Page</h2>
-        <label>
+        <form onSubmit = {this.onFormSubmit}>
+          <div>
+            <input
+              name="searchResults"
+              value = {this.state.queryString}
+              onChange = {this.queryChanged}
+              type="text" />
+          </div>
+  
+            <div >
+              <input type="submit" value="Submit Line" />
+            </div>
+          </form>
+        {/* <label>
           Search Movie Titles <input name="search"
                         type="text"
                         value={this.state.queryString}
                         onChange={this.queryChanged} />
-        </label>
+        </label> */}
+        {searchResultList}
       </section>  
     );
   }
 
 };
+
 export default Search;
