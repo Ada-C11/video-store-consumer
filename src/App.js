@@ -1,21 +1,45 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 import './App.css';
+import axios from 'axios';
 
 import Search from './components/Search';
 import MovieLibrary from './components/MovieLibrary';
 import Checkout from './components/Checkout';
+import SearchResult from './components/SearchResult';
 import CustomerList from './components/CustomerList';
-import Customer from './components/Customer';
+
+
+const URL = 'http://localhost:4000/movies'
 
 class App extends Component {
-  constructor(props) {
-    super(props);
+
+  constructor(){
+    super();
     this.state = {
       selectedCustomer: '',
       selectedMovie: '',
+      searchResults: [],
     }
   }
+
+  onSearchButtonCallback = (searchInput) => {
+    axios.get(URL, {params: {query: searchInput}})
+    .then((response) => {
+      this.displaySearchResults(response.data)
+    })
+    .catch((error) => {
+      console.log(error)  
+    })
+  }
+
+  displaySearchResults = (result) => {
+    console.log(result)
+    this.setState({
+        searchResults: result,
+      });
+  }
+
 
   selectCustomer = (customerName) => {
     this.setState({
@@ -32,9 +56,10 @@ class App extends Component {
   
 
   render() {
+ 
     return (
       <div className="App">
-        
+        <header>
         <Router>
             <nav>
               <ul>
@@ -52,11 +77,12 @@ class App extends Component {
                 </li>
               </ul>
             </nav>
+
            
             <Route path="/search" component={Search} />
             <Route path="/movielibrary" render={(props) => <MovieLibrary {...props} selectedMovie={this.selectMovie} />} />
+            <Route path="/search" render={(props) => <Search onSearchButtonCallback={this.onSearchButtonCallback}/>} />
             <Route path="/customerlist" render={(props) => <CustomerList {...props} selectedCustomer={this.selectCustomer} />} />
-
           </Router>
 
           <section>
@@ -65,8 +91,13 @@ class App extends Component {
               selectedMovie={this.state.selectedMovie}
               />
           </section>
+        </header>
+        <section>
+          <SearchResult result={this.state.searchResults}/>
+          <Checkout selectedCustomer={this.state.selectedCustomer}/>
+        </section>
       </div>
-    );
+    )
   }
 }
 
