@@ -1,15 +1,19 @@
 import React, { Component } from 'react';
 import './App.css';
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import CustomerList from './components/CustomerList'
+
+
 
 class App extends Component {
-  constructor() {
+  constructor(props) {
+    super(props)
     this.state = {
       selectedMovie: "",
       selectedCustomer: "",
       allRentals: [],
       showMovies: true,
-      showCustomers: false
+      showCustomers: true
     }
   }
 
@@ -39,13 +43,13 @@ class App extends Component {
     return (
       <div>
         <header>
-          <Search />
-          <button onClick={this.showMovieToggle}>Show Movies</button>
+          {/* <Search /> */}
+          {/* <button onClick={this.showMovieToggle}>Show Movies</button> */}
           <button onClick={this.showCustomerToggle}>Show Customers</button>
         </header>
         <main>
           {this.state.showCustomers && <CustomerList />}
-          {this.state.showMovies && <RentalLibrary />}
+          {/* {this.state.showMovies && <RentalLibrary />} */}
         </main>
       </div>
     );
