@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import axios  from 'axios'
+import Customer from './Customer';
 
 class Customers extends Component {
     constructor() {
@@ -43,7 +44,10 @@ class Customers extends Component {
 
         const customerComponents = this.state.customers.map((customer, index) => {
             return (
-                <li key={index}>{customer.name}</li>
+                // <li key={index}>{customer.name}</li>
+               
+                 <Customer name={customer.name} />
+               
             )
         })
         return (

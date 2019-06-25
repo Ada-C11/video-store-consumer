@@ -1,9 +1,14 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
-const Customer = () => {
+const Customer = (props) => {
     return (
-        <p>It's a customer!</p>
+            <div>{props.name}</div>
     );
 }
 
 export default Customer;
+
+Customer.propTypes = {
+    name: PropTypes.string,
+}
