@@ -19,22 +19,24 @@ class App extends Component {
   }
 
   componentDidMount() {
-    // get request for all cards on this board
-    
-    console.log(URL);
     
     axios.all([this.getCustomers(), this.getMovies()])
     .then(([response1, response2]) => {
-      console.log(response1);
-      console.log(response2);
-      // make a function that does a .map and save each in a variable
-      // update state with new arrays. woo!
+      // const customers = response1.data
+      // const movies = response2.data
+      console.log(response1)
+      // const customers = this.mapApiResponse(response1);
+      // const movies = this.mapApiResponse(response2);
 
-      // const customers = response.data.map((customer) => {
-      //     return customer;
-      // });
-      // this.setState({ customers: customers });
-      console.log(this.state.customers)
+      const customers = response1.data.map((apiObject) => {
+        // console.log(apiObject);
+        return apiObject;
+      });
+
+      console.log(customers);
+
+      this.setState({ customers: customers, });
+      // console.log(this.state.customers)
     })
     .catch((error) => {
       // Show an error
@@ -54,6 +56,13 @@ class App extends Component {
   getMovies() {
     return axios.get(`http://localhost:3000/movies`);
   }
+
+  // mapApiResponse(response) {
+  //   return response.data.map((apiObject) => {
+  //     // console.log(apiObject);
+  //     return apiObject;
+  //   });
+  // }
 
   render() {
     return (

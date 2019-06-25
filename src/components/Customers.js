@@ -5,7 +5,7 @@ const Customers = (props) => {
     return (
         <section>
             <h1>Hey there fancy pants!!</h1>
-            {props.customerList}
+            {/* {props.customerList} */}
         </section>
         
 
