@@ -55,7 +55,7 @@ class Library extends Component {
 }
 
 Library.propTypes = {
-  onMovieSelect: PropTypes.func
+  onMovieSelectCallback: PropTypes.func
 }
 
 export default Library

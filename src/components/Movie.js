@@ -2,6 +2,12 @@ import React from 'react'
 import PropTypes from 'prop-types';
 
 const Movie = (props) => {
+  const onMovieSelect = (event) => {
+    const movie = props.title;
+
+    this.props.onMovieSelectCallback(movie)
+  }
+
   return (
     <div>
       <h3>{props.title}</h3>
@@ -22,7 +28,7 @@ Movie.propTypes = {
   overview: PropTypes.string,
   release_date: PropTypes.string,
   image_url: PropTypes.string,
-  onMovieSelect: PropTypes.func
+  onMovieSelectCallback: PropTypes.func
 }
 
 export default Movie
