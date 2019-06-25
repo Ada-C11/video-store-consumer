@@ -13,11 +13,14 @@ class Search extends Component {
     }
   }
 
-  searchCallback = (queryString) => {
-    this.setState(queryString);
+  searchCallback = (input) => {
+    this.setState({
+      queryString: input
+    });
+
     const url = 'https://video-store-api-sh.herokuapp.com/'
 
-    axios.get(url, {query: queryString})
+    axios.get(url, {query: input})
     .then((response) => {
       const movieList = response.data.map((movie) => {
         return {

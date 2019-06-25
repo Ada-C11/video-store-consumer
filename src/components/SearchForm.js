@@ -11,11 +11,13 @@ class SearchForm extends Component {
   }
 
   queryChanged = (event) => {
-    const queryString = event.target.value;
+    const input = event.target.value;
 
-    this.setState(queryString);
+    this.setState({
+      queryString: input,
+    });
 
-    this.props.searchCallback(queryString);
+    this.props.searchCallback(input);
   }
 
   render() {
