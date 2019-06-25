@@ -7,7 +7,11 @@ import './MovieCard.css';
 
 
 const MovieCard = (props) => {
-  const { title, overview, release_date, image_url, external_id, inventory } = props;
+  const { title, overview, release_date, image_url, inventory, selectMovieCallback } = props;
+
+  const onSelectButtonClick = () => {
+    selectMovieCallback(props);
+  }
 
   return (
     <div class="card" style={{width: 18 + 'rem'}}>
@@ -17,7 +21,9 @@ const MovieCard = (props) => {
         <p class="card-text">{overview}</p>
         <p class="card-text">{release_date}</p>
         <p class="card-text">Inventory: {inventory}</p>
-        <a href="#" class="btn btn-primary">Go somewhere</a>
+        <button onClick={ onSelectButtonClick }
+          className="btn btn-primary select-movie-btn"
+        >Select</button>
       </div>
     </div>
   );

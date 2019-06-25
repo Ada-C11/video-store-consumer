@@ -11,7 +11,8 @@ class MovieLibrary extends Component {
     super(props)
 
     this.state = {
-      movieList: []
+      movieList: [],
+      selectedMovie: ""
     }
   }
 
@@ -46,6 +47,11 @@ class MovieLibrary extends Component {
       })
   }
 
+  selectMovie = (movie) => {
+    console.log(movie);
+    this.setState({selectedMovie: movie});
+  }
+
   render() {
     const display = this.state.movieList.map((movie) => {
       const { id, title, overview, release_date, image_url, external_id, inventory } = movie;
@@ -58,6 +64,7 @@ class MovieLibrary extends Component {
           image_url={image_url}
           external_id={external_id}
           inventory={inventory}
+          selectMovieCallback={this.selectMovie}
         />
       </section>);
     });
