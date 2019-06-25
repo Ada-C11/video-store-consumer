@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import SearchResults from './SearchResults';
+import SearchForm from './SearchForm';
 import MOVIE_DATA from '../data/movie-data.json';
 
 class Search extends Component {
@@ -15,7 +16,10 @@ class Search extends Component {
 
     render() {
         return (
-            <SearchResults movieData={this.state.movies} />
+            <div>
+                <SearchForm />
+                <SearchResults movieData={this.state.movies} />
+            </div>
         );
     }
 }
