@@ -4,14 +4,29 @@ import './App.css';
 
 import Search from './components/Search';
 import MovieLibrary from './components/MovieLibrary';
-import Customer from './components/Customer';
 import Checkout from './components/Checkout';
+import CustomerList from './components/CustomerList';
+import Customer from './components/Customer';
 
 class App extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      selectedCustomer: '',
+    }
+  }
+
+  selectCustomer = (customerName) => {
+    console.log(customerName);
+    this.setState({
+      selectedCustomer: customerName,
+    });
+  }
+
   render() {
     return (
       <div className="App">
-        <header className="App-header">
+        
         <Router>
             <nav>
               <ul>
@@ -25,26 +40,20 @@ class App extends Component {
                   <Link to='/movielibrary'>Movie Library</Link>
                 </li>
                 <li>
-                  <Link to='/customers'>Customer List</Link>
-                </li>
-                <li>
-                  <Link to='/checkout'>Checkout</Link>
+                  <Link to='/customerlist'>Customer List</Link>
                 </li>
               </ul>
             </nav>
            
             <Route path="/search" component={Search} />
             <Route path="/movielibrary" component={MovieLibrary} />
-            <Route path="/customers" component={Customer} />
-            <Route path="/checkout" component={Checkout} />
+            <Route path="/customerlist" render={(props) => <CustomerList {...props} selectedCustomer={this.selectCustomer} />} />
 
           </Router>
-        </header>
 
-
-
-
-      
+          <section>
+            <Checkout selectedCustomer={this.state.selectedCustomer}/>
+          </section>
       </div>
     );
   }
