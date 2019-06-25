@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
-import AppRouter from './components/AppRouter';
+import AppRouter from './components/AppRouter2';
 
 class App extends Component {
   render() {
