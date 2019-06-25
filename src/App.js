@@ -28,6 +28,14 @@ class App extends Component {
     this.setState({ hasCustomer: customer });
   };
 
+    searchMovie = movie => {
+    const newState = this.state;
+    newState.movies.push(movie);
+
+    this.setState(newState);
+  };
+
+
   render() {
     let optionalComponent;
 

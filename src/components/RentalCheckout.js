@@ -13,7 +13,7 @@ class RentalCheckout extends Component {
 
   checkout = (movie, customer) => {
     this.setState({
-      checkout: movie,
+      checkout: [...this.state.checkout, customer, movie],
       checkoutStatus: true
     });
   };
@@ -22,7 +22,9 @@ class RentalCheckout extends Component {
     let checkoutText = "";
 
     if (this.state.checkoutStatus === true) {
-      checkoutText = "You are checked out";
+      checkoutText = `${
+        this.state.checkout[0]
+      } has check out the following movie: ${this.state.checkout[1]}`;
     }
     console.log(checkoutText);
 

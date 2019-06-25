@@ -11,12 +11,6 @@ class MovieLibrary extends Component {
     };
   }
 
-  // searchMovie = movie => {
-  //   const newState = this.state;
-  //   newState.movies.push(movie);
-
-  //   this.setState(newState);
-  // };
 
   selectToCheckoutMovie = movie => {
     this.setState({
@@ -54,5 +48,6 @@ class MovieLibrary extends Component {
     }
   }
 }
+
 
 export default MovieLibrary;
