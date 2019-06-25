@@ -3,7 +3,8 @@ import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import logo from './logo.svg';
 import './App.css';
 import VideoStore from './components/VideoStore'
-import MovieLibrary from './components/MovieLibrary';
+import Movie from './components/Movie';
+import Customer from './components/Customer';
 
 
 function App() {
@@ -32,11 +33,11 @@ function Home() {
 }
 
 function Customers() {
-  return <h2>Customers</h2>;
+  return <Customer />;
 }
 
 function Library() {
-  return <h2>Library</h2>;
+  return <Movie />;
 }
 
 function Search() {

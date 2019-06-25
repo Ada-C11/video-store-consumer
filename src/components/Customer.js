@@ -1,26 +1,69 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import axios from 'axios';
 
 // import './CustomerList.css';
 
 
 class Customer extends Component {
+  constructor() {
+    super();
+
+    this.state = {
+      customers: []
+    }
+  }
+
+  componentDidMount() {
+    const fullUrl = "http://localhost:3000/customers"
+    axios.get(fullUrl)
+      .then((response) => {
+        const customers = response.data.map((customer) => {
+          const { id, name, city, address, postal_code, phone, account_credit, movies_checked_out_count } = customer;
+          const newCustomer = {
+            id: id,
+            name: name,
+            city: city,
+            address: address,
+            postal_code: postal_code,
+            phone: phone,
+            account_credit: account_credit,
+            movies_checked_out_count: movies_checked_out_count,
+          }
+          return newCustomer;
+        })
+
+        this.setState({ customers });
+
+      })
+      .catch((error) => {
+        this.setState({ errorMessages: error.message });
+      });
+  }
 
   render() {
-    return (
-      <div className="customer">
-        <div className="customer__content">
-          {this.props.id}
-          {this.props.name}
-          {this.props.city}
-          {this.props.address}
-          {this.props.postal_code}
-          {this.props.phone}
-          {this.props.account_credit}
-          {this.props.movies_checked_out_count}
+    const displayCustomers = this.state.customers.map((customer) => {
+      const { id, name, city, address, postal_code, phone, account_credit, movies_checked_out_count } = customer;
+      return (
+        <div className="customer">
+          {id}
+          {name}
+          {city}
+          {address}
+          {postal_code}
+          {phone}
+          {account_credit}
+          {movies_checked_out_count}
         </div>
-      </div>
+      )
+    })
+    return (
+
+      <section className="customer_list" >
+        {displayCustomers}
+      </section>
     )
+
   }
 }
 
