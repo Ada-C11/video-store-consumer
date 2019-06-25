@@ -68,13 +68,15 @@ class App extends Component {
   onSelectMovie = (movie) => {
     // let currentSelectedMovie = this.state.selectedMovie;
     // currentSelectedMovie = movie;
-
-    this.setState({ 
-      selectedMovie: movie
-    });
+    
+      this.setState({ 
+        selectedMovie: movie
+      });
+    
 
     console.log('im in app and the movie clicked was:', movie.title)
   }
+
 
   // mapApiResponse(response) {
   //   return response.data.map((apiObject) => {
@@ -108,7 +110,7 @@ class App extends Component {
           {this.state.selectedMovie && 
             <div className='currently-selected-items'>
               <p>Selected Movie: {this.state.selectedMovie.title}</p>
-      
+              <button onClick={() => { this.setState({ selectedMovie: null}) }}>Remove Movie from Rental</button>
             </div>
           }
         
