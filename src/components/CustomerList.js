@@ -18,7 +18,6 @@ class CustomerList extends Component {
     const allCustomers = [];
     axios.get(URL_CUSTOMERS)
     .then((response) => {
-      // console.log(response.data);
       response.data.forEach((element) => {
         allCustomers.push(element);
       })
@@ -36,14 +35,17 @@ class CustomerList extends Component {
 
   updateSelected = (customerId) => {
     this.state.allCustomers.forEach((customer) => {
-      if(customer.id === customerId) {
-        console.log('anything here?');
-        console.log(customer.name);
+      if(customer.id === parseInt(customerId, 10)) {
         this.setState({
           selectedCustomer: customer.name,
         })
       }
     })
+  }
+
+  onSaveButtonClick = (event) => {
+    event.preventDefault();
+    this.props.selectedCustomer(this.state.selectedCustomer);
   }
 
   displayCustomers = () => {
@@ -55,7 +57,7 @@ class CustomerList extends Component {
             customerId={customer.id}
             name={customer.name}
             selectedCallback={this.updateSelected}
-            isSelected = {this.state.selectedCustomer}
+            isSelected={this.state.selectedCustomer}
           />
         </div>
       )
@@ -63,6 +65,7 @@ class CustomerList extends Component {
     return (
       <form>
         { displayedCustomers }
+        <button onClick={this.onSaveButtonClick}>Save</button>
       </form>
     );
   }

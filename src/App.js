@@ -12,13 +12,14 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      selectedCustomer: undefined,
+      selectedCustomer: '',
     }
   }
 
-  selectCustomer = (customer) => {
+  selectCustomer = (customerName) => {
+    console.log(customerName);
     this.setState({
-      selectedCustomer: customer,
+      selectedCustomer: customerName,
     });
   }
 

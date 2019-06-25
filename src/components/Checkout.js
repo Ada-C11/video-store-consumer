@@ -4,7 +4,7 @@ const Checkout = (props) => {
   return(
     <div>
       <div>
-        Selected Customer: {props.selectedCustomer ? props.selectedCustomer.name : ''}
+        Selected Customer: {props.selectedCustomer}
       </div>
       <div>
         Movie
