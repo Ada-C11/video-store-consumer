@@ -7,7 +7,7 @@ const CustomerList = (props) => {
 
   const displayCustomers = customerList.map((customer, i) => {
     return (
-      <p>{customer.name}</p>
+      <p key={i}>{customer.name}</p>
       )
   })
 
