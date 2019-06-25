@@ -84,7 +84,7 @@ class Search extends Component {
     axios.get('http://localhost:3090/movies?query=' + this.state.title.toString())
     .then((response) => {
       console.log(response)
-
+      // be submitting post request to video store api from response?
     })
   }
   render () {
