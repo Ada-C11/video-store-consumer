@@ -5,9 +5,10 @@ import axios from 'axios';
 
 import Search from './components/Search';
 import MovieLibrary from './components/MovieLibrary';
-import Customer from './components/Customer';
 import Checkout from './components/Checkout';
 import SearchResult from './components/SearchResult';
+import CustomerList from './components/CustomerList';
+
 
 const URL = 'http://localhost:4000/movies'
 
@@ -16,6 +17,7 @@ class App extends Component {
   constructor(){
     super();
     this.state = {
+      selectedCustomer: '',
       searchResults: [],
     }
   }
@@ -47,11 +49,19 @@ class App extends Component {
       });
   }
 
+
+  selectCustomer = (customerName) => {
+    console.log(customerName);
+    this.setState({
+      selectedCustomer: customerName,
+    });
+  }
+
   render() {
  
     return (
       <div className="App">
-        <header className="App-header">
+        <header>
         <Router>
             <nav>
               <ul>
@@ -65,26 +75,21 @@ class App extends Component {
                   <Link to='/movielibrary'>Movie Library</Link>
                 </li>
                 <li>
-                  <Link to='/customers'>Customer List</Link>
-                </li>
-                <li>
-                  <Link to='/checkout'>Checkout</Link>
+                  <Link to='/customerlist'>Customer List</Link>
                 </li>
               </ul>
             </nav>
             <Route path="/search" render={(props) => <Search onSearchButtonCallback={this.onSearchButtonCallback}/>} />
             <Route path="/movielibrary" component={MovieLibrary} />
-            {/* <Route path="/customers" component={Customer} /> */}
-            {/* <Route path="/checkout" component={Checkout} /> */}
-
+            <Route path="/customerlist" render={(props) => <CustomerList {...props} selectedCustomer={this.selectCustomer} />} />
           </Router>
         </header>
         <section>
           <SearchResult result={this.state.searchResults}/>
+          <Checkout selectedCustomer={this.state.selectedCustomer}/>
         </section>
-        
       </div>
-    );
+    )
   }
 }
 
