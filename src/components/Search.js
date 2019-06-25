@@ -16,6 +16,6 @@ class Search extends Component {
   }
 
   componentDidMount() {
-    
+
   }
 }
