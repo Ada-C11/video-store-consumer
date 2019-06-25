@@ -28,7 +28,6 @@ class RentalLibraryPage extends Component {
       const {id, title, overview, release_date} = movie;
       return ( <Movie key={id} id={id} title={title}
               overview={overview} release_date={release_date} 
-              buttonName="Select"
               onSelectHandler={this.props.onSelectMovieCallback} />)
     });
 

@@ -22,6 +22,7 @@ class CustomerListPage extends Component {
         this.setState({ error: error.message });
       });
   }
+
   render() {
     const { customers } = this.state;
     const customerList = customers.map((customers) => {

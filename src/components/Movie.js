@@ -3,7 +3,7 @@ import 'bootstrap/dist/css/bootstrap.css';
 
 const Movie = (props) => {
   const {id, title, overview, release_date,
-         buttonName, onSelectHandler} = props;
+         onSelectHandler} = props;
   
   const onMovieClick = () => {
     onSelectHandler(props.title); 
@@ -16,7 +16,7 @@ const Movie = (props) => {
       <td>{release_date}</td>
       <td>
         <button className="btn btn-primary" onClick={onMovieClick} >
-          {buttonName}
+          Select
         </button>
       </td>
     </tr>
