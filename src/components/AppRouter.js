@@ -42,6 +42,8 @@ const generateMovieComponents = (movieList) => {
 }
 
 function AppRouter() {
+  const VIDEO_STORE_API_URL = 'https://video-store-api-sh.herokuapp.com/';
+
   return (
     <Router>
       <div>
@@ -66,12 +68,20 @@ function AppRouter() {
         <Route
           path="/search/"
           // component={Search} 
-          render={(props) => <Search generateMovieComponentsCallback={generateMovieComponents} />}
+          render={(props) => 
+            <Search 
+              generateMovieComponentsCallback={generateMovieComponents} 
+              url={ VIDEO_STORE_API_URL } 
+            />}
         />
         <Route
           path="/library/"
           // component={Library}
-          render={(props) => <Library thing="thingy" />}
+          render={(props) => 
+            <Library 
+              generateMovieComponentsCallback={generateMovieComponents} 
+              url={ VIDEO_STORE_API_URL } 
+            />}
         />
         <Route path="/customers/" component={Customers} />
       </div>
