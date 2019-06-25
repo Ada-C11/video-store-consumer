@@ -8,7 +8,7 @@ const NavMenu = (props) => {
     <div>
       <ul className="nav-menu">
         <li>
-        <h1>The Name of Our Video Store</h1></li>
+        <h1>Rewind Video</h1></li>
         <li>
           <Link to="/">
             <button type="button" className="btn btn-secondary btn-lg">Home</button>
