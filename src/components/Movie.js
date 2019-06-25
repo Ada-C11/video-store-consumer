@@ -5,7 +5,7 @@ import './Movie.css'
 const Movie = (props) => {
 
   const onMovieClick = () => {
-    props.callback(props.id)
+    // props.callback(props.id)
   }
 
   return (
@@ -16,7 +16,7 @@ const Movie = (props) => {
         <button
           className="btn btn-secondary"
           onClick={onMovieClick}>
-          {props.buttonText}
+          Add to Library
         </button>
         <h2 className="card-title">{props.title}</h2>
         <h4 className="card-text">{props.releaseDate}</h4>

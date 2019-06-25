@@ -2,7 +2,7 @@ import React from 'react';
 import axios from 'axios';
 import Movie from './Movie';
 import './Library.css';
-import { workers } from 'cluster';
+
 
 class Library extends React.Component {
   constructor(props) {
@@ -10,6 +10,7 @@ class Library extends React.Component {
 
     this.state = {
       movies: [],
+      errorMessage: ''
     };
   }
 
@@ -17,9 +18,11 @@ class Library extends React.Component {
     axios.get('http://localhost:3000/movies')
     .then((response) => {
       this.setState({movies: response.data})
+      console.log(this.state.movies)
     })
     .catch((error) => {
-      this.setState({error: error.message})
+      this.setState({errorMessage: error.message})
+      console.log(error.message)
     })
   }
 
@@ -31,7 +34,6 @@ class Library extends React.Component {
   }
   
   render() {
-    console.log(this.props)
 
     const movieCollection = this.state.movies.map((movie) => {
       return <Movie key={movie.id}

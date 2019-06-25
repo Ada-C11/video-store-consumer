@@ -1,26 +1,16 @@
 import React, { Component } from 'react';
-import axios from 'axios'
+// import axios from 'axios'
 import './App.css';
 import CustomerList from './components/CustomerList'
+import Library from './components/Library'
+
 
 class App extends Component {
     state = {
-      movieCollection: [],
-      customers: [],
       selectedCustomer: null,
       selectedMovie: null,
     }
   
-  
-  componentDidMount () {
-    axios.get('http://localhost:3000/movies/', { crossdomain: true })
-      .then(response => {
-        console.log(response.data)
-      })
-      .catch(error => {
-        console.log(error.message)
-      })
-  }
   render() {
     return (
       <div>
@@ -28,7 +18,7 @@ class App extends Component {
           <CustomerList />
         </section>
         <section>
-        {/* <MovieSearch /> */}
+        <Library />
         </section>
       </div>
     );
