@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import "./App.css";
 import MovieLibrary from "./components/MovieLibrary";
 import MovieSearch from "./components/MovieSearch";
+import RentalCheckout from "./components/RentalCheckout";
+
 import { nfapply } from "q";
 
 class App extends Component {
@@ -9,7 +11,8 @@ class App extends Component {
     super(props);
 
     this.state = {
-      displayOption: null
+      displayOption: null,
+      hasMovie: null
     };
   }
 
@@ -17,18 +20,25 @@ class App extends Component {
     this.setState({ displayOption: opt });
   };
 
-  rentMovie = (movie) => {
-    console.log({movie})
-  }
+  rentMovie = movie => {
+    this.setState({ hasMovie: movie });
+  };
 
   render() {
     let optComponent;
 
     if (this.state.displayOption === "library") {
-      optComponent = <MovieLibrary rentMovieCallback={this.rentMovie}/>;
+      optComponent = <MovieLibrary rentMovieCallback={this.rentMovie} />;
     } else if (this.state.displayOption === "search") {
       optComponent = <MovieSearch />;
     }
+
+    let rental;
+
+    if (this.state.hasMovie) {
+      rental = <RentalCheckout selectedMovie={this.state.hasMovie} />;
+    }
+
     return (
       <div className="App">
         <header className="App__header">
@@ -61,6 +71,7 @@ class App extends Component {
           </button>
         </section>
         {optComponent}
+        {rental}
       </div>
     );
   }
