@@ -27,7 +27,7 @@ class RentalLibraryPage extends Component {
     const movieList = movies.map((movie) => {
       const {id, title, overview, release_date} = movie;
       return ( <Movie key={id} id={id} title={title}
-              overview={overview} release_date={release_date} buttonName="select" />)
+              overview={overview} release_date={release_date} buttonName="Select" />)
     });
 
     const errorSection = (this.state.error) ? 
