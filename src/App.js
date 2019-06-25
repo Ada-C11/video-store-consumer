@@ -10,6 +10,27 @@ class App extends Component {
       selectedCustomer: null,
       selectedMovie: null,
     }
+
+    // Grace's suggested edits for this portion, starting with line 9:
+    // constructor() {
+    //   super();
+    //   this.state = {
+    //     selectedMovie: null,
+    //     selectedCustomer: null,
+    //   };
+    // }
+
+    // selectMovieForRental = (movieTitle) => {
+    //   this.setState({
+    //     selectedMovie: movieTitle
+    //   })
+    // }
+  
+    // selectCustomerForRental = (customerObject) => {
+    //   this.setState({
+    //     selectedCustomer: customerObject
+    //   })
+    // }
   
   render() {
     return (
