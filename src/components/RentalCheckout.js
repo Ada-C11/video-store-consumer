@@ -8,9 +8,15 @@ class RentalCheckout extends Component {
 
   render() {
     return (
-      <section>
-        <div>{this.props.selectedMovie}</div>;
-      </section>
+      <div>
+        <header className="App__header">
+          <h2>
+            {this.props.selectedMovie}
+            {this.props.selectedCustomer}
+          </h2>
+          ;
+        </header>
+      </div>
     );
   }
 }

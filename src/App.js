@@ -11,34 +11,46 @@ class App extends Component {
 
     this.state = {
       displayOption: null,
-      hasMovie: null
+      hasMovie: null,
+      hasCustomer: null
     };
   }
 
-  setDisplay = opt => {
-    this.setState({ displayOption: opt });
+  setDisplay = option => {
+    this.setState({ displayOption: option });
   };
 
-  rentMovie = movie => {
+  rentMovieWithMovie = movie => {
     this.setState({ hasMovie: movie });
   };
 
+  rentMovieWithCustomer = customer => {
+    this.setState({ hasCustomer: customer });
+  };
+
   render() {
-    let optComponent;
+    let optionalComponent;
 
     if (this.state.displayOption === "library") {
-      optComponent = <MovieLibrary rentMovieCallback={this.rentMovie} />;
+      optionalComponent = (
+        <MovieLibrary rentMovieWithMovieCallback={this.rentMovieWithMovie} />
+      );
     } else if (this.state.displayOption === "search") {
-      optComponent = <MovieSearch />;
+      optionalComponent = <MovieSearch />;
     } else if (this.state.displayOption === "list") {
-      optComponent = <CustomerList />;
+      optionalComponent = (
+        <CustomerList
+          rentMovieWithCustomerCallback={this.rentMovieWithCustomer}
+        />
+      );
     }
 
-    let rental;
+    let rentalMovie;
+    let rentalCustomer;
 
-    if (this.state.hasMovie) {
-      rental = <RentalCheckout selectedMovie={this.state.hasMovie} />;
-    }
+    if (this.state.hasMovie && this.state.hasMovie) {
+      rentalMovie = <RentalCheckout selectedMovie={this.state.hasMovie} selectedCustomer={this.state.hasCustomer} />;
+    } 
 
     return (
       <div className="App">
@@ -71,8 +83,9 @@ class App extends Component {
             CustomerList
           </button>
         </section>
-        {optComponent}
-        {rental}
+        {optionalComponent}
+
+        {rentalMovie}
       </div>
     );
   }
