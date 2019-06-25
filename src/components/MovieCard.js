@@ -15,7 +15,7 @@ const MovieCard = (props) => {
 
   return (
     <div className="card" style={{width: 18 + 'rem'}}>
-      <img className="card-img-top" src={image_url} alt="Card image cap"/>
+      <img className="card-img-top" src={image_url} alt={`cover for ${title}`}/>
       <div className="card-body">
         <h5 className="card-title">{title}</h5>
         <p className="card-text">{overview}</p>
