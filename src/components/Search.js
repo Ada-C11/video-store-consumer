@@ -63,7 +63,7 @@ class Search extends Component {
 
   render() {
     // const movies = this.generateMovieComponents();
-    const movies = this.props.generateMovieComponentsCallback(this.state.movies);
+    const movies = this.props.generateMovieComponentsCallback(this.state.movies, false);
     return (
       <section>
         <SearchForm

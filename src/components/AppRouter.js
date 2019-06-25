@@ -24,7 +24,7 @@ class AppRouter extends Component {
     }
   }
 
-  generateMovieComponents = (movieList) => {
+  generateMovieComponents = (movieList, buttonBool) => {  // secondary bool arg
     return movieList.map((movie, i) => {
       return (
         <Movie
@@ -35,6 +35,7 @@ class AppRouter extends Component {
           overview={movie.overview}
           release_date={movie.release_date}
           image_url={movie.image_url}
+          isSelectButton={buttonBool}
         />
       )
     })
@@ -46,9 +47,16 @@ class AppRouter extends Component {
     })
   }
 
+  selectMovie = (movie) => {
+    this.setState({
+      selectedMovie: movie,
+    })
+  }
+
   render() {
-    console.log(this.state.selectedCustomer);
-    
+    console.log(`Customer Selected: ${this.state.selectedCustomer}`);
+    console.log('Movie Selected', this.state.selectedMovie);
+
     return (
       <Router>
         <div>

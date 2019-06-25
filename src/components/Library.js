@@ -36,7 +36,7 @@ class Library extends Component {
   }
 
   render() {
-    const movies = this.props.generateMovieComponentsCallback(this.state.movies);
+    const movies = this.props.generateMovieComponentsCallback(this.state.movies, true);
 
     return(
       <div>
