@@ -16,10 +16,11 @@ class App extends Component {
     }
   }
 
-  currentCustomerCallback = (customerID) => {
+  currentCustomerCallback = (customer) => {
+
     return () => {
       this.setState({
-        currentCustomer: customerID,
+        currentCustomer: customer.name,
       })
     }
   }
@@ -27,11 +28,14 @@ class App extends Component {
   render() {
     return (
       <section>
+
         <Router>
           <div>
-            {this.state.currentCustomer}
             <Header />
 
+            <div className="current_selections">
+              {this.state.currentCustomer}
+            </div>
 
             <Route exact path="/" component={Home} />
             <Route path="/customers" render={(routeProps) => (
@@ -41,6 +45,7 @@ class App extends Component {
             <Route path="/search" component={Search} />
 
           </div>
+
         </Router>
 
 

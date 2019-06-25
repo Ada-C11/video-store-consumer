@@ -42,17 +42,13 @@ class Customer extends Component {
   }
 
 
-  // onCustomerClick = () => {
-  //   this.props.currentCustomerCallback(this.props.id)
-  // }
-
   render() {
     const displayCustomers = this.state.customers.map((customer) => {
       const { id, name, city, address, postal_code, phone, account_credit, movies_checked_out_count } = customer;
       return (
         <div key={id} className="customer">
           {id}
-          <button onClick={this.props.currentCustomerCallback(id)}>{name}</button>
+          <button onClick={this.props.currentCustomerCallback(customer)}>{name}</button>
           {city}
           {address}
           {postal_code}
