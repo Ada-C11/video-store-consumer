@@ -37,7 +37,8 @@ class Search extends Component {
 
   }
 
-  onFormSubmit = () => {
+  onFormSubmit = (event) => {
+    event.preventDefault()
     axios.get('http://localhost:3090/movies/' + this.state.title.toString())
     .then((response) => {
       console.log(response)
