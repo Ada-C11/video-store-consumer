@@ -1,0 +1,16 @@
+.movies {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+
+.movie-poster {
+    justify-content: center;
+}
+
+.grid-container {
+    justify-content: center;
+    text-align: center;
+    color: blue;
+    border-bottom: 10px;
+  }
