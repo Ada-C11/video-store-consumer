@@ -3,6 +3,7 @@ import "./App.css";
 import MovieLibrary from "./components/MovieLibrary";
 import MovieSearch from "./components/MovieSearch";
 import RentalCheckout from "./components/RentalCheckout";
+import CustomerList from "./components/CustomerList";
 
 import { nfapply } from "q";
 
@@ -31,6 +32,8 @@ class App extends Component {
       optComponent = <MovieLibrary rentMovieCallback={this.rentMovie} />;
     } else if (this.state.displayOption === "search") {
       optComponent = <MovieSearch />;
+    } else if (this.state.displayOption === "list") {
+      optComponent = <CustomerList />;
     }
 
     let rental;

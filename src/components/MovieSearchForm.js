@@ -39,7 +39,7 @@ class MovieSearchForm extends Component {
                 className="new-card-form__form"
                 onSubmit={this.searchMovie}
             >
-                <h3 className="new-card-form__header">Search for a movie</h3>
+                <h2 className="new-card-form__header">Search for a movie</h2>
                 <label >
                     Text:
                     <input

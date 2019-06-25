@@ -71,7 +71,6 @@ class MovieSearch extends Component {
     //         </header>
     <div>
             <div classname="board">
-              <p>List of movies</p>
             </div>
                     <div>
                     <MovieSearchForm searchMovieCallback={this.searchMovieCallback}/>

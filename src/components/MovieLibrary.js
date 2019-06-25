@@ -54,7 +54,11 @@ class MovieLibrary extends Component {
           </section>
         );
       });
-      return <div>{movies}</div>;
+      return (
+        <div>
+          <h2> Movie Library</h2> {movies}
+        </div>
+      );
     }
   }
 }
