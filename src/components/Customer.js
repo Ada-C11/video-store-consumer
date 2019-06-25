@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
-
-import 'bootstrap/dist/css/bootstrap.min.css';
+import {Card, Button} from 'react-bootstrap'
 import './Customer.css'
 
 class Customer extends Component {
@@ -13,18 +12,18 @@ class Customer extends Component {
     render() {
         const {name, city, stateName, phone, accountCredit, moviesCheckedOutCount} = this.props;
         return (
-            <div className="card" style={{width: 18 + 'rem'}}>
-            <div className="card-body">
-              <h5 className="card-title">{name}</h5>
-              <p className="card-text">{city}, {stateName}</p>
-              <p className="card-text">{phone}</p>
-              <p className="card-text">${accountCredit} account credit</p>
-              <p className="card-text">{moviesCheckedOutCount} movies currently checked out</p>
-              <button onClick={ this.onSelectButtonClick}
-                className="btn btn-primary select-movie-btn"
-              >Select</button>
-            </div>
-          </div>
+            <Card style={{ width: '18rem' }}>
+            <Card.Body>
+                <Card.Title>{name}</Card.Title>
+                <Card.Text>{city}, {stateName} </Card.Text>
+                <Card.Text>{phone}</Card.Text>
+                <Card.Text>${accountCredit} account credit</Card.Text>
+                <Card.Text className="card-text">{moviesCheckedOutCount} movies currently checked out </Card.Text>
+                <Button onClick={ this.onSelectButtonClick}  variant="primary">
+                    Select
+                </Button>
+            </Card.Body>
+          </Card>
         )
     }
     

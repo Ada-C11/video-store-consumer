@@ -55,6 +55,7 @@ class MovieLibrary extends Component {
       return (<section>
         <MovieCard 
           id={id}
+          key= {id}
           title={title}
           overview={overview}
           release_date={release_date}

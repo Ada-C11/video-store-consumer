@@ -12,6 +12,11 @@ import { Nav } from 'react-bootstrap'
 
 //  Below code is modified from React Router Tutorial https://reacttraining.com/react-router/web/guides/quick-start
 
+const Index = () => {
+  return []
+}
+
+
 class AppRouter extends Component {
   constructor(props){
     super(props);
@@ -49,7 +54,7 @@ class AppRouter extends Component {
                 <Nav.Link>Search</Nav.Link>  
             </LinkContainer>
           </Nav.Item>
-          <Nav.Item as="li" eventKey="/library">
+          <Nav.Item as="li">
             <LinkContainer to="/library">
                   <Nav.Link>Library</Nav.Link>  
             </LinkContainer>
@@ -64,7 +69,7 @@ class AppRouter extends Component {
           <Route path="/" exact component={Index} />
           <Route path="/search/" exact component={Search} />
           
-           />
+          
           <Route
               path='/library'
               render={(props) => <MovieLibrary {...props} selectMovie={this.selectMovie} />}
