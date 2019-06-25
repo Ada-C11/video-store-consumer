@@ -6,32 +6,18 @@ class MovieLibrary extends Component {
     super(props);
 
     this.state = {
-      movies: [
-        "heart_eyes",
-        "beer",
-        "clap",
-        "sparkling_heart",
-        "heart_eyes_cat",
-        "dog"
-      ],
-
+      movies: ["short", "not", "ghost", "blah"],
       selectedMovie: ""
     };
   }
 
-  addMovie = movie => {
-    const newState = this.state;
-    newState.movies.push(movie);
 
-    this.setState(newState);
-  };
-
-  selectToAddToCheckout = movie => {
+  selectToCheckoutMovie = movie => {
     this.setState({
       selectedMovie: movie
     });
 
-    this.props.rentMovieCallback(movie);
+    this.props.rentMovieWithMovieCallback(movie);
   };
 
   render() {
@@ -47,7 +33,7 @@ class MovieLibrary extends Component {
               type="button"
               className="btn btn-danger"
               aria-label="Close"
-              onClick={() => this.selectToAddToCheckout(movie)}
+              onClick={() => this.selectToCheckoutMovie(movie)}
             >
               SELECT
             </button>
@@ -62,5 +48,6 @@ class MovieLibrary extends Component {
     }
   }
 }
+
 
 export default MovieLibrary;

@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 // import logo from "./logo.svg";
 import "./MovieSearch.css";
-import axios from 'axios';
-import MovieSearchForm from "./MovieSearchForm"
+import axios from "axios";
+import MovieSearchForm from "./MovieSearchForm";
 
 class MovieSearch extends Component {
   constructor() {
