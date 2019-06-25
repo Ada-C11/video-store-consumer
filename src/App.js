@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import './App.css';
+import PropTypes from 'prop-types';
+import Library from './components/Library';
 import axios from 'axios';
 import Search from './components/Search';
 
@@ -10,17 +12,23 @@ class App extends Component {
 
     this.state = {
       movies: [],
-      externalMovies: [],
+      rentedMovie: undefined,
       customers: [],
       error: null
     };
   }
 
+  onSelectCallback = (index) => {
+    const selectedMovie = this.state.movies[index]
+    this.setState({ rentedMovie: selectedMovie });
+  }
+
   componentDidMount() {
     axios.get('http://localhost:3001/movies')
     .then((response) => {
-      // console.log(response);
-      this.setState({ movies: response.data });
+      console.log(response);
+
+      this.setState({ movies: response.data});
     })
     .catch((error) => {
       this.setState({ error: error.message });
@@ -46,12 +54,13 @@ class App extends Component {
     return (
       <Router>
         <div>
+          { this.state.rentedMovie && <p>Movie Selection: {this.state.rentedMovie.title}</p>}
           <Header />
 
           <Route exact path="/" component={Home} />
           <Route path="/search" render={() => <Search />}/>
-          <Route path="/library" component={Library} />
-          <Route path="/customers" component={Customers} />
+          <Route path="/library" render={() => <Library library={this.state.movies} onSelectCallback={this.onSelectCallback} />} />
+          <Route path="/customers" render={() => <Customers customers={this.state.customers} />} />
           {errorSection}
         </div>
       </Router>
@@ -64,9 +73,6 @@ function Home() {
 }
 
 
-function Library() {
-  return <h2>Library</h2>;
-}
 
 function Customers() {
   return <h2>Customers</h2>;
