@@ -4,7 +4,6 @@ import './App.css';
 import Search from './components/Search';
 import Library from './components/Library';
 import CustomerList from './components/CustomerList';
-import MovieCard from './components/MovieCard';
 import axios from 'axios';
 
 
@@ -111,7 +110,10 @@ class App extends Component {
           </nav>
 
           <Route path="/search/" component={Search} />
-          <Route path="/library/" component={Library} />
+          <Route 
+            path="/library/" 
+            render={(props) => <Library {...props} movieLibrary={this.state.movieLibrary} />} 
+          />
           <Route 
             path="/customers/" 
             render={(props) => <CustomerList {...props} customerList={this.state.customerList} />}
