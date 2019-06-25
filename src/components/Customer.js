@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import axios from 'axios';
-import customerItem from './customerItem'
+import CustomerItem from './CustomerItem'
 
 
 
@@ -23,10 +23,10 @@ class Customer extends Component {
             .then((response) => {
                 const customersList = response.data.map((customer) => {
                     
-                    return <customerItem
+                    return <CustomerItem
                         key={customer.id}
-                        title={customer.name}
-                        onSelectcustomerCallback = {this.props.onSelectcustomerCallback}
+                        name={customer.name}
+                        onSelectCustomerCallback = {this.props.onSelectCustomerCallback}
                     />
                 });
                 this.setState({ customers: customersList });
@@ -51,7 +51,7 @@ class Customer extends Component {
 }
 
 Customer.propTypes = {
-    onSelectcustomerCallback: PropTypes.func.isRequired,
+    onSelectCustomerCallback: PropTypes.func.isRequired,
 };
 
 export default Customer;
