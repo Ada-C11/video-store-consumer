@@ -56,12 +56,6 @@ class Search extends Component {
               <input type="submit" value="Submit Line" />
             </div>
           </form>
-        {/* <label>
-          Search Movie Titles <input name="search"
-                        type="text"
-                        value={this.state.queryString}
-                        onChange={this.queryChanged} />
-        </label> */}
         {searchResultList}
       </section>  
     );

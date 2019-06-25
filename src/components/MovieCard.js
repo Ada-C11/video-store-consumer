@@ -1,7 +1,7 @@
 import React from 'react';
 
 const MovieCard = (props) => {
-  const { title, release_date, overview } = props
+  const { title, release_date, overview } = props.movie;
   return (
     <div>
       <h3>{ title }</h3>
