@@ -4,8 +4,8 @@ import './App.css';
 
 import Search from './components/Search';
 import MovieLibrary from './components/MovieLibrary';
-import Customer from './components/Customer';
 import Checkout from './components/Checkout';
+import CustomerList from './components/CustomerList';
 
 class App extends Component {
   render() {
@@ -25,7 +25,7 @@ class App extends Component {
                   <Link to='/movielibrary'>Movie Library</Link>
                 </li>
                 <li>
-                  <Link to='/customers'>Customer List</Link>
+                  <Link to='/customerlist'>Customer List</Link>
                 </li>
                 <li>
                   <Link to='/checkout'>Checkout</Link>
@@ -35,7 +35,7 @@ class App extends Component {
            
             <Route path="/search" component={Search} />
             <Route path="/movielibrary" component={MovieLibrary} />
-            <Route path="/customers" component={Customer} />
+            <Route path="/customerlist" component={CustomerList} />
             <Route path="/checkout" component={Checkout} />
 
           </Router>
