@@ -1,25 +1,25 @@
 import React, { Component } from 'react';
-// import axios from 'axios'
+import {Route, Switch, Link} from 'react-router-dom'
 import './App.css';
 import CustomerList from './components/CustomerList'
 import Library from './components/Library'
 
 
 class App extends Component {
-    state = {
-      selectedCustomer: null,
-      selectedMovie: null,
-    }
+  state = {
+    selectedCustomer: null,
+    selectedMovie: null,
+  }
+
+  selectCustomer = (customerID) => {
+    console.log('select Customer in App')
+    
+  }
   
   render() {
     return (
       <div>
-        <section>
-          <CustomerList />
-        </section>
-        <section>
-        <Library />
-        </section>
+        <h1> Rewind Movies Home Page </h1>
       </div>
     );
   }

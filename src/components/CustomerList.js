@@ -15,7 +15,6 @@ class CustomerList extends React.Component {
     axios.get('http://localhost:3000/customers')
     .then((response) => {
      this.setState({customers: response.data})
-     console.log(this.state.customers)
     })
     .catch((error) => {
       this.setState({error: error.message})
@@ -26,9 +25,9 @@ class CustomerList extends React.Component {
 
   render() {
     const customerList = this.state.customers.map((cust, i) => {
-    
      return <Customer 
         key={i}
+        id={cust.id}
         name={cust.name}
         address={cust.address}
         city={cust.city}
@@ -36,26 +35,17 @@ class CustomerList extends React.Component {
         postalCode={cust.postal_code}
         phone={cust.phone}
         moviesCheckedOutCount={cust.movies_checked_out_count}
-        acountCredit={cust.account_credit}
+        accountCredit={cust.account_credit}
+        selectCustCallback={this.props.selectCustCallback}
         />
     })
     return (
       <article>
+        <h1>Customer Registry</h1>
         {customerList}
       </article>
     );
   }
 }
-  
-// account_credit: 13.15
-// address: "Ap #292-5216 Ipsum Rd."
-// city: "Hillsboro"
-// id: 1
-// movies_checked_out_count: 0
-// name: "Shelley Rocha"
-// phone: "(322) 510-8695"
-// postal_code: "24309"
-// registered_at: "2015-04-29T14:54:14.000Z"
-// state: "OR"
 
 export default CustomerList;

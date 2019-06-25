@@ -7,23 +7,22 @@ const Customer = (props) => {
     moviesCheckedOutCount, accountCredit
   } = props
 
-  const onSelectCustomer = () => {
+  const onSelectCustomer = (e) => {
+    e.preventDefault();
     console.log('Selecting this customer')
-    // Callback function up to App.
+    props.selectCustCallback(props.id)
   }
 
   return (
 
     <article className="card width">
       <div className="Customer-card card-body"> 
-      <h2 className="card-title">{name}</h2>
+      <h3 className="card-title">{name}</h3>
       <h4 className="card-text">{phone}</h4>
-      <h4 className="card-text">{address}</h4>
-      <h4 className="card-text">{city}</h4>
-      <h4 className="card-text">{state}</h4>
-      <h4 className="card-text">{postalCode}</h4>
-      <h4 className="card-text">{accountCredit}</h4>
-      <h6 className="card-text">{moviesCheckedOutCount}</h6>
+      <p className="card-text">{address}</p>
+      <p className="card-text">{city}, {state}, {postalCode}</p>
+      <h4 className="card-text"> Account credit: {accountCredit}</h4>
+      <p className="card-text">Movies checked out: {moviesCheckedOutCount === 0 ? 'none' : moviesCheckedOutCount}</p>
       <button
         className="btn btn-secondary"
         onClick={onSelectCustomer}>

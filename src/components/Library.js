@@ -45,6 +45,7 @@ class Library extends React.Component {
     });
     return (
       <section className="library-container">
+        <h1> Rewind Movies libary</h1>
         {movieCollection}
       </section>
     )
