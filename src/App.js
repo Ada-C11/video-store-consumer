@@ -37,8 +37,7 @@ class App extends Component {
           </li>
         </ul>
       </nav>
-{/* 
-      <Route path="/" exact component={Index} /> */}
+{/* <Route path="/" exact component={Index} /> */}
       <Route path="/search/" component={Search} />
       <Route path="/library/" component={Library} />
       <Route path="/customers/" component={Customers} />

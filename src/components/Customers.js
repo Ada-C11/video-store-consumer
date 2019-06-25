@@ -1,14 +1,47 @@
 import React, { Component } from 'react';
-
+import axios from 'axios';
 class Customers extends Component {
+  constructor() {
+    super();
+    this.state = {
+      customers: [],
+    };
+  }
+
+  componentDidMount() {
+    this.updateCustomers()
+  }
+
+  updateCustomers = () => {
+    const url = `http://localhost:3000/customers`
+    axios.get(url)
+      .then((response) => {
+        this.setState({ customers: response.data });
+      })
+      .catch((error) => {
+        this.setState({ error: error.message });
+      });
+  }
+
+
   render() {
+    const allCustomers = this.state.customers.map((customer, i) => {
+       return <li>{customer.name}</li>
+
+
+      // return <Card
+      //           key={i}
+      //           id={card["card"["id"]]}
+      //           text={card["card"]["text"]}
+      //           emoji={card["card"]["emoji"]}
+      //           deleteCardCallBack = {this.state.deleteCardCallBack}
+      // />
+    })
     return (
       <div className="App">
         <header className="App__header">
-          <h1 className="App__title">Exquisite Corpse</h1>
-          <p className="App__intro-text">
-            Exquisite corpse, also known as exquisite cadaver (from the original French term cadavre exquis), is a method by which a collection of words or images is collectively assembled. Each collaborator adds to a composition in sequence, either by following a rule (e.g. "The adjective noun adverb verb the adjective noun." as in "The green duck sweetly sang the dreadful dirge.") or by being allowed to see only the end of what the previous person contributed.
-          </p>
+          <h1 className="App__title">Customers</h1>
+         {allCustomers}
         </header>
       </div>
     );
