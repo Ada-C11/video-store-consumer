@@ -4,6 +4,7 @@ class Search extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      searchInput: '',
       onSearchButtonCallback: this.props.onSearchButtonCallback,
     }
   }
@@ -11,9 +12,18 @@ class Search extends Component {
   onSearchButton = (event) => {
     event.preventDefault()
     console.log(this.state.text)
-    this.state.onSearchButtonCallback()
+    this.state.onSearchButtonCallback(this.state.searchInput)
+  }
+
+  onSearchInputChange = (event) => {
+    let searchInput = event.target.value
+    this.setState({
+      searchInput,
+      })
 
   }
+
+  
 
 
   render() {
@@ -23,7 +33,9 @@ class Search extends Component {
           <div className='SearchInput'>
             <input
             name='search'
-            placeholder='Search'>
+            placeholder='Search'
+            value={this.state.searchInput}
+            onChange={this.onSearchInputChange}>
             </input>
           </div>
 

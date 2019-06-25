@@ -10,20 +10,15 @@ import Checkout from './components/Checkout';
 
 class App extends Component {
 
-  onSearchButtonCallback() {
-    console.log(`HERE in App!! YAY!!`)
-    let searchCriteria ={
-      query: 'psycho'
-    }
+  onSearchButtonCallback(searchInput) {
 
-    axios.get('http://localhost:4000/movies/', searchCriteria)
+    axios.get(`http://localhost:4000/movies`, {params: {query: searchInput}})
     .then((response) => {
       console.log(response.data)
-
     })
     .catch((response) => {
-
     })
+
   }
 
   render() {
@@ -50,19 +45,12 @@ class App extends Component {
                 </li>
               </ul>
             </nav>
-           
             <Route path="/search" render={(props) => <Search onSearchButtonCallback={this.onSearchButtonCallback}/>} />
             <Route path="/movielibrary" component={MovieLibrary} />
             <Route path="/customers" component={Customer} />
             <Route path="/checkout" component={Checkout} />
-
           </Router>
         </header>
-
-
-
-
-      
       </div>
     );
   }
