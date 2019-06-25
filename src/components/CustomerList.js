@@ -25,9 +25,10 @@ class CustomerList extends React.Component {
 
 
   render() {
-    const customerList = this.state.customers.map(cust => {
+    const customerList = this.state.customers.map((cust, i) => {
     
      return <Customer 
+        key={i}
         name={cust.name}
         address={cust.address}
         city={cust.city}
