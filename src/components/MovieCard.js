@@ -7,6 +7,7 @@ const MovieCard = (props) => {
       <h3>{ title }</h3>
       <div>{ release_date }</div>
       <p>{ overview }</p>
+      <button type="button" onClick={props.selectMovie(title)}>Select Movie</button>
     </div>
   );
 };

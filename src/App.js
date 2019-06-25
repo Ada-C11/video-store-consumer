@@ -69,12 +69,16 @@ class App extends Component {
 
   }
 
-  selectMovie = (movieId) => {
-    const movie = this.state.movieLibrary.find(movie => movie.id === movieId)
-
-    this.setState({
-      selectedMovie: movie
+  selectMovie = (title) => {
+    return () => { 
+      this.setState({
+      selectedMovie: title
     });
+}
+    // const movie = this.state.movieLibrary.find(movie => movie.id === movieId)
+
+
+    // console.log(this.state.selectedMovie)
   }
 
   selectCustomer = (customerId) => {
@@ -103,16 +107,19 @@ class App extends Component {
               <li>
                 <Link to="/library/"> Movie Library </Link>
               </li>
+              <li>Selected Movie: {this.state.selectedMovie}</li>
               <li>
                 <Link to="/customers/"> Customer List </Link>
               </li>
+              <li>Selected Customer: {this.state.selectedCustomer}</li>
             </ul>
           </nav>
 
           <Route path="/search/" component={Search} />
           <Route 
             path="/library/" 
-            render={(props) => <Library {...props} movieLibrary={this.state.movieLibrary} />} 
+            render={(props) => <Library {...props} selectMovie={this.selectMovie}
+            movieLibrary={this.state.movieLibrary} />} 
           />
           <Route 
             path="/customers/" 

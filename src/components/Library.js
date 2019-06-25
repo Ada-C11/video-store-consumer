@@ -5,7 +5,7 @@ const Library = (props) => {
   const {movieLibrary} = props
   const movieCards = movieLibrary.map((movie, i) => {
     return (
-      <MovieCard key={i} movie={movie} />
+      <MovieCard key={i} movie={movie} selectMovie={props.selectMovie} />
     )
   })
   return (
