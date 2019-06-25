@@ -1,8 +1,16 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import './App.css';
+import axios from 'axios';
 
 class App extends Component {
+
+  componentDidMount() {
+    axios.get('http://localhost:3001/')
+    .then((response) => {
+      console.log(response);
+    })
+  }
   render() {
     return (
       <Router>
