@@ -1,19 +1,22 @@
 import React, { Component } from 'react';
+
 import logo from './logo.svg';
 import './App.css';
-import Movies from './components/Movies';
+
+import VideoStore from './components/VideoStore';
+
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 
-function VideoStore() {
-  return <h2>Video Store</h2>;
-}
+// function VideoStore() {
+//   return <h2>Video Store</h2>;
+// }
 
 function Search() {
   return <h2>Search</h2>;
 }
 
 function Library() {
-  return <h2><Movies /></h2>;
+  return <h2><VideoStore /></h2>;
 }
 
 function Customers() {
