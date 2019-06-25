@@ -13,15 +13,23 @@ class App extends Component {
     super(props);
     this.state = {
       selectedCustomer: '',
+      selectedMovie: '',
     }
   }
 
   selectCustomer = (customerName) => {
-    console.log(customerName);
     this.setState({
       selectedCustomer: customerName,
     });
   }
+
+  selectMovie = (movieTitle) => {
+    console.log(movieTitle);
+    this.setState({
+      selectedMovie: movieTitle,
+    });
+  }
+  
 
   render() {
     return (
@@ -46,13 +54,16 @@ class App extends Component {
             </nav>
            
             <Route path="/search" component={Search} />
-            <Route path="/movielibrary" component={MovieLibrary} />
+            <Route path="/movielibrary" render={(props) => <MovieLibrary {...props} selectedMovie={this.selectMovie} />} />
             <Route path="/customerlist" render={(props) => <CustomerList {...props} selectedCustomer={this.selectCustomer} />} />
 
           </Router>
 
           <section>
-            <Checkout selectedCustomer={this.state.selectedCustomer}/>
+            <Checkout 
+              selectedCustomer={this.state.selectedCustomer}
+              selectedMovie={this.state.selectedMovie}
+              />
           </section>
       </div>
     );

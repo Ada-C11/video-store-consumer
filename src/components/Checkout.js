@@ -7,7 +7,7 @@ const Checkout = (props) => {
         Selected Customer: {props.selectedCustomer}
       </div>
       <div>
-        Movie
+        Movie: {props.selectedMovie}
       </div>
     </div>
   );
