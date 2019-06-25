@@ -5,8 +5,6 @@ import MovieSearch from "./components/MovieSearch";
 import RentalCheckout from "./components/RentalCheckout";
 import CustomerList from "./components/CustomerList";
 
-import { nfapply } from "q";
-
 class App extends Component {
   constructor(props) {
     super(props);
