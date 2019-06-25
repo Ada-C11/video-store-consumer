@@ -32,7 +32,7 @@ class Library extends Component {
   render() {
     const movieComponents = this.state.movies.map((movie, index) => {
         return (
-          <li>{movie.title}</li>
+          <li key={index}>{movie.title}</li>
         )
     })
     return (
