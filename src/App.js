@@ -42,7 +42,28 @@ class App extends Component {
   }
 
   // Api call to get single movie
+  showMovieDetails = (title) => {
+    axios.get(`/movies/${title}`)
+      .then(response => {
+        console.log(response)
+        this.setState({
+          customerList: response.data
+        })
+      })
+      .catch(error => console.log(error))
+  }
 
+  //Api call to search movies
+  searchMovies = (query) => {
+    axios.get(`/movies?query=${query}`)
+      .then(response => {
+        console.log(response)
+        this.setState({
+          customerList: response.data
+        })
+      })
+      .catch(error => console.log(error))
+  }
 
   addMovieToLibrary = () => {
 

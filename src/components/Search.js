@@ -16,7 +16,7 @@ class Search extends Component {
       queryString
     })
 
-    // this.props.searchCallback(queryString);
+    // this.props.searchMoviesCallback(queryString);
   }
 
   // Api calls?
