@@ -13,6 +13,10 @@ class SearchMovie extends Component {
   
     onChangeHandler = (event) => {
     //   const field = {}
+         const searchTerm = event.target.value
+         this.setState({
+             searchTerm
+         });
     //   field[event.target.name] = event.target.value;
   
     //   this.setState(field);
@@ -45,7 +49,7 @@ class SearchMovie extends Component {
                   value={this.state.text}
                   placeholder='Ex: "Clueless"'
                   type='text'
-                //   onChange={this.onChangeHandler} 
+                  onChange={this.onChangeHandler} 
                 />
                 
             <div>
