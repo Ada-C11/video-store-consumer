@@ -29,19 +29,26 @@ class App extends Component {
     console.log("in callback ", title)
   }
 
-  render () {
-    console.log(this.state)
+  addCustomerToRent = (customer) => {
+    let newCustomer = this.state.customer;
+    newCustomer = customer;
+    this.setState({customer: newCustomer})
+    
+  }
 
+  render () {    
     return (
       <Router>
         <div>
           <h2>{this.state.movieTitle}</h2>
+          <h2>{this.state.customer.name}</h2>
           <Header />
           <Route exact path="/" component={Home} />
           <Route path="/search" component={Search} />
           <Route path="/library" render={(routeProps) => (<Library {...routeProps} addMovieToRentCallback={this.addMovieToRent}/>)}
           />
-          <Route path="/customers" component={Customers} />
+          <Route path="/customers" render={(routeProps) => (<Customers {...routeProps} addCustomerToRentCallback={this.addCustomerToRent}/>)} 
+          />
           <button
             onClick={this.onCheckoutClick}>
           Checkout!</button>
@@ -96,7 +103,6 @@ class Search extends Component {
 
 function Movie (props) {
   const onTitleClick = () => {
-    // console.log(props)
     props.addMovieToRentCallback(props.title)
   }
 
@@ -146,7 +152,10 @@ render () {
 }
 
 function Customer (props) {
-  return <p>{props.name}</p>
+  const onCustomerClick = () => {
+    props.addCustomertoRentCallback(props.customer)
+  }
+  return <p onClick={onCustomerClick}>{props.customer.name}</p>
 }
 
 class Customers extends Component {
@@ -162,7 +171,8 @@ class Customers extends Component {
     return this.state.customerList.map((customer) => {
       return (<Customer 
         key={customer.id}
-        name={customer.name}
+        customer={customer}
+        addCustomertoRentCallback = {this.props.addCustomerToRentCallback}
       />)
     })
   }
@@ -173,6 +183,7 @@ class Customers extends Component {
     const customerList = response.data.map((customer) => {
       return customer
     })
+    console.log(customerList)
     this.setState({customerList})
 
   })
