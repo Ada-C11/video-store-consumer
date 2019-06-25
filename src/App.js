@@ -69,12 +69,20 @@ class App extends Component {
 
   }
 
-  selectMovie = () => {
+  selectMovie = (movieId) => {
+    const movie = this.state.movieLibrary.find(movie => movie.id === movieId)
 
+    this.setState({
+      selectedMovie: movie
+    });
   }
 
-  selectCustomer = () => {
+  selectCustomer = (CustomerId) => {
+    const customer = this.state.customerLibrary.find(customer => customer.id === customerId)
 
+    this.setState({
+      selectedCustomer: customer
+    });
   }
 
   render() {
