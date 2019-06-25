@@ -18,7 +18,7 @@ class Search extends Component {
 
     movieSearchCallback = (title) => {
         console.log(title)
-        const getURL = 'http://localhost:3002/movies'
+        const getURL = 'http://localhost:3002/'
         axios.get(getURL, {
             params: {
               query: title.title
