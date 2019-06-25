@@ -101,6 +101,11 @@ class App extends Component {
               </li>
             </ul>
           </nav>
+
+          {this.state.selectedMovie && <div className='currently-selected-items'>
+            <p>Selected Movie: {this.state.selectedMovie.title}</p>
+    
+          </div>}
         
           <Route exact={true} path="/" render={() => (
             <h1>Welcome</h1>
