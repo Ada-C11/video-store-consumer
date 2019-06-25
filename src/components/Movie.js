@@ -4,12 +4,19 @@ import 'bootstrap/dist/css/bootstrap.css';
 
 class Movie extends Component {
   render() {
+    const {id, title, overview, release_date} = this.props;
     return (
-      <section>
-        <h1>{this.props.title}</h1>
-        <p>{this.props.overview}</p>
-        <p>Released: {this.props.releaseDate}</p>
-      </section>
+      <tr>
+        <th scope="row">{id}</th>
+        <td>{title}</td>
+        <td>{overview}</td>
+        <td>{release_date}</td>
+        <td>
+          <button className="btn btn-primary" >
+            Select
+          </button>
+        </td>
+      </tr>
     );
   }
 };
