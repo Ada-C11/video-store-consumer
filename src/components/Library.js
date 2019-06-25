@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import axios from 'axios'
+import Movie from './Movie';
 
 class Library extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
 
     this.state = {
       movies: [],
@@ -16,9 +17,13 @@ class Library extends Component {
     const getURL = 'http://localhost:3002/movies'
     axios.get(getURL)
       .then((response) => {
+        console.log(response.data)
         const movies = response.data.map((movie) => {
           const movieListing = {
-            title: movie.title
+            title: movie.title,
+            overview: movie.overview,
+            release_date: movie.release_date,
+            image_url: movie.image_url
           }
           return movieListing
         })
@@ -32,7 +37,13 @@ class Library extends Component {
   render() {
     const movieComponents = this.state.movies.map((movie, index) => {
         return (
-          <li key={index}>{movie.title}</li>
+          <Movie 
+          key={index}
+          title={movie.title}
+          overview={movie.overview}
+          release_date={movie.release_date}
+          image_url={movie.image_url}
+          />
         )
     })
     return (
@@ -41,6 +52,10 @@ class Library extends Component {
       </div>
     )
   }
+}
+
+Library.propTypes = {
+  onMovieSelect: PropTypes.func
 }
 
 export default Library
