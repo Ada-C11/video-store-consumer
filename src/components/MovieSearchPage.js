@@ -10,6 +10,8 @@ class MovieSearchPage extends Component {
     super();
     this.state = {
       searchResults: [],
+      rentalAddedMessage: false,
+      rentalToAdd: {}
     }
   };
 
@@ -26,12 +28,22 @@ class MovieSearchPage extends Component {
         });
   };
 
+  addRental = (props) => {
+    console.log(props);
+    // Axios.get(`${baseURL}/movies/${title}`)
+    //   .then((response) => {
+    //     console.log(response.data);
+    //   }) 
+    // Axios.post(`${baseURL}/movies`, )
+  }
+
   render() {
     const {searchResults} = this.state;
     const movieList = searchResults.map((result) => {
       const {external_id, title, overview, release_date} = result;
       return ( <Movie key={external_id} title={title}
-              overview={overview} release_date={release_date} buttonName="Add to Library" />)
+              overview={overview} release_date={release_date} 
+              onSelectHandler={this.addRental} />)
     });
 
     const errorSection = (this.state.error) ? 
@@ -50,7 +62,7 @@ class MovieSearchPage extends Component {
         <MovieSearchBar searchCallback={this.submitSearchQuery} />
       </div>
       <div>
-        <table class="table table-striped">
+        <table className="table table-striped">
           <thead>
           <tr>
             <th scope="col">Title</th>
