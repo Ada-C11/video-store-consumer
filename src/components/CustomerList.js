@@ -14,13 +14,6 @@ class CustomerList extends Component {
         }
     }
 
-    selectCustomer = (customer) => {
-        this.setState({
-            selected: customer,
-        });
-        console.log(this.state.selected);
-    }
-
     getCustomers() {
         const endpoint = 'http://localhost:3000/customers'
 
@@ -37,7 +30,7 @@ class CustomerList extends Component {
                     phone= {customer.phone}
                     accountCredit= {customer.account_credit}
                     moviesCheckedOutCount={customer.movies_checked_out_count}
-                    selectCustomerCallback={this.selectCustomer}
+                    selectCustomerCallback={this.props.selectCustomer}
                     />
                 );
             });
