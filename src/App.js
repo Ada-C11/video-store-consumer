@@ -8,14 +8,37 @@ import CustomerListPage from './components/CustomerListPage'
 import MovieSearchPage from './components/MovieSearchPage'
 
 class App extends Component {
+  constructor(props){
+    super(props);
+    this.state = {
+      selectedMovie: null,
+      selectedCustomer: null
+    };
+  }
+
+  onSelectCustomer = (customerID) => {
+    this.setState({selectedCustomer: customerID});
+  }
   render() {
+    const movieSection = (this.state.selectedMovie) ?
+      (<section>
+        Selected Movie: {this.state.selectedMovie}
+      </section>) : null;
+    const customerSection = (this.state.selectedCustomer) ?
+    (<section>
+      Selected Customer: {this.state.selectedCustomer}
+    </section>) : null;
     return (
-      <Switch>
-      <Route exact path="/" component={HomePage} />
-      <Route exact path="/library" component={RentalLibraryPage} />
-      <Route path="/search" component={MovieSearchPage} />
-      <Route path="/customers" component={CustomerListPage} />
-    </Switch>
+      <div>
+        {movieSection}
+        {customerSection}
+        <Switch>
+          <Route exact path="/" component={HomePage} />
+          <Route exact path="/library" component={RentalLibraryPage} />
+          <Route path="/search" component={MovieSearchPage} />
+          <Route path="/customers" render={(props) => <CustomerListPage onSelectCustomer={this.onSelectCustomer} />} />
+        </Switch>
+    </div>
     );
   }
 }
