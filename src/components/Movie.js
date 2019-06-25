@@ -4,9 +4,9 @@ import 'bootstrap/dist/css/bootstrap.css';
 const Movie = (props) => {
   const {id, title, overview, release_date,
          buttonName, onSelectHandler} = props;
-  console.log(props)
+  
   const onMovieClick = () => {
-    onSelectHandler(title); 
+    onSelectHandler(props.title); 
   }
   return (
     <tr>

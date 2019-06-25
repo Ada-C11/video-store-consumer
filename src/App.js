@@ -23,6 +23,7 @@ class App extends Component {
     this.setState({selectedMovie: movieInfo});
   }
   
+  
   render() {
     const movieSection = (this.state.selectedMovie) ?
       (<section>
