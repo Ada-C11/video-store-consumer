@@ -4,7 +4,6 @@ import Library from './components/Library.js';
 import Search from './components/Search.js';
 import Customers from './components/Customers.js';
 import axios from 'axios';
-import logo from './logo.svg';
 import './App.css';
 
 class App extends Component {
@@ -42,7 +41,6 @@ class App extends Component {
     const url =  `http://localhost:3000/rentals/:title/check-out`
     axios.post(url)
     .then((response) => {
-      this.updateCards()
     })
     .catch((error) => {
       // Use the same idea we had in our GET request
