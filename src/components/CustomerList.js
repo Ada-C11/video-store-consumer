@@ -21,8 +21,6 @@ class CustomerList extends React.Component {
     })
   }
 
-
-
   render() {
     const customerList = this.state.customers.map((cust, i) => {
      return <Customer 
