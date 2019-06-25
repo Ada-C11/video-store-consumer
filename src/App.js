@@ -46,11 +46,15 @@ class App extends Component {
     }
 
     let rentalMovie;
-    let rentalCustomer;
 
     if (this.state.hasMovie && this.state.hasMovie) {
-      rentalMovie = <RentalCheckout selectedMovie={this.state.hasMovie} selectedCustomer={this.state.hasCustomer} />;
-    } 
+      rentalMovie = (
+        <RentalCheckout
+          selectedMovie={this.state.hasMovie}
+          selectedCustomer={this.state.hasCustomer}
+        />
+      );
+    }
 
     return (
       <div className="App">
@@ -84,8 +88,7 @@ class App extends Component {
           </button>
         </section>
         {optionalComponent}
-
-        {rentalMovie}
+        <section>{rentalMovie}</section>
       </div>
     );
   }
