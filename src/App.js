@@ -1,6 +1,7 @@
 import React from "react";
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import Search from './components/Search.js'
+import Library from './components/Library'
 
 function Index() {
   return <h2>Home</h2>;
@@ -12,9 +13,9 @@ function Index() {
   
 // }
 
-function Library() {
-  return <h2>Library</h2>;
-}
+// function Library() {
+//   return <h2>Library</h2>;
+// }
 
 function Customers() {
   return <h2>Customers</h2>;
