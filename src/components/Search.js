@@ -11,6 +11,7 @@ class Search extends Component {
 
         this.state = {
             movies: [],
+            error: null
         }
 
     }
@@ -24,9 +25,18 @@ class Search extends Component {
             }
         })
             .then((response) => {
-                console.log(response)
+                console.log(response.data)
+                const movies = response.data.map((movie) => {
+                    const movieResult = {
+                        title: movie.title
+                    }
+                    return movieResult
+                })
+                this.setState({ movies });
             })
-            .catch()
+            .catch((error) => {
+                this.setState({error: error.message });
+            })
     }
 
     render() {
