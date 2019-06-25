@@ -19,6 +19,8 @@ class Search extends Component {
         this.state = {
             movieSearch: '',
             shouldRedirect: undefined,
+            clickSearch: false,
+            searchList: [] 
         }
     }
 
@@ -47,7 +49,7 @@ class Search extends Component {
                         addMovieCallback={this.addMovie}
                     />
                 });
-                this.setState({searchList: searchList, movieSearch: ''})
+                this.setState({searchList: searchList, movieSearch: '', clickSearch: true})
             })
             .catch((error) => {
                 console.log(error);
@@ -83,6 +85,15 @@ class Search extends Component {
             return <Redirect to='/library/' />
         }
 
+        let results = <span></span>
+
+        if (this.state.searchList.length > 0 && this.state.clickSearch) {
+            results = this.state.searchList;
+        }
+        else if (this.state.searchList.length === 0 && this.state.clickSearch) {
+            results = <p> No results found </p>;
+        }
+
         return (
             <div>
                 <form className='movie-item'
@@ -99,7 +110,8 @@ class Search extends Component {
                     <button className="search-submit"> Search</button>
                 </form >
 
-                {this.state.searchList}
+                {results} 
+                {console.log(results)}
             </div>
         )
     };
