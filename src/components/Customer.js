@@ -3,18 +3,7 @@ import PropTypes from 'prop-types';
 
 
 class Customer extends Component {
-  // onSelect = (event) => {
-  //   event.preventDefault();
-  
-  //   const selected = event.target.value;
-  //   console.log(selected);
-
-  //   this.props.customerSelectCallback(selected);
-  // }
-
   render() {
-  // console.log(this.props);
-  // console.log(this.props.selectACustomerCallback);
   const { index, name, id, registeredAt, address, city, state, zip, phone, accountCredit, moviesCheckedOutCount, selectACustomerCallback } = this.props;
 
   return (
@@ -31,6 +20,21 @@ class Customer extends Component {
 
     </section>
   )};
+}
+
+Customer.propTypes = {
+  index: PropTypes.number,
+  name: PropTypes.string,
+  id: PropTypes.number,
+  registeredAt: PropTypes.string,
+  address: PropTypes.string,
+  city: PropTypes.string,
+  state: PropTypes.string,
+  zip: PropTypes.string,
+  phone: PropTypes.string,
+  accountCredit: PropTypes.number,
+  moviesCheckedOutCount: PropTypes.number,
+  selectACustomerCallback: PropTypes.func
 }
 
 export default Customer; 
