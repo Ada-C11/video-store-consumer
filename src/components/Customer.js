@@ -1,5 +1,4 @@
 import React from 'react';
-import { Route, Link } from "react-router-dom";
 import 'bootstrap/dist/css/bootstrap.css';
 
 const Customer = (props) => {
@@ -8,7 +7,7 @@ const Customer = (props) => {
     phone, account_credit, movies_checked_out_count,
     onSelectHandler} = props;
 
-  const onSelectClick = () => {
+  const onCustomerClick = () => {
     onSelectHandler(id);
   }
     
@@ -26,7 +25,7 @@ const Customer = (props) => {
       <td>{account_credit}</td>
       <td>{movies_checked_out_count}</td>
       <td> 
-        <button className="btn btn-primary" onClick={onSelectClick} >
+        <button className="btn btn-primary" onClick={onCustomerClick} >
           Select
         </button>
       </td>

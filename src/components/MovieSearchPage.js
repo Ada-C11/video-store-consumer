@@ -43,6 +43,9 @@ class MovieSearchPage extends Component {
     <section>
       {errorSection}
       <div>
+        <Link to="/library">Movie Rental Library</Link>
+        <Link to="/search">Search for a Movie</Link>
+        <Link to="/customers">Customers</Link>
         <h3>MoviesSearchPage</h3>
         <MovieSearchBar searchCallback={this.submitSearchQuery} />
       </div>

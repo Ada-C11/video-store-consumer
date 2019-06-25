@@ -27,7 +27,9 @@ class RentalLibraryPage extends Component {
     const movieList = movies.map((movie) => {
       const {id, title, overview, release_date} = movie;
       return ( <Movie key={id} id={id} title={title}
-              overview={overview} release_date={release_date} buttonName="Select" />)
+              overview={overview} release_date={release_date} 
+              buttonName="Select"
+              onSelectHandler={this.props.onSelectMovieCallback} />)
     });
 
     const errorSection = (this.state.error) ? 
@@ -39,7 +41,10 @@ class RentalLibraryPage extends Component {
       <section>
         {errorSection}
         <div>
-          <table class="table table-striped">
+          <Link to="/library">Movie Rental Library</Link>
+          <Link to="/search">Search for a Movie</Link>
+          <Link to="/customers">Customers</Link>
+          <table className="table table-striped">
             <thead>
             <tr>
               <th scope="col">#</th>

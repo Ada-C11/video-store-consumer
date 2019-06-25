@@ -19,6 +19,10 @@ class App extends Component {
   onSelectCustomer = (customerID) => {
     this.setState({selectedCustomer: customerID});
   }
+  onSelectMovie = (movieInfo) => {
+    this.setState({selectedMovie: movieInfo});
+  }
+  
   render() {
     const movieSection = (this.state.selectedMovie) ?
       (<section>
@@ -34,7 +38,7 @@ class App extends Component {
         {customerSection}
         <Switch>
           <Route exact path="/" component={HomePage} />
-          <Route exact path="/library" component={RentalLibraryPage} />
+          <Route path="/library" render={(props) => <RentalLibraryPage onSelectMovieCallback={this.onSelectMovie} />} />
           <Route path="/search" component={MovieSearchPage} />
           <Route path="/customers" render={(props) => <CustomerListPage onSelectCustomerCallback={this.onSelectCustomer} />} />
         </Switch>
