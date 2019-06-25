@@ -24,6 +24,7 @@ class Customers extends Component {
 
             const customers = response.data.map((customer) => {
                 const customerEntry = {
+                    id: customer.id,
                     name: customer.name,
                 }
 
@@ -46,7 +47,7 @@ class Customers extends Component {
             return (
                 // <li key={index}>{customer.name}</li>
                 <li key={index}>
-                   <Customer name={customer.name} />
+                   <Customer name={customer.name} id={customer.id} />
                 </li>
             )
         })

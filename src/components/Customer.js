@@ -1,11 +1,18 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+
 const Customer = (props) => {
+
+    const onSelectClick = (event) => {
+        console.log("I've been selected!");
+        console.log(event.target.id);
+    }
+
     return (
             <section>
               {props.name}
-              {<button >Select</button>}
+              {<button id={props.id} onClick={onSelectClick}>Select</button>}
             </section>
     );
 }
@@ -13,5 +20,6 @@ const Customer = (props) => {
 export default Customer;
 
 Customer.propTypes = {
+    id: PropTypes.number,
     name: PropTypes.string,
 }
