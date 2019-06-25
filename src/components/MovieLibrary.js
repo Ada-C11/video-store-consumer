@@ -70,7 +70,7 @@ class MovieLibrary extends Component {
     });
 
     return (
-      <div>
+      <div className="movie-library">
         {display}
       </div>
     );     
