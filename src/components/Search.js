@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import PropTypes from 'prop-types';
 
+import Movie from './Movie';
 import SearchForm from './SearchForm';
 
 class Search extends Component {
@@ -61,11 +62,16 @@ class Search extends Component {
 
 
   render() {
+    // const movies = this.generateMovieComponents();
+    const movies = this.props.generateMovieComponentsCallback(this.state.movies);
     return (
       <section>
         <SearchForm
           searchCallback={this.searchCallback}
         />
+        <div>
+          {movies}
+        </div>
       </section>
     )
   }

@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 // import logo from './logo.svg';
 // import './AppRouter.css';
 
+import Movie from './Movie'
 import Search from './Search';
 import Library from './Library';
 import Customers from './Customers';
@@ -23,6 +24,22 @@ function Index() {
 // function Customers() {
 //   return <h2>Customers</h2>;
 // }
+const generateMovieComponents = (movieList) => {
+  return movieList.map((movie, i) => {
+    return (
+      <Movie
+        key={movie.id}
+        index={i}
+        id={movie.id}
+        title={movie.title}
+        overview={movie.overview}
+        release_date={movie.release_date}
+        image_url={movie.image_url}
+      />
+    )
+  })
+
+}
 
 function AppRouter() {
   return (
@@ -46,8 +63,12 @@ function AppRouter() {
         </nav>
 
         <Route path="/" exact component={Index} />
-        <Route path="/search/" component={Search} />
-        <Route 
+        <Route
+          path="/search/"
+          // component={Search} 
+          render={(props) => <Search generateMovieComponentsCallback={generateMovieComponents} />}
+        />
+        <Route
           path="/library/"
           // component={Library}
           render={(props) => <Library thing="thingy" />}

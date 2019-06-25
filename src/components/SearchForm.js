@@ -22,8 +22,10 @@ class SearchForm extends Component {
   onSubmit = (event) => {
     console.log("in prevent default")
     event.preventDefault();
-
-    this.props.searchCallback(this.state.queryString);
+    if (this.state.queryString) {
+      this.props.searchCallback(this.state.queryString);
+    }
+    this.setState({ queryString: '' })
   }
 
   render() {
