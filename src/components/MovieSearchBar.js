@@ -3,10 +3,11 @@ import { Route, Link } from "react-router-dom";
 
 class MovieSearchBar extends Component {
 
-  constructor () {
-    super();
+  constructor (props) {
+    super(props);
     this.state = {
       query: "",
+      clickHandler: this.props.searchCallback,
     }
   }
 
@@ -21,6 +22,10 @@ class MovieSearchBar extends Component {
     this.setState(updatedState);
   };
 
+  submitSearchResults = () => {
+    this.state.clickHandler(this.state.query);
+  };
+
  
 
   render() {
@@ -29,10 +34,8 @@ class MovieSearchBar extends Component {
     return (
       <div>
         <h5>MoviesSearchBar</h5>
-        <form>
-          <input type="text" name="query" onChange={this.onInputChange} value={this.state.query} defaultValue="Type in your search terms" />
-          <button type="submit">Search</button>
-        </form>
+          <input type="text" name="query" onChange={this.onInputChange} value={this.state.query} />
+          <button onClick={this.submitSearchResults}>Search</button>
       </div>
     );
   }
