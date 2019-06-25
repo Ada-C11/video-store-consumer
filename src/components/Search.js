@@ -11,8 +11,10 @@ class Search extends Component {
 
   onSearchButton = (event) => {
     event.preventDefault()
-    console.log(this.state.text)
     this.state.onSearchButtonCallback(this.state.searchInput)
+    this.setState({
+      searchInput: ''
+    })
   }
 
   onSearchInputChange = (event) => {
@@ -20,17 +22,13 @@ class Search extends Component {
     this.setState({
       searchInput,
       })
-
   }
-
-  
-
 
   render() {
     return(
-      <div className='SearchBar'>
+      <div className='search-bar'>
         <form>
-          <div className='SearchInput'>
+          <div className='search-input'>
             <input
             name='search'
             placeholder='Search'
@@ -39,7 +37,7 @@ class Search extends Component {
             </input>
           </div>
 
-          <div className='SearchSubmissionForm__submit'>
+          <div className='search-submission-form__submit'>
             <input type='submit' value='Search' onClick={this.onSearchButton}>
             </input>
           </div>

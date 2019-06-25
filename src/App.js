@@ -7,21 +7,48 @@ import Search from './components/Search';
 import MovieLibrary from './components/MovieLibrary';
 import Customer from './components/Customer';
 import Checkout from './components/Checkout';
+import SearchResult from './components/SearchResult';
+
+const URL = 'http://localhost:4000/movies'
 
 class App extends Component {
 
-  onSearchButtonCallback(searchInput) {
+  constructor(){
+    super();
+    this.state = {
+      searchResults: [],
+    }
+  }
 
-    axios.get(`http://localhost:4000/movies`, {params: {query: searchInput}})
+  onSearchButtonCallback = (searchInput) => {
+
+    axios.get(URL, {params: {query: searchInput}})
     .then((response) => {
-      console.log(response.data)
-    })
-    .catch((response) => {
-    })
+      console.log(response.data);
+ 
+     
 
+      
+
+      this.displaySearchResults(response.data)
+
+    })
+    .catch((error) => {
+      console.log(error)  
+    })
+  
+    
+  }
+
+  displaySearchResults = (result) => {
+    console.log(result)
+    this.setState({
+        searchResults: result,
+      });
   }
 
   render() {
+ 
     return (
       <div className="App">
         <header className="App-header">
@@ -47,10 +74,15 @@ class App extends Component {
             </nav>
             <Route path="/search" render={(props) => <Search onSearchButtonCallback={this.onSearchButtonCallback}/>} />
             <Route path="/movielibrary" component={MovieLibrary} />
-            <Route path="/customers" component={Customer} />
-            <Route path="/checkout" component={Checkout} />
+            {/* <Route path="/customers" component={Customer} /> */}
+            {/* <Route path="/checkout" component={Checkout} /> */}
+
           </Router>
         </header>
+        <section>
+          <SearchResult result={this.state.searchResults}/>
+        </section>
+        
       </div>
     );
   }
