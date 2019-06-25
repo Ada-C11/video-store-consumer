@@ -4,6 +4,7 @@ import './App.css';
 import Search from './components/Search';
 import Library from './components/Library';
 import CustomerList from './components/CustomerList';
+import axios from 'axios';
 
 
 class App extends Component {
@@ -18,6 +19,21 @@ class App extends Component {
     }
   }
 
+ // Api Call to get movies from json
+  componentDidMount() {
+    axios.get('/movies')
+      .then(response => {
+        console.log(response)
+        this.setState({
+          movieLibrary: response.data
+        })
+      })
+      .catch(error => console.log(error))
+  }
+
+  // Api call to get single movie
+
+
   addMovieToLibrary = () => {
 
   }
@@ -30,10 +46,6 @@ class App extends Component {
 
   }
 
- // Api call to get single movie
-
- // Api call to get all movies
-r
   render() {
     return (
       <Router>
