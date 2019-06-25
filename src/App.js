@@ -21,13 +21,14 @@ function App() {
         </div>
       </Router>
 
-      <VideoStore url="http://localhost:3000/" />
+
     </section>
   );
 }
 
+
 function Home() {
-  return <h2>Home</h2>;
+  return <VideoStore url="http://localhost:3000/" />;
 }
 
 function Customers() {
@@ -46,7 +47,7 @@ function Header() {
   return (
     <ul>
       <li>
-        <Link to="/">Home</Link>
+        <Link to="/">VideoStore</Link>
       </li>
       <li>
         <Link to="/customers">Customers</Link>
