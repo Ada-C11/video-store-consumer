@@ -19,9 +19,9 @@ class Search extends Component {
       queryString: input
     });
     console.log("Input", input)
-    const url = 'https://video-store-api-sh.herokuapp.com/'
 
-    axios.get(url, { params: { query: input } })
+
+    axios.get(this.props.url, { params: { query: input } })
       .then((response) => {
         const movieList = response.data.map((movie) => {
 
