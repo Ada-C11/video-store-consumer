@@ -17,19 +17,28 @@ class SearchForm extends Component {
       queryString: input,
     });
 
-    this.props.searchCallback(input);
+  }
+
+  onSubmit = (event) => {
+    console.log("in prevent default")
+    event.preventDefault();
+
+    this.props.searchCallback(this.state.queryString);
   }
 
   render() {
     return (
       <section>
-        <label>
-          Search <input name="search"
-                        type="text"
-                        value={this.state.queryString}
-                        onChange={this.queryChanged}
-                 />
-        </label>
+        <form
+          onSubmit={this.onSubmit}>
+          <label>Search</label>
+          <input name="search"
+            type="text"
+            value={this.state.queryString}
+            onChange={this.queryChanged}
+          />
+          <input type="submit" name="submit" value="search" />
+        </form>
         <h3>Searching...</h3>
       </section>
     );

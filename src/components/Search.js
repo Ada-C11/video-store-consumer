@@ -17,35 +17,36 @@ class Search extends Component {
     this.setState({
       queryString: input
     });
-
+    console.log("Input", input)
     const url = 'https://video-store-api-sh.herokuapp.com/'
 
-    axios.get(url, {query: input})
-    .then((response) => {
-      const movieList = response.data.map((movie) => {
-        return {
-          title: movie.title,
-          overview: movie.overview,
-          release_date: movie.release_date,
-          image_url: movie.image_url,
-          id: movie.external_id,
-        }
-      });
+    axios.get(url, { params: { query: input } })
+      .then((response) => {
+        const movieList = response.data.map((movie) => {
 
-      this.setState({
-        movies: movieList,
+          return {
+            title: movie.title,
+            overview: movie.overview,
+            release_date: movie.release_date,
+            image_url: movie.image_url,
+            id: movie.external_id,
+          }
+        });
+        console.log(movieList);
+        this.setState({
+          movies: movieList,
+        })
       })
-    })
-    .catch((error) => {
-      console.log(error);
-    })
+      .catch((error) => {
+        console.log(error);
+      })
   };
 
 
   render() {
-    return(
+    return (
       <section>
-        <SearchForm 
+        <SearchForm
           searchCallback={this.searchCallback}
         />
       </section>
