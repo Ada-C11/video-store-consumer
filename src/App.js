@@ -1,19 +1,43 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import axios from 'axios'
-function App() {
-  return (
-    <Router>
-      <div>
-        <Header />
+class App extends Component {
+  constructor() {
+    super();
+    this.state = {
+      movieTitle: "",
+      customer: ""
+    }
+  }
 
-        <Route exact path="/" component={Home} />
-        <Route path="/search" component={Search} />
-        <Route path="/library" component={Library} />
-        <Route path="/customers" component={Customers} />
-      </div>
-    </Router>
-  );
+  onCheckoutClick = () => {
+    axios.post('https://localhost:3090/rentals/' + this.state.movieTitle + '/check-out', {
+    title: this.state.movieTitle,
+    customer_id: this.state.customer.id,
+    name: this.state.customer.name,
+    postal_code: this.state.customer.postal_code,
+    checkout_date: new Date(), 
+    due_date: new Date() + 7
+    })
+  }
+
+  render () {
+    return (
+      <Router>
+        <div>
+          <Header />
+
+          <Route exact path="/" component={Home} />
+          <Route path="/search" component={Search} />
+          <Route path="/library" component={Library} />
+          <Route path="/customers" component={Customers} />
+          <button
+            onClick={this.onCheckoutClick}>
+          Checkout!</button>
+        </div>
+      </Router>
+    );
+  }
 }
 
 function Home() {
@@ -38,8 +62,13 @@ class Search extends Component {
   }
 
   onFormSubmit = (event) => {
+<<<<<<< HEAD
     event.preventDefault()
     axios.get('http://localhost:3090/movies/' + this.state.title.toString())
+=======
+    event.preventDefault();
+    axios.get('http://localhost:3090/movies?query=' + this.state.title.toString())
+>>>>>>> aa1fe3a8c0d42b2bb7297b1a12caeeb5dbef690b
     .then((response) => {
       console.log(response)
 
@@ -60,7 +89,11 @@ class Search extends Component {
 }
 
 function Movie (props) {
-  return <p>{props.title}</p>
+  const onTitleClick = () => {
+    
+  }
+
+  return <p onClick={onTitleClick}>{props.title}</p>
 }
 
 class Library extends Component {
@@ -77,6 +110,7 @@ class Library extends Component {
         return (<Movie 
         key={movie.id}
         title={movie.title}
+
         />)
       })
     }
@@ -89,7 +123,6 @@ class Library extends Component {
         })
       this.setState({movieList})
     })
-  
   }
 
 
