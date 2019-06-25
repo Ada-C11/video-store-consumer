@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import axios from 'axios'
+
 class App extends Component {
   constructor() {
     super();
@@ -21,15 +22,25 @@ class App extends Component {
     })
   }
 
+  addMovieToRent = (title) => {
+    let movieTitle = this.state.movieTitle;
+    movieTitle = title;
+    this.setState({movieTitle})
+    console.log("in callback ", title)
+  }
+
   render () {
+    console.log(this.state)
+
     return (
       <Router>
         <div>
+          <h2>{this.state.movieTitle}</h2>
           <Header />
-
           <Route exact path="/" component={Home} />
           <Route path="/search" component={Search} />
-          <Route path="/library" component={Library} />
+          <Route path="/library" render={(routeProps) => (<Library {...routeProps} addMovieToRentCallback={this.addMovieToRent}/>)}
+          />
           <Route path="/customers" component={Customers} />
           <button
             onClick={this.onCheckoutClick}>
@@ -62,13 +73,8 @@ class Search extends Component {
   }
 
   onFormSubmit = (event) => {
-<<<<<<< HEAD
-    event.preventDefault()
-    axios.get('http://localhost:3090/movies/' + this.state.title.toString())
-=======
     event.preventDefault();
     axios.get('http://localhost:3090/movies?query=' + this.state.title.toString())
->>>>>>> aa1fe3a8c0d42b2bb7297b1a12caeeb5dbef690b
     .then((response) => {
       console.log(response)
 
@@ -90,15 +96,16 @@ class Search extends Component {
 
 function Movie (props) {
   const onTitleClick = () => {
-    
+    // console.log(props)
+    props.addMovieToRentCallback(props.title)
   }
 
   return <p onClick={onTitleClick}>{props.title}</p>
 }
 
 class Library extends Component {
-  constructor() {
-    super()
+  constructor(props) {
+    super(props)
   
     this.state = {
       movieList: [],
@@ -106,11 +113,13 @@ class Library extends Component {
   }
 
     generateMovieList = () => {
+      console.log(this.props)
       return this.state.movieList.map((movie) => {
         return (<Movie 
         key={movie.id}
+        id={movie.id}
         title={movie.title}
-
+        addMovieToRentCallback = {this.props.addMovieToRentCallback}
         />)
       })
     }
