@@ -44,7 +44,7 @@ class RentalCheckout extends Component {
         >
           Checkout
         </button>
-        {checkoutText}
+        <p> {checkoutText}</p>
       </div>
     );
   }
