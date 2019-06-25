@@ -2,7 +2,7 @@ import React from 'react';
 import Customer from './Customer';
 
 const CustomerList = (props) => {
-    const { customers } = props
+    const { customers, onSelectCustomerCallback, selectedCustomer } = props
 
     // const tableHeaders
     // if (customerObject) { console.log( Object.keys(customerObject) ) }
@@ -23,7 +23,10 @@ const CustomerList = (props) => {
     const renderCustomers = customers.map( (customer, i) => {
         return (
           <tr key={i}>
-            <Customer customer={customer} />
+            <Customer 
+              customer={customer} 
+              onSelectCustomerCallback={onSelectCustomerCallback}
+             />
           </tr>
         );
       });
@@ -39,6 +42,9 @@ const CustomerList = (props) => {
                 </th>
                 <th>
                   name
+                </th>
+                <th>
+                  select
                 </th>
                 <th>
                   phone 

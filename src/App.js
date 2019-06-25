@@ -14,6 +14,8 @@ class App extends Component {
     this.state = {
       customers: [],
       movies: [],
+      selectedMovie: null,
+      selectedCustomer: null,
       message: '',
     }
   }
@@ -32,9 +34,16 @@ class App extends Component {
         return apiObject;
       });
 
-  
+      const movies = response2.data.map((apiObject) => {
+        return apiObject;
+      })
 
-      this.setState({ customers: customers, });
+      console.log(customers);
+
+      this.setState({ 
+        customers: customers, 
+        movies: movies
+      });
       // console.log(this.state.customers)
     })
     .catch((error) => {
@@ -49,13 +58,30 @@ class App extends Component {
   }
 
   getCustomers() {
-    return axios.get(`http://localhost:3000/customers`);
+    return axios.get(`${URL}/customers`);
   }
 
   getMovies() {
-    return axios.get(`http://localhost:3000/movies`);
+    return axios.get(`${URL}/movies`);
   }
 
+  onSelectMovie = (movie) => {
+    // let currentSelectedMovie = this.state.selectedMovie;
+    // currentSelectedMovie = movie;
+
+    this.setState({ 
+      selectedMovie: movie
+    });
+
+    console.log('im in app and the movie clicked was:', movie.title)
+  }
+
+  onSelectCustomer = (customer) => {
+
+      this.setState({
+        selectedCustomer: customer
+      });
+  }
   // mapApiResponse(response) {
   //   return response.data.map((apiObject) => {
   //     // console.log(apiObject);
@@ -63,10 +89,21 @@ class App extends Component {
   //   });
   // }
 
+  onClickUnselect = (unselect) => {
+    const updatedState = {};
+    updatedState[unselect] = null;
+
+    this.setState(updatedState);
+  }
+
+
   render() {
     return (
       <Router>
-        <div className="App">
+        <body className="App">
+          <header>
+            <h1>Last Resort Video Store</h1>
+          </header>
       
           <nav>
             <ul>
@@ -77,17 +114,27 @@ class App extends Component {
                 <Link to="/customers/">Customer List</Link>
               </li>
               <li>
-                <Link to='/movies/'>Movie Library</Link>
+                <Link to='/library/'>Movie Library</Link>
               </li>
             </ul>
           </nav>
+
+          <div className='currently-selected-items'>
+            {this.state.selectedMovie && 
+              <p>Selected Movie: {this.state.selectedMovie.title}</p>   
+            } 
+            {this.state.selectedCustomer &&
+              <p>Selected Customer: {this.state.selectedCustomer.name}</p>
+              <button onClick={() => this.setState({ selectedCustomer: null })}>Unselect</button>
+            }
+          </div>      
         
           <Route exact={true} path="/" render={() => (
             <h1>Welcome</h1>
           )} />
-          <Route path="/customers" render={(props) => <CustomerList {...props} customers={this.state.customers} /> } />
-          <Route path="/movies" render={(props) => <Movies {...props} movieList={this.state.movies} /> } />
-        </div>
+          <Route path="/customers" render={(props) => <CustomerList {...props} customers={this.state.customers} onSelectCustomerCallback={this.onSelectCustomer} /> } />
+          <Route path="/library" render={(props) => <Movies {...props} movieList={this.state.movies} onSelectMovieCallback={this.onSelectMovie} /> } />
+        </body>
       </Router>
     );
   }

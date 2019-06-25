@@ -2,8 +2,11 @@ import React, {Fragment} from 'react';
 
 
 const Customer = (props) => {
-    const { customer } = props
+    const { customer, onSelectCustomerCallback } = props
 
+  const onClickCustomer = () => {
+    onSelectCustomerCallback(customer);
+  }
 
   return (
     <Fragment>
@@ -12,6 +15,9 @@ const Customer = (props) => {
       </td>
       <td>
         {customer.name}
+      </td>
+      <td>
+        <button onClick={onClickCustomer}>Select</button>
       </td>
       <td>
         {customer.phone}
