@@ -5,7 +5,8 @@ class Search extends Component {
     super(props);
 
     this.state = {
-      queryString: ""
+      queryString: "",
+      searchResults: [],
     };
   }
 
@@ -19,6 +20,9 @@ class Search extends Component {
     // this.props.searchMoviesCallback(queryString);
   }
 
+  onFormSubmit = (event) => {
+    event.preventDefault()
+  }
   // Api calls?
 
   render() {
