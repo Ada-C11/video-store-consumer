@@ -38,10 +38,10 @@ class App extends Component {
   }
 
   onCheckOut = () => {
-    const customer 
-    if(this.state.customer !== "none") {
+    // const customer 
+    // if (this.state.selected_customer !== "none") {
 
-    }
+    // }
     const url =  `http://localhost:3000/rentals/:title/check-out`
     axios.post(url)
     .then((response) => {
