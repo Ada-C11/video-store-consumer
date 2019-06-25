@@ -30,7 +30,9 @@ class CustomerListPage extends Component {
             account_credit, movies_checked_out_count} = customers;
       return ( <Customer key={id} id={id} name={name} registered_at={registered_at}
               address={address} city={city} state={state} postal_code={postal_code}
-              phone={phone} account_credit={account_credit} movies_checked_out_count={movies_checked_out_count} 
+              phone={phone} account_credit={account_credit} 
+              movies_checked_out_count={movies_checked_out_count} 
+              onSelectHandler={this.props.onSelectCustomerCallback}
               /> )
     });
 

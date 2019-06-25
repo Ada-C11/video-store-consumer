@@ -36,7 +36,7 @@ class App extends Component {
           <Route exact path="/" component={HomePage} />
           <Route exact path="/library" component={RentalLibraryPage} />
           <Route path="/search" component={MovieSearchPage} />
-          <Route path="/customers" render={(props) => <CustomerListPage onSelectCustomer={this.onSelectCustomer} />} />
+          <Route path="/customers" render={(props) => <CustomerListPage onSelectCustomerCallback={this.onSelectCustomer} />} />
         </Switch>
     </div>
     );
