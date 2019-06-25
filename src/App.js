@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
+import Movies from './components/Movies';
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 
 function VideoStore() {
@@ -12,7 +13,7 @@ function Search() {
 }
 
 function Library() {
-  return <h2>Library</h2>;
+  return <h2><Movies /></h2>;
 }
 
 function Customers() {
