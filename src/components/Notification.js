@@ -7,8 +7,7 @@ import './Notification.css'
 
 
 
-class Notification extends Component {
-    render() {
+const Notification = (props) =>  {
         const {error, toastTitle, toastMessage, toastTimestamp, dismissNotification} = this.props;
 
         const onCloseHandler = () => dismissNotification(this.props.id);
@@ -29,7 +28,6 @@ class Notification extends Component {
         )
     }
     
-}
 
 
         
