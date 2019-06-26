@@ -21,11 +21,16 @@ class MovieSearchResults extends Component {
 
   render() {
     const collection = this.props.movies.map((movie, i) => {
+      console.log(movie)
       return (
         <Movie
           key={i}
           id={movie.id}
           title={movie.title}
+          overview={movie.overview}
+          releaseDate={movie.release_date}
+          image={movie.poster_path}
+
           sendToLibrayCallback={this.sendToLibray}
         />
       );

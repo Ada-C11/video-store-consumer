@@ -10,18 +10,30 @@ class Movie extends Component {
   };
 
   render() {
+    // console.log(this.props)
     return (
       <section>
-        {this.props.title}
-
-        <button
-          type="button"
-          className="btn btn-danger"
-          aria-label="Close"
-          onClick={this.onSelectedClick}
-        >
-          SELECT
-        </button>
+        <div className="card w-75">
+          <div className="card-body">
+            <img
+              className="card-img-top"
+              src={"https://image.tmdb.org/t/p/w185/" + this.props.image}
+              alt="Card image cap"
+            />
+            <h5 className="card-title">Title: {this.props.title}</h5>
+            <p className="card-text">ID: {this.props.id}</p>
+            <p className="card-text">Overview: {this.props.overview}</p>
+            <p className="card-text">Release Date: {this.props.releaseDate}</p>
+            <button
+              type="button"
+              className="btn btn-danger"
+              aria-label="Close"
+              onClick={this.onSelectedClick}
+            >
+              ADD TO LIBRARY
+            </button>{" "}
+          </div>
+        </div>
       </section>
     );
   }
