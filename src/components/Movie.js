@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 
 class Movie extends Component {
   render() {
+    const displayAddButton = (this.props.onMovieAdd === undefined) ? "" : <button onClick={this.props.onMovieAdd}>Add Me</button>
 
     return (
       <section onClick = {() => this.props.onMovieSelect(this.props.id)}>
@@ -16,7 +17,8 @@ class Movie extends Component {
         <p>
           External ID: {this.props.external_id}
         </p>
-        <img src={this.props.image_url} />
+        <img src={this.props.image_url} alt={this.props.title} />
+        { displayAddButton }
       </section>
     )
   }
