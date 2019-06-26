@@ -7,9 +7,7 @@ import Search from './components/Search'
 import Home from './components/Home'
 import Header from './components/Header'
 import Customers from './components/Customers'
-import Customer from './components/Customer'
 import Library from './components/Library'
-import Movie from './components/Movie'
 
 class App extends Component {
   constructor() {
@@ -100,7 +98,7 @@ class App extends Component {
           <button className={this.state.checkoutButtonClassName}
             onClick={this.onCheckoutClick}>
           Checkout!</button>
-          <Header />
+          <Header movieTitle={this.state.movieTitle} customerName={this.state.customer.name} onCheckoutClickCallback={this.onCheckoutClick} checkoutButtonClassName={this.state.checkoutButtonClassName}/>
           <Route exact path="/" component={Home} />
           <Route path="/search" component={Search} />
           <Route path="/library" render={(routeProps) => (<Library {...routeProps} addMovieToRentCallback={this.addMovieToRent}/>)}

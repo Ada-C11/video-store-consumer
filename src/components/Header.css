@@ -1,0 +1,24 @@
+
+nav.navbar.sticky-top {
+    justify-content: space-between;
+}
+.navbar-nav {
+    display: flex;
+    flex-direction: row;
+    align-content: center;
+
+}
+
+.navbar-nav li {
+    margin: 30px;
+}
+
+.navbar-nav li a {
+    color: #483D8B;
+    font-family: 'Alegreya', serif;
+
+}
+
+nav {
+    background-color: #EE82EE
+}
