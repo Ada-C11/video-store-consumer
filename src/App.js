@@ -26,6 +26,7 @@ class App extends Component {
     })
   }
 
+
   checkoutButtonClick = () => {
     const movie = this.state.currentMovie
     const customer = this.state.currentCustomer;
@@ -38,7 +39,6 @@ class App extends Component {
       due_date: new Date(dueDate),
     }
 
-
     axios.post(rentalUrl, newRental)
       .then((response) => {
         console.log(response)
@@ -46,6 +46,11 @@ class App extends Component {
         this.resetSelections();
         if (response.status === 200) {
           this.setState({ statusMessage: "Successfully checked out movie!" })
+          setTimeout(() => {
+            this.setState({
+              statusMessage: ""
+            });
+          }, 10000)
         }
       })
       .catch((error) => {
