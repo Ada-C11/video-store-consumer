@@ -5,6 +5,18 @@ h2 {
   text-shadow: 2px 2px 2px grey;
 }
 
+.logo {
+  font-family: 'Luckiest Guy', cursive;
+  text-align: right;
+  margin: 15px;
+  color: teal;
+}
+
+nav {
+  display: grid;
+  grid-template: 45px / 1fr 300px;
+}
+
 nav ul li {
   display: inline;
   padding: 12px;
