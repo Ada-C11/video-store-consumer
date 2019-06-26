@@ -11,7 +11,7 @@ class MovieItem extends Component {
                 <h3 className='movie-title'> {title} </h3>
                 <p className='movie-description'> {overview} </p>
                 <img className='movie-image' src={imageURL} alt={title} />
-                <button className="select-movie-button" onClick={() => {onSelectMovieCallback(this.props)}}>Select Movie</button>
+                <span className="select-movie-button" onClick={() => {onSelectMovieCallback(this.props)}}>Select Movie</span>
             </div >
         )
     };

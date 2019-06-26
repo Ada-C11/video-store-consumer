@@ -5,6 +5,7 @@ import SearchItem from './SearchItem';
 import {
     Redirect
 } from 'react-router-dom';
+import './Search.css'
 
 const SEARCH_URL = 'http://localhost:3001/movies?query='
 const MOVIE_URL = 'http://localhost:3001/movies'
@@ -18,7 +19,7 @@ class Search extends Component {
             movieSearch: '',
             shouldRedirect: undefined,
             clickSearch: false,
-            searchList: [] 
+            searchList: []
         }
     }
 
@@ -46,7 +47,7 @@ class Search extends Component {
                         addMovieCallback={this.addMovie}
                     />
                 });
-                this.setState({searchList: searchList, movieSearch: '', clickSearch: true})
+                this.setState({ searchList: searchList, movieSearch: '', clickSearch: true })
             })
             .catch((error) => {
                 console.log(error);
@@ -59,11 +60,7 @@ class Search extends Component {
             'overview': movie.overview,
             'release_date': movie.releaseDate,
             'image_url': movie.imageURL,
-            // 'external_id': movie.external_id,
         }
-
-        console.log('in addmovie');
-        console.log(movie_params)
 
         axios.post(MOVIE_URL, movie_params)
             .then((response) => {
@@ -74,11 +71,11 @@ class Search extends Component {
             .catch((error) => {
                 console.log(error);
             })
-      }
+    }
 
     render() {
 
-        if(this.state.shouldRedirect) {
+        if (this.state.shouldRedirect) {
             return <Redirect to='/library/' />
         }
 
@@ -88,26 +85,29 @@ class Search extends Component {
             results = this.state.searchList;
         }
         else if (this.state.searchList.length === 0 && this.state.clickSearch) {
-            results = <p> No results found </p>;
+            results = <div className="centered"><p className="error-message">Error: No results found </p></div>;
         }
 
         return (
-            <div>
-                <form className='movie-item'
-                    onSubmit={this.submitSearch}>
-                    <label>
-                        Search
-                <input
-                            name='movieSearch'
-                            value={this.state.movieSearch}
-                            type='text'
-                            onChange={this.onInputChange}>
-                        </input>
-                    </label>
-                    <button className="search-submit"> Search</button>
-                </form >
-                {results} 
+            <div className="full-wrapper">
+                <div className="search-form-div">
+                    <form className='search-form'>
+                        <label>
+                            Find a movie: 
+                            <input name='movieSearch'
+                                value={this.state.movieSearch}
+                                type='text'
+                                onChange={this.onInputChange}>
+                            </input>
+                        </label>
+                        <span className="search-submit" onClick={this.submitSearch}> Search</span>
+                    </form >
+                </div>
+                <div className='movie-item-container'>
+                    {results}
+                </div>
             </div>
+
         )
     };
 }

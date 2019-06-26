@@ -23,15 +23,15 @@ class Library extends Component {
         axios.get(MOVIE_URL)
             .then((response) => {
                 const moviesList = response.data.map((movie) => {
-                    
+
                     return <MovieItem
                         key={movie.id}
                         title={movie.title}
                         overview={movie.overview}
                         id={movie.id}
                         releaseDate={movie.release_date}
-                        imageURL = {movie.image_url}
-                        onSelectMovieCallback = {this.props.onSelectMovieCallback}
+                        imageURL={movie.image_url}
+                        onSelectMovieCallback={this.props.onSelectMovieCallback}
                     />
                 });
                 this.setState({ movies: moviesList });
@@ -44,11 +44,9 @@ class Library extends Component {
 
     render() {
         return (
-            
-                <div className='movie-item-container'>
-                    {this.state.movies}
-                </div>
-          
+            <div className='movie-item-container'>
+                {this.state.movies}
+            </div>
         )
     }
 

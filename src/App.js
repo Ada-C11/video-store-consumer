@@ -3,13 +3,9 @@ import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import Library from './components/Library';
 import Customer from './components/Customer';
 import Search from './components/Search'
+import Index from './components/Index.js'
 import axios from "axios";
 import './App.css'
-
-function Index() {
-  return <h2>Home</h2>;
-}
-
 
 class AppRouter extends Component {
 
@@ -18,7 +14,7 @@ class AppRouter extends Component {
     this.initialState = {
       currentMovie: undefined,
       currentCustomer: undefined,
-      selectedPage: "/",
+      selectedPage: window.location.pathname,
     }
 
     this.state = this.initialState
@@ -53,8 +49,8 @@ class AppRouter extends Component {
   makeRental = (event) => {
     event.preventDefault();
     const rentalData = {
-      title: this.state.currentMovie.title, 
-      customer_id: this.state.currentCustomer.id, 
+      title: this.state.currentMovie.title,
+      customer_id: this.state.currentCustomer.id,
       due_date: new Date("2020-06-06")
     };
 
@@ -68,12 +64,6 @@ class AppRouter extends Component {
         alert(error)
       })
   }
-
-  // onRentalSubmit = (event) => {
-  //   event.preventDefault();
-  //   this.makeRental();
-  //   this.setState({messages:'Rental succesfully created'})
-  // }
 
 
   render() {
@@ -99,9 +89,9 @@ class AppRouter extends Component {
           <main>
             <div className="selected-movie">{this.state.currentMovie ? `Selected Movie: ${this.state.currentMovie.title}` : ""}</div>
             <div className="selected-customer">{this.state.currentCustomer ? `Selected Customer: ${this.state.currentCustomer.name}` : ""}</div>
-            <div className={this.state.currentCustomer && this.state.currentMovie ? "checkout-button" : "hidden"}><span 
-            onClick = {this.makeRental}> 
-            Check Movie Out</span></div>
+            <div className={this.state.currentCustomer && this.state.currentMovie ? "checkout-button" : "hidden"}><span
+              onClick={this.makeRental}>
+              Check Movie Out</span></div>
             <Route path="/" exact component={Index} />
             <Route path="/library/" render={(props) => <Library {...props} onSelectMovieCallback={this.onSelectMovie} />} />
             <Route path="/customers/" render={(props) => <Customer {...props} onSelectCustomerCallback={this.onSelectCustomer} />} />
@@ -113,38 +103,7 @@ class AppRouter extends Component {
     );
   }
 
-  // render() {
 
-  //   return (
-  //     <Router>
-  //       <div>
-  //         <nav>
-  //           <ul>
-  //             <li>
-  //               <Link to="/">Home</Link>
-  //             </li>
-  //             <li>
-  //               <Link to="/library/">Library</Link>
-  //             </li>
-  //             <li>
-  //               <Link to="/customers/">Customers</Link>
-  //             </li>
-  //             <li>
-  //               <Link to="/search/">Search</Link>
-  //             </li>
-  //           </ul>
-  //         </nav>
-
-  //         <span>{this.state.currentMovie ? `Selected Movie: ${this.state.currentMovie.title}` : ""}</span>
-  //         <Route path="/" exact component={Index} />
-  //         <Route path="/library/" render={(props) => <Library {...props} onSelectMovieCallback={this.onSelectMovie} />} />
-  //         <Route path="/customers/" render={(props) => <Customer {...props} onSelectCustomerCallback={this.onSelectCustomer} />} />
-  //         <Route path="/search/" render={(props) => <Search {...props}  />} />
-  //       </div>
-  //     </Router>
-  //   )
-
-  // };
 }
 
 export default AppRouter;

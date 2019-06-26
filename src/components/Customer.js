@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import axios from 'axios';
 import CustomerItem from './CustomerItem'
+import "./Customer.css"
 
 
 
@@ -22,12 +23,12 @@ class Customer extends Component {
         axios.get(CUSTOMER_URL)
             .then((response) => {
                 const customersList = response.data.map((customer) => {
-                    
+
                     return <CustomerItem
                         key={customer.id}
-                        id = {customer.id}
+                        id={customer.id}
                         name={customer.name}
-                        onSelectCustomerCallback = {this.props.onSelectCustomerCallback}
+                        onSelectCustomerCallback={this.props.onSelectCustomerCallback}
                     />
                 });
                 this.setState({ customers: customersList });
@@ -35,16 +36,13 @@ class Customer extends Component {
             .catch((error) => {
                 console.log(error);
             })
-          }
+    }
 
 
     render() {
         return (
-            <div>
-                <div className='customer-item-container'>
-                    {this.state.customers}
-                </div>
-
+            <div className='customer-item-container'>
+                {this.state.customers}
             </div>
         )
     }

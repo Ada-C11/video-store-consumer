@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import './SearchItem.css';
 
 class SearchItem extends Component {
 
@@ -10,7 +11,7 @@ class SearchItem extends Component {
                 <h3 className='movie-title'> {title} </h3>
                 <p className='movie-description'> {overview} </p>
                 <img className='movie-image' src={imageURL} alt={title} />
-                <button className="add-movie-button" onClick={() => {addMovieCallback(this.props)}}>Add to Library</button>
+                <span className="add-movie-button" onClick={() => {addMovieCallback(this.props)}}>Add to Library</span>
             </div >
         )
     };

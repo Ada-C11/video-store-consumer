@@ -1,0 +1,37 @@
+.search-form-div {
+  display: grid;
+  grid-template: 100px / 1fr 100px;
+}
+
+.search-form-div * {
+  margin: 20px;
+}
+
+input {
+  min-width: 50%;
+  height: 2em;
+  border-radius: 5px;
+}
+
+.full-wrapper {
+  text-align: center;
+}
+
+.search-submit {
+  background-color: teal;
+  padding: 15px;
+  border-radius: 10px;
+  text-align: center;
+  color: white;
+  margin-top: auto;
+}
+
+.search-submit:hover {
+  cursor: pointer;
+  background-color: rgb(44, 194, 194);
+}
+
+.centered {
+  width: 100vw;
+  text-align: center;
+}
