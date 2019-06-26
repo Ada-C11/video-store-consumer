@@ -91,7 +91,7 @@ class Search extends Component {
                 <div className="search-form-div">
                     <form className='search-form'>
                         <label>
-                            Find a movie: 
+                            Find a movie:
                             <input name='movieSearch'
                                 value={this.state.movieSearch}
                                 type='text'
