@@ -75,8 +75,6 @@ class Selected extends Component {
 }
 
 Selected.propTypes = {
-    movie: PropTypes.instanceOf(<MovieCard/>),
-    customer: PropTypes.instanceOf(<Customer/>),
     addNotificationCallback: PropTypes.func,
 }
 

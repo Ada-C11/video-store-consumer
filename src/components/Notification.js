@@ -8,9 +8,9 @@ import './Notification.css'
 
 
 const Notification = (props) =>  {
-        const {error, toastTitle, toastMessage, toastTimestamp, dismissNotification} = this.props;
+        const {error, toastTitle, toastMessage, toastTimestamp, dismissNotification} = props;
 
-        const onCloseHandler = () => dismissNotification(this.props.id);
+        const onCloseHandler = () => dismissNotification(props.id);
 
         return (
             <div className="notification">
