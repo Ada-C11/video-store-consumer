@@ -57,16 +57,17 @@ class App extends Component {
           addMovietoLibrayCallback={this.addMovietoLibray}
         />
       );
-    } else if (this.state.displayOption === "search") {
-      optionalComponent = (
-        <MovieSearchForm getresultcallback={this.getresult} />
-      );
     } else if (this.state.displayOption === "list") {
       optionalComponent = (
         <CustomerList
           rentMovieWithCustomerCallback={this.rentMovieWithCustomer}
         />
       );
+    }
+
+    let optionalSearch;
+    if (this.state.displayOption === "search") {
+      optionalSearch = <MovieSearchForm getresultcallback={this.getresult} />;
     }
 
     let rentalMovie;
@@ -96,7 +97,6 @@ class App extends Component {
           <h1 className="App-title">BitaRos Amazing VideoStore</h1>
         </header>
         <section className="App-main">
-
           <button
             type="button"
             className="movie-display"
@@ -121,10 +121,14 @@ class App extends Component {
           >
             <p>CustomerList </p>
           </button>
+          {optionalSearch}
+
         </section>
-        {searchResults}
-        {optionalComponent}
-        {rentalMovie}
+        <section className="movie-body">
+          {searchResults}
+          {optionalComponent}
+          {rentalMovie}
+        </section>
       </div>
     );
   }

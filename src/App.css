@@ -1,6 +1,6 @@
 .App {
   background-color: white;
-  text-align: center
+  text-align: center;
 }
 
 .App-header {
@@ -16,7 +16,7 @@
   padding-top: 7rem;
   padding-bottom: 5rem;
   text-align: center;
-  background-color: #C5D86D;
+  background-color: #c5d86d;
 }
 
 .App-title {
@@ -27,6 +27,12 @@
 .movie-display {
   max-width: 50rem;
   margin: auto;
-  text-align: center;
+}
 
+.movie-body {
+  text-align: center;
+  display: grid;
+  grid-column-gap: 50px;
+  grid-column-start: 1;
+  grid-column-end: 3;
 }

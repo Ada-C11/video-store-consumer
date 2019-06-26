@@ -21,7 +21,6 @@ class MovieSearchResults extends Component {
 
   render() {
     const collection = this.props.movies.map((movie, i) => {
-      console.log(movie)
       return (
         <Movie
           key={i}
