@@ -4,6 +4,7 @@ import './App.css';
 import PropTypes from 'prop-types';
 import Library from './components/Library';
 import Customers from './components/Customers';
+import Rental from './components/Rental';
 import axios from 'axios';
 import Search from './components/Search';
 
@@ -59,6 +60,61 @@ class App extends Component {
 
   }
 
+  formatDate = (time) => {
+    let d = new Date(),
+    month = d.getMonth() + 1,
+    day = d.getDate(),
+    year = d.getFullYear();
+
+    if (time === "now") {
+      day = d.getDate()
+    } else if (time === "future") {
+      day = d.getDate() + 5
+    }
+
+    if (month < 10) month = '0' + month;
+    if (day < 10) day = '0' + day;
+
+    return [year, month, day].join('/');
+  }
+  // Referred to this post for formatting date: https://stackoverflow.com/questions/23593052/format-javascript-date-to-yyyy-mm-dd
+
+
+  rentMovie = () => {
+    const movie = this.state.rentedMovie
+    const customer = this.state.chosenCustomer
+
+    const dueDate = this.formatDate("future")
+    const checkoutDate = this.formatDate("now")
+
+    const url = `http://localhost:3001/rentals/${movie.title}/check-out`
+
+    axios.post(url, {
+      customer_id: customer.id,
+      due_date: dueDate
+    })
+    .then((response)=> {
+      console.log(response)
+        // if (response.status === 200) {
+          console.log('success')
+            this.setState({
+                success: `Rented! "${movie.title}" checked out by ${customer.name}`,
+                rentedMovie: undefined,
+                chosenCustomer: undefined,
+            })
+            return (
+              <Rental movie={movie} customer={customer} checkoutDate={checkoutDate} dueDate={dueDate} />
+            )
+        // }
+    })
+    .catch((error) => {
+      console.log(error)
+      console.log('err')
+        this.setState({
+            error: error.message
+        })
+    });
+  }
 
   render() {
     const errorSection = (this.state.error) ?
@@ -70,6 +126,9 @@ class App extends Component {
           { this.state.rentedMovie && <p>Movie Selection: {this.state.rentedMovie.title}</p> }
 
           { this.state.chosenCustomer && <p>Customer Selection: {this.state.chosenCustomer.name}</p> }
+
+          { this.state.rentedMovie && this.state.chosenCustomer && <button onClick={this.rentMovie}>Rent Movie</button>}
+          {/* <Rental movie={this.state.rentedMovie} customer={this.state.chosenCustomer} dueDate="" /> } */}
 
           <Header />
 
