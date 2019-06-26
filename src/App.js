@@ -9,8 +9,8 @@ import axios from 'axios';
 
 
 class App extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
 
     this.state = {
       currentCustomer: "",
@@ -18,28 +18,31 @@ class App extends Component {
     }
   }
 
-  checkoutButtonClick = () => {
-    const movie = this.state.currentMovie;
+  checkoutButtonClick = (props) => {
+    // this.props.checkoutButtonClickCallback(this.props)
+
+    const movie = this.state.currentMovie
     const customer = this.state.currentCustomer;
+
+    const dueDate = Date.now() + 604800000
     const rentalUrl = "http://localhost:3000/rentals/" + movie.title + "/check-out";
 
-
-    if (customer === "" || movie === "") {
-      return (<p>Please select a movie AND a customer.</p>)
-    } else {
-
-      axios.post(rentalUrl)
-        .then((response) => {
-          console.log(response)
-          customer.movies_checked_out_count += 1;
-
-        })
-        .catch((error) => {
-          this.setState({ errorMessages: error.message });
-          console.log(this.state.errorMessages)
-        });
-
+    const newRental = {
+      customer_id: customer.id,
+      title: movie.title,
+      due_date: new Date(dueDate),
     }
+    console.log(newRental)
+    axios.post(rentalUrl, newRental)
+      .then((response) => {
+        console.log(response)
+        customer.movies_checked_out_count += 1;
+
+      })
+      .catch((error) => {
+        this.setState({ errorMessages: error.message });
+        console.log(this.state.errorMessages)
+      });
   }
 
 
@@ -74,6 +77,8 @@ class App extends Component {
               <button className="checkout_button"
                 onClick={this.checkoutButtonClick}>Checkout</button>
             </div>
+
+            {/* <Rental checkoutButtonClickCallback={this.checkoutButtonClickCallback} /> */}
 
             <Route exact path="/" component={Home} />
             <Route
