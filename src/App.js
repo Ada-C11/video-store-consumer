@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import axios from 'axios'
-import { thisExpression } from '@babel/types';
 
 class App extends Component {
   constructor() {
@@ -78,7 +77,8 @@ class Search extends Component {
   constructor() {
     super();
     this.state = {
-      title: ""
+      title: "",
+      searchList: []
     }
   }
 
@@ -95,10 +95,43 @@ class Search extends Component {
     event.preventDefault();
     axios.get('http://localhost:3090/movies?query=' + this.state.title.toString())
     .then((response) => {
-      console.log(response)
-
+      console.log(response.data)
+      const searchList = response.data.map((movie) => {
+          return movie
+      })
+      this.setState({searchList})
+      console.log(searchList)
     })
   }
+
+  onMovieSelect = (movie) => {
+    return () => {
+    axios.post('http://localhost:3090/movies', 
+    {
+      title: movie.title,
+      overview: movie.overview,
+      release_date: movie.release_date,
+      image_url: movie.image_url,
+      external_id: movie.external_id,
+    }
+    )
+    .then((response) => {
+      console.log(response)
+    })
+    console.log('inside on movie select')}
+  }
+
+  searchDisplay = () => {
+    return this.state.searchList.map((movie) => {
+        return (
+          <div>
+            <p>{movie.title}</p>
+            <p onClick={this.onMovieSelect(movie)}>Select!</p>
+          </div>
+        )
+    })
+  }
+
   render () {
     return (
       <div>
@@ -108,6 +141,8 @@ class Search extends Component {
           <input name="title" type="text" value={this.state.title} onChange={this.onChangeTitle}/>
           <input type="submit" value="Search" />
         </form>
+        <h4>{this.searchDisplay()}</h4>
+
       </div>
     );
   }
