@@ -13,11 +13,12 @@ const Movie = (props) => {
   }
   
   return (
-    <div>{props.movie.title}
-      <button onClick={onClickDetailsButton}>View Details</button>
-      <button onClick={onClickButton}>Select Movie</button>
+    <tr>
+      <td>{props.movie.title}</td>
+      <td><button onClick={onClickDetailsButton}>View Details</button></td>
+      <td><button onClick={onClickButton}>Select Movie</button></td>
       {props.viewMovieDetails && <Details {...props.movie} />}
-    </div>
+    </tr>
   )
 }
 

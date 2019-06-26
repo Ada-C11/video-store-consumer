@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import Button from 'react-bootstrap/Button'
+
 // import axios from 'axios';
 // import './Customer.css';
 
@@ -9,7 +11,10 @@ const Customer = (props) => {
   }
 
   return (
-    <div>{props.name}<button onClick={onClickButton}>Select Customer</button></div>
+    <tr>
+      <td>{props.name}</td>
+      <td><Button onClick={onClickButton}>Select Customer</Button></td>
+    </tr>
   )
 }
 

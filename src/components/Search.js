@@ -2,6 +2,8 @@ import React, {Component} from 'react';
 import SearchBar from './SearchBar';
 import MovieCard from './MovieCard';
 import axios from 'axios';
+import Table from 'react-bootstrap/Table';
+import './Search.css';
 class Search extends Component {
     constructor(props) {
         super(props);
@@ -13,8 +15,8 @@ class Search extends Component {
         };
     }
 
-    componentDidMount(){
-        axios.get('http://localhost:3001/movies?query=' + this.state.queryString)
+    getSearchResults = (queryString) => {
+        axios.get('http://localhost:3001/movies?query=' + queryString)
         .then((response) => {
             this.setState({
                 searchResults: response.data
@@ -28,34 +30,43 @@ class Search extends Component {
     }
 
     searchCallback = (queryString) => {
-        this.componentDidMount()
         this.setState({
           queryString,
           searched: true
         });
+
+        this.getSearchResults(queryString);
+
     };
 
     addMovieCallback = (movie) => {
-        const movieToApi = {
-            external_id: movie.external_id,
-            image_url: movie.image_url,
-            title: movie.title,
-            overview: movie.overview,
-            release_date: movie.release_date
-        }
-        axios.post('http://localhost:3001/movies', movieToApi)
-        .then((response)=> {
-            if (response.status === 200) {
-                this.setState({
-                    success: "Movie has been added to the rental library!"
-                })
-            }
-        })
-        .catch((error) => {
+
+        if (this.props.moviesInLibrary.find(currentMovie => currentMovie.external_id === movie.external_id)) {
             this.setState({
-                error: error.message
+                error: "Movie already exists!"
             })
-        });
+        } else {
+            const movieToApi = {
+                external_id: movie.external_id,
+                image_url: movie.image_url,
+                title: movie.title,
+                overview: movie.overview,
+                release_date: movie.release_date
+            }
+            axios.post('http://localhost:3001/movies', movieToApi)
+            .then((response)=> {
+                if (response.status === 200) {
+                    this.setState({
+                        success: "Movie has been added to the rental library!"
+                    })
+                }
+            })
+            .catch((error) => {
+                this.setState({
+                    error: error.message
+                })
+            });
+        }
     }
 
     render() {
@@ -99,16 +110,17 @@ class Search extends Component {
 
         return (
             <section>
+                <h3 className="search_title">Search for Movies</h3>
                 <SearchBar searchCallback={this.searchCallback}/>
                 {errorSection}
                 {successSection}
-                <table>
+                <Table>
                         {tableHeader}
                     <tbody>
                         {movieCards}
                     </tbody>
                 
-                </table>
+                </Table>
 
             </section>
         )

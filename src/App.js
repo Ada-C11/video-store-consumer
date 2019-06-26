@@ -1,4 +1,7 @@
 import React, { Component } from 'react';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import Nav from 'react-bootstrap/Nav';
+import Navbar from 'react-bootstrap/Navbar';
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import './App.css';
 // import PropTypes from 'prop-types';
@@ -7,6 +10,7 @@ import Customers from './components/Customers';
 // import Rental from './components/Rental';
 import axios from 'axios';
 import Search from './components/Search';
+
 
 class App extends Component {
   constructor() {
@@ -106,10 +110,11 @@ class App extends Component {
   render() {
     const errorSection = (this.state.error) ?
     (<section>Error: {this.state.error}</section>) : null;
-
+    console.log(this.state)
     return (
       <Router>
         <div>
+          <Header />
           { this.state.rentedMovie && <p>Movie Selection: {this.state.rentedMovie.title}</p> }
 
           { this.state.chosenCustomer && <p>Customer Selection: {this.state.chosenCustomer.name}</p> }
@@ -121,7 +126,7 @@ class App extends Component {
           {errorSection}
 
           <Route exact path="/" component={Home} />
-          <Route path="/search" render={() => <Search />}/>
+          <Route path="/search" render={() => <Search moviesInLibrary={this.state.movies}/>}/>
           <Route 
             path="/library" 
             render={() => (
@@ -154,20 +159,15 @@ function Home() {
 
 function Header() {
   return (
-    <ul>
-      <li>
-        <Link to="/">Home</Link>
-      </li>
-      <li>
-        <Link to="/search">Search</Link>
-      </li>
-      <li>
-        <Link to="/library">Library</Link>
-      </li>
-      <li>
-        <Link to="/customers">Customers</Link>
-      </li>
-    </ul>
+    <Navbar bg="primary" variant="dark">
+    <Navbar.Brand>Video World</Navbar.Brand>
+    <Nav className="mr-auto">
+      <Link className="nav_link" to="/">Home</Link>
+      <Link className="nav_link" to="/search">Search</Link>
+      <Link className="nav_link" to="/library">Library</Link>
+      <Link className="nav_link" to="/customers">Customers</Link>
+    </Nav>
+    </Navbar>
   );
 }
 
