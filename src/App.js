@@ -94,14 +94,15 @@ class App extends Component {
         <header className="App-header">
           <h1 className="App-title">BitaRos Amazing VideoStore</h1>
         </header>
-        <section className="App-main" >
+        <section className="App-main">
+
           <button
             type="button"
             className="movie-display"
             aria-label="Close"
             onClick={() => this.setDisplay("library")}
           >
-           Movie Library
+            <p>Movie Library </p>
           </button>
           <button
             type="button"
@@ -109,7 +110,7 @@ class App extends Component {
             aria-label="Close"
             onClick={() => this.setDisplay("search")}
           >
-            Movie Search
+            <p>Movie Search </p>
           </button>
           <button
             type="button"
@@ -117,7 +118,7 @@ class App extends Component {
             aria-label="Close"
             onClick={() => this.setDisplay("list")}
           >
-            CustomerList
+            <p>CustomerList </p>
           </button>
         </section>
         {searchResults}
