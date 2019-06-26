@@ -26,8 +26,8 @@ class Selected extends Component {
                             toastTimestamp:Date.now(),
                             error: true,
                           }
-                        
                     );
+                    this.props.clearSelectionCallback();
                 })
                 .catch((error)=>{
                     this.props.addNotificationCallback (
@@ -76,6 +76,7 @@ class Selected extends Component {
 
 Selected.propTypes = {
     addNotificationCallback: PropTypes.func,
+    clearSelectionCallback: PropTypes.func,
 }
 
 export default Selected;

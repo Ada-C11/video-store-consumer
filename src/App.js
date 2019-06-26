@@ -42,6 +42,7 @@ class AppRouter extends Component {
     });
     
   }
+
   selectMovie = (movie) => {
     console.log(movie);
     this.setState({selectedMovie: movie});
@@ -70,10 +71,15 @@ class AppRouter extends Component {
       return obj.props.id !== notificationID;
     });
 
-    
-
     this.setState({
       notifications: updatedNotifications
+    });
+  }
+
+  clearSelection= () => {
+    this.setState( {
+      selectedMovie: undefined,
+      selectedCustomer:undefined,
     });
   }
 
@@ -114,6 +120,7 @@ class AppRouter extends Component {
           movie={this.state.selectedMovie}
           customer={this.state.selectedCustomer}
           addNotificationCallback={this.addNotification}
+          clearSelectionCallback ={this.clearSelection}
           />
 
           <Route path="/" exact component={Index} />
