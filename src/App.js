@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
+import FlashMessage from 'react-flash-message';
 import './App.css';
 import axios from 'axios';
 import SearchMovie from './components/SearchMovie';
@@ -103,6 +104,7 @@ class App extends Component {
     this.setState({
       selectedMovie: updatedState,
       selectedCustomer: updatedState,
+      message: '',
     });
   }
 
@@ -124,6 +126,7 @@ class App extends Component {
     axios.post(rentalURL, rentalDataForApi) 
       .then((response) => {
 
+        // this.message(`${movie.title} succesfully checked out to ${customer.name}`)
         this.setState({
           message: `${movie.title} succesfully checked out to ${customer.name}`
         });
@@ -142,7 +145,7 @@ class App extends Component {
   render() {
     const { selectedMovie, selectedCustomer, message } = this.state
 
-    console.log(this.state.customers);
+    
     console.log(`MESSAGE: ${message}`);
     return (
       <Router>
@@ -168,11 +171,12 @@ class App extends Component {
             </ul>
           </nav>
           
-          {message !== '' &&
-            <section>
-              {message}
-            </section>
-          }
+          <section>
+            {message}
+          </section>
+          {/* <FlashMessage duration={5000}>
+            <strong>{message}</strong>
+          </FlashMessage> */}
 
           <section className='currently-selected-items'>    
             {selectedMovie && 
