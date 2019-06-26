@@ -27,13 +27,16 @@ function Header(props) {
       </ul>
       <div className="rental-container">
         {/* {displayRentalHeader(props.movieTitle, props.customerName)} */}
-        <h5>Rental Information</h5>
-        <p className="rental-body">Movie: {props.movieTitle}</p>
-        <p className="rental-body">Customer: {props.customerName}</p>
-        <button className={props.checkoutButtonClassName}
-            onClick={props.onCheckoutClickCallback}>
-          Checkout!</button>
+          <h5 className="rental-header">Rental Information</h5>
+          <p className="rental-body">Movie: {props.movieTitle}</p>
+          <p className="rental-body">Customer: {props.customerName}</p>
       </div>
+        <div>
+          <button className={`btn btn-light ${props.checkoutButtonClassName}`}
+            onClick={props.onCheckoutClickCallback}>
+          Checkout!
+          </button>
+        </div>
     </nav>
   );
 }

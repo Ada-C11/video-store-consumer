@@ -7,7 +7,7 @@ button.checkout-button {
 }
 
 button.checkout-button-display {
-  display: block;
+  display: inline;
 }
 
 .App-header {

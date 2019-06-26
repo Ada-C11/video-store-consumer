@@ -93,11 +93,11 @@ class App extends Component {
       <Router>
         <div onClick = {this.onClickAnywhere}>
           <p className={this.state.errorClass} >{this.state.error}</p>
-          <h2>{this.state.movieTitle}</h2>
+          {/* <h2>{this.state.movieTitle}</h2>
           <h2>{this.state.customer.name}</h2>
-          <button className={this.state.checkoutButtonClassName}
+          <button className={`btn btn-info ${this.state.checkoutButtonClassName}`}
             onClick={this.onCheckoutClick}>
-          Checkout!</button>
+          Checkout!</button> */}
           <Header movieTitle={this.state.movieTitle} customerName={this.state.customer.name} onCheckoutClickCallback={this.onCheckoutClick} checkoutButtonClassName={this.state.checkoutButtonClassName}/>
           <Route exact path="/" component={Home} />
           <Route path="/search" component={Search} />

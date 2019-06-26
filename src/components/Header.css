@@ -1,6 +1,8 @@
 
 nav.navbar.sticky-top {
-    justify-content: space-between;
+    display: grid;
+    grid-template-columns: 3fr 1fr 1fr;
+    /* justify-content: space-between; */
 }
 .navbar-nav {
     display: flex;
@@ -21,4 +23,21 @@ nav.navbar.sticky-top {
 
 nav {
     background-color: #EE82EE
+}
+.rental-container {
+    grid-column: 2
+}
+.rental-body {
+    margin-bottom: 0.5rem;
+    color: #483D8B;
+}
+
+.rental-header {
+    color: #483D8B;
+    font-size: 1.1rem;
+    
+}
+
+.btn {
+    grid-column: 2 / 3;
 }
