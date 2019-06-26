@@ -18,7 +18,6 @@ class App extends Component {
       expandedMovies: {},
       rentedMovie: undefined,
       chosenCustomer: undefined,
-      // rentalExists: false,
       dueDate: undefined,
       checkoutDate: undefined,
       alert: undefined,
@@ -80,12 +79,10 @@ class App extends Component {
     .then((response)=> {
       const movie = this.state.rentedMovie.title
       const customer = this.state.chosenCustomer.name
-
       this.setState({
-        // rentalExists: true,
         dueDate: dueDate,
         checkoutDate: checkoutDate,
-        alert: `Rented! "${movie}" checked out by ${customer}`
+        alert: `Rental #${response.data["rental"]}! "${movie}" checked out by ${customer}`
       })
 
       this.onRentCallback()
@@ -101,7 +98,6 @@ class App extends Component {
     this.setState({
       rentedMovie: undefined,
       chosenCustomer: undefined,
-      // rentalExists: false,
       dueDate: undefined,
       checkoutDate: undefined,
     })
