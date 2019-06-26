@@ -83,6 +83,8 @@ class App extends Component {
     const allUserMessages = this.state.userMessages.map((message, i) => {
       return <p key= {i}>{ message }</p>;
     })
+
+    const enabledCheckout = this.state.selectedCustomer && this.state.selectedMovie !== null
     return (
       <Router>
         <div className="App">
@@ -110,7 +112,7 @@ class App extends Component {
               </li>
               <li>Selected Movie: {this.state.selectedMovie ? this.state.selectedMovie.title : "No movie selected"}</li>
               <li>Selected Customer: {this.state.selectedCustomer ? this.state.selectedCustomer.name : "No customer selected"}</li>
-              <button type="button" onClick={() => {this.checkoutMovie(this.state.selectedMovie, this.state.selectedCustomer)}}>Checkout Movie</button>
+              <button disabled={!enabledCheckout} type="button" onClick={() => {this.checkoutMovie(this.state.selectedMovie, this.state.selectedCustomer)}}>Checkout Movie</button>
             </ul>
           </nav>
 
