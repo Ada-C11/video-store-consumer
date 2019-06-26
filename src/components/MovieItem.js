@@ -1,21 +1,20 @@
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import './MovieItem.css'
 
-class MovieItem extends Component {
+const MovieItem = (props) => {
 
-    render() {
-        const { title, overview, imageURL, onSelectMovieCallback } = this.props;
-        return (
-            <div className='movie-item'>
-                <h3 className='movie-title'> {title} </h3>
-                <p className='movie-description'> {overview} </p>
-                <img className='movie-image' src={imageURL} alt={title} />
-                <span className="select-movie-button" onClick={() => {onSelectMovieCallback(this.props)}}>Select Movie</span>
-            </div >
-        )
-    };
-}
+    const { title, overview, imageURL, onSelectMovieCallback } = props;
+    return (
+        <div className='movie-item'>
+            <h3 className='movie-title'> {title} </h3>
+            <p className='movie-description'> {overview} </p>
+            <img className='movie-image' src={imageURL} alt={title} />
+            <span className="select-movie-button" onClick={() => { onSelectMovieCallback(props) }}>Select Movie</span>
+        </div >
+    )
+};
+
 
 MovieItem.propTypes = {
     title: PropTypes.string.isRequired,

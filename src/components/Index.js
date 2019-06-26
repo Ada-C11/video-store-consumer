@@ -1,7 +1,7 @@
 import React from 'react';
 
 
-function Index() {
+const Index = () => {
   return <h2>Clever Video Store Name</h2>;
 }
 
