@@ -36,14 +36,10 @@ class Customers extends Component {
           .catch((error) => {
             //Do something if there's an error
             console.log(error);
-            // this.setState({ error: `${error.message} while loading your cards!` });
-
           });
     }
 
     selectCustomer = (name) => {
-        // console.log("Inside CustomerSSSS:")
-        // console.log(name);
         this.props.selectCustomerCallback(name);
     }
 
@@ -51,7 +47,6 @@ class Customers extends Component {
 
         const customerComponents = this.state.customers.map((customer, index) => {
             return (
-                // <li key={index}>{customer.name}</li>
                 <li key={index}>
                    <Customer name={customer.name} id={customer.id} selectCustomerCallback={this.selectCustomer} />
                 </li>
