@@ -1,21 +1,45 @@
 import React, {Component} from 'react';
 import axios from 'axios';
 
+const rentalURL = 'http://localhost:3000/rentals/'
 class Rentals extends Component {
   constructor(props) {
     super(props);
 
     this.cleared = {
       movie: '',
+      checkoutDate: '',
+      dueDate: '',
       rentalLibrary: [],
-      selectedMovie: '',
+      
     }
 
     this.state = this.cleared
   }
  
+ 
   componentDidMount() {
-   axios.get('http://localhost:3000/movies')
+    axios.get('http://localhost:3000/movies')
+    .then((response) => {
+      this.setState({rentalLibrary: response.data})
+      console.log(this.state.rentalLibrary)
+    })
+    .catch((error) => {
+      this.setState({errorMessage: error.message})
+      console.log(error.message)
+    })
+  } 
+
+  // TO DO: confirm this works
+  onButtonClick = (movieTitle, e) => {
+    e.preventDefault();
+    console.log(movieTitle);
+    const rentalDate = Date.now();
+    this.setState({movie: movieTitle, checkoutDate: rentalDate, dueDate: rentalDate + 2})
+  }
+ 
+  reserveRental () {
+    axios.post(`${rentalURL}${this.state.movie}/checkout`)
    .then((response) => {
      this.setState({rentalLibrary: response.data})
      console.log(this.state.rentalLibrary)
@@ -24,16 +48,12 @@ class Rentals extends Component {
      this.setState({errorMessage: error.message})
      console.log(error.message)
    })
- }
+  }
 
- // TO DO: confirm this works
-  addToRental = (movieTitle, e) => {
-    e.preventDefault();
-    console.log(movieTitle);
-    this.setState({movie: movieTitle})
-   
- }
- 
+  findCustomer(params) {
+
+  }
+
  render() {
    const rentalCollection = this.state.rentalLibrary.map((movie, i) => {
      return(
@@ -41,13 +61,24 @@ class Rentals extends Component {
         <td>{movie.id}</td>
         <td>{movie.title} </td>
         <td> {movie.release_date} </td>
-        <td><button onClick={ (e) => this.addToRental(movie.title, e)}> Add to rental </button></td>
+        <td><button onClick={ (e) => this.onButtonClick(movie.title, e)}> Add to rental </button></td>
       </tr>
      )
    });
    return (
      <section>
        <h1> Rewind Rentals </h1>
+       <section>
+         <h4> Current Customer ID: {this.props.customerID ? this.props.customerID : 'none'}</h4>
+         <form>
+          <label>
+            Find Customer:
+            <input type="text" name="name" />
+          </label>
+          <input type="submit" value="Submit" />
+        </form>
+         <h4> Reserved movie: {this.state.movie ? this.state.movie : 'none selected'}</h4>
+       </section>
        <table className="table table-striped table-hover table-sm"> 
        <thead>
          <tr>

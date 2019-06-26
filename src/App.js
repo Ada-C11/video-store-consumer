@@ -45,8 +45,8 @@ class App extends Component {
   render() {
     return (
       <Router>
-        <div>
-          <ul>
+        <div className="App-header">
+          <ul className="nav-menu">
             <li className="nav-link">
               <Link to="/">Rewind Movies</Link>
             </li>
