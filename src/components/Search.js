@@ -38,7 +38,7 @@ class Search extends Component {
   }
 
   render() {
-    const searchResultList = this.state.searchResults.map((movie, index, i) => {
+    const searchResultList = this.state.searchResults.map((movie, index) => {
       return (
         <div>
           <MovieCard key={index} movie={movie} selectMovie={this.props.selectMovie}/>
@@ -68,4 +68,5 @@ class Search extends Component {
 Search.propTypes = {
   addMovieCallback: PropTypes.func.isRequired,
 }
+
 export default Search;
