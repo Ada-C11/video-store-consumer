@@ -1,12 +1,12 @@
 import React, {Component} from 'react';
 import SearchBar from './SearchBar';
+import MovieCard from './MovieCard';
 import axios from 'axios';
 class Search extends Component {
     constructor(props) {
         super(props);
         this.state = {
             searchResults: [],
-            queryString: "",
             searched: false,
             error: null
         };
@@ -35,45 +35,47 @@ class Search extends Component {
     };
 
     render() {
-        let foundMovies;
+    
+        let movieCards;
         let tableHeader;
-        tableHeader = null;
-        // if (!this.state.searched) {
-            if (this.state.searchResults !== null) {
-            foundMovies = this.state.searchResults.map((movie, i)=> {
-                return (<tr key={i}>
-                            <td><img src={movie.image_url} alt={movie.title}/></td>
-                            <td>{movie.title}</td>
-                            <td>{movie.overview}</td>
-                            <td>{movie.release_date}</td>
-                            <td><button>Add to Library</button></td>
-                        </tr>);
-            });
-            if (foundMovies && foundMovies.length > 0){
-            tableHeader = (<thead>
-                <tr>
-                    <th>Image</th>
-                    <th>Title</th>
-                    <th>Overview</th>
-                    <th>Release Date</th>
-                </tr>
-            </thead>);
-            }
-        }else if (this.state.searched) {
-             foundMovies = (<tr><td>No matched Results!</td></tr>);
-        }else {
-            foundMovies = null
-        }
 
-        // console.log(this.state.searchResults);
+        if (this.state.searchResults !== null) {
+            movieCards = this.state.searchResults.map((movie,i) => {
+                return [<MovieCard 
+                            key={i}
+                            image_url={movie.image_url}
+                            title={movie.title}
+                            overview={movie.overview}
+                            release_date={movie.release_date}/>]
+            });
+
+            if (movieCards && movieCards.length > 0){
+                tableHeader = (<thead>
+                    <tr>
+                        <th>Image</th>
+                        <th>Title</th>
+                        <th>Overview</th>
+                        <th>Release Date</th>
+                    </tr>
+                </thead>);
+            }
+        } else if (this.state.searched) {
+            movieCards = (<tr><td>No matched Results!</td></tr>);
+        } else {
+            movieCards = null;
+        }
 
         return (
             <section>
                 <SearchBar searchCallback={this.searchCallback}/>
                 <table>
-                    {tableHeader}
-                    <tbody>{foundMovies}</tbody>
+                        {tableHeader}
+                    <tbody>
+                        {movieCards}
+                    </tbody>
+                
                 </table>
+
             </section>
         )
     }
