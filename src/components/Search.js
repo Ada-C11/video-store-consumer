@@ -4,7 +4,7 @@ import axios from 'axios';
 // import { nullLiteral } from '@babel/types';
 
 
-// import './Search.css';
+import './Search.css';
 
 
 class Search extends Component {
@@ -89,9 +89,9 @@ class Search extends Component {
     addtoLibraryMessage = () => {
         let message = ""
         if (this.state.addedMovie === false) {
-            message = <p>Your movie has already been added to the library!</p>
+            message = <p className="alert alert-danger" role="alert">Your movie has already been added to the Library!</p>
         } else if (this.state.addedMovie === true) {
-            message = <p>Movie added to the Library!</p>
+            message = <p className="alert alert-success" role="alert">Your movie has been added to the Library!</p>
         }
         return message
     }
@@ -135,7 +135,7 @@ class Search extends Component {
 
     render() {
         return (
-            <div className="">
+            <div className="grid-container">
                {this.addtoLibraryMessage()}
                 <div className="search-form__header">
                     Search for a Movie!
