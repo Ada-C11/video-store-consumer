@@ -20,6 +20,10 @@ class MovieCard extends Component {
     this.props.selectMovieCallback(this.props);
   }
 
+  onAddButtonClick = () => {
+    this.props.selectMovieCallback(this.props, this.state.numCopies);
+  }
+
   onInputChange = (event) => {
     const updatedState = {};
 
@@ -53,7 +57,7 @@ class MovieCard extends Component {
                 type="number" min="1" max="10"/>
             </label>
           </form>
-          <Button onClick={ this.onSelectButtonClick }
+          <Button onClick={ this.onAddButtonClick }
             className="select-movie-btn"
             variant='primary'
             >{buttonDisplay}

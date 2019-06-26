@@ -29,8 +29,26 @@ class Search extends Component {
     this.setState({ ...this.cleared });
   }
 
-  onAddMovietoLibrary = () => {
-    
+  onAddMovietoLibrary = (movieData, inventoryNum) => {
+    const movie = {
+      title: movieData.title,
+      overview: movieData.overview,
+      release_date: movieData.release_date,
+      image_url: movieData.image_url,
+      external_id: movieData.external_id,
+      inventory: inventoryNum
+    }
+
+    const endpoint = 'http://localhost:3000/movies'
+
+    axios.post(endpoint, movie)
+      .then((response) => {
+        console.log(response);
+      })
+  
+      .catch((error) => {
+        console.log(error);
+      })
   }
 
    onSearch = (title) => {
@@ -75,14 +93,14 @@ class Search extends Component {
     this.setState(updatedState);
   }
 
-  selectMovie = (movie) => {
-    console.log(movie)
-    console.log(movie.title)
-    console.log(movie['title'])
-    this.setState({selectedResult: movie.title});
-    console.log(this.state)
+  // selectMovie = (movie) => {
+  //   console.log(movie)
+  //   console.log(movie.title)
+  //   console.log(movie['title'])
+  //   this.setState({selectedResult: movie.title});
+  //   console.log(this.state)
 
-  }
+  // }
 
   render() {
     const display = this.state.searchResults.map((movie) => {
@@ -95,7 +113,7 @@ class Search extends Component {
           release_date={release_date}
           image_url={image_url}
           external_id={external_id}
-          selectMovieCallback={this.selectMovie}
+          selectMovieCallback={this.onAddMovietoLibrary}
           buttonDisplay="Add to Library"
           parentComponent='search'
         />
