@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import MovieCard from './MovieCard';
+import PropTypes from 'prop-types'
 import axios from 'axios';
 
 class Library extends Component {
@@ -37,6 +38,9 @@ class Library extends Component {
   }
 };
 
-
+Library.propTypes = {
+  movieLibrary: PropTypes.array.isRequired,
+  selectMovie: PropTypes.func.isRequired,
+}
 
 export default Library;
