@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import axios from "axios";
 
 import "./CustomerList.css";
 
@@ -7,7 +8,7 @@ class CustomerList extends Component {
     super(props);
 
     this.state = {
-      customers: ["Adam", "Alex", "Victor", "Walter"],
+      customers: [],
       selectedCustomer: ""
     };
   }
@@ -19,6 +20,26 @@ class CustomerList extends Component {
 
     this.props.rentMovieWithCustomerCallback(customer);
   };
+  componentDidMount() {
+    axios.get(`http://localhost:3001/customers`)
+      .then((response) => {
+        const customers = response.data.map((customer) => {
+
+       return(
+         <p key= {customer.id}>{customer.name}</p>
+       )
+        })
+        console.log(response.data)
+        this.setState({
+          customers: customers,
+        });
+      })
+      .catch((error) => {
+        console.log(error);
+        alert('Error happened');
+        this.setState({ error: error.message });
+      });
+  }
 
   render() {
     const customers = this.state.customers.map(customer => {
