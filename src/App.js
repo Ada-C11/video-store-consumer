@@ -1,14 +1,15 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import './App.css';
 import axios from 'axios'
-import { thisExpression } from '@babel/types';
 
 class App extends Component {
   constructor() {
     super();
     this.state = {
       movieTitle: "",
-      customer: ""
+      customer: "",
+      checkoutButtonClassName: "checkout-button",
     }
   }
 
@@ -32,6 +33,13 @@ class App extends Component {
     .then((response) => {
       console.log(response)
     })
+
+    this.setState(
+      {
+        movieTitle: "", 
+        customer: "",
+        checkoutButtonClassName: "checkout-button",
+    })
   }
 
   addMovieToRent = (title) => {
@@ -39,13 +47,22 @@ class App extends Component {
     movieTitle = title;
     this.setState({movieTitle})
     console.log("in callback ", title)
+    if (this.state.customer.name) {
+      let checkoutButtonClassName = this.state.checkoutButtonClassName;
+      checkoutButtonClassName = "checkout-button-display"
+      this.setState({checkoutButtonClassName})
+    }
   }
 
   addCustomerToRent = (customer) => {
     let newCustomer = this.state.customer;
     newCustomer = customer;
     this.setState({customer: newCustomer})
-    
+    if (this.state.movieTitle.length>0) {
+      let checkoutButtonClassName = this.state.checkoutButtonClassName;
+      checkoutButtonClassName = "display"
+      this.setState({checkoutButtonClassName})
+    }
   }
 
   render () {    
@@ -54,6 +71,9 @@ class App extends Component {
         <div>
           <h2>{this.state.movieTitle}</h2>
           <h2>{this.state.customer.name}</h2>
+          <button className={this.state.checkoutButtonClassName}
+            onClick={this.onCheckoutClick}>
+          Checkout!</button>
           <Header />
           <Route exact path="/" component={Home} />
           <Route path="/search" component={Search} />
@@ -61,9 +81,7 @@ class App extends Component {
           />
           <Route path="/customers" render={(routeProps) => (<Customers {...routeProps} addCustomerToRentCallback={this.addCustomerToRent}/>)} 
           />
-          <button
-            onClick={this.onCheckoutClick}>
-          Checkout!</button>
+
         </div>
       </Router>
     );
