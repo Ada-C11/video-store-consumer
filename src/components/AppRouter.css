@@ -20,7 +20,9 @@ li {
 li:last-child {
   /* margin-bottom: 4rem; */
 }
-
+ul.nav-list {
+  padding: 1.5rem;
+}
 
 main {
   margin-left: 13rem;

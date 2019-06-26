@@ -7,6 +7,7 @@ import Search from './Search';
 import Library from './Library';
 import CustomerList from './CustomerList';
 import SelectBar from './SelectBar';
+import ErrorMessage from './ErrorMessage'
 
 import './AppRouter.css';
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
@@ -95,7 +96,7 @@ class AppRouter extends Component {
       <Router>
         <div>
           <nav className="nav-bar">
-            <ul>
+            <ul className="nav-list">
               <li>
                 <Link to="/">Home</Link>
               </li>
@@ -121,6 +122,8 @@ class AppRouter extends Component {
           </nav>
 
           <main >
+            <ErrorMessage />
+
 
 
             <Route path="/" exact component={Index} />

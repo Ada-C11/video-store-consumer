@@ -6,7 +6,7 @@ const SelectBar = (props) => {
 
   return (
     <div>
-      <ul>
+      <ul className="nav-list">
         <li>
           Selected Movie: {selectedMovie && selectedMovie.title}
         </li>
