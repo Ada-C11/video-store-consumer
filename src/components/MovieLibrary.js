@@ -42,7 +42,7 @@ class MovieLibrary extends Component {
     const movies = this.props.librayMovies.map(movie => {
       console.log(movie);
       return (
-        <section key={movie.name} className="grid-container">
+        <section key={movie.name}>
           <div className="card-body">
             <img
               className="card-img-top"

@@ -122,9 +122,8 @@ class App extends Component {
             <p>CustomerList </p>
           </button>
           {optionalSearch}
-
         </section>
-        <section className="movie-body">
+        <section>
           {searchResults}
           {optionalComponent}
           {rentalMovie}

@@ -41,10 +41,10 @@ class MovieSearchForm extends Component {
     updatedState[field] = value;
     this.setState(updatedState);
   };
-  
+
   render() {
     return (
-      <div className="new-card-form">
+      <section>
         <form className="new-card-form__form" onSubmit={this.searchMovie}>
           <h2 className="new-card-form__header">Search for a movie</h2>
           <label>
@@ -63,7 +63,7 @@ class MovieSearchForm extends Component {
             value="Search"
           />
         </form>
-      </div>
+      </section>
     );
   }
 }
