@@ -57,7 +57,8 @@ class Rentals extends Component {
      this.setState({errorMessage: error.message})
      console.log(error)
    })
-   this.setState({...this.cleared})
+   this.setState({...this.cleared});
+   this.props.clearRentalCallback();
   }
 
   handleChange = (event) => {

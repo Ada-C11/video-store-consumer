@@ -6,17 +6,17 @@ import CustomerList from './components/CustomerList'
 import MovieSearch from './components/MovieSearch'
 import Notfound from './notfound'
 import Rentals from './components/Rentals'
-import axios from 'axios';
 import image from './images/frontpage.jpg'
 
-const rentalURL = ''
 class App extends Component {
   constructor() {
     super();
-      this.state = {
+      this.cleared = {
         rentalCustomerID: null,
         selectedRental: null,
       }
+
+      this.state = this.cleared
   }
   
   selectCustomer = (customerID) => {
@@ -24,9 +24,12 @@ class App extends Component {
     this.setState({rentalCustomerID: customerID})
   }
 
+  clearRentalReservation = () => {
+    this.setState({...this.cleared})
+  }
   selectRental =(movieTitle) => {
     console.log(movieTitle);
-    this.setState({movieTitle: movieTitle})
+    this.setState({selectedRental: movieTitle})
   }
 
   showHomePage() {
@@ -68,8 +71,9 @@ class App extends Component {
           <Route path="/rental" render={ (props) => (
             <Rentals {...props} 
               customerID={this.state.rentalCustomerID}
-              movie={this.state.movieTitle}
-              selectRentalCallback={this.selectRental}            
+              movie={this.state.selectedRental}
+              selectRentalCallback={this.selectRental} 
+              clearRentalCallback={this.clearRentalReservation}           
             />)
           } />
           <Route component={Notfound} />
