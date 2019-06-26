@@ -39,31 +39,34 @@ class Search extends Component {
 
   addMovieCallback = (movie) => {
     const movieData = {
-      title: movie.title,
-      overview: movie.overview,
-      release_date: movie.release_date,
-      image_url: movie.image_url,
-      external_id: movie.external_id,
-      inventory: 15
+      movie:{
+        title: movie.title,
+        overview: movie.overview,
+        release_date: movie.release_date,
+        image_url: movie.image_url,
+        external_id: movie.external_id,
+        inventory: 15
+      }
     }
 
     axios.post('http://localhost:3000/movies', movieData)
-    
-    .then((response) => {
-      const newMovie = response.data.map((movie, i) => {
-        return <Movie
-          key={movie.id}
-          id={movie.id}
-          title={movie.title}
-          overview={movie.overview}
-          release_date={movie.release_date}
-          image_url={movie.image_url}
-          external_id={movie.external_id}
-          selectMovieCallback={this.selectMovieCallback}
-        />
+     
+      .then((response) => {
+        console.log(response.data);
+        const newMovie = response.data.map((movie, i) => {
+          return <Movie
+            key={movie.id}
+            id={movie.id}
+            title={movie.title}
+            overview={movie.overview}
+            release_date={movie.release_date}
+            image_url={movie.image_url}
+            external_id={movie.external_id}
+            selectMovieCallback={this.selectMovieCallback}
+          />
+        })
+        this.props.addMovieCallback(newMovie)
       })
-      this.props.addMovieCallback(newMovie)
-    })
     
     
   }
