@@ -10,10 +10,10 @@ class Library extends Component {
     }
   
     componentDidMount() {
-      this.updateLibrary()
+      this.getLibrary()
     }
 
-    updateLibrary = () => {
+    getLibrary = () => {
       const url = `http://localhost:3000/movies`
       axios.get(url)
         .then((response) => {
@@ -26,16 +26,16 @@ class Library extends Component {
     }
 
     render() {
-      const allmovies = this.state.library.map((movie, i) => {
-         return <li>{movie.title}</li>
-      })
+    const allmovies = this.state.library.map((movie, i) => {
+      return <li>{movie.title}</li>
+    })
 
     return (
       <div className="App">
         <header className="App__header">
           <h1 className="App__title">Movies</h1>
           <p className="App__intro-text">
-           {allmovies}
+          <ul>{allmovies}</ul>
           </p>
         </header>
       </div>
