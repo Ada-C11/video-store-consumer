@@ -20,6 +20,8 @@ class App extends Component {
       selectedCustomer: '',
       selectedMovie: '',
       searchResults: [],
+      movieLibrary: [],
+      addConfirmation: true,
     }
   }
 
@@ -31,15 +33,16 @@ class App extends Component {
     .catch((error) => {
       console.log(error)  
     })
+    this.setState({
+      searchResults: [],
+    })
   }
 
   displaySearchResults = (result) => {
-    console.log(result)
     this.setState({
         searchResults: result,
       });
   }
-
 
   selectCustomer = (customerName) => {
     this.setState({
@@ -52,15 +55,26 @@ class App extends Component {
     let addedMovieData = {
       ...movieToAdd
     }
-    console.log(addedMovieData)
 
-    axios.post(URL, addedMovieData)
-    .then((response) => {
-      console.log(response)
+    addedMovieData.image_url = (addedMovieData.image_url).replace('https://image.tmdb.org/t/p/w185','')
+
+    let repeated = 0;
+    this.state.movieLibrary.map((v) =>{
+        if (v.external_id === addedMovieData.external_id){
+          console.log('the movie already exist in the library')
+          repeated += 1
+        }
     })
-    .catch((error)=>{
-      console.log(error)
-    })
+    
+    if (repeated === 0){
+      axios.post(URL, addedMovieData)
+      .then((response) => {
+        console.log(`movie ${response.data.title} added`)
+      })
+      .catch((error)=>{
+        console.log(error)
+      })
+    }
   }
 
   selectMovie = (movieTitle) => {
@@ -68,6 +82,19 @@ class App extends Component {
     this.setState({
       selectedMovie: movieTitle,
     });
+  }
+
+  displayMovieLibraryCallback = (allMovies) =>{
+    this.setState({
+      movieLibrary: allMovies,
+      searchResults: [],
+    })
+  }
+
+  displayCustomerListCallBack = () => {
+    this.setState({
+      searchResults: [],
+    })
   }
   
 
@@ -102,9 +129,11 @@ class App extends Component {
                 />
             </section>
            
-            <Route path="/movielibrary" render={(props) => <MovieLibrary {...props} selectedMovie={this.selectMovie} />} />
+            <Route path="/movielibrary" render={(props) => <MovieLibrary {...props} selectedMovie={this.selectMovie} displayMovieLibraryCallback={this.displayMovieLibraryCallback}/>} />
+
             <Route path="/search" render={(props) => <Search onSearchButtonCallback={this.onSearchButtonCallback}/>} />
-            <Route path="/customerlist" render={(props) => <CustomerList {...props} selectedCustomer={this.selectCustomer} />} />
+
+            <Route path="/customerlist" render={(props) => <CustomerList {...props} selectedCustomer={this.selectCustomer} displayCustomerListCallBack={this.displayCustomerListCallBack} />} />
           </Router>
         </header>
         
