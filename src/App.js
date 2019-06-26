@@ -5,6 +5,7 @@ import VideoStore from './components/VideoStore'
 import Movie from './components/Movie';
 import Customer from './components/Customer';
 import Search from './components/Search';
+import axios from 'axios';
 
 
 class App extends Component {
@@ -18,10 +19,26 @@ class App extends Component {
   }
 
   checkoutButtonClick = () => {
+    const title = this.state.currentMovie.title;
+    const customer = this.state.currentCustomer;
+    const rentalUrl = "http://localhost:3000/rentals" + title + "/check-out";
+
+
     if (this.state.currentCustomer === "" || this.state.currentMovie === "") {
+      return (<p>Please select a movie AND a customer.</p>)
+    } else {
+
+      axios.post(rentalUrl)
+        .then((response) => {
+          console.log(response)
+          this.state.currentCustomer.movies_checked_out_count += 1;
+        })
+        .catch((error) => {
+          this.setState({ errorMessages: error.message });
+          console.log(this.state.errorMessages)
+        });
 
     }
-    this.state.currentCustomer.movies_checked_out_count += 1;
   }
 
 
@@ -40,7 +57,6 @@ class App extends Component {
       })
     }
   }
-
 
   render() {
     return (
