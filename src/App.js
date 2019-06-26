@@ -113,7 +113,7 @@ function Home() {
 function Header() {
   return (
     <Navbar bg="primary" variant="dark">
-    <Navbar.Brand href="/">Video World</Navbar.Brand>
+    <Navbar.Brand>Video World</Navbar.Brand>
     <Nav className="mr-auto">
       <Link className="nav_link" to="/">Home</Link>
       <Link className="nav_link" to="/search">Search</Link>
