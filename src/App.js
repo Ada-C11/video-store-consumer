@@ -1,30 +1,23 @@
 import React, { Component } from 'react';
-import {Route, Switch, Link} from 'react-router-dom'
+import {BrowserRouter as Router, Link, Switch, Route} from 'react-router-dom'
 import './App.css';
-import CustomerList from './components/CustomerList'
 import Library from './components/Library'
-
+import CustomerList from './components/CustomerList'
+import Notfound from './notfound'
 
 class App extends Component {
-  state = {
-    selectedCustomer: null,
-    selectedMovie: null,
+  constructor() {
+    super();
+      this.state = {
+        selectedCustomer: null,
+        selectedMovie: null,
+      }
   }
-
+  
   selectCustomer = (customerID) => {
     console.log('select Customer in App')
     
   }
-
-    // Grace's suggested edits for this portion, starting with line 9:
-    // constructor() {
-    //   super();
-    //   this.state = {
-    //     selectedMovie: null,
-    //     selectedCustomer: null,
-    //   };
-    // }
-
     // selectMovieForRental = (movieTitle) => {
     //   this.setState({
     //     selectedMovie: movieTitle
@@ -39,11 +32,29 @@ class App extends Component {
   
   render() {
     return (
-      <div>
-        <h1> Rewind Movies Home Page </h1>
+      <Router>
+        <div>
+          <ul>
+            <li className="nav-link">
+              <Link to="/">Rewind Movies</Link>
+            </li>
+            <li className="nav-link">
+              <Link to="/movies">Movies</Link>
+            </li>
+            <li className="nav-link">
+              <Link to="customers">Customer Registry</Link>
+            </li>
+          </ul>
+        <Switch>
+          <Route exact path="/" render={() => (<h1>Rewind Movies</h1>)}/> />
+          <Route path="/movies" component={Library} />
+          <Route path="/customers" render={ (props) => (<CustomerList {...props} selectCustCallback={this.selectCustomer}/>)} />
+          <Route component={Notfound} />
+        </Switch>
       </div>
-    );
+    </Router>);
   }
 }
+
 
 export default App;

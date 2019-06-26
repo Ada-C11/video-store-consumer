@@ -5,12 +5,10 @@ import Customer from './Customer'
 class CustomerList extends React.Component {
   constructor(props) {
     super(props);
-
     this.state = {
       customers: []
     };
   }
-
   componentDidMount() {
     axios.get('http://localhost:3000/customers')
     .then((response) => {
@@ -22,6 +20,7 @@ class CustomerList extends React.Component {
   }
 
   render() {
+    console.log(this.props)
     const customerList = this.state.customers.map((cust, i) => {
      return <Customer 
         key={i}

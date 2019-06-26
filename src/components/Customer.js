@@ -3,14 +3,14 @@ import PropType from 'prop-types'
 
 const Customer = (props) => {
   const {
-    name, phone, address, city, state, postalCode, 
-    moviesCheckedOutCount, accountCredit
+    name, id, phone, address, city, state, postalCode, 
+    moviesCheckedOutCount, accountCredit, selectCustCallback
   } = props
 
   const onSelectCustomer = (e) => {
     e.preventDefault();
     console.log('Selecting this customer')
-    props.selectCustCallback(props.id)
+    selectCustCallback(id)
   }
 
   return (
