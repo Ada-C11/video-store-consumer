@@ -6,36 +6,29 @@ class RentalCheckout extends Component {
     super(props);
 
     this.state = {
-      checkout: [],
+      checkout: {},
       checkoutStatus: false
     };
   }
 
   checkout = (movie, customer) => {
     this.setState({
-      checkout: [...this.state.checkout, customer, movie],
+      checkout: { customer: customer, movie: movie },
       checkoutStatus: true
     });
-  };z
+  };
 
   render() {
     let checkoutText = "";
 
     if (this.state.checkoutStatus === true) {
       checkoutText = `${
-        this.state.checkout[0]
-      } has check out the following movie: ${this.state.checkout[1]}`;
+        this.state.checkout.customer
+      } has check out the following movie: ${this.state.checkout.movie.title}`;
     }
-    console.log(checkoutText);
 
-    return (
-      <div>
-        <header className="App__header">
-          <h2>
-            {this.props.selectedMovie}
-            {this.props.selectedCustomer}
-          </h2>
-        </header>
+    const checkoutRental =
+      this.props.selectedCustomer && this.props.selectedMovie ? (
         <button
           type="button"
           className="btn btn-danger"
@@ -46,6 +39,19 @@ class RentalCheckout extends Component {
         >
           Checkout
         </button>
+      ) : null;
+
+    return (
+      <div>
+        <header className="App__header">
+          <h2>
+            {this.props.selectedMovie
+              ? this.props.selectedMovie.title
+              : "Please select Movie to checkout"}
+            {this.props.selectedCustomer}
+          </h2>
+        </header>
+        {checkoutRental}
         <p> {checkoutText}</p>
       </div>
     );

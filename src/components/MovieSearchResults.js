@@ -7,13 +7,23 @@ class MovieSearch extends Component {
     super(props);
   }
 
+  sendToLibray = movie => {
+    this.props.addMovietoLibrayCallback(movie);
+    console.log(movie)
+  };
+
   render() {
     const collection = this.props.movies.map(movie => {
       return (
         <section key={movie.id}>
           <span> {movie.title} </span>
 
-          <button type="button" className="btn btn-danger" aria-label="Close">
+          <button
+            type="button"
+            className="btn btn-danger"
+            aria-label="Close"
+            onClick={() => this.sendToLibray(movie)}
+          >
             SELECT
           </button>
         </section>

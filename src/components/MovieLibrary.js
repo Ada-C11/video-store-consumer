@@ -6,13 +6,8 @@ class MovieLibrary extends Component {
     super(props);
 
     this.state = {
-      movies: ["short", "not", "ghost", "blah"],
       selectedMovie: ""
     };
-  }
-
-  addmoviestoLibrary = (movie) => {
-    
   }
 
   selectToCheckoutMovie = movie => {
@@ -27,10 +22,10 @@ class MovieLibrary extends Component {
     if (this.state.selected) {
       return <div>{this.state.selectedMovie}</div>;
     } else {
-      const movies = this.state.movies.map(movie => {
+      const movies = this.props.librayMovies.map(movie => {
         return (
-          <section>
-            <span> {movie} </span>
+          <section key={movie.title}>
+            <span> {movie.title} </span>
 
             <button
               type="button"

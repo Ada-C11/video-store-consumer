@@ -15,7 +15,8 @@ class App extends Component {
       displayOption: null,
       hasMovie: null,
       hasCustomer: null,
-      searchComplete: false
+      searchComplete: false,
+      librayMovies: []
     };
   }
 
@@ -38,12 +39,21 @@ class App extends Component {
     this.setState({ hasCustomer: customer });
   };
 
+  addMovietoLibray = movie => {
+    this.setState({
+      librayMovies: [...this.state.librayMovies, movie]
+    });
+  };
+
   render() {
     let optionalComponent;
 
     if (this.state.displayOption === "library") {
       optionalComponent = (
-        <MovieLibrary rentMovieWithMovieCallback={this.rentMovieWithMovie} />
+        <MovieLibrary
+          rentMovieWithMovieCallback={this.rentMovieWithMovie}
+          librayMovies={this.state.librayMovies}
+        />
       );
     } else if (this.state.displayOption === "search") {
       optionalComponent = (
@@ -59,7 +69,7 @@ class App extends Component {
 
     let rentalMovie;
 
-    if (this.state.hasMovie && this.state.hasMovie) {
+    if (this.state.hasMovie || this.state.hasCustomer) {
       rentalMovie = (
         <RentalCheckout
           selectedMovie={this.state.hasMovie}
@@ -70,7 +80,12 @@ class App extends Component {
 
     let searchResults = "";
     if (this.state.searchComplete === true) {
-      searchResults = <MovieSearchResults movies={this.state.movies} />;
+      searchResults = (
+        <MovieSearchResults
+          movies={this.state.movies}
+          addMovietoLibrayCallback={this.addMovietoLibray}
+        />
+      );
     }
 
     return (

@@ -31,8 +31,6 @@ class MovieSearchForm extends Component {
         alert("Error happened");
         this.setState({ error: error.message });
       });
-
-    const movie = this.state;
   };
   onInputChange = event => {
     const updatedState = {};

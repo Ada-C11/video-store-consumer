@@ -25,7 +25,7 @@ class CustomerList extends Component {
     } else {
       const customers = this.state.customers.map(customer => {
         return (
-          <section>
+          <section key={customer}>
             <span> {customer} </span>
 
             <button
