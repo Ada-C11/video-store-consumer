@@ -14,7 +14,7 @@ import { Nav } from 'react-bootstrap'
 //  Below code is modified from React Router Tutorial https://reacttraining.com/react-router/web/guides/quick-start
 
 const Index = () => {
-  return []
+  return (<p>home</p>);
 }
 
 
@@ -71,6 +71,7 @@ class AppRouter extends Component {
           customer={this.state.selectedCustomer}
           />
           <Route path="/" exact component={Index} />
+          <Route path="/home" exact component={Index} />
           <Route path="/search/" exact component={Search} />
           
           
