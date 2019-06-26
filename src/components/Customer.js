@@ -5,9 +5,9 @@ import './Customer.css'
 
 const Customer = (props)=> {
         const onSelectButtonClick = () =>{
-            this.props.selectCustomerCallback(this.props);
+            props.selectCustomerCallback(props);
         }
-        const {name, city, stateName, phone, accountCredit, moviesCheckedOutCount} = this.props;
+        const {name, city, stateName, phone, accountCredit, moviesCheckedOutCount} = props;
         return (
             <Card style={{ width: '18rem' }}>
             <Card.Body>
@@ -16,7 +16,7 @@ const Customer = (props)=> {
                 <Card.Text>{phone}</Card.Text>
                 <Card.Text>${accountCredit} account credit</Card.Text>
                 <Card.Text className="card-text">{moviesCheckedOutCount} movies currently checked out </Card.Text>
-                <Button onClick={ this.onSelectButtonClick}  variant="primary">
+                <Button onClick={ onSelectButtonClick}  variant="primary">
                     Select
                 </Button>
             </Card.Body>
