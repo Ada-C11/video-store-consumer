@@ -71,9 +71,9 @@ class App extends Component {
 
     let searchResults = "";
     if (this.state.searchComplete === true) {
-      return(
-      <MovieSearch movies={this.state.movies} />
-      )
+      
+      searchResults = <MovieSearch movies={this.state.movies} />
+      
     }
 
     return (
