@@ -45,11 +45,12 @@ class Checkout extends Component {
   render() {
     return(
       <div className="checkout-container">
+        <h5>Current selections</h5>
         <div>
-          Selected Customer: {this.props.selectedCustomerName}
+          Customer: {this.props.selectedCustomerName}
         </div>
         <div>
-          Selected Movie: {this.props.selectedMovie}
+          Movie: {this.props.selectedMovie}
         </div>
         <div>
           <button 

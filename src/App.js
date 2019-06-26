@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
-import Sidebar from 'react-sidebar';
 import './App.css';
 import axios from 'axios';
 
@@ -157,8 +156,8 @@ class App extends Component {
       <div className="App">
         <Router>
           <nav>
-            <ul>
-              <li>
+            <ul className="menu-items">
+              <li className="menu-item">
                 <Link to='/' onClick={this.clearSearchResults}>Home</Link>
               </li>
               <li>
@@ -171,32 +170,33 @@ class App extends Component {
                 <Link to='/customerlist' onClick={this.clearSearchResults}>Customer List</Link>
               </li>
             </ul>
+            <section className="checkout">
+              <Checkout 
+                selectedCustomerName={this.state.selectedCustomerName}
+                selectedCustomerId={this.state.selectedCustomerId}
+                selectedMovie={this.state.selectedMovie}
+                clearSelectedCallback={this.clearSelected}
+                displayMessages={this.displayMessages}
+                refreshList={this.componentDidMount}
+                />
+            </section>
           </nav>
-
-          <Route path="/" />
-          <Route path="/movielibrary" render={(props) => <MovieLibrary {...props} allMovies={this.state.movieLibrary} selectedMovie={this.selectMovie} />} />
-          <Route path="/search" render={(props) => <Search onSearchButtonCallback={this.onSearchButtonCallback}/>} />
-          <Route path="/customerlist" render={(props) => <CustomerList {...props} allCustomers={this.state.allCustomers} selectedCustomer={this.selectCustomer} displayMessages={this.displayMessages}/>} />
+          <section className="site-content">
+            <Route path="/" />
+            <Route path="/movielibrary" render={(props) => <MovieLibrary {...props} allMovies={this.state.movieLibrary} selectedMovie={this.selectMovie} />} />
+            <Route path="/search" render={(props) => <Search onSearchButtonCallback={this.onSearchButtonCallback}/>} />
+            <Route path="/customerlist" render={(props) => <CustomerList {...props} allCustomers={this.state.allCustomers} selectedCustomer={this.selectCustomer} displayMessages={this.displayMessages}/>} />
+          </section>
+          
         </Router>
 
-          <section className="action-result-message">
-            {this.state.behaviorMessage} 
-          </section>
+        <section className="action-result-message">
+          {this.state.behaviorMessage} 
+        </section>
 
-          <section className="checkout">
-            <Checkout 
-              selectedCustomerName={this.state.selectedCustomerName}
-              selectedCustomerId={this.state.selectedCustomerId}
-              selectedMovie={this.state.selectedMovie}
-              clearSelectedCallback={this.clearSelected}
-              displayMessages={this.displayMessages}
-              refreshList={this.componentDidMount}
-              />
-          </section>
-
-          <section className="search-result">
-            <SearchResult result={this.state.searchResults} addMovieToLibraryCallback={this.addMovieToLibraryCallback}/>
-          </section>  
+        <section className="search-result">
+          <SearchResult result={this.state.searchResults} addMovieToLibraryCallback={this.addMovieToLibraryCallback}/>
+        </section>  
       </div>
     )
   }
