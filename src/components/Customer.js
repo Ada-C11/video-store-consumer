@@ -6,11 +6,11 @@ import axios from 'axios';
 
 
 class Customer extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
 
     this.state = {
-      customers: []
+      customers: [],
     }
   }
 
@@ -41,20 +41,24 @@ class Customer extends Component {
       });
   }
 
+
   render() {
+    console.log(this.props)
     const displayCustomers = this.state.customers.map((customer) => {
       const { id, name, city, address, postal_code, phone, account_credit, movies_checked_out_count } = customer;
       return (
-        <div className="customer">
-          {id}
-          {name}
-          {city}
-          {address}
-          {postal_code}
-          {phone}
-          {account_credit}
-          {movies_checked_out_count}
-        </div>
+        <article key={id} className="customer_data" >
+          <ul>
+            <li>{id}</li>
+            <li>{name}</li>
+            <li>{address}, {city}</li>
+            <li>{postal_code}</li>
+            <li>{phone}</li>
+            <li>Account credit: ${account_credit}</li>
+            <li>Movies checked out: {movies_checked_out_count}</li>
+            <button className="select_customer_button" onClick={this.props.currentCustomerCallback(customer)}>Select this Customer</button>
+          </ul>
+        </article>
       )
     })
     return (
@@ -68,8 +72,8 @@ class Customer extends Component {
 }
 
 Customer.propTypes = {
-  id: PropTypes.number.isRequired,
-  name: PropTypes.string.isRequired,
+  id: PropTypes.number,
+  name: PropTypes.string,
   registered_at: PropTypes.instanceOf(Date),
   address: PropTypes.string,
   city: PropTypes.string,

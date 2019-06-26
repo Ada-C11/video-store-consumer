@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
-import logo from './logo.svg';
 import './App.css';
 import VideoStore from './components/VideoStore'
 import Movie from './components/Movie';
@@ -8,38 +7,93 @@ import Customer from './components/Customer';
 import Search from './components/Search';
 
 
-function App() {
-  return (
-    <section>
-      <Router>
-        <div>
-          <Header />
+class App extends Component {
+  constructor() {
+    super();
+
+    this.state = {
+      currentCustomer: "",
+      currentMovie: "",
+    }
+  }
 
           <Route exact path="/" component={Home} />
           <Route path="/customers" component={Customers} />
           <Route path="/library" component={Library} />
           <Route path="/search" component={MovieSearch} />
+            
 
-        </div>
-      </Router>
+  currentCustomerCallback = (customer) => {
+
+    return () => {
+      this.setState({
+        currentCustomer: customer,
+      })
+    }
+  }
+
+  currentMovieCallback = (movie) => {
+
+    return () => {
+      this.setState({
+        currentMovie: movie,
+      })
+    }
+  }
+
+  render() {
+    return (
+      <section>
+
+        <Router>
+          <div>
+            <Header />
+
+            <div className="current_selections">
+              <p>{this.state.currentCustomer.name}</p>
+              <p>{this.state.currentMovie.title}</p>
+            </div>
+
+            <Route exact path="/" component={Home} />
+            <Route
+              path="/customers"
+              render={(routeProps) => (
+                <Customer {...routeProps}
+                  currentCustomerCallback={this.currentCustomerCallback} />
+              )}
+            />
+            <Route
+              path="/library"
+              render={(routeProps) => (
+                <Movie {...routeProps}
+                  currentMovieCallback={this.currentMovieCallback} />
+              )} />
+            <Route path="/search" component={Search} />
+
+          </div>
+
+        </Router>
 
 
-    </section>
-  );
+      </section>
+    );
+  }
 }
 
 
 function Home() {
-  return <VideoStore url="http://localhost:3000/" />;
+  return <VideoStore
+    url="http://localhost:3000/"
+  />;
 }
 
-function Customers() {
-  return <Customer />;
-}
+// function Customers() {
+//   return;
+// }
 
-function Library() {
-  return <Movie />;
-}
+// function Library() {
+//   return <Movie />;
+// }
 
 function MovieSearch() {
   return <Search />;
@@ -61,6 +115,7 @@ function Header() {
         <Link to="/search">Search</Link>
       </li>
     </ul>
+
   );
 
 }
