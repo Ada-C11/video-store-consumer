@@ -20,6 +20,10 @@ class App extends Component {
     }
   }
 
+  reportStatus = (text) => {
+    this.setState({message: text})
+  }
+
   onMovieSelect = (title) => {
     const selectedMovie = title;
     this.setState({selectedMovie})
@@ -54,9 +58,11 @@ class App extends Component {
 })
     .then((response) => {
       this.setState({selectedCustomer: '', selectedMovie: ''})
+      this.reportStatus("Check-out successful!");
     })
     .catch((error) => {
       this.setState({ error: error.message });
+      this.reportStatus(`Uh-oh!  There was a problem: ${error.message}`)
 
     })
   }
@@ -120,7 +126,7 @@ class App extends Component {
           </nav>
 
           <section>
-            <Message />
+            <Message message={this.state.message}/>
           </section>
   
           <Route path="/" exact component={Index} />
