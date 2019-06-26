@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import axios from 'axios';
-import Movie from './Movie'
+import Result from './Result'
 
 require('dotenv').config();
 
@@ -36,6 +36,10 @@ class Search extends Component {
     });
   }
 
+  addMovie = (movieId) => {
+    console.log(movieId)
+  }
+
   componentDidMount () {
     this.searchMovie();
   };
@@ -45,15 +49,15 @@ class Search extends Component {
 
     axios.get(URL)
     .then((response) => {
-      const movies = response.data.results.map((movie) => {
+      const movies = response.data.results.map((movie, i) => {
         return {
-          id: movie.id,
-          key: movie.id,
+          id: i,
+          key: i,
           title: movie.title,
           overview: movie.overview,
           release_date: movie.release_date,
           image_url: `http://image.tmdb.org/t/p/w185//${movie.poster_path}`,
-          external_id: movie.external_id,
+          external_id: movie.id,
         }
       })
       this.setState({
@@ -69,8 +73,8 @@ class Search extends Component {
 
   render() {
     const results = this.state.result.map((movie, i) => {
-
-      return <Movie
+      return <Result
+            addMovieCallback={this.addMovie}
             id={i}
             key={i}
             title={movie.title}
