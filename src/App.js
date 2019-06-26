@@ -11,6 +11,7 @@ class App extends Component {
     super();
     this.state = {
       customers: [],
+      library: [],
       selected_customer: "none",
       selectCustomerCallBack: this.selectCustomer,
       selectMovieCallBack: this.selectMovie,
@@ -20,6 +21,19 @@ class App extends Component {
 
   componentDidMount() {
     this.updateCustomers()
+    this.getLibrary()
+  }
+
+  getLibrary = () => {
+    const url = `http://localhost:3000/movies`
+    axios.get(url)
+      .then((response) => {
+        this.setState({ library: response.data });
+        console.log(response)
+      }) 
+      .catch((error) => {
+        this.setState({ error: error.message });
+      });
   }
 
   updateCustomers = () => {
@@ -92,7 +106,8 @@ class App extends Component {
 {/* <Route path="/" exact component={Index} /> */}
       <Route path="/search/" component={Search} />
       <Route path="/library/" render={
-        (props) => <Library {...props} 
+        (props) => <Library {...props}
+                      library={this.state.library}
                       selectMovieCallBack={this.state.selectMovieCallBack} 
                     />
       } />
