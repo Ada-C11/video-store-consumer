@@ -43,7 +43,7 @@ class RentalLibraryPage extends Component {
           <table className="table table-striped">
             <thead>
             <tr>
-              <th scope="col" ></th>
+              <th scope="col" >Poster</th>
               <th scope="col">#</th>
               <th scope="col">Title</th>
               <th scope="col">Overview</th>

@@ -10,6 +10,7 @@ const SearchResult = (props) => {
   }
   return (
     <tr>
+      <td><img src={image_url} alt={`movie poster for ${title}`} /></td>
       <td>{title}</td>
       <td>{overview}</td>
       <td>{release_date}</td>

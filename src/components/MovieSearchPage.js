@@ -44,8 +44,11 @@ class MovieSearchPage extends Component {
       external_id: movieData.external_id
     };
 
+    console.log(rental.image_url);
+
     Axios.post(`${baseURL}/movies`, rental)
-    .then(() => {
+    .then((response) => {
+      console.log(response);
       this.setState({ 
         success: `Successfully added ${rental.title} to the library.`,
         addRentalsLink: true,
