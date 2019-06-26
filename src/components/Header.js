@@ -31,7 +31,7 @@ function Header(props) {
           <p className="rental-body">Movie: {props.movieTitle}</p>
           <p className="rental-body">Customer: {props.customerName}</p>
       </div>
-        <div>
+        <div className='button-container'>
           <button className={`btn btn-light ${props.checkoutButtonClassName}`}
             onClick={props.onCheckoutClickCallback}>
           Checkout!
