@@ -45,19 +45,19 @@ class Search extends Component {
   };
 
   searchMovie = (searchTitle) => {
-    const URL = `https://api.themoviedb.org/3/search/movie?api_key=${process.env.REACT_APP_API_KEY}&language=en-US&query=${searchTitle}&page=1&include_adult=false`
+    const URL = `http://localhost:3000/movies?query=${searchTitle}`
 
     axios.get(URL)
     .then((response) => {
-      const movies = response.data.results.map((movie, i) => {
+      const movies = response.data.map((movie, i) => {
         return {
           id: i,
           key: i,
           title: movie.title,
           overview: movie.overview,
           release_date: movie.release_date,
-          image_url: `http://image.tmdb.org/t/p/w185//${movie.poster_path}`,
-          external_id: movie.id,
+          image_url: movie.image_url,
+          external_id: movie.external_id,
         }
       })
       this.setState({
