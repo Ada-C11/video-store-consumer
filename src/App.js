@@ -3,10 +3,11 @@ import {BrowserRouter as Router, Link, Switch, Route} from 'react-router-dom'
 import './App.css';
 import Library from './components/Library'
 import CustomerList from './components/CustomerList'
+import MovieSearch from './components/MovieSearch'
 import Notfound from './notfound'
-import image from './images/image.jpeg'
 import Rentals from './components/Rentals'
 import axios from 'axios';
+import image from './images/frontpage.jpg'
 
 const rentalURL = ''
 class App extends Component {

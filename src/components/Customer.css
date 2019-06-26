@@ -2,8 +2,14 @@
   width: 18rem;
 }
 
-.customer-card {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
+.card {
+  background-color:white;
+  border: solid black;
+  border-radius: 10px;
+  padding: 2% 2% 2% 2%;
+  margin: 2%;
+}
+
+.card:hover {
+  box-shadow: 20px 20px #BE1805;
 }

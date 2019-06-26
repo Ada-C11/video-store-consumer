@@ -20,6 +20,7 @@ const Movie = (props) => {
           Add to Library
         </button>
         <h2 className="card-title">{props.title}</h2>
+        <h4 className="card-text">{props.overview}</h4>
         <h4 className="card-text">{props.releaseDate}</h4>
       </div>
     </div>
@@ -29,10 +30,10 @@ const Movie = (props) => {
 Movie.propTypes = {
   id: PropTypes.number,
   title: PropTypes.string,
+  overview: PropTypes.string,
   releaseDate: PropTypes.string,
   imageUrl: PropTypes.string,
   external_id: PropTypes.number
 };
 
 export default Movie;
-

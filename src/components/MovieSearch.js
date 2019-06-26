@@ -30,11 +30,14 @@ class MovieSearch extends React.Component {
       title: this.state.title,
     };
 
+    console.log(searchQuery.title)
+
     this.setState({
       title: '',
   });
 
-  const url = `http://localhost:3000/movies?query=${searchQuery.title}`
+  
+  const url = `http://localhost:3000/movies?query=` + searchQuery.title
   axios.get(url)
     .then((response) => {
       console.log(searchQuery);
@@ -51,7 +54,7 @@ class MovieSearch extends React.Component {
 
   addMovieToLibrary = (movieId) => {
     // TO DO: make sure following line syntax is okay
-    const clickedMovie = this.state.movies.find(movie)
+    const clickedMovie = this.state.movies.find(movie => movie.external_id === movieId)
 
     const movieData = {
       title: clickedMovie.title,
@@ -76,6 +79,7 @@ class MovieSearch extends React.Component {
      return <Movie key={index}
      id={movie.external_id}
      title={movie.title}
+     overview={movie.overview}
      releaseDate={movie.release_date}
      imageUrl={movie.image_url}
      callback={this.addMovieToLibrary}

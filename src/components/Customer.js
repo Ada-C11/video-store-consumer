@@ -1,5 +1,7 @@
 import React from 'react'
 import PropType from 'prop-types'
+import {Card, Button} from 'react-bootstrap'
+import './Customer.css'
 
 const Customer = (props) => {
   const {
@@ -15,21 +17,19 @@ const Customer = (props) => {
 
   return (
 
-    <article className="card width">
-      <div className="Customer-card card-body"> 
-      <h3 className="card-title">{name}</h3>
-      <h4 className="card-text">{phone}</h4>
-      <p className="card-text">{address}</p>
-      <p className="card-text">{city}, {state}, {postalCode}</p>
-      <h4 className="card-text"> Account credit: {accountCredit}</h4>
-      <p className="card-text">Movies checked out: {moviesCheckedOutCount === 0 ? 'none' : moviesCheckedOutCount}</p>
-      <button
-        className="btn btn-secondary"
-        onClick={onSelectCustomer}>
+    <Card style={{ width: '18rem' }} className="card">
+    <Card.Body>
+      <Card.Title>{name}</Card.Title>
+      <Card.Text>{address} </Card.Text>
+      <Card.Text>{city}, {state}, {postalCode} </Card.Text>
+      <Card.Text>{phone}</Card.Text>
+      <Card.Text>${accountCredit} account credit</Card.Text>
+      <Card.Text className="card-text">{moviesCheckedOutCount} movies currently checked out </Card.Text>
+      <button className="btn btn-secondary" onClick={onSelectCustomer}>
         Select Customer
       </button>
-      </div>
-    </article>
+    </Card.Body>
+  </Card>
   )
 }
 

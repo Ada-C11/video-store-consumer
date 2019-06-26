@@ -25,27 +25,21 @@ class Library extends React.Component {
       console.log(error.message)
     })
   }
-
-  // TO DO: confirm this works
-  findMovieForRental = (movieId) => {
-    console.log(`In Library ${movieId}`);
-    const clickedMovie = this.state.movies.find( movie => movie.id === movieId)
-    this.props.selectedMovie(clickedMovie.title)
-  }
-  
+    
   render() {
 
     const movieCollection = this.state.movies.map((movie) => {
       return <Movie key={movie.id}
         id={movie.id}
         title={movie.title}
-        releaseDate={movie.overview}
+        overview={movie.overview}
+        releaseDate={movie.release_date}
         imageUrl={movie.image_url}
         external_id={movie.external_id}/>
     });
     return (
       <section className="library-container">
-        <h1> Rewind Movies libary</h1>
+        <h1> Rewind Movies Library </h1>
         {movieCollection}
       </section>
     )

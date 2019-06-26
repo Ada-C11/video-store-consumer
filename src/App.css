@@ -31,5 +31,29 @@ img {
   display: block;
   margin-left: auto;
   margin-right: auto;
-  width: 75%;
+  width: 90%;
+}
+
+.nav-menu {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  list-style: none;
+  background-color:#BE1805;
+  color: white;
+  list-style: none;
+  line-height: 4em;
+}
+
+a {
+  color: white;
+}
+
+a:visited {
+  color: white;
+  text-decoration: none;
+}
+
+a:hover {
+  font-size: 1.5em;
 }
