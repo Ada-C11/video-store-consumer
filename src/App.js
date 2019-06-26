@@ -15,12 +15,13 @@ class AppRouter extends Component {
 
   constructor(props) {
     super(props);
-    this.state = {
+    this.initialState = {
       currentMovie: undefined,
       currentCustomer: undefined,
-      selectedPage: "/"
-
+      selectedPage: "/",
     }
+
+    this.state = this.initialState
   }
 
   onSelectMovie = (movieData) => {
@@ -38,7 +39,6 @@ class AppRouter extends Component {
         name: customerData.name,
         id: customerData.id
       },
-
     });
   }
 
@@ -49,6 +49,7 @@ class AppRouter extends Component {
     console.log(window.location.pathname);
   }
 
+
   makeRental = (event) => {
     event.preventDefault();
     const rentalData = {
@@ -57,15 +58,22 @@ class AppRouter extends Component {
       due_date: new Date("2020-06-06")
     };
 
-    const rentalURL = `http://localhost:3001/rentals/Psycho/check-out`
+    const rentalURL = `http://localhost:3001/rentals/${rentalData.title}/check-out`
     axios.post(rentalURL, rentalData)
       .then((response) => {
-        console.log(rentalURL);
+        this.setState(this.initialState);
+        alert(`Rental succesfully created`)
       })
       .catch((error) => {
-        console.log(error);
+        alert(error)
       })
   }
+
+  // onRentalSubmit = (event) => {
+  //   event.preventDefault();
+  //   this.makeRental();
+  //   this.setState({messages:'Rental succesfully created'})
+  // }
 
 
   render() {
@@ -92,8 +100,8 @@ class AppRouter extends Component {
             <div className="selected-movie">{this.state.currentMovie ? `Selected Movie: ${this.state.currentMovie.title}` : ""}</div>
             <div className="selected-customer">{this.state.currentCustomer ? `Selected Customer: ${this.state.currentCustomer.name}` : ""}</div>
             <div className={this.state.currentCustomer && this.state.currentMovie ? "checkout-button" : "hidden"}><span 
-            onClick = {this.makeRental}
-            >Check Movie Out</span></div>
+            onClick = {this.makeRental}> 
+            Check Movie Out</span></div>
             <Route path="/" exact component={Index} />
             <Route path="/library/" render={(props) => <Library {...props} onSelectMovieCallback={this.onSelectMovie} />} />
             <Route path="/customers/" render={(props) => <Customer {...props} onSelectCustomerCallback={this.onSelectCustomer} />} />

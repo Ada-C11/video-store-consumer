@@ -107,9 +107,7 @@ class Search extends Component {
                     </label>
                     <button className="search-submit"> Search</button>
                 </form >
-
                 {results} 
-                {console.log(results)}
             </div>
         )
     };
