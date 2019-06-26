@@ -1,12 +1,10 @@
 .movie {
   border: 1px solid black;
   padding: 1em;
-  margin: 5rem;
+  margin: 3rem 7rem;
 
-  min-height: 250px;
-  min-width: 225px;
-  max-width: 500px;
-  max-height: 500px;
+  max-width: 450px;
+  max-height: 450px;
 
   border-radius: 5px;
 
@@ -16,13 +14,9 @@
 }
 
 .movie__content {
-  display: flex;
-  flex-direction: column;
-
   padding-left: 1em;
   text-align: center;
   font-weight: 100;
-  overflow: hidden;
 }
 
 .movie__image {
@@ -31,6 +25,7 @@
 }
 
 .movie__button {
+  grid-row-start: 4;
   color: white;
   background-color: #374B4A;
   font-size: 1.1em;
