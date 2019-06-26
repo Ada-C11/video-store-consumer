@@ -4,6 +4,7 @@ import './App.css';
 import VideoStore from './components/VideoStore'
 import Movie from './components/Movie';
 import Customer from './components/Customer';
+import Search from './components/Search';
 
 
 class App extends Component {
@@ -15,6 +16,12 @@ class App extends Component {
       currentMovie: "",
     }
   }
+
+          <Route exact path="/" component={Home} />
+          <Route path="/customers" component={Customers} />
+          <Route path="/library" component={Library} />
+          <Route path="/search" component={MovieSearch} />
+            
 
   currentCustomerCallback = (customer) => {
 
@@ -88,8 +95,8 @@ function Home() {
 //   return <Movie />;
 // }
 
-function Search() {
-  return <h2>Search</h2>;
+function MovieSearch() {
+  return <Search />;
 }
 
 function Header() {
