@@ -8,7 +8,8 @@ class Search extends Component {
 
     this.state = {
       searchQuery: undefined,
-      searchResults: []
+      searchResults: [],
+      notification: null,
     }
   }
 
@@ -40,8 +41,6 @@ class Search extends Component {
   }
 
   onAdd = (movie) => {
-
-    console.log(movie)
     const url = `http://localhost:3000/movies`
     const config = {
         external_id: movie.external_id,
@@ -53,6 +52,9 @@ class Search extends Component {
     axios.post(url, config)
     .then((response) => {
       console.log(response)
+      if(response.status === 200) {
+        this.setState({notification: `Succesfully Added ${movie.title}!`})
+      }
     }) 
     .catch((error) => {
       console.log(error);
@@ -65,13 +67,15 @@ class Search extends Component {
       return <li>{movie.title}<button className="" onClick={() => this.onAdd(movie)}>
       Add</button></li>
     })
-    console.log(searchResults)
+    
+    const notification = this.state.notification
 
     return (
       <div className="App">
         <header className="App__header">
           <h1 className="App__title">Search for Movies to Add!</h1>
           <p className="App__intro-text">
+            <div>{notification}</div>
             <form onSubmit={this.searchLibrary}>
               <input
                 type="text"
