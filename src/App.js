@@ -13,7 +13,7 @@ class App extends Component {
     this.state = {
       selectedMovie: "",
       selectedCustomer: "",
-      allRentals: [],
+      movieList: [],
       customerList: [],
     }
   }
@@ -25,6 +25,16 @@ class App extends Component {
   onSelectCustomer = (customerId) => {
     const customer = this.state.customerList.find(customer => customer.id === customerId);
     this.setState({selectedCustomer: customer});
+  }
+
+  getMovies = (movies) => {
+    console.log(movies)
+    this.setState( {movieList: movies})
+  }
+
+  onSelectMovie = (movieId) => {
+    const movie = this.state.movieList.find(movie => movie.id === movieId);
+    this.setState({selectedMovie: movie});
   }
 
   render() {
@@ -39,7 +49,7 @@ class App extends Component {
                 </li>
                 <li>
                     <Link to="/movies" className="movies">Movies</Link>
-                  </li>
+                </li>
                 <li>
                   <Link to="/customers" className="customers">Customers</Link>
                 </li>
@@ -47,7 +57,10 @@ class App extends Component {
             </nav>
           </div>
           <main>
-            <Route path="/movies" component={RentalLibrary} />
+            <Route 
+              path="/movies"
+              render={(props) => <RentalLibrary {...props} selectMovieCallback={this.onSelectMovie} getMovieCallback={this.getMovies}/>}
+            />
             <Route 
               path="/customers" 
               render={(props) => <CustomerList {...props} selectCustomerCallback={this.onSelectCustomer} getCustomerCallback={this.getCustomers}/>}

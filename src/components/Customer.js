@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 const Customer = (props) => {
   const selectCustomer = () => {
-    return props.selectedCustomerCallback(props.id)
+    return props.selectCustomerCallback(props.id)
   }
 
   return (
@@ -32,7 +32,7 @@ Customer.propTypes = {
   postal:PropTypes.string,
   phone:PropTypes.string,
   account_credit:PropTypes.number,
-  selectedCustomerCallback: PropTypes.func,
+  selectCustomerCallback: PropTypes.func,
 };
 
 export default Customer;
