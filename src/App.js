@@ -38,6 +38,7 @@ class App extends Component {
       due_date: new Date(dueDate),
     }
 
+
     axios.post(rentalUrl, newRental)
       .then((response) => {
         console.log(response)
@@ -112,15 +113,15 @@ class App extends Component {
               render={(routeProps) => (
                 <Customer {...routeProps}
                   currentCustomerCallback={this.currentCustomerCallback} />
-              )} />
+              )}
+            />
             <Route
               path="/library"
               render={(routeProps) => (
                 <Movie {...routeProps}
                   currentMovieCallback={this.currentMovieCallback} />
               )} />
-            <Route
-              path="/search"
+            <Route path="/search"
               render={(routeProps) => (
                 <Search {...routeProps} />
               )} />
@@ -138,11 +139,8 @@ class App extends Component {
 
 function Home() {
   return <VideoStore
-    url="http://localhost:3000/"
   />;
 }
-
-
 
 function Header() {
   return (

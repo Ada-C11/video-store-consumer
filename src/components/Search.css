@@ -1,16 +1,4 @@
-.movies {
-    display: flex;
-    flex-wrap: wrap;
+.card {
+    width: 18rem;
 }
 
-
-.movie-poster {
-    justify-content: center;
-}
-
-.grid-container {
-    justify-content: center;
-    text-align: center;
-    color: blue;
-    border-bottom: 10px;
-  }
