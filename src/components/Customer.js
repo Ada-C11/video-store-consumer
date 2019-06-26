@@ -14,7 +14,6 @@ function Customer (props) {
             {props.customer.city}, {props.customer.state} {props.customer.postal_code}</td>
         <td>{props.customer.phone}</td>
         <td>{props.customer.account_credit}</td>
-        <td><img src="https://media-public.canva.com/MADGxum5lYo/4/screen_2x.jpg"  /></td>
       </tr>
   )
 }

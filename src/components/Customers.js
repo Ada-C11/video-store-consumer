@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import axios from 'axios'
-
 import 'bootstrap/dist/css/bootstrap.css';
 
 import Customer from './Customer'
@@ -38,6 +37,7 @@ class Customers extends Component {
   render () {
     return (
     <div>
+      <h2>Customers</h2>
       <table className="table table-striped table-hover">
         <thead>
           <tr>
