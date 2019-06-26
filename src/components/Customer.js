@@ -2,22 +2,21 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
 
+import './Customer.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
+
 class Customer extends Component {
   render() {
   const { index, name, id, registeredAt, address, city, state, zip, phone, accountCredit, moviesCheckedOutCount, selectACustomerCallback } = this.props;
 
   return (
-    <section>
+    <section className="card-body">
+      <p>Customer ID: { id }</p>
       <h3>{ name }</h3>
-      <ul>
-        <li>{ id }</li>
-        <li> this will be more things!</li>
-      </ul>
       <button
         value={id}
         onClick={ () => { selectACustomerCallback(index) } }
       >Select</button>
-
     </section>
   )};
 }
