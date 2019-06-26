@@ -13,34 +13,17 @@ class App extends Component {
       selectedMovie: "",
       selectedCustomer: "",
       allRentals: [],
-      showMovies: false,
-      showCustomers: false
+      customerList: [],
     }
   }
 
-  // Index = () => {
-  //   return <h2>Home</h2>;
-  // }
-
-  // About = () => {
-  //   return <h2>About</h2>;
-  // }
-
-  // Users = () => {
-  //   return <h2>Users</h2>;
-  // }
-
-  showCustomerToggle = () => {
-    const status = !this.state.showCustomers;
-    this.setState({showCustomers: status,
-                  showMovies: !status
-    });
+  getCustomers = (customers) => {
+    this.setState( {customerList: customers})
   }
 
-  showMovieToggle = () => {
-    const status = !this.state.showMovies;
-    this.setState({showMovies: status,
-                    showCustomers: !status});
+  onSelectCustomer = (customerId) => {
+    const customer = this.state.customerList.find(customer => customer.id === customerId);
+    this.setState({selectedCustomer: customer});
   }
 
   render() {
@@ -57,47 +40,20 @@ class App extends Component {
                 <li>
                   <Link to="/customers" className="customers">Customers</Link>
                 </li>
-              {/* <button onClick={this.showMovieToggle}>Show Movies</button>
-              <button onClick={this.showCustomerToggle}>Show Customers</button> */}
               </ul>
             </nav>
           </div>
           <main>
             <Route path="/movies" component={RentalLibrary} />
-            <Route path="/customers" component={CustomerList} />
-            {/* {this.state.showCustomers && <CustomerList />}
-            {this.state.showMovies && <RentalLibrary />} */}
+            <Route 
+              path="/customers" 
+              render={(props) => <CustomerList {...props} selectCustomerCallback={this.onSelectCustomer} getCustomerCallback={this.getCustomers}/>}
+            />
           </main>
         </Router>
       </div>
     );
-  // return (
-  //   <div>
-  //     <Router >
-  //       <div>
-  //         <nav>
-  //           <ul>
-  //             <li>
-  //               <Link to="/">Home</Link>
-  //             </li>
-  //             <li>
-  //               <Link to="/movies/">All Movies</Link>
-  //             </li>
-  //             <li>
-  //               <Link to="/customers/">Customers</Link>
-  //             </li>
-  //           </ul>
-  //         </nav>
-
-  //         {/* <Route path="/" exact component={Index} />
-  //         <Route path="/about/" component={About} />
-  //         <Route path="/users/" component={Users} /> */}
-  //       </div>
-  //     </Router>
-  //   </div>
-  // );
-  // }
-}
+  }
 }
 
 export default App;
