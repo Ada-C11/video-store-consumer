@@ -1,13 +1,27 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import axios  from 'axios'
 
 const SearchResults = (props) => {
 
     const selectMovie = (event) => {
-        // console.log(event.target.id)
-        console.log(props.movieData)
-        console.log(props.movieData[0])
-        console.log(props.movieData[event.target.id])
+        const movie = props.movieData[event.target.id]
+        const postURL = 'http://localhost:3002/movies/add-movie'
+        axios.post(postURL, null, {
+            params: {
+                external_id: movie.external_id,
+                image_url: movie.image_url,
+                overview: movie.overview,
+                release_date: movie.release_date,
+                title: movie.title
+            }
+        })
+        .then((response) => {
+            console.log(response)
+        })
+        .catch((error) => {
+            console.log(response)
+        })
     }
 
     const movies = props.movieData.map((movie, i) => {
@@ -17,7 +31,7 @@ const SearchResults = (props) => {
                 <button 
                     id={i}
                     onClick={selectMovie}>
-                        Select Movie
+                        Add to Library
                 </button>
             </div>
             )
