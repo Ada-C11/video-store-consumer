@@ -138,6 +138,28 @@ class App extends Component {
       });
   }
 
+  addSearchToLibrary = (movie) => {
+    console.log('im in App and addSearchToLibrary was triggered!!!!!')
+    axios.post(`${URL}/movies`, movie)
+      .then((response) => {
+        let currentMovieList = this.state.movies;
+        currentMovieList.push(movie)
+
+        this.setState({
+          movies: currentMovieList,
+          message: `${movie.title} was successfully added to the Movie Library`,
+        });
+        
+      })
+      .catch((error) => {
+        console.log(error.messages);
+    
+        this.setState({
+          message: error.message
+        });
+      });
+  }
+
 
   render() {
     const { selectedMovie, selectedCustomer, message } = this.state
@@ -197,7 +219,7 @@ class App extends Component {
           <Route exact={true} path="/" render={() => (
             <h1>Welcome</h1>
           )} />
-          <Route path="/search" render={(props) => <SearchMovie {...props} movieList={this.state.movies}/>} />
+          <Route path="/search" render={(props) => <SearchMovie {...props} movieList={this.state.movies} addSearchToLibraryCallback={this.addSearchToLibrary}/> } />
           <Route path="/customers" render={(props) => <CustomerList {...props} customers={this.state.customers} onSelectCustomerCallback={this.onSelectCustomer} /> } />
           <Route path="/library" render={(props) => <Movies {...props} movieList={this.state.movies} onSelectMovieCallback={this.onSelectMovie} /> } />
         </body>

@@ -9,20 +9,23 @@ const Movie = (props) => {
         props.onSelectMovieClick(movie);
     }
 
-    // let button = '';
-    // if (this.props.isASearchResult) {
-    //     button = <button>Add To Library</button>
-    // } else {
-    //     button = <button onClick={onHandleClick}>Select for Rental</button>
-    // };
+    const onSearchResultClick = () => {
+        props.addSearchToLibraryCallback(movie);
+    }
+
+    let button = '';
+    if (props.isSearchResult) {
+        button = <button onClick={onSearchResultClick}>Add To Library</button>
+    } else {
+        button = <button onClick={onHandleClick}>Select for Rental</button>
+    };
 
     return (
         <section>
             <img src={movie.image_url} alt={`movie poster for ${movie.title}`}/>
             <h4>{movie.title}</h4>
             <p>{movie.external_id}</p>
-            {/* {button} */}
-            {<button onClick={onHandleClick}>Select for Rental</button>}
+            {button}
             <p>Release date: {movie.release_date}</p>
             <p>{movie.overview}</p>
         </section>

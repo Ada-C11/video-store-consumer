@@ -65,10 +65,12 @@ class SearchMovie extends Component {
     }
 
     render() {
-
+        console.log(this.props.addSearchToLibraryCallback)
+        
         const listSearchResults = this.state.allSearchResults.map((movieFromSearch, i) => {
 
           return (
+
             <li key={i}>
               {/* <img src={movieFromSearch.image_url} alt={`movie poster for ${movieFromSearch.title}`}/>
                 <h4>{movieFromSearch.title}</h4>
@@ -76,7 +78,7 @@ class SearchMovie extends Component {
                 <button onClick={this.getMovieForLibrary}>Add Movie to Library</button>
                 <p>Release date: {movieFromSearch.release_date}</p>
                 <p>{movieFromSearch.overview}</p> */}
-              <Movie movie={movieFromSearch}/>
+              <Movie movie={movieFromSearch} addSearchToLibraryCallback={this.props.addSearchToLibraryCallback} isSearchResult={true}/>
             </li>
           )
         })
