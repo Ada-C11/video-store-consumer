@@ -17,8 +17,12 @@ class Search extends Component {
 
     }
 
+    reportStatus = (text) => {
+        this.setState({message: text})
+    }
+
     movieSearchCallback = (title) => {
-        console.log(title)
+        this.reportStatus("Searching through database...")
         const getURL = 'http://localhost:3002/'
         axios.get(getURL, {
             params: {
@@ -38,11 +42,11 @@ class Search extends Component {
                     return movieResult
                 })
                 this.setState({ movies });
-                this.setState({message: "Search successful!"})
+                this.reportStatus("Search successful!")
             })
             .catch((error) => {
                 this.setState({error: error.message });
-                this.setState({message: error.message})
+                this.reportStatus(error.message)
             })
     }
 
