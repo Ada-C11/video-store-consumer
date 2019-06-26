@@ -27,7 +27,8 @@ class App extends Component {
   onCustomerSelect = (name, id) => {
     const selectedCustomer = {
       name: name,
-      id: id
+      id: id,
+      error: null
     }
 
     this.setState({selectedCustomer})
@@ -51,11 +52,11 @@ class App extends Component {
       }
 })
     .then((response) => {
-      console.log(response)
-      // this.setSate
+      this.setState({selectedCustomer: '', selectedMovie: ''})
     })
     .catch((error) => {
-      console.log(error)
+      this.setState({ error: error.message });
+
     })
   }
 
