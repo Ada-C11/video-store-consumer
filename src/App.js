@@ -76,6 +76,8 @@ class App extends Component {
     // console.log(this.state.selectedMovie)
   }
 
+  // this method takes in a name rather than an id
+  // we'll need the id to send to the checkout request
   selectCustomer = (customerId) => {
     return () => { 
       this.setState({
@@ -87,6 +89,24 @@ class App extends Component {
     // this.setState({
     //   selectedCustomer: customer
     // });
+  }
+
+  // pass this as callback method to sidebar
+  // do we need to pass in customer id into this method to set params? 
+  // maybe we should update the select customer method to store 
+  // the entire customer object for reference elsewhere
+  checkoutMovie = (title) => {
+    axios.post(`/movies/${title}/check-out`, {
+      // this won't work until we've updated selectedCustomer
+      // to hold all customer data
+      params: {
+        customer_id: this.state.selectedCustomer.id
+      }
+    })
+    .then(() => {
+      alert(`${title} was successfully checked out!`);
+    })
+    .catch(error => console.log(error));
   }
 
   render() {
