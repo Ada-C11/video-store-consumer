@@ -42,13 +42,16 @@ class App extends Component {
   render() {
     return (
       <Router>
-        <div className="App-header">
-          <ul className="nav-menu">
+        <div className="nav-menu">
+          <ul className="nav-container">
             <li className="nav-link">
-              <Link to="/">Rewind Movies</Link>
+              <Link to="/">Home</Link>
             </li>
             <li className="nav-link">
-              <Link to="/movies">Movies</Link>
+              <Link to="/movies">Rewind Movies</Link>
+            </li>
+            <li className="nav-link">
+              <Link to="/moviesearch">Search Movie Database</Link>
             </li>
             <li className="nav-link">
               <Link to="/customers">Customer Registry</Link>
@@ -61,6 +64,7 @@ class App extends Component {
         <Switch>
           <Route exact path="/" render={() => (this.showHomePage())}/> />
           <Route path="/movies" component={Library} />
+          <Route path="/moviesearch" component={MovieSearch} />
           <Route path="/customers" render={ (props) => (<CustomerList {...props} selectCustCallback={this.selectCustomer}/>)} />
           <Route path="/rental" render={ (props) => (
             <Rentals {...props} 
