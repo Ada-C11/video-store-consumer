@@ -92,33 +92,34 @@ class App extends Component {
 
     return (
       <div className="App">
-        <header className="App__header">
-          <h1 className="App__title">BitaRos Amazing VideoStore</h1>
+        <header className="App-header">
+          <h1 className="App-title">BitaRos Amazing VideoStore</h1>
         </header>
-        <section>
+        <section className="App-main">
+
           <button
             type="button"
-            className="btn btn-danger"
+            className="movie-display"
             aria-label="Close"
             onClick={() => this.setDisplay("library")}
           >
-            Movie Library
+            <p>Movie Library </p>
           </button>
           <button
             type="button"
-            className="btn btn-danger"
+            className="movie-display"
             aria-label="Close"
             onClick={() => this.setDisplay("search")}
           >
-            Movie Search
+            <p>Movie Search </p>
           </button>
           <button
             type="button"
-            className="btn btn-danger"
+            className="movie-display"
             aria-label="Close"
             onClick={() => this.setDisplay("list")}
           >
-            CustomerList
+            <p>CustomerList </p>
           </button>
         </section>
         {searchResults}

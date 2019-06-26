@@ -57,7 +57,7 @@ class CustomerList extends Component {
                 type="button"
                 className="btn btn-danger"
                 aria-label="Close"
-                onClick={() => this.selectToCheckoutCustomer(customer)}
+                onClick={() => this.selectToCheckoutCustomer(customer.name)}
               >
                 SELECT
               </button>
