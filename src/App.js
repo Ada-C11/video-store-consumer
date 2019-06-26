@@ -34,7 +34,9 @@ class App extends Component {
           <div>
             <nav>
               <ul>
-            {/* <Search /> */}
+                <li>
+                  <Link to="/search" className="search">Search</Link>
+                </li>
                 <li>
                     <Link to="/movies" className="movies">Movies</Link>
                   </li>
