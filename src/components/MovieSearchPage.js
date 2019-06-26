@@ -13,7 +13,8 @@ class MovieSearchPage extends Component {
     this.state = {
       searchResults: [],
       rentalAddedMessage: false,
-      rentalToAdd: {}
+      rentalToAdd: {},
+      addRentalsLink: false,
     }
   };
 
@@ -25,7 +26,8 @@ class MovieSearchPage extends Component {
         const results = response.data;
         this.setState({ 
           searchResults: results,
-          success: `Found ${response.data.length} movies matching "${searchTerm}"` })
+          success: `Found ${response.data.length} movies matching "${searchTerm}"`,
+          addRentalsLink: false, })
         })
       .catch((error) => {
           this.setState({ error: error.message });
@@ -45,7 +47,8 @@ class MovieSearchPage extends Component {
     Axios.post(`${baseURL}/movies`, rental)
     .then(() => {
       this.setState({ 
-        success: `Successfully added ${rental.title} to the library.`
+        success: `Successfully added ${rental.title} to the library.`,
+        addRentalsLink: true,
       })
     })
   }
@@ -74,16 +77,20 @@ class MovieSearchPage extends Component {
       <p>
       Success: {this.state.success} 
       </p>
-    <Link to="/library">Go to rental library</Link>
     </section>) 
     : null;
+
+    const libraryLink  = (this.state.addRentalsLink) ? 
+    (<section className="alert alert-success"> 
+    <Link to="/library">Go to rental library</Link>
+    </section>) : null; 
 
     return (
     <section>
       {errorSection}
       {successSection}
+      {libraryLink}
       <div>
-        <h3>MoviesSearchPage</h3>
         <MovieSearchBar searchCallback={this.submitSearchQuery} />
       </div>
       <div>
