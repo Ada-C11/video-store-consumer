@@ -119,45 +119,43 @@ class App extends Component {
     return (
       <div className="App">
         <header>
-        
-        <Router>
-            <nav>
-              <ul>
-                <li>
-                  <Link to='/' onClick={this.clearSearchResults}>Home</Link>
-                </li>
-                <li>
-                  <Link to='/search'>Search</Link>
-                </li>
-                <li>
-                  <Link to='/movielibrary' onClick={this.clearSearchResults}>Movie Library</Link>
-                </li>
-                <li>
-                  <Link to='/customerlist' onClick={this.clearSearchResults}>Customer List</Link>
-                </li>
-              </ul>
-            </nav>
+          <Router>
+              <nav>
+                <ul>
+                  <li>
+                    <Link to='/' onClick={this.clearSearchResults}>Home</Link>
+                  </li>
+                  <li>
+                    <Link to='/search'>Search</Link>
+                  </li>
+                  <li>
+                    <Link to='/movielibrary' onClick={this.clearSearchResults}>Movie Library</Link>
+                  </li>
+                  <li>
+                    <Link to='/customerlist' onClick={this.clearSearchResults}>Customer List</Link>
+                  </li>
+                </ul>
+              </nav>
 
-            <section>
-              <Checkout 
-                selectedCustomer={this.state.selectedCustomer}
-                selectedMovie={this.state.selectedMovie}
-                />
-            </section>
+              <section>
+                <Checkout 
+                  selectedCustomer={this.state.selectedCustomer}
+                  selectedMovie={this.state.selectedMovie}
+                  />
+              </section>
 
-            <Route path="/" />
-           
-            <Route path="/movielibrary" render={(props) => <MovieLibrary {...props} allMovies={this.state.movieLibrary} selectedMovie={this.selectMovie} />} />
+              <Route path="/" />
+            
+              <Route path="/movielibrary" render={(props) => <MovieLibrary {...props} allMovies={this.state.movieLibrary} selectedMovie={this.selectMovie} />} />
 
-            <Route path="/search" render={(props) => <Search onSearchButtonCallback={this.onSearchButtonCallback}/>} />
+              <Route path="/search" render={(props) => <Search onSearchButtonCallback={this.onSearchButtonCallback}/>} />
 
-            <Route path="/customerlist" render={(props) => <CustomerList {...props} selectedCustomer={this.selectCustomer} />} />
+              <Route path="/customerlist" render={(props) => <CustomerList {...props} selectedCustomer={this.selectCustomer} />} />
           </Router>
         </header>
         
         <section>
           <SearchResult result={this.state.searchResults} addMovieToLibraryCallback={this.addMovieToLibraryCallback}/>
-          <Checkout selectedCustomer={this.state.selectedCustomer}/>
         </section>
       </div>
     )
