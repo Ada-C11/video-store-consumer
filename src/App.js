@@ -24,7 +24,11 @@ class App extends Component {
       chosenCustomer: undefined,
       dueDate: undefined,
       checkoutDate: undefined,
-      alert: undefined,
+      currentRental: {
+        count: undefined,
+        movie: undefined,
+        customer: undefined,
+      },
       error: null,
     };
   }
@@ -81,13 +85,19 @@ class App extends Component {
 
     axios.post(url, params)
     .then((response)=> {
-      const movie = this.state.rentedMovie.title
-      const customer = this.state.chosenCustomer.name
-      this.setState({
+      // const movie = this.state.rentedMovie.title
+      // const customer = this.state.chosenCustomer.name
+      this.setState((prevState) => ({
         dueDate: dueDate,
         checkoutDate: checkoutDate,
-        alert: `Rental #${response.data["rental"]}! "${movie}" checked out by ${customer}`
-      })
+        currentRental: {
+          ...prevState.currentRental,
+          count: response.data["rental"],
+          movie: prevState.rentedMovie.title,
+          customer: prevState.chosenCustomer.name,
+        }
+        // `Rental #${response.data["rental"]}! "${movie}" checked out by ${customer}`
+      }))
 
       this.onRentCallback()
     })
@@ -104,13 +114,18 @@ class App extends Component {
       chosenCustomer: undefined,
       dueDate: undefined,
       checkoutDate: undefined,
+      // currentRental: undefined,
     })
+  }
+
+  checkinMovie = () => {
+
   }
 
   render() {
     const errorSection = (this.state.error) ?
     (<section>Error: {this.state.error}</section>) : null;
-    console.log(this.state)
+
     return (
       <Router>
         <div>
@@ -121,7 +136,8 @@ class App extends Component {
 
           { this.state.chosenCustomer && this.state.rentedMovie && <button onClick={this.rentMovie}>Rent Movie</button>}
 
-          {this.state.alert} 
+          {this.state.currentRental.count} 
+
           {errorSection}
 
           <Route exact path="/" component={Home} />
