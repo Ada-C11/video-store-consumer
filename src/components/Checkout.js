@@ -4,17 +4,6 @@ import axios from 'axios';
 class Checkout extends Component {
   constructor (props) {
     super(props);
-    this.state = {
-      customerName: '',
-      customerId: '',
-      movieTitle: ''
-    }
-  }
-
-  updateCustomerName = () => {
-    this.setState({
-      
-    })
   }
   
   checkoutMovie = () => {
@@ -41,16 +30,17 @@ class Checkout extends Component {
   onCheckoutButtonClick = (event) => {
     event.preventDefault();
     this.checkoutMovie();
+    this.props.clearSelectedCallback();
   }
 
   render() {
     return(
       <div className="checkout-container">
         <div>
-          Selected Customer: {this.state.customerName}
+          Selected Customer: {this.props.selectedCustomerName}
         </div>
         <div>
-          Selected Movie: {this.state.movieTitle}
+          Selected Movie: {this.props.selectedMovie}
         </div>
         <div>
           <button 

@@ -52,6 +52,14 @@ class App extends Component {
       selectedMovie: movieTitle,
     });
   }
+
+  clearSelected = () => {
+    this.setState({
+      selectedCustomerName: '',
+      selectedCustomerId: null,
+      selectedMovie: '',
+    })
+  }
   
   render() {
     return (
@@ -80,6 +88,7 @@ class App extends Component {
               selectedCustomerName={this.state.selectedCustomerName}
               selectedCustomerId={this.state.selectedCustomerId}
               selectedMovie={this.state.selectedMovie}
+              clearSelectedCallback={this.clearSelected}
               />
           </section>
           
