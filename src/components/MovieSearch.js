@@ -1,16 +1,42 @@
 import React, { Component } from "react";
 // import logo from "./logo.svg";
 import "./MovieSearch.css";
-import axios from "axios";
-import MovieSearchForm from "./MovieSearchForm";
+
+
 
 class MovieSearch extends Component {
+  constructor(props){
+    super(props)
+  }
+
+  // handleclick=()=>{
+  //   addMovieCallback
+  // }
 
   render() {
+        const collection = this.props.movies.map(movie => {
+        // return movie["title"];
+        return(
+        <section key={movie.id}>
+          
+        <span> {movie.title} </span>
+
+        <button
+          type="button"
+          className="btn btn-danger"
+          aria-label="Close"
+          // onClick={handleclick}
+
+        >
+          SELECT
+        </button>
+      </section>
+    )
+        });
     return (
       <div>
         <div>
-          <MovieSearchForm getresultcallback={this.getresult} />
+          {collection}
         </div>
       </div>
     );

@@ -71,10 +71,9 @@ class App extends Component {
 
     let searchResults = "";
     if (this.state.searchComplete === true) {
-      searchResults = this.state.movies.map(movie => {
-        return (
-          movie["title"])
-      });
+      return(
+      <MovieSearch movies={this.state.movies} />
+      )
     }
 
     return (
