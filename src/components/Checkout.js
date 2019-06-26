@@ -4,6 +4,17 @@ import axios from 'axios';
 class Checkout extends Component {
   constructor (props) {
     super(props);
+    this.state = {
+      customerName: '',
+      customerId: '',
+      movieTitle: ''
+    }
+  }
+
+  updateCustomerName = () => {
+    this.setState({
+      
+    })
   }
   
   checkoutMovie = () => {
@@ -36,10 +47,10 @@ class Checkout extends Component {
     return(
       <div className="checkout-container">
         <div>
-          Selected Customer: {this.props.selectedCustomerName}
+          Selected Customer: {this.state.customerName}
         </div>
         <div>
-          Selected Movie: {this.props.selectedMovie}
+          Selected Movie: {this.state.movieTitle}
         </div>
         <div>
           <button 
