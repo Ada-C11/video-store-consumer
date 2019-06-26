@@ -43,7 +43,6 @@ class Search extends Component {
                         overview={movie.overview}
                         releaseDate={movie.release_date}
                         imageURL={movie.image_url}
-                        // external_id={movie.external_id}
                         addMovieCallback={this.addMovie}
                     />
                 });

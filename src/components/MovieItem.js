@@ -4,18 +4,8 @@ import './MovieItem.css'
 
 class MovieItem extends Component {
 
-    constructor(props) {
-        super(props);
-        const { title, overview, id, releaseDate, imageURL, onSelectMovieCallback } = this.props;
-    }
-
-    // selectMovie = () => {
-    //     const movieObject = {
-    //         title: title
-    //     }
-    // }
     render() {
-        const { title, overview, id, releaseDate, imageURL, onSelectMovieCallback } = this.props;
+        const { title, overview, imageURL, onSelectMovieCallback } = this.props;
         return (
             <div className='movie-item'>
                 <h3 className='movie-title'> {title} </h3>
@@ -27,5 +17,11 @@ class MovieItem extends Component {
     };
 }
 
+MovieItem.propTypes = {
+    title: PropTypes.string.isRequired,
+    overview: PropTypes.string.isRequired,
+    imageURL: PropTypes.string.isRequired,
+    onSelectMovieCallback: PropTypes.func.isRequired
+}
 
 export default MovieItem

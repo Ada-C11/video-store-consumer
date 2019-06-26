@@ -3,17 +3,8 @@ import PropTypes from 'prop-types';
 
 class SearchItem extends Component {
 
-    constructor(props) {
-        super(props);
-    }
-
-    // selectMovie = () => {
-    //     const movieObject = {
-    //         title: title
-    //     }
-    // }
     render() {
-        const { title, overview, releaseDate, imageURL, addMovieCallback } = this.props;
+        const { title, overview, imageURL, addMovieCallback } = this.props;
         return (
             <div className='movie-item'>
                 <h3 className='movie-title'> {title} </h3>
@@ -25,5 +16,11 @@ class SearchItem extends Component {
     };
 }
 
+SearchItem.propTypes = {
+    title: PropTypes.string.isRequired,
+    overview: PropTypes.string.isRequired,
+    imageURL: PropTypes.string.isRequired,
+    addMovieCallback: PropTypes.func.isRequired
+}
 
 export default SearchItem

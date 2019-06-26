@@ -41,18 +41,6 @@ class Library extends Component {
             })
     }
 
-    //   addCard = (card) => {
-    //     const movie = <Card 
-    //       {...card}
-    //       key = {card.id}
-    //       deleteCardCallback = {this.deleteCard}
-    //     />
-
-    //     const movies = [movie, ...this.state.cards]
-
-    //     this.setState({cards: movies});
-    //   }
-
 
     render() {
         return (
@@ -60,8 +48,7 @@ class Library extends Component {
                 <div className='movie-item-container'>
                     {this.state.movies}
                 </div>
-
-            
+          
         )
     }
 
