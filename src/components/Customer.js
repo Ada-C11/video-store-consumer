@@ -6,20 +6,18 @@ class Customer extends Component {
   }
 
   onChangeHandler = (event) => {
-    this.props.selectedCallback(event.target.value);
+    this.props.selectedCallback(this.props.customerId);
   }
 
   render () {
     return(
-      <label>
-        <input
-          type="radio" 
-          value={this.props.customerId} 
-          onChange={this.onChangeHandler}
-          checked={this.props.isSelected ===  this.props.name} 
-        />
-        {this.props.name}
-      </label>
+      <tr>
+        <td>{this.props.customerId}</td>
+        <td>{this.props.name}</td>
+        <td>{this.props.numMoviesCheckedOut}</td>
+        <td >${this.props.accountCredit}</td>
+        <td><button type="button" className="btn btn-primary">Add</button></td>
+      </tr>
     );
   }
 }
