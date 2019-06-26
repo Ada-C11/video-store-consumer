@@ -85,7 +85,7 @@ class Search extends Component {
 
             })
     }
-    
+
     addtoLibraryMessage = () => {
         let message = ""
         if (this.state.addedMovie === false) {
@@ -103,12 +103,18 @@ class Search extends Component {
             return (
                 <div className="card" key={external_id}>
                     <img src={image_url} alt="movie poster" className="card-img-top" />
-                    <div className="card-body">
-                        <p>{title}</p>
-                        <p>{release_date}</p>
-                        <p>{overview}</p>
-                        <input type="button" value="Add Movie to Library" className="" onClick={() => this.addToLibraryCallback(title, overview, image_url, release_date)} />
-                    </div>
+                    <ul className="list-group list-group-flush">
+                        <li className="list-group-item"><strong>{title}</strong></li>
+
+                        <li className="list-group-item">{release_date}</li>
+                        <li className="list-group-item">{overview}</li>
+
+                        <ul className="list-group list-group-flush">
+                            <button className="" onClick={() => this.addToLibraryCallback(title, overview, image_url, release_date)}>Add Movie to Library</button>
+                        </ul>
+                    </ul>
+
+
                 </div>
 
             )
@@ -138,22 +144,28 @@ class Search extends Component {
     render() {
         return (
             <div className="">
-               {this.addtoLibraryMessage()}
-                <div className="search-form__header">
-                    Search for a Movie!
+                {this.addtoLibraryMessage()}
+                <div className="search-movie">
+                    <h6 className="search-form__header">
+                        Search for a Movie!
+                </h6>
+                    <form className="new-card-form__form" onSubmit={this.onFormSubmit}>
+                        <div>
+                            <input type="text" name="title" value={this.state.title} onChange={this.onInputChange} className="new-search-form__form-input" />
+                        </div>
+                        <div>
+                            <input type="submit" value="Search" className="search-form__form-button" />
+                        </div>
+                    </form>
+
+                    <div className="row">
+                        {this.displayMovies(this.state.returnedMovies)}
+                    </div>
                 </div>
-                <form className="new-card-form__form" onSubmit={this.onFormSubmit}>
-                    <div>
-                        <input type="text" name="title" value={this.state.title} onChange={this.onInputChange} className="new-search-form__form-input" />
-                    </div>
-                    <div>
-                        <input type="submit" value="Search" className="search-form__form-button" />
-                    </div>
-                </form>
-                <section className="card-group">
-                    {this.displayMovies(this.state.returnedMovies)}
-                </section>
+
             </div>
+
+
         )
     }
 

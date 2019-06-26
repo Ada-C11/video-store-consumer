@@ -47,15 +47,13 @@ class Customer extends Component {
     const displayCustomers = this.state.customers.map((customer) => {
       const { id, name, city, address, postal_code, phone, account_credit, movies_checked_out_count } = customer;
       return (
-        <article key={id} className="customer_data" >
-          <ul>
-            <li>{id}</li>
-            <li>{name}</li>
-            <li>{address}, {city}</li>
-            <li>{postal_code}</li>
-            <li>{phone}</li>
-            <li>Account credit: ${account_credit}</li>
-            <li>Movies checked out: {movies_checked_out_count}</li>
+        <article key={id} className="card" >
+          <ul className="list-group list-group-flush">
+            <li className="list-group-item name">{id}: {name}</li>
+            <li className="list-group-item"><strong>Address:</strong> {address}, {city} {postal_code}</li>
+            <li className="list-group-item"><strong>Phone Number: </strong>{phone}</li>
+            <li className="list-group-item"><strong>Account credit:</strong> ${account_credit}</li>
+            <li className="list-group-item"><strong>Movies checked out:</strong> {movies_checked_out_count}</li>
             <button className="select_customer_button" onClick={this.props.currentCustomerCallback(customer)}>Select this Customer</button>
           </ul>
         </article>
@@ -63,7 +61,7 @@ class Customer extends Component {
     })
     return (
 
-      <section className="customer_list" >
+      <section className="row" >
         {displayCustomers}
       </section>
     )

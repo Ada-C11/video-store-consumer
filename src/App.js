@@ -149,20 +149,28 @@ function Home() {
 
 function Header() {
   return (
-    <ul>
-      <li>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <a class="navbar-brand">
         <Link to="/">VideoStore</Link>
-      </li>
-      <li>
-        <Link to="/customers">Customers</Link>
-      </li>
-      <li>
-        <Link to="/library">Library</Link>
-      </li>
-      <li>
-        <Link to="/search">Search</Link>
-      </li>
-    </ul>
+      </a>
+      <ul className="navbar-nav" >
+        <li className="nav-item">
+          <a className="nav-link">
+            <Link to="/customers">Customers</Link>
+          </a>
+        </li>
+        <li className="nav-item">
+          <a className="nav-link">
+            <Link to="/library">Library</Link>
+          </a>
+        </li>
+        <li className="nav-item">
+          <a className="nav-link">
+            <Link to="/search">Search</Link>
+          </a>
+        </li>
+      </ul>
+    </nav>
 
   );
 
