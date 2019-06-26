@@ -7,16 +7,18 @@ const Customer = (props) => {
     onSelectCustomerCallback(customer);
   }
 
+  const formatDate = (date) => {
+    let formattedDate = new Date(date);
+    return formattedDate.toLocaleDateString('en-US');
+  }
+
   return (
-    <Fragment>
+    <tr id="table-rows" onClick={onClickCustomer}>
       <td>
         {customer.id}
       </td>
       <td>
         {customer.name}
-      </td>
-      <td>
-        <button onClick={onClickCustomer}>Select for Rental</button>
       </td>
       <td>
         {customer.phone}
@@ -34,7 +36,7 @@ const Customer = (props) => {
         {customer.postal_code}
       </td>
       <td>
-        {customer.registered_at}
+        {formatDate(customer.registered_at)}
       </td>
       <td>
         {customer.movies_checked_out_count}
@@ -42,7 +44,7 @@ const Customer = (props) => {
       <td>
         ${customer.account_credit}
       </td>
-    </Fragment>
+    </tr>
   )
 }
 

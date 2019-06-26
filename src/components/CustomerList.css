@@ -1,4 +1,11 @@
-.customer-table {
-  margin: 30px;
-  padding: 50px;
+#table-rows {
+  cursor: pointer;
+}
+
+.table tr {
+  width: auto;
+}
+
+.table {
+  text-align: left;
 }

@@ -1,5 +1,6 @@
-import React from 'react';
+import React, {Fragment} from 'react';
 import Customer from './Customer';
+import './CustomerList.css';
 
 const CustomerList = (props) => {
     const { customers, onSelectCustomerCallback, selectedCustomer } = props
@@ -22,29 +23,26 @@ const CustomerList = (props) => {
 
     const renderCustomers = customers.map( (customer, i) => {
         return (
-          <tr scope="row" key={i}>
+          <Fragment key={i}>
             <Customer 
               customer={customer} 
               onSelectCustomerCallback={onSelectCustomerCallback}
              />
-          </tr>
+          </Fragment>
         );
       });
 
     return (
-        <section className="customer-table">
+        <section id="customer-table">
           <h1>Customers</h1>
-          <table className="table">
+          <table className="table table-hover">
             <thead className="thead-dark">
               <tr>
                 <th scope="col">
                   id
                 </th>
-                <th>
+                <th scope='col'>
                   name
-                </th>
-                <th>
-                  select
                 </th>
                 <th>
                   phone 
@@ -59,16 +57,16 @@ const CustomerList = (props) => {
                   state
                 </th>
                 <th>
-                  postal code
+                  postal
                 </th>
                 <th>
-                  registered at
+                  registered
                 </th>
                 <th>
-                  checked out count
+                  rentals out
                 </th>
                 <th>
-                  account credit
+                  credit
                 </th>
               </tr>
             </thead>
