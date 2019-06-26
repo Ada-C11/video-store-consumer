@@ -25,7 +25,7 @@ class SearchMovie extends Component {
 						{this.state.title}
 					</li>
 					<li>
-						<img src={this.state.image_url}/>
+						<img src={this.state.image_url} alt={this.state.title}/>
 					</li>
 					<li>
 						<button onClick={this.addMovieToLibrary}>Add to library</button>

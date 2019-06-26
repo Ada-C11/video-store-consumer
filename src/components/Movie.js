@@ -6,7 +6,6 @@ class Movie extends Component {
   }
 
   onClickHandler = () => {
-    console.log('a movie is clicked');
     this.props.selectedCallback(this.props.movieId);
   }
 
@@ -14,7 +13,7 @@ class Movie extends Component {
     return(
       <button onClick={this.onClickHandler}>
         <section>
-          <img src={this.props.imgUrl}></img>
+          <img src={this.props.imgUrl} alt={this.props.title}></img>
         </section>
       </button>
     );
