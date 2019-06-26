@@ -83,6 +83,7 @@ class App extends Component {
       due_date: dueDate,
       customer_id: customer.id,
     }
+
     axios.post(url, params)
     .then((response)=> {
       console.log(response)
@@ -97,8 +98,6 @@ class App extends Component {
         )
     })
     .catch((error) => {
-      console.log(error.message)
-      console.log('err')
         this.setState({
             error: error.message
         })
@@ -120,6 +119,7 @@ class App extends Component {
           {/* <Rental movie={this.state.rentedMovie} customer={this.state.chosenCustomer} dueDate="" /> } */}
 
           <Header />
+          {errorSection}
 
           <Route exact path="/" component={Home} />
           <Route path="/search" render={() => <Search />}/>
@@ -143,8 +143,6 @@ class App extends Component {
               />
             )} 
           />
-
-          {errorSection}
         </div>
       </Router>
     );
