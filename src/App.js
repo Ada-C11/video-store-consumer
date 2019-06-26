@@ -135,7 +135,7 @@ class App extends Component {
           <Route exact={true} path="/" render={() => (
             <h1>Welcome</h1>
           )} />
-          <Route path="/search" render={(props) => <SearchMovie {...props}/> } />
+          <Route path="/search" render={(props) => <SearchMovie {...props} movieList={this.state.movies}/>} />
           <Route path="/customers" render={(props) => <CustomerList {...props} customers={this.state.customers} onSelectCustomerCallback={this.onSelectCustomer} /> } />
           <Route path="/library" render={(props) => <Movies {...props} movieList={this.state.movies} onSelectMovieCallback={this.onSelectMovie} /> } />
         </body>

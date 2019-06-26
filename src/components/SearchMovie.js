@@ -9,7 +9,7 @@ class SearchMovie extends Component {
       super(props);
   
       this.state = {
-        searchTerm: null,
+        searchTerm: '',
         allSearchResults: [],
         message: '',
       };
@@ -28,7 +28,7 @@ class SearchMovie extends Component {
       this.onSearch(this.state.searchTerm);
   
       this.setState({
-        searchTerm: null,
+        searchTerm: '',
         allSearchResults: [],
       });
     };
@@ -61,15 +61,18 @@ class SearchMovie extends Component {
 
     render() {
 
-        const listSearchResults = this.state.allSearchResults.map((movie, i) => {
-            return (
-                <li key={i}>
-                    <img src={movie.image_url} alt={`movie poster for ${movie.title}`}/>
-                    <h4>{movie.title}</h4>
-                    <p>Release date: {movie.release_date}</p>
-                    <p>{movie.overview}</p>
-                </li>
-            )
+        const listSearchResults = this.state.allSearchResults.map((movieFromSearch, i) => {
+
+          return (
+            <li key={i}>
+              <img src={movieFromSearch.image_url} alt={`movie poster for ${movieFromSearch.title}`}/>
+                <h4>{movieFromSearch.title}</h4>
+                <p>{movieFromSearch.external_id}</p>
+                <button>Add Movie to Library</button>
+                <p>Release date: {movieFromSearch.release_date}</p>
+                <p>{movieFromSearch.overview}</p>
+            </li>
+          )
         })
   
         return (
