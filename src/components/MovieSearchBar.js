@@ -12,7 +12,6 @@ class MovieSearchBar extends Component {
   }
 
   onInputChange = (event) => {
-    console.log(event.target);
     const updatedState = this.state;
 
     const field = event.target.name;
