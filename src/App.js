@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import './App.css';
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
-import CustomerList from './components/CustomerList'
+import CustomerList from './components/CustomerList';
+import RentalLibrary from './components/RentalLibrary';
 
 
 
@@ -12,8 +13,8 @@ class App extends Component {
       selectedMovie: "",
       selectedCustomer: "",
       allRentals: [],
-      showMovies: true,
-      showCustomers: true
+      showMovies: false,
+      showCustomers: false
     }
   }
 
@@ -44,12 +45,12 @@ class App extends Component {
       <div>
         <header>
           {/* <Search /> */}
-          {/* <button onClick={this.showMovieToggle}>Show Movies</button> */}
+          <button onClick={this.showMovieToggle}>Show Movies</button>
           <button onClick={this.showCustomerToggle}>Show Customers</button>
         </header>
         <main>
           {this.state.showCustomers && <CustomerList />}
-          {/* {this.state.showMovies && <RentalLibrary />} */}
+          {this.state.showMovies && <RentalLibrary />}
         </main>
       </div>
     );
