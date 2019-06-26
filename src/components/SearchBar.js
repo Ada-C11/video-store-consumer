@@ -8,6 +8,7 @@ class SearchBar extends Component {
     }
 
     queryChanged = (event) => {
+        // event.preventDefault();
         const queryString = event.target.value;
         this.setState({
             queryString

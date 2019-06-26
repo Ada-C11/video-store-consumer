@@ -35,18 +35,11 @@ class Search extends Component {
     };
 
     render() {
-
         let foundMovies;
         let tableHeader;
-        if (this.state.searchResults !== null) {
-            tableHeader = (<thead>
-                            <tr>
-                                <th>Image</th>
-                                <th>Title</th>
-                                <th>Overview</th>
-                                <th>Release Date</th>
-                            </tr>
-                        </thead>)
+        tableHeader = null;
+        // if (!this.state.searched) {
+            if (this.state.searchResults !== null) {
             foundMovies = this.state.searchResults.map((movie, i)=> {
                 return (<tr key={i}>
                             <td><img src={movie.image_url} alt={movie.title}/></td>
@@ -55,14 +48,24 @@ class Search extends Component {
                             <td>{movie.release_date}</td>
                             <td><button>Add to Library</button></td>
                         </tr>);
-            })
+            });
+            if (foundMovies && foundMovies.length > 0){
+            tableHeader = (<thead>
+                <tr>
+                    <th>Image</th>
+                    <th>Title</th>
+                    <th>Overview</th>
+                    <th>Release Date</th>
+                </tr>
+            </thead>);
+            }
         }else if (this.state.searched) {
-             foundMovies = (<tr><td>No matched Results!</td></tr>)
+             foundMovies = (<tr><td>No matched Results!</td></tr>);
         }else {
             foundMovies = null
         }
 
-        console.log(this.state.searchResults);
+        // console.log(this.state.searchResults);
 
         return (
             <section>
