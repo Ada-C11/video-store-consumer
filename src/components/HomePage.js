@@ -6,11 +6,9 @@ class HomePage extends Component {
     return (
       <div>
         <h3>HomePage</h3>
-        <p>
-          <Link to="/library">Movie Rental Library</Link>
-          <Link to="/search">Search for a Movie</Link>
-          <Link to="/customers">Customers</Link>
-        </p>
+        <div><Link to="/library">Movie Rental Library</Link></div> 
+        <div><Link to="/search">Search for a Movie</Link></div>
+        <div><Link to="/customers">Customers</Link></div>
       </div>
     );
   }
