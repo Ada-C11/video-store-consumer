@@ -110,4 +110,9 @@ class SearchMovie extends Component {
     };
 };
 
+SearchMovie.propTypes = {
+  movieList: PropTypes.array.isRequired, 
+  addSearchToLibraryCallback: PropTypes.func.isRequired,
+};
+
 export default SearchMovie;

@@ -1,7 +1,9 @@
 import React from 'react';
 import Movie from './Movie';
+import './MovieList.css';
+import PropTypes from 'prop-types';
 
-const Movies = (props) => {
+const MovieList = (props) => {
 
     const onSelectMovieClick = (movie) => {
         props.onSelectMovieCallback(movie)
@@ -9,7 +11,7 @@ const Movies = (props) => {
 
     const listOfMovies = props.movieList.map((movie, i) => {
         return (
-            <li key={i}>
+            <li key={i} className='library-movie-item'>
                 <Movie movie={movie} onSelectMovieClick={onSelectMovieClick}/>
             </li>
         )
@@ -18,11 +20,16 @@ const Movies = (props) => {
     return (
         <section>
             <h1>Movie Library</h1>
-            <ul>
+            <ul className='library-movie-list'>
                 {listOfMovies}
             </ul>
         </section>
     )
 };
 
-export default Movies;
+MovieList.propTypes = {
+    movieList: PropTypes.array.isRequired, 
+    onSelectMovieCallback: PropTypes.func.isRequired,
+};
+
+export default MovieList;

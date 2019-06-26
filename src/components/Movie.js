@@ -1,4 +1,6 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+import './Movie.css';
 
 const Movie = (props) => {
     const movie = props.movie;
@@ -22,16 +24,29 @@ const Movie = (props) => {
         button = <button onClick={onHandleClick}>Select for Rental</button>
     };
 
+    const formatDate = (date) => {
+        let formattedDate = new Date(date);
+        return formattedDate.toLocaleDateString('en-US');
+    };
+
     return (
         <section>
             <img src={movie.image_url} alt={`movie poster for ${movie.title}`}/>
             <h4>{movie.title}</h4>
-            <p>{movie.external_id}</p>
             {button}
-            <p>Release date: {movie.release_date}</p>
-            <p>{movie.overview}</p>
+            
+                <section className='movie-information'>
+                    <p>Release date: {formatDate(movie.release_date)}</p>
+                    <p>{movie.overview}</p>
+                </section>
         </section>
     )
+};
+
+Movie.propTypes = {
+    movie: PropTypes.object, 
+    addSearchToLibraryCallback: PropTypes.func.isRequired,
+    onSelectMovieClick: PropTypes.func.isRequired,
 };
 
 export default Movie;
