@@ -37,6 +37,7 @@ class MovieSearchForm extends Component {
         //   hasmovies: true
         // });
         this.props.getresultcallback(movies);
+        this.setState({text: ""})
 
         // console.log(this.state.movies)
       })
@@ -48,7 +49,7 @@ class MovieSearchForm extends Component {
 
     const movie = this.state;
     console.log(this.props);
-    this.setState({ movies: movie });
+    // this.setState({ movies: movie });
   };
   onInputChange = event => {
     const updatedState = {};
