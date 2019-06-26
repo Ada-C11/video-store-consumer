@@ -25,6 +25,7 @@ class Customer extends Component {
                     
                     return <CustomerItem
                         key={customer.id}
+                        id = {customer.id}
                         name={customer.name}
                         onSelectCustomerCallback = {this.props.onSelectCustomerCallback}
                     />

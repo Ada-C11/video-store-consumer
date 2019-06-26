@@ -9,8 +9,6 @@ import {
 const SEARCH_URL = 'http://localhost:3001/movies?query='
 const MOVIE_URL = 'http://localhost:3001/movies'
 
-// 'http://localhost:3000/movies?query=harry%20potter' 
-//                      '/movies?query=<search term></search>'
 
 class Search extends Component {
 

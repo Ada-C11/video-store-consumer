@@ -6,7 +6,7 @@ class CustomerItem extends Component {
 
     constructor(props) {
         super(props);
-        const { name, onSelectCustomerCallback } = this.props;
+        const { name, onSelectCustomerCallback, id } = this.props;
     }
 
     render() {

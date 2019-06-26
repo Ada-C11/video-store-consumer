@@ -36,6 +36,7 @@ class AppRouter extends Component {
     this.setState({
       currentCustomer: {
         name: customerData.name,
+        id: customerData.id
       },
 
     });
@@ -46,6 +47,24 @@ class AppRouter extends Component {
       selectedPage: window.location.pathname,
     });
     console.log(window.location.pathname);
+  }
+
+  makeRental = (event) => {
+    event.preventDefault();
+    const rentalData = {
+      title: this.state.currentMovie.title, 
+      customer_id: this.state.currentCustomer.id, 
+      due_date: new Date("2020-06-06")
+    };
+
+    const rentalURL = `http://localhost:3001/rentals/Psycho/check-out`
+    axios.post(rentalURL, rentalData)
+      .then((response) => {
+        console.log(rentalURL);
+      })
+      .catch((error) => {
+        console.log(error);
+      })
   }
 
 
@@ -72,7 +91,9 @@ class AppRouter extends Component {
           <main>
             <div className="selected-movie">{this.state.currentMovie ? `Selected Movie: ${this.state.currentMovie.title}` : ""}</div>
             <div className="selected-customer">{this.state.currentCustomer ? `Selected Customer: ${this.state.currentCustomer.name}` : ""}</div>
-            <div className={this.state.currentCustomer && this.state.currentMovie ? "checkout-button" : "hidden"}><span>Check Movie Out</span></div>
+            <div className={this.state.currentCustomer && this.state.currentMovie ? "checkout-button" : "hidden"}><span 
+            onClick = {this.makeRental}
+            >Check Movie Out</span></div>
             <Route path="/" exact component={Index} />
             <Route path="/library/" render={(props) => <Library {...props} onSelectMovieCallback={this.onSelectMovie} />} />
             <Route path="/customers/" render={(props) => <Customer {...props} onSelectCustomerCallback={this.onSelectCustomer} />} />
