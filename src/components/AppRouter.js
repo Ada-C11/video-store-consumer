@@ -87,12 +87,13 @@ class AppRouter extends Component {
         .then((response) => {
           console.log(`Successfully checked out ${movie}`);
           this.setState({
-            selectMovie: null,
-            selectCustomer: null,
+            selectedMovie: null,
+            selectedCustomer: null,
           })
           this.addErrorMessage('')
         })
         .catch((error) => {
+
           this.addErrorMessage(`Unable to check out ${movie} to ${customer}. ${error}`)
           console.log(`Unable to check out ${movie} to ${customer}. ${error}`);
         })
@@ -159,6 +160,7 @@ class AppRouter extends Component {
                   generateMovieComponentsCallback={this.generateMovieComponents}
                   url={VIDEO_STORE_API_URL}
                   selectMovieCallback={this.selectMovie}
+                  addErrorMessageCallback={this.addErrorMessage}
                 />}
             />
             <Route
