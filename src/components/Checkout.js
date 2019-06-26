@@ -11,14 +11,21 @@ class Checkout extends Component {
   }
   
   checkoutMovie = () => {
-    const checkoutUrl = 'http://localhost:4000' + '/rentals/' + `${this.props.selectedMovie}` + '/check-out';
+    const movieTitle = this.props.selectedMovie;
+    const checkoutUrl = 'http://localhost:4000' + '/rentals/' + `${movieTitle}` + '/check-out';
     const queryParams = {
       'customer_id': this.props.selectedCustomerId, 
       'due_date': this.addDays(10),
     }
+
     axios.post(checkoutUrl, queryParams)
     .then((response) => {
-      console.log(response.data);
+      const successMessages = this.state.successMessages;
+      successMessages.push(`Movie: ${movieTitle} was successfully checked out!`)
+      this.setState({
+        successMessages,
+      })
+      setTimeout(() => {this.setState({successMessages: []})}, 3000);
     })
     .catch((error) => {
       console.log(error);
@@ -37,9 +44,21 @@ class Checkout extends Component {
     this.props.clearSelectedCallback();
   }
 
+  displaySuccessMessages = () => {
+    const messages = this.state.successMessages.map((message, i) => {
+      return(
+        <li key={i}>{message}</li>
+      );
+    })
+    return messages;
+  }
+
   render() {
     return(
       <div className="checkout-container">
+        <ul className="message-container">
+          {this.displaySuccessMessages()}
+        </ul>
         <div>
           Selected Customer: {this.props.selectedCustomerName}
         </div>
