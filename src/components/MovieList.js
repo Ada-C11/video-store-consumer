@@ -1,7 +1,8 @@
 import React from 'react';
 import Movie from './Movie';
+import PropTypes from 'prop-types';
 
-const Movies = (props) => {
+const MovieList = (props) => {
 
     const onSelectMovieClick = (movie) => {
         props.onSelectMovieCallback(movie)
@@ -25,4 +26,9 @@ const Movies = (props) => {
     )
 };
 
-export default Movies;
+MovieList.propTypes = {
+    movieList: PropTypes.array.isRequired, 
+    onSelectMovieCallback: PropTypes.func.isRequired,
+};
+
+export default MovieList;

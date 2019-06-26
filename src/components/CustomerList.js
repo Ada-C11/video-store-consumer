@@ -1,5 +1,6 @@
 import React from 'react';
 import Customer from './Customer';
+import PropTypes from 'prop-types';
 
 const CustomerList = (props) => {
     const { customers, onSelectCustomerCallback, selectedCustomer } = props
@@ -80,6 +81,11 @@ const CustomerList = (props) => {
         
 
     )
+};
+
+CustomerList.propTypes = {
+  customers: PropTypes.array.isRequired, 
+  onSelectCustomerCallback: PropTypes.func.isRequired,
 };
 
 export default CustomerList;

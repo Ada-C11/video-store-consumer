@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 const Movie = (props) => {
     const movie = props.movie;
@@ -35,6 +36,12 @@ const Movie = (props) => {
             <p>{movie.overview}</p>
         </section>
     )
+};
+
+Movie.propTypes = {
+    movie: PropTypes.object, 
+    addSearchToLibraryCallback: PropTypes.func.isRequired,
+    onSelectMovieClick: PropTypes.func.isRequired,
 };
 
 export default Movie;

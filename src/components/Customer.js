@@ -1,4 +1,5 @@
 import React, {Fragment} from 'react';
+import PropTypes from 'prop-types';
 
 const Customer = (props) => {
     const { customer, onSelectCustomerCallback } = props
@@ -44,6 +45,11 @@ const Customer = (props) => {
       </td>
     </Fragment>
   )
-}
+};
+
+Customer.propTypes = {
+  customer: PropTypes.object, 
+  onSelectCustomerCallback: PropTypes.func.isRequired,
+};
 
 export default Customer;

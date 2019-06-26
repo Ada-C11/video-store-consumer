@@ -5,7 +5,7 @@ import './App.css';
 import axios from 'axios';
 import SearchMovie from './components/SearchMovie';
 import CustomerList from './components/CustomerList';
-import Movies from './components/Movies';
+import MovieList from './components/MovieList';
 
 const URL = process.env.REACT_APP_API_URL
 
@@ -204,11 +204,11 @@ class App extends Component {
           )} />
           <Route path="/search" render={(props) => <SearchMovie {...props} movieList={this.state.movies} addSearchToLibraryCallback={this.addSearchToLibrary}/> } />
           <Route path="/customers" render={(props) => <CustomerList {...props} customers={this.state.customers} onSelectCustomerCallback={this.onSelectCustomer} /> } />
-          <Route path="/library" render={(props) => <Movies {...props} movieList={this.state.movies} onSelectMovieCallback={this.onSelectMovie} /> } />
+          <Route path="/library" render={(props) => <MovieList {...props} movieList={this.state.movies} onSelectMovieCallback={this.onSelectMovie} /> } />
         </body>
       </Router>
     );
   }
-}
+};
 
 export default App;
