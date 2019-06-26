@@ -62,17 +62,17 @@ class App extends Component {
   
   render() {
     const movieSection = (this.state.selectedMovie) ?
-      (<section>
-        Selected Movie: {this.state.selectedMovie}
+      (<section className="checkoutSection">
+        <strong>Selected Movie: </strong>{this.state.selectedMovie}
       </section>) : null;
     
     const customerSection = (this.state.selectedCustomer) ?
-    (<section>
-      Selected Customer: {this.state.selectedCustomer}
+    (<section className="checkoutSection">
+      <strong>Selected Customer ID: </strong>{this.state.selectedCustomer}
     </section>) : null;
     
     const checkOut = (this.state.selectedCustomer && this.state.selectedMovie) ? 
-      (<section>
+      (<section className="checkoutSection">
         <button className="btn btn-primary" onClick={this.onCheckOutClick}>Check Out</button>
       </section>) : null;
     
@@ -84,8 +84,6 @@ class App extends Component {
       </button>
      </section>) : null;
     
-    
-
     const successSection = (this.state.success && this.state.show) ? 
     (<section className="alert alert-success" >
       Movies was successfully checked out to the customer!
