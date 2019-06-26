@@ -15,7 +15,11 @@ const Movie = (props) => {
 
     let button = '';
     if (props.isSearchResult) {
-        button = <button onClick={onSearchResultClick}>Add To Library</button>
+        if (props.alreadyInLibrary === false) {
+            button = <button onClick={onSearchResultClick}>Add To Library</button>
+        } else {
+            button = <p>Already in Rental Library</p>
+        }
     } else {
         button = <button onClick={onHandleClick}>Select for Rental</button>
     };

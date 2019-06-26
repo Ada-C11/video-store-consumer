@@ -65,9 +65,16 @@ class SearchMovie extends Component {
     }
 
     render() {
-        console.log(this.props.addSearchToLibraryCallback)
+        // console.log(this.props.addSearchToLibraryCallback)
         
         const listSearchResults = this.state.allSearchResults.map((movieFromSearch, i) => {
+        let alreadyInLibrary = false
+
+          this.props.movieList.forEach((movie) => {
+            if (movie.external_id === movieFromSearch.external_id) {
+              alreadyInLibrary = true;
+            }
+          })
 
           return (
 
@@ -78,7 +85,7 @@ class SearchMovie extends Component {
                 <button onClick={this.getMovieForLibrary}>Add Movie to Library</button>
                 <p>Release date: {movieFromSearch.release_date}</p>
                 <p>{movieFromSearch.overview}</p> */}
-              <Movie movie={movieFromSearch} addSearchToLibraryCallback={this.props.addSearchToLibraryCallback} isSearchResult={true}/>
+              <Movie movie={movieFromSearch} addSearchToLibraryCallback={this.props.addSearchToLibraryCallback} isSearchResult={true} alreadyInLibrary={alreadyInLibrary}/>
             </li>
           )
         })
