@@ -1,0 +1,22 @@
+* {
+  background-color: white;
+  color: thistle
+}
+
+.navbar{
+  text-align: center;
+  flex-direction: row
+ }
+
+ .navbar li {
+ }
+
+
+ul { 
+  list-style-type: none; 
+}
+
+button {
+  background-color: white;
+  color: thistle
+}

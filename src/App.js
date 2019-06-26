@@ -92,7 +92,7 @@ class App extends Component {
       <Router>
         <div>
           <nav>
-            <ul>
+            <ul className="navbar">
                <li>
                <Link to="/">Home</Link>
               </li>
