@@ -97,6 +97,7 @@ class MovieSearchPage extends Component {
         <table className="table table-striped">
           <thead>
           <tr>
+            <th></th>
             <th scope="col">Title</th>
             <th scope="col">Overview</th>
             <th scope="col">Release Date</th>
