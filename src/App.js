@@ -171,22 +171,19 @@ class App extends Component {
                 <Link to='/customerlist' onClick={this.clearSearchResults}>Customer List</Link>
               </li>
             </ul>
-            <section>
-              <Checkout 
-                selectedCustomerName={this.state.selectedCustomerName}
-                selectedCustomerId={this.state.selectedCustomerId}
-                selectedMovie={this.state.selectedMovie}
-                clearSelectedCallback={this.clearSelected}
-                refreshList={this.componentDidMount}
-              />
-            </section>
           </nav>
+
+          <Route path="/" />
+          <Route path="/movielibrary" render={(props) => <MovieLibrary {...props} allMovies={this.state.movieLibrary} selectedMovie={this.selectMovie} />} />
+          <Route path="/search" render={(props) => <Search onSearchButtonCallback={this.onSearchButtonCallback}/>} />
+          <Route path="/customerlist" render={(props) => <CustomerList {...props} allCustomers={this.state.allCustomers} selectedCustomer={this.selectCustomer} displayMessages={this.displayMessages}/>} />
+        </Router>
 
           <section className="action-result-message">
             {this.state.behaviorMessage} 
           </section>
 
-          <section>
+          <section className="checkout">
             <Checkout 
               selectedCustomerName={this.state.selectedCustomerName}
               selectedCustomerId={this.state.selectedCustomerId}
@@ -197,16 +194,9 @@ class App extends Component {
               />
           </section>
 
-            <Route path="/" />
-            <Route path="/movielibrary" render={(props) => <MovieLibrary {...props} allMovies={this.state.movieLibrary} selectedMovie={this.selectMovie} />} />
-            <Route path="/search" render={(props) => <Search onSearchButtonCallback={this.onSearchButtonCallback}/>} />
-            <Route path="/customerlist" render={(props) => <CustomerList {...props} allCustomers={this.state.allCustomers} selectedCustomer={this.selectCustomer} displayMessages={this.displayMessages}/>} />
-          </Router>
-        </header>
-
-        <section>
-          <SearchResult result={this.state.searchResults} addMovieToLibraryCallback={this.addMovieToLibraryCallback}/>
-        </section>
+          <section className="search-result">
+            <SearchResult result={this.state.searchResults} addMovieToLibraryCallback={this.addMovieToLibraryCallback}/>
+          </section>  
       </div>
     )
   }
