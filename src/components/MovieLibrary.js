@@ -4,6 +4,8 @@ import axios from 'axios';
 
 import MovieCard from './MovieCard'
 
+import Notification from "./Notification"
+
 import './MovieLibrary.css';
 
 class MovieLibrary extends Component {
@@ -43,7 +45,15 @@ class MovieLibrary extends Component {
       })
       
       .catch((error) => {
-        console.log(error);
+        this.props.addNotificationCallback(
+          <Notification
+                        toastTitle= {"Error!"}
+                        toastMessage= {`Could not retrieve movies: ${error.message}`}
+                        toastTimestamp= {Date.now()}
+                        error= {true}
+                        />
+        )
+        
       })
   }
 
