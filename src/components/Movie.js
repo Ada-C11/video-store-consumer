@@ -4,11 +4,6 @@ import PropTypes from 'prop-types';
 
 const Movie = (props) => {
 
-  const onClickMovie = () => {
-    props.getMovieTitleCallback(props.title, props.id)
-  }
-
-
   return (
     <div className="movie">
       <li>
@@ -19,10 +14,6 @@ const Movie = (props) => {
             </div>
           <div className="movie__info">
             <span>
-              <button onClick={onClickMovie}
-                className="movie__choose">
-                Select for rental
-              </button>
             </span>
             <h3 className="movie__title">{props.title}</h3>
           </div>
@@ -32,7 +23,6 @@ const Movie = (props) => {
   )
 }
 
-// onClick={() => props.deleteCardCallback(props.id)}
 
 Movie.propTypes = {
   id:PropTypes.number,
@@ -42,7 +32,7 @@ Movie.propTypes = {
   image_url:PropTypes.string,
   external_id:PropTypes.number,
   buttonClassname:PropTypes.string,
-  grabMovieTitleCallback:PropTypes.func,
+  getMovieTitleCallback:PropTypes.func,
 };
 
 export default Movie;

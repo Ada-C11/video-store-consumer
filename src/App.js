@@ -32,12 +32,15 @@ class App extends Component {
 
   showCustomerToggle = () => {
     const status = !this.state.showCustomers;
-    this.setState({showCustomers: status});
+    this.setState({showCustomers: status,
+                  showMovies: !status
+    });
   }
 
   showMovieToggle = () => {
     const status = !this.state.showMovies;
-    this.setState({showMovies: status});
+    this.setState({showMovies: status,
+                    showCustomers: !status});
   }
 
   render() {
