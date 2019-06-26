@@ -30,7 +30,7 @@ class MovieSearch extends React.Component {
       title: this.state.title,
     };
 
-    console.log(searchQuery.title)
+    // console.log(searchQuery.title)
 
     this.setState({
       title: '',
@@ -53,26 +53,26 @@ class MovieSearch extends React.Component {
 
 
   addMovieToLibrary = (movieId) => {
-    // TO DO: make sure following line syntax is okay
-    const clickedMovie = this.state.movies.find(movie => movie.external_id === movieId)
+   
+    const clickedMovie = this.state.movies.find( movie => movie.external_id === movieId)
 
-    const movieData = {
-      title: clickedMovie.title,
-      overview: clickedMovie.overview,
-      release_date: clickedMovie.release_date,
-      inventory: clickedMovie.inventory,
-      image_url: clickedMovie.image_url,
-      external_id: clickedMovie.external_id
-    }
+     const movieData = {
+       title: clickedMovie.title,
+       overview: clickedMovie.overview,
+       release_date: clickedMovie.release_date,
+       inventory: clickedMovie.release_date,
+       image_url: clickedMovie.image_url,
+       external_id: clickedMovie.external_id
+     }
 
-    axios.post('http://localhost:3000/movies/', movieData)
-     .then((response) => {
-       alert(`Sucessfully added ${movieData.title} to rental library!`);
-     })
-     .catch((error) => {
-       alert(`Error: ${error.message}`);
-     })
-  }
+     axios.post('http://localhost:3000/movies/', movieData)
+      .then((response) => {
+        alert(`Sucessfully added ${movieData.title} to rental library!`);
+      })
+      .catch((error) => {
+        alert(`Error: ${error.message}`);
+      })
+   }
 
  render() {
    const searchResults = this.state.movies.map((movie, index) => {
