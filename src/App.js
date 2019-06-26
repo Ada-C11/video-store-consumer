@@ -13,6 +13,7 @@ class App extends Component {
       customers: [],
       selected_customer: "none",
       selectCustomerCallBack: this.selectCustomer,
+      selectMovieCallBack: this.selectMovie,
       selected_movie: "none",
     };
   }
@@ -35,6 +36,10 @@ class App extends Component {
   selectCustomer = (customer) => {
     const newSelected = customer
     this.setState({selected_customer: newSelected});
+  }
+
+  selectMovie = (movie) => {
+    this.setState({selected_movie: movie})
   }
 
   onCheckOut = () => {
@@ -76,7 +81,7 @@ class App extends Component {
             Selected Customer: {this.state.selected_customer["name"]}
           </li>
           <li>
-            Selected Movie: {this.state.selected_movie["name"]}
+            Selected Movie: {this.state.selected_movie.title}
           </li>
           <li>
             <button className="" onClick={this.onCheckOut}>
@@ -86,7 +91,11 @@ class App extends Component {
       </nav>
 {/* <Route path="/" exact component={Index} /> */}
       <Route path="/search/" component={Search} />
-      <Route path="/library/" component={Library} />
+      <Route path="/library/" render={
+        (props) => <Library {...props} 
+                      selectMovieCallBack={this.state.selectMovieCallBack} 
+                    />
+      } />
       <Route path="/customers/" render={(props) => <Customers {...props} customers={this.state.customers} selectCustomerCallBack={this.state.selectCustomerCallBack} />} />
       </div>
       </Router>
