@@ -8,7 +8,7 @@ const CustomerList = (props) => {
   const displayCustomers = customerList.map((customer, i) => {
     return (
       <p key={i}>{customer.name}
-        <button onClick={props.selectCustomer(customer.name)}>
+        <button onClick={() => {props.selectCustomer(customer)}}>
           Select Customer
         </button>
       </p>

@@ -71,13 +71,13 @@ class App extends Component {
 
   // this method takes in a name rather than an id
   // we'll need the id to send to the checkout request
-  selectCustomer = (customerId) => {
-  
-    return () => { 
+  selectCustomer = (customer) => {
+    console.log(customer)
+    // return () => { 
       this.setState({
-        selectedCustomer: customerId
+        selectedCustomer: customer
       });
-    }
+    // }
     // const customer = this.state.customerLibrary.find(customer => customer.id === customerId)
 
     // this.setState({
@@ -125,7 +125,7 @@ class App extends Component {
               <li>
                 <Link to="/customers/"> Customer List </Link>
               </li>
-              <li>Selected Customer: {this.state.selectedCustomer}</li>
+              <li>Selected Customer: {this.state.selectedCustomer ? this.state.selectedCustomer.name : "No customer selected"}</li>
             </ul>
           </nav>
 
