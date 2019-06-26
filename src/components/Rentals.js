@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import axios from 'axios';
-import Customer from './Customer'
+// import Customer from './Customer'
 
 const rentalURL = 'http://localhost:3000/rentals/'
 
@@ -11,13 +11,14 @@ class Rentals extends Component {
     this.cleared = {
       checkoutDate: null,
       dueDate: null,
-      rentalLibrary: [],
       searchName: '',
       customerID: null,
-      customers: []
     }
 
-    this.state = this.cleared
+    this.state = {
+      ...this.cleared, 
+      rentalLibrary: [],
+    }
   }
  
  
@@ -48,7 +49,6 @@ class Rentals extends Component {
       customer_id: this.props.customerID,
       due_date: new Date(this.state.dueDate)
     }
-    console.log(newRental)
     axios.post(rentalURL + this.props.movie + '/check-out', newRental)
    .then((response) => {
      console.log(response.status)
@@ -57,6 +57,7 @@ class Rentals extends Component {
      this.setState({errorMessage: error.message})
      console.log(error)
    })
+   this.setState({...this.cleared})
   }
 
   handleChange = (event) => {
@@ -94,18 +95,6 @@ class Rentals extends Component {
          <div hidden={makeReservation}>
             <button onClick={this.reserveRental}>Make Reservation</button>
          </div>
-         {/* <form onSubmit={this.onSubmitCustomerName}>
-          <label>
-            Find Customer: 
-            <input type="text" 
-              onChange={this.handleChange} 
-              value={this.state.searchName} 
-              name="customerName" 
-              placeholder="customer name" 
-            />
-          </label>
-          <input type="submit" value="Search" />
-        </form> */}
        </section>
        <table className="table table-striped table-hover table-sm"> 
        <thead>

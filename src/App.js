@@ -14,15 +14,14 @@ class App extends Component {
   constructor() {
     super();
       this.state = {
-        selectedCustomer: null,
+        rentalCustomerID: null,
         selectedRental: null,
-        customerSearch: [],
       }
   }
   
   selectCustomer = (customerID) => {
     console.log('select Customer in App')
-    this.setState({selectedCustomer: customerID})
+    this.setState({rentalCustomerID: customerID})
   }
 
   selectRental =(movieTitle) => {
@@ -68,7 +67,7 @@ class App extends Component {
           <Route path="/customers" render={ (props) => (<CustomerList {...props} selectCustCallback={this.selectCustomer}/>)} />
           <Route path="/rental" render={ (props) => (
             <Rentals {...props} 
-              customerID={this.state.selectedCustomer}
+              customerID={this.state.rentalCustomerID}
               movie={this.state.movieTitle}
               selectRentalCallback={this.selectRental}            
             />)
