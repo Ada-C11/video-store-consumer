@@ -1,14 +1,20 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Movie from './Movie';
-// import axios from 'axios';
 // import './Library.css';
 
 const Library = (props) => {
   const movieCollection = props.library.map((movie, i) => {
-    return <li key={i}><Movie id={movie.id} title={movie.title} onSelectCallback={props.onSelectCallback}/></li>
+    return <li key={i}>
+      <Movie 
+        movie={movie} 
+        viewMovieDetails={props.expandedMovies[movie.id]} 
+        onClickDetailsCallback={props.onClickDetailsCallback} 
+        onSelectMovieCallback={props.onSelectMovieCallback}
+      />
+    </li>
    });
-
+   
   return (
     <div>
       <h2>Library</h2>
@@ -19,6 +25,8 @@ const Library = (props) => {
 
 Library.propTypes = {
   library: PropTypes.array.isRequired,
+  onClickDetailsCallback: PropTypes.func.isRequired,
+  onSelectMovieCallback: PropTypes.func.isRequired,
 };
 
 export default Library;

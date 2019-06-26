@@ -1,22 +1,29 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-// import axios from 'axios';
+import Details from './Details';
 // import './Movie.css';
 
 const Movie = (props) => {
   const onClickButton = () => {
-    props.onSelectCallback(props.id)
+    props.onSelectMovieCallback(props.movie.id)
   }
 
+  const onClickDetailsButton = () => {
+    props.onClickDetailsCallback(props.movie.id)
+  }
+  
   return (
-    <div>{props.title}<button onClick={onClickButton}>Rent Movie</button></div>
+    <div>{props.movie.title}
+      <button onClick={onClickDetailsButton}>View Details</button>
+      <button onClick={onClickButton}>Select Movie</button>
+      {props.viewMovieDetails && <Details {...props.movie} />}
+    </div>
   )
 }
 
 Movie.propTypes = {
-  id: PropTypes.number.isRequired,
-  title: PropTypes.string.isRequired,
-  onSelectCallback: PropTypes.func.isRequired,
+  movie: PropTypes.object.isRequired,
+  onSelectMovieCallback: PropTypes.func.isRequired,
 };
 
 export default Movie;
