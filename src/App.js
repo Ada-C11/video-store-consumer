@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import axios from 'axios'
 import Search from './components/Search.js'
 import Library from './components/Library'
-
 import Customers from './components/Customers.js'
 
 function Index() {
@@ -30,10 +30,30 @@ class App extends Component {
       id: id
     }
 
-    console.log("Customer ID inside Apps.js:")
-    console.log(id);
-
     this.setState({selectedCustomer})
+  }
+
+  checkOut = () => {
+    const postURL = `http://localhost:3002/rentals/${this.state.selectedMovie}/check-out`
+    const currDate = new Date()
+    currDate.setDate(currDate.getDate() + 3)
+    const day = currDate.getDate()
+    const month = currDate.getMonth()
+    const year = currDate.getFullYear()
+    const dueDate = `${year}-${month}-${day}`
+    axios.post(postURL, {
+        params: {
+          customer: this.state.selectedCustomer.id,
+          due_date: dueDate
+        }
+    })
+    .then((response) => {
+      console.log(response)
+      // this.setSate
+    })
+    .catch((error) => {
+      console.log(error)
+    })
   }
 
   myCustomersComponent = () => {
@@ -87,7 +107,8 @@ class App extends Component {
                 {
                   this.state.selectedMovie.length > 0 &&
                   this.state.selectedCustomer.name &&
-                  <button>Check Out</button>
+                  <button
+                    onClick={this.checkOut}>Check Out</button>
                 }
               </div>
             </section>
