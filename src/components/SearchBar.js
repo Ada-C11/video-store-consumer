@@ -1,4 +1,10 @@
 import React, {Component} from 'react';
+import Form from 'react-bootstrap/Form';
+import FormControl from 'react-bootstrap/FormControl';
+import Button from 'react-bootstrap/Button';
+import './SearchBar.css';
+
+
 class SearchBar extends Component {
     constructor(props) {
         super(props);
@@ -8,7 +14,6 @@ class SearchBar extends Component {
     }
 
     queryChanged = (event) => {
-        // event.preventDefault();
         const queryString = event.target.value;
         this.setState({
             queryString
@@ -18,15 +23,15 @@ class SearchBar extends Component {
     }
     render() {
         return (
-            <section>
-                <label>
-                    Search <input name="search"
-                                type="text"
-                                value={this.state.queryString}
-                                onChange={this.queryChanged}/>
-
-                </label>
-            </section>
+            <div className="search_bar">
+                <Form>
+                    <FormControl type="text" placeholder="Search"
+                        name="search"
+                        type="text"
+                        value={this.state.queryString}
+                        onChange={this.queryChanged} />
+                </Form>
+            </div>
         )
     }
 };

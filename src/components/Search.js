@@ -2,6 +2,8 @@ import React, {Component} from 'react';
 import SearchBar from './SearchBar';
 import MovieCard from './MovieCard';
 import axios from 'axios';
+import Table from 'react-bootstrap/Table';
+import './Search.css';
 class Search extends Component {
     constructor(props) {
         super(props);
@@ -108,16 +110,17 @@ class Search extends Component {
 
         return (
             <section>
+                <h3 className="search_title">Search for Movies</h3>
                 <SearchBar searchCallback={this.searchCallback}/>
                 {errorSection}
                 {successSection}
-                <table>
+                <Table>
                         {tableHeader}
                     <tbody>
                         {movieCards}
                     </tbody>
                 
-                </table>
+                </Table>
 
             </section>
         )

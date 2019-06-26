@@ -1,4 +1,5 @@
 import React from 'react';
+import Button from 'react-bootstrap/Button'
 
 const MovieCard = (props) => {
     const {image_url, title, overview, release_date,addMovieCallback } = props;
@@ -11,7 +12,7 @@ const MovieCard = (props) => {
             <td>{title}</td>
             <td>{overview}</td>
             <td>{release_date}</td>
-            <td><button onClick={addMovie}>Add to Library</button></td>
+            <td><Button onClick={addMovie}>Add to Library</Button></td>
         </tr>
     )
 }

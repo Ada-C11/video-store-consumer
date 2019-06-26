@@ -1,4 +1,7 @@
 import React, { Component } from 'react';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import Nav from 'react-bootstrap/Nav';
+import Navbar from 'react-bootstrap/Navbar';
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import './App.css';
 import PropTypes from 'prop-types';
@@ -6,6 +9,7 @@ import Library from './components/Library';
 import Customers from './components/Customers';
 import axios from 'axios';
 import Search from './components/Search';
+
 
 class App extends Component {
   constructor() {
@@ -67,12 +71,11 @@ class App extends Component {
     return (
       <Router>
         <div>
+          <Header />
           { this.state.rentedMovie && <p>Movie Selection: {this.state.rentedMovie.title}</p> }
 
           { this.state.chosenCustomer && <p>Customer Selection: {this.state.chosenCustomer.name}</p> }
-
-          <Header />
-
+          
           <Route exact path="/" component={Home} />
           <Route path="/search" render={() => <Search moviesInLibrary={this.state.movies}/>}/>
           <Route 
@@ -109,20 +112,15 @@ function Home() {
 
 function Header() {
   return (
-    <ul>
-      <li>
-        <Link to="/">Home</Link>
-      </li>
-      <li>
-        <Link to="/search">Search</Link>
-      </li>
-      <li>
-        <Link to="/library">Library</Link>
-      </li>
-      <li>
-        <Link to="/customers">Customers</Link>
-      </li>
-    </ul>
+    <Navbar bg="primary" variant="dark">
+    <Navbar.Brand href="/">Video World</Navbar.Brand>
+    <Nav className="mr-auto">
+      <Nav.Link href="/">Home</Nav.Link>
+      <Nav.Link href="/search">Search</Nav.Link>
+      <Nav.Link href="/library">Library</Nav.Link>
+      <Nav.Link href="/customers">Customers</Nav.Link>
+    </Nav>
+    </Navbar>
   );
 }
 
