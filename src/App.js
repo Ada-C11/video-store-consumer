@@ -74,7 +74,7 @@ class App extends Component {
           <Header />
 
           <Route exact path="/" component={Home} />
-          <Route path="/search" render={() => <Search />}/>
+          <Route path="/search" render={() => <Search moviesInLibrary={this.state.movies}/>}/>
           <Route 
             path="/library" 
             render={() => (

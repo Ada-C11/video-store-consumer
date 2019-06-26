@@ -38,26 +38,33 @@ class Search extends Component {
     };
 
     addMovieCallback = (movie) => {
-        const movieToApi = {
-            external_id: movie.external_id,
-            image_url: movie.image_url,
-            title: movie.title,
-            overview: movie.overview,
-            release_date: movie.release_date
-        }
-        axios.post('http://localhost:3001/movies', movieToApi)
-        .then((response)=> {
-            if (response.status === 200) {
-                this.setState({
-                    success: "Movie has been added to the rental library!"
-                })
-            }
-        })
-        .catch((error) => {
+
+        if (this.props.moviesInLibrary.find(currentMovie => currentMovie.external_id === movie.external_id)) {
             this.setState({
-                error: error.message
+                error: "Movie already exists!"
             })
-        });
+        } else {
+            const movieToApi = {
+                external_id: movie.external_id,
+                image_url: movie.image_url,
+                title: movie.title,
+                overview: movie.overview,
+                release_date: movie.release_date
+            }
+            axios.post('http://localhost:3001/movies', movieToApi)
+            .then((response)=> {
+                if (response.status === 200) {
+                    this.setState({
+                        success: "Movie has been added to the rental library!"
+                    })
+                }
+            })
+            .catch((error) => {
+                this.setState({
+                    error: error.message
+                })
+            });
+        }
     }
 
     render() {
