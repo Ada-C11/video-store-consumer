@@ -28,7 +28,12 @@ class Checkout extends Component {
       setTimeout(() => {this.setState({successMessages: []})}, 3000);
     })
     .catch((error) => {
-      console.log(error);
+      const errorMessages = this.state.errorMessages;
+      errorMessages.push(`Status code: ${error.response.status}. ${error.response.statusText}`);
+      this.setState({
+        errorMessages,
+      })
+      setTimeout(() => {this.setState({errorMessages: []})}, 3000);
     })
   }
 
@@ -53,11 +58,21 @@ class Checkout extends Component {
     return messages;
   }
 
+  displayErrorMessages = () => {
+    const messages = this.state.errorMessages.map((message, i) => {
+      return(
+        <li key={i}>{message}</li>
+      );
+    })
+    return messages;
+  }
+
   render() {
     return(
       <div className="checkout-container">
         <ul className="message-container">
           {this.displaySuccessMessages()}
+          {this.displayErrorMessages()}
         </ul>
         <div>
           Selected Customer: {this.props.selectedCustomerName}
