@@ -23,3 +23,31 @@ ul {
   padding: 0;
 }
 
+.nav-bar ul {
+  background-color: #333;
+  
+  padding-top: 2em;
+  padding-bottom: 2em;
+  overflow: hidden;
+}
+
+.nav-bar li{
+  display: inline-block;
+}
+
+.nav-bar li a {
+  /* display: block; */
+  color: white;
+  text-align: center;
+  /* padding: 14px 16px; */
+  text-decoration: none;
+  padding-left: 2em;
+  padding-right: 2em;
+  padding-top: 100%;
+  padding-bottom: 100%;
+}
+
+.nav-bar li a:hover {
+  background-color: #111;
+}
+

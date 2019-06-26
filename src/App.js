@@ -157,7 +157,7 @@ class App extends Component {
             <h1>Last Resort Video Store</h1>
           </header>
       
-          <nav>
+          <nav className='nav-bar'>
             <ul>
               <li>
                 <Link to="/">Home</Link>
