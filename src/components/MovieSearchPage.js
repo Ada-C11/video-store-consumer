@@ -3,6 +3,7 @@ import MovieSearchBar from './MovieSearchBar';
 import SearchResult from './SearchResult';
 import Axios from 'axios';
 import 'bootstrap/dist/css/bootstrap.css';
+import { Link } from "react-router-dom";
 
 
 const baseURL = `http://localhost:3001`;
@@ -22,7 +23,9 @@ class MovieSearchPage extends Component {
     Axios.get(`${baseURL}/movies?query=${formattedTerm}`)
       .then((response) => {
         const results = response.data;
-        this.setState({ searchResults: results })
+        this.setState({ 
+          searchResults: results,
+          success: `Found ${response.data.length} movies matching "${searchTerm}"` })
         })
       .catch((error) => {
           this.setState({ error: error.message });
@@ -40,8 +43,10 @@ class MovieSearchPage extends Component {
     };
 
     Axios.post(`${baseURL}/movies`, rental)
-    .then((response) => {
-      console.log(response);
+    .then(() => {
+      this.setState({ 
+        success: `Successfully added ${rental.title} to the library.`
+      })
     })
   }
 
@@ -64,9 +69,19 @@ class MovieSearchPage extends Component {
        Error: {this.state.error}
      </section>) : null;
 
+    const successSection = (this.state.success) ? 
+    (<section className="alert alert-success">
+      <p>
+      Success: {this.state.success} 
+      </p>
+    <Link to="/library">Go to rental library</Link>
+    </section>) 
+    : null;
+
     return (
     <section>
       {errorSection}
+      {successSection}
       <div>
         <h3>MoviesSearchPage</h3>
         <MovieSearchBar searchCallback={this.submitSearchQuery} />
