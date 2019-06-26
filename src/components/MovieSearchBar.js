@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Route, Link } from "react-router-dom";
+import 'bootstrap/dist/css/bootstrap.css';
 
 class MovieSearchBar extends Component {
 
@@ -32,9 +32,13 @@ class MovieSearchBar extends Component {
 
     return (
       <div>
-        <h5>MoviesSearchBar</h5>
-          <input type="text" name="query" onChange={this.onInputChange} value={this.state.query} />
-          <button onClick={this.submitSearchResults}>Search</button>
+        <h5>Search for a movie with a title</h5>
+        <div class="input-group">
+          <input className="form-control" type="search" placeholder="Search" name="query" onChange={this.onInputChange} value={this.state.query} />
+          <div class="input-group-append">
+          <button  className="btn btn-outline-success my-2 my-sm-0" onClick={this.submitSearchResults}>Search</button>
+          </div>
+        </div>
       </div>
     );
   }
