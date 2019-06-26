@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
+import Sidebar from 'react-sidebar';
 import './App.css';
 import axios from 'axios';
 
@@ -154,7 +155,6 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-      <header>
         <Router>
           <nav>
             <ul>
@@ -171,6 +171,15 @@ class App extends Component {
                 <Link to='/customerlist' onClick={this.clearSearchResults}>Customer List</Link>
               </li>
             </ul>
+            <section>
+              <Checkout 
+                selectedCustomerName={this.state.selectedCustomerName}
+                selectedCustomerId={this.state.selectedCustomerId}
+                selectedMovie={this.state.selectedMovie}
+                clearSelectedCallback={this.clearSelected}
+                refreshList={this.componentDidMount}
+              />
+            </section>
           </nav>
 
           <section className="action-result-message">
