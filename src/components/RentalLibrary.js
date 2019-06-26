@@ -9,26 +9,25 @@ class RentalLibrary extends Component {
 
     this.state = {
       movies: [],
-      moreMovies: '',
     };
   }
 
   componentDidMount() {
-    this.getMovies()
-  }
-
-  getMovies = () => {
     axios.get('http://localhost:3000/movies')
     .then((response) => {
-      this.setState({
-        movies: response.data,
-      });
+      this.setState( {movies: response.data} );
+      this.props.getMovieCallback(this.state.movies);
     })
     .catch((error) => {
-      this.setState({ error: error.message });
+      this.setState({ 
+        error: error.message 
+      });
     });
   }
 
+  selectMovieCallback = (id) => {
+    this.props.selectMovieCallback(id);
+  }
 
   render() {
     const allRentals = this.state.movies.map((movie) => {
@@ -40,11 +39,10 @@ class RentalLibrary extends Component {
         release_date={movie.release_date}
         image_url={movie.image_url}
         external_id={movie.external_id}
-        getMovieTitleCallback={this.props.getMovieTitleCallback}
+        selectMovieCallback={this.selectMovieCallback}
         />
 
     });
-
 
     return (
       <div >
@@ -57,7 +55,8 @@ class RentalLibrary extends Component {
 }
 
 RentalLibrary.propTypes = {
-  getMovieTitleCallback:PropTypes.func,
+  selectMovieCallback:PropTypes.func,
+  getMovieCallback:PropTypes.func,
 };
 
 export default RentalLibrary;

@@ -40,7 +40,7 @@ class CustomerList extends Component {
         state={customer.state}
         postal_code={customer.phone}
         account_credit={customer.account_credit}
-        selectedCustomerCallback={this.selectCustomerCallback}
+        selectCustomerCallback={this.selectCustomerCallback}
       />
     });
     
