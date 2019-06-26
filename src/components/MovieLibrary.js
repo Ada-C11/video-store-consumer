@@ -40,7 +40,6 @@ class MovieLibrary extends Component {
   }
 
   render() {
-    
     return (
       <section>
         <h3>Movie Library</h3>

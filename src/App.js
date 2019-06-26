@@ -13,11 +13,11 @@ import CustomerList from './components/CustomerList';
 const URL = 'http://localhost:4000/movies'
 
 class App extends Component {
-
   constructor(){
     super();
     this.state = {
-      selectedCustomer: '',
+      selectedCustomerName: '',
+      selectedCustomerId: null,
       selectedMovie: '',
       searchResults: [],
       movieLibrary: [],
@@ -61,18 +61,18 @@ class App extends Component {
 
   displaySearchResults = (result) => {
     this.setState({
-        searchResults: result,
-      });
+      searchResults: result,
+    });
   }
 
-  selectCustomer = (customerName) => {
+  selectCustomer = (customerName, customerId) => {
     this.setState({
-      selectedCustomer: customerName,
+      selectedCustomerName: customerName,
+      selectedCustomerId: customerId,
     });
   }
 
   addMovieToLibraryCallback = (movieToAdd) =>{
-  
     let addedMovieData = {
       ...movieToAdd
     }
@@ -102,62 +102,65 @@ class App extends Component {
   }
 
   selectMovie = (movieTitle) => {
-    console.log(movieTitle);
     this.setState({
       selectedMovie: movieTitle,
     });
   }
 
-  clearSearchResults = () =>{
+  clearSelected = () => {
+    this.setState({
+      selectedCustomerName: '',
+      selectedCustomerId: null,
+      selectedMovie: '',
+    });
+  }
+
+  clearSearchResults = () => {
     this.setState({
       searchResults: [],
     })
   }
   
   render() {
- 
     return (
       <div className="App">
-        <header>
-        
+      <header>
         <Router>
-            <nav>
-              <ul>
-                <li>
-                  <Link to='/' onClick={this.clearSearchResults}>Home</Link>
-                </li>
-                <li>
-                  <Link to='/search'>Search</Link>
-                </li>
-                <li>
-                  <Link to='/movielibrary' onClick={this.clearSearchResults}>Movie Library</Link>
-                </li>
-                <li>
-                  <Link to='/customerlist' onClick={this.clearSearchResults}>Customer List</Link>
-                </li>
-              </ul>
-            </nav>
+          <nav>
+            <ul>
+              <li>
+                <Link to='/' onClick={this.clearSearchResults}>Home</Link>
+              </li>
+              <li>
+                <Link to='/search'>Search</Link>
+              </li>
+              <li>
+                <Link to='/movielibrary' onClick={this.clearSearchResults}>Movie Library</Link>
+              </li>
+              <li>
+                <Link to='/customerlist' onClick={this.clearSearchResults}>Customer List</Link>
+              </li>
+            </ul>
+          </nav>
 
-            <section>
-              <Checkout 
-                selectedCustomer={this.state.selectedCustomer}
-                selectedMovie={this.state.selectedMovie}
-                />
-            </section>
+          <section>
+            <Checkout 
+              selectedCustomerName={this.state.selectedCustomerName}
+              selectedCustomerId={this.state.selectedCustomerId}
+              selectedMovie={this.state.selectedMovie}
+              clearSelectedCallback={this.clearSelected}
+              />
+          </section>
 
             <Route path="/" />
-           
             <Route path="/movielibrary" render={(props) => <MovieLibrary {...props} allMovies={this.state.movieLibrary} selectedMovie={this.selectMovie} />} />
-
             <Route path="/search" render={(props) => <Search onSearchButtonCallback={this.onSearchButtonCallback}/>} />
-
             <Route path="/customerlist" render={(props) => <CustomerList {...props} selectedCustomer={this.selectCustomer} />} />
           </Router>
         </header>
         
         <section>
           <SearchResult result={this.state.searchResults} addMovieToLibraryCallback={this.addMovieToLibraryCallback}/>
-          <Checkout selectedCustomer={this.state.selectedCustomer}/>
         </section>
       </div>
     )
