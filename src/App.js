@@ -9,6 +9,7 @@ import Library from './components/Library';
 import Customers from './components/Customers';
 import axios from 'axios';
 import Search from './components/Search';
+import Home from './components/Home';
 
 
 class App extends Component {
@@ -76,7 +77,7 @@ class App extends Component {
 
           { this.state.chosenCustomer && <p>Customer Selection: {this.state.chosenCustomer.name}</p> }
           
-          <Route exact path="/" component={Home} />
+          <Route exact path="/" render={() => <Home/>} />
           <Route path="/search" render={() => <Search moviesInLibrary={this.state.movies}/>}/>
           <Route 
             path="/library" 
@@ -106,16 +107,11 @@ class App extends Component {
   }
 }
 
-function Home() {
-  return <h2>Home</h2>;
-}
-
 function Header() {
   return (
     <Navbar bg="primary" variant="dark">
     <Navbar.Brand>Video World</Navbar.Brand>
-    <Nav className="mr-auto">
-      <Link className="nav_link" to="/">Home</Link>
+    <Nav className="flex">
       <Link className="nav_link" to="/search">Search</Link>
       <Link className="nav_link" to="/library">Library</Link>
       <Link className="nav_link" to="/customers">Customers</Link>
