@@ -168,11 +168,9 @@ class App extends Component {
   render() {
     const { selectedMovie, selectedCustomer, message } = this.state
 
-    
-    console.log(`MESSAGE: ${message}`);
     return (
       <Router>
-        <body className="App">
+        <section className="App">
           <header>
             <h1>Last Resort Video Store</h1>
           </header>
@@ -227,7 +225,7 @@ class App extends Component {
           <Route path="/search" render={(props) => <SearchMovie {...props} movieList={this.state.movies} addSearchToLibraryCallback={this.addSearchToLibrary}/> } />
           <Route path="/customers" render={(props) => <CustomerList {...props} customers={this.state.customers} onSelectCustomerCallback={this.onSelectCustomer} /> } />
           <Route path="/library" render={(props) => <Movies {...props} movieList={this.state.movies} onSelectMovieCallback={this.onSelectMovie} /> } />
-        </body>
+        </section>
       </Router>
     );
   }

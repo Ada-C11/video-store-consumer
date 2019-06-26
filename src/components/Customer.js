@@ -41,7 +41,7 @@ const Customer = (props) => {
         {customer.movies_checked_out_count}
       </td>
       <td>
-        {customer.account_credit}
+        ${customer.account_credit}
       </td>
     </Fragment>
   )

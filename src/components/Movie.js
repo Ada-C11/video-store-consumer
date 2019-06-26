@@ -4,8 +4,6 @@ const Movie = (props) => {
     const movie = props.movie;
 
     const onHandleClick = () => {
-        console.log('i\'m in movie and i\'ve been clicked!');
-        console.log('i have clicked movie', movie.title);
         props.onSelectMovieClick(movie);
     }
 
@@ -23,7 +21,6 @@ const Movie = (props) => {
     } else {
         button = <button onClick={onHandleClick}>Select for Rental</button>
     };
-    console.log(movie.image_url)
 
     return (
         <section>
