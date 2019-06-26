@@ -18,7 +18,6 @@ class MovieLibrary extends Component {
     const allMovies = [];
     axios.get(URL_MOVIES)
     .then((response) => {
-      console.log(response.data);
       response.data.forEach((element) => {
         allMovies.push(element);
       })

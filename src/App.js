@@ -13,7 +13,6 @@ import CustomerList from './components/CustomerList';
 const URL = 'http://localhost:4000/movies'
 
 class App extends Component {
-
   constructor(){
     super();
     this.state = {
@@ -42,8 +41,6 @@ class App extends Component {
   }
 
   selectCustomer = (customerName, customerId) => {
-    console.log(customerName);
-    console.log(customerId);
     this.setState({
       selectedCustomerName: customerName,
       selectedCustomerId: customerId,
