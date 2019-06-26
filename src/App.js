@@ -33,20 +33,33 @@ class App extends Component {
     this.setState({selectedCustomer})
   }
 
+//   axios.post(postURL, {
+//     params: {
+//       customer: this.state.selectedCustomer.id,
+//       due_date: dueDate
+//     }
+// })
+
   checkOut = () => {
-    const postURL = `http://localhost:3002/rentals/${this.state.selectedMovie}/check-out`
+    // const postURL = `http://localhost:3002/rentals/${this.state.selectedMovie}/check-out`
+    // const postURL = "http://localhost:3002/rentals/Psycho/check-out?customer_id=3&due_date=2019-6-28"
+    // console.log(postURL);
     const currDate = new Date()
     currDate.setDate(currDate.getDate() + 3)
     const day = currDate.getDate()
-    const month = currDate.getMonth()
+    const month = currDate.getMonth() + 1
     const year = currDate.getFullYear()
     const dueDate = `${year}-${month}-${day}`
-    axios.post(postURL, {
-        params: {
-          customer: this.state.selectedCustomer.id,
-          due_date: dueDate
-        }
-    })
+
+    console.log(dueDate);
+    const postURL = `http://localhost:3002/rentals/${this.state.selectedMovie}/check-out`
+
+    axios.post(postURL, null, {
+      params: {
+        customer_id: this.state.selectedCustomer.id,
+        due_date: dueDate
+      }
+})
     .then((response) => {
       console.log(response)
       // this.setSate
