@@ -6,7 +6,9 @@ import CustomerList from './components/CustomerList'
 import Notfound from './notfound'
 import image from './images/image.jpeg'
 import Rentals from './components/Rentals'
+import axios from 'axios';
 
+const rentalURL = ''
 class App extends Component {
   constructor() {
     super();
@@ -20,8 +22,17 @@ class App extends Component {
     this.setState({selectedCustomer: customerID})
   }
 
-  
-  showHome() {
+  componentDidMount() {
+    axios.post()
+      .then(response => {
+
+      })
+      .catch(error => {
+
+      });
+  }
+
+  showHomePage() {
     return (
       <div className="container">
         <h1>Rewind Movies</h1>
@@ -29,11 +40,6 @@ class App extends Component {
       </div>
     )
   }
-    selectMovieForRental = (movieTitle) => {
-      this.setState({
-        selectedMovie: movieTitle
-      })
-    }
   
   render() {
     return (
@@ -55,7 +61,7 @@ class App extends Component {
           </ul>
       </div>
         <Switch>
-          <Route exact path="/" render={() => (this.showHome())}/> />
+          <Route exact path="/" render={() => (this.showHomePage())}/> />
           <Route path="/movies" component={Library} />
           <Route path="/customers" render={ (props) => (<CustomerList {...props} selectCustCallback={this.selectCustomer}/>)} />
           <Route path="/rental" render={ (props) => (
