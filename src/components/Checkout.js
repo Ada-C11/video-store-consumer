@@ -47,6 +47,7 @@ class Checkout extends Component {
     event.preventDefault();
     this.checkoutMovie();
     this.props.clearSelectedCallback();
+    this.props.refreshList();
   }
 
   displaySuccessMessages = () => {

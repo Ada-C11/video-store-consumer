@@ -10,7 +10,8 @@ import SearchResult from './components/SearchResult';
 import CustomerList from './components/CustomerList';
 
 
-const URL = 'http://localhost:4000/movies'
+const URL_MOVIES = 'http://localhost:4000/movies';
+const URL_CUSTOMERS = 'http://localhost:4000/customers'
 
 class App extends Component {
   constructor(){
@@ -21,6 +22,7 @@ class App extends Component {
       selectedMovie: '',
       searchResults: [],
       movieLibrary: [],
+      allCustomers: [],
       addConfirmation: true,
       errorMessage: []
     }
@@ -28,7 +30,7 @@ class App extends Component {
 
   componentDidMount = () => {
     const movieLibrary = [];
-    axios.get(URL)
+    axios.get(URL_MOVIES)
     .then((response) => {
       console.log(response.data);
       response.data.forEach((element) => {
@@ -44,10 +46,27 @@ class App extends Component {
       })
       this.setState({errorMessage, });
     })
+
+    const allCustomers = [];
+    axios.get(URL_CUSTOMERS)
+    .then((response) => {
+      response.data.forEach((element) => {
+        allCustomers.push(element);
+      })
+      this.setState({allCustomers, });
+    })
+    .catch((error) => {
+      const errorMessage = this.state.errorMessage;
+      const newError = error.response.data.errors.text;
+      newError.forEach((text) => {
+        errorMessage.push(text);
+      })
+      this.setState({errorMessage, });
+    })
   }
 
   onSearchButtonCallback = (searchInput) => {
-    axios.get(URL, {params: {query: searchInput}})
+    axios.get(URL_MOVIES, {params: {query: searchInput}})
     .then((response) => {
       this.displaySearchResults(response.data)
     })
@@ -88,7 +107,7 @@ class App extends Component {
     })
     
     if (repeated === 0){
-      axios.post(URL, addedMovieData)
+      axios.post(URL_MOVIES, addedMovieData)
       .then((response) => {
         console.log(`movie ${response.data.title} added`)
         console.log(this.state.movieLibrary)
@@ -149,16 +168,17 @@ class App extends Component {
               selectedCustomerId={this.state.selectedCustomerId}
               selectedMovie={this.state.selectedMovie}
               clearSelectedCallback={this.clearSelected}
+              refreshList={this.componentDidMount}
               />
           </section>
 
             <Route path="/" />
             <Route path="/movielibrary" render={(props) => <MovieLibrary {...props} allMovies={this.state.movieLibrary} selectedMovie={this.selectMovie} />} />
             <Route path="/search" render={(props) => <Search onSearchButtonCallback={this.onSearchButtonCallback}/>} />
-            <Route path="/customerlist" render={(props) => <CustomerList {...props} selectedCustomer={this.selectCustomer} />} />
+            <Route path="/customerlist" render={(props) => <CustomerList {...props} allCustomers={this.state.allCustomers} selectedCustomer={this.selectCustomer} />} />
           </Router>
         </header>
-        
+
         <section>
           <SearchResult result={this.state.searchResults} addMovieToLibraryCallback={this.addMovieToLibraryCallback}/>
         </section>

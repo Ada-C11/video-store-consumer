@@ -1,39 +1,13 @@
 import React, { Component } from 'react';
-import axios from 'axios';
 import Customer from './Customer';
-
-const URL_CUSTOMERS = 'http://localhost:4000/customers';
 
 class CustomerList extends Component {
   constructor() {
     super();
-    this.state = {
-      allCustomers: [],
-      errorMessage: [],
-    }
-  }
-
-  componentDidMount = () => {
-    const allCustomers = [];
-    axios.get(URL_CUSTOMERS)
-    .then((response) => {
-      response.data.forEach((element) => {
-        allCustomers.push(element);
-      })
-      this.setState({allCustomers, });
-    })
-    .catch((error) => {
-      const errorMessage = this.state.errorMessage;
-      const newError = error.response.data.errors.text;
-      newError.forEach((text) => {
-        errorMessage.push(text);
-      })
-      this.setState({errorMessage, });
-    })
   }
 
   updateSelected = (customerId) => {
-    this.state.allCustomers.forEach((customer) => {
+    this.props.allCustomers.forEach((customer) => {
       if(customer.id === parseInt(customerId, 10)) {
         this.props.selectedCustomer(customer.name, customer.id);
       }
@@ -41,7 +15,7 @@ class CustomerList extends Component {
   }
 
   displayCustomers = () => {
-    const displayedCustomers = this.state.allCustomers.map((customer) => {
+    const displayedCustomers = this.props.allCustomers.map((customer) => {
       return(
         <Customer
           key={customer.id}
