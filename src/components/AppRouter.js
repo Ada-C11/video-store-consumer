@@ -1,13 +1,15 @@
 import React, { Component } from 'react';
-// import logo from './logo.svg';
+import axios from 'axios';
 // import './AppRouter.css';
 
 import Movie from './Movie'
 import Search from './Search';
 import Library from './Library';
 import CustomerList from './CustomerList';
+import SelectBar from './SelectBar';
 
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import Axios from 'axios';
 
 function Index() {
   return <h2>Home</h2>;
@@ -57,10 +59,37 @@ class AppRouter extends Component {
     })
   }
 
-  render() {
-    console.log(`Customer Selected: ${this.state.selectedCustomer}`);
-    console.log('Movie Selected', this.state.selectedMovie);
+  checkoutMovie = () => {
+    const { selectedMovie, selectedCustomer } = this.state;
 
+    if (selectedMovie && selectedCustomer) {
+      console.log(selectedMovie, selectedCustomer);
+
+      const checkoutURL = `${ VIDEO_STORE_API_URL }rentals/${ selectedMovie.title }/check-out?`;
+      const customerID = selectedCustomer.id;
+      const dueDate = new Date();
+      dueDate.setDate(dueDate.getDate() + 7);
+
+      const movie = selectedMovie.title;
+      const customer = selectedCustomer.name;
+
+      axios.post(checkoutURL, { due_date: dueDate, customer_id: customerID })
+      .then((response) => {
+        console.log(`Successfully checked out ${ movie }`);
+        this.setState({
+          selectMovie: null,
+          selectCustomer: null,
+        })
+      })
+      .catch((error) => {
+        console.log(`Unable to check out ${ movie } to ${ customer }. ${ error }`);
+      })
+    } else {
+      console.log(`Need to select a movie and customer.`);
+    }
+  }
+
+  render() {
     return (
       <Router>
         <div>
@@ -80,6 +109,13 @@ class AppRouter extends Component {
               </li>
             </ul>
           </nav>
+          <SelectBar 
+            selectedMovie={this.state.selectedMovie}
+            selectedCustomer={this.state.selectedCustomer}
+            checkoutCallback={this.checkoutMovie}
+          />
+
+
 
           <Route path="/" exact component={Index} />
           <Route
