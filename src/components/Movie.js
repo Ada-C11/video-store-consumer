@@ -26,6 +26,7 @@ Movie.propTypes = {
   overview: PropTypes.string,
   release_date: PropTypes.string,
   image_url: PropTypes.string,
+  external_id: PropTypes.number,
   selectMovieCallback: PropTypes.func
 }
 
