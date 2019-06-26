@@ -44,12 +44,11 @@ class Search extends Component {
     console.log(movie)
     const url = `http://localhost:3000/movies`
     const config = {
-      params: { external_id: movie.external_id,
+        external_id: movie.external_id,
         image_url: movie.image_url,
         overview: movie.overview,
         release_date: movie.release_date,
         title: movie.title,
-      }
     }
     axios.post(url, config)
     .then((response) => {
