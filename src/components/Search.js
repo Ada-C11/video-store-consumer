@@ -101,12 +101,14 @@ class Search extends Component {
         const searchedMovies = movies.map((movie) => {
             const { title, overview, image_url, release_date, external_id } = movie;
             return (
-                <div key={external_id}>
-                    <img src={image_url} alt="movie poster" className="movie-poster" />
-                    <p>{title}</p>
-                    <p>{release_date}</p>
-                    <p>{overview}</p>
-                    <input type="button" value="Add Movie to Library" className="" onClick={() => this.addToLibraryCallback(title, overview, image_url, release_date)} />
+                <div className="card" key={external_id}>
+                    <img src={image_url} alt="movie poster" className="card-img-top" />
+                    <div className="card-body">
+                        <p>{title}</p>
+                        <p>{release_date}</p>
+                        <p>{overview}</p>
+                        <input type="button" value="Add Movie to Library" className="" onClick={() => this.addToLibraryCallback(title, overview, image_url, release_date)} />
+                    </div>
                 </div>
 
             )
@@ -135,7 +137,7 @@ class Search extends Component {
 
     render() {
         return (
-            <div className="grid-container">
+            <div className="">
                {this.addtoLibraryMessage()}
                 <div className="search-form__header">
                     Search for a Movie!
@@ -148,7 +150,7 @@ class Search extends Component {
                         <input type="submit" value="Search" className="search-form__form-button" />
                     </div>
                 </form>
-                <section className="">
+                <section className="card-group">
                     {this.displayMovies(this.state.returnedMovies)}
                 </section>
             </div>
