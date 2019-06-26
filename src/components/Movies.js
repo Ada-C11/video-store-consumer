@@ -2,7 +2,6 @@ import React from 'react';
 import Movie from './Movie';
 
 const Movies = (props) => {
-    // console.log(props.movieList)
 
     const onSelectMovieClick = (movie) => {
         props.onSelectMovieCallback(movie)
@@ -23,7 +22,6 @@ const Movies = (props) => {
                 {listOfMovies}
             </ul>
         </section>
-        
     )
 };
 

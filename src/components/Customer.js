@@ -1,6 +1,5 @@
 import React, {Fragment} from 'react';
 
-
 const Customer = (props) => {
     const { customer, onSelectCustomerCallback } = props
 
@@ -46,6 +45,5 @@ const Customer = (props) => {
     </Fragment>
   )
 }
-
 
 export default Customer;
