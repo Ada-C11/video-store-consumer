@@ -25,7 +25,10 @@ class App extends Component {
   }
 
   onCustomerSelect = (name, id) => {
-    const selectedCustomer = name;
+    const selectedCustomer = {
+      name: name,
+      id: id
+    }
 
     console.log("Customer ID inside Apps.js:")
     console.log(id);
@@ -78,7 +81,7 @@ class App extends Component {
               </div>
               <div>
                 {this.state.selectedCustomer.length > 0 &&
-                  <p>{this.state.selectedCustomer}</p>
+                  <p>{this.state.selectedCustomer.name}</p>
                 }
  
               </div>
