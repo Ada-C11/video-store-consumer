@@ -5,6 +5,7 @@ import VideoStore from './components/VideoStore'
 import Movie from './components/Movie';
 import Customer from './components/Customer';
 import Search from './components/Search';
+import axios from 'axios';
 
 
 class App extends Component {
@@ -17,10 +18,31 @@ class App extends Component {
     }
   }
 
+  checkoutButtonClick = () => {
+    const title = this.state.currentMovie.title;
+    const customer = this.state.currentCustomer;
+    const rentalUrl = "http://localhost:3000/rentals" + title + "/check-out";
+
+
+    if (this.state.currentCustomer === "" || this.state.currentMovie === "") {
+      return (<p>Please select a movie AND a customer.</p>)
+    } else {
+
+      axios.post(rentalUrl)
+        .then((response) => {
+          console.log(response)
+          this.state.currentCustomer.movies_checked_out_count += 1;
+        })
+        .catch((error) => {
+          this.setState({ errorMessages: error.message });
+          console.log(this.state.errorMessages)
+        });
+
+    }
+  }
 
 
   currentCustomerCallback = (customer) => {
-
     return () => {
       this.setState({
         currentCustomer: customer,
@@ -29,7 +51,6 @@ class App extends Component {
   }
 
   currentMovieCallback = (movie) => {
-
     return () => {
       this.setState({
         currentMovie: movie,
@@ -46,8 +67,11 @@ class App extends Component {
             <Header />
 
             <div className="current_selections">
-              <p>{this.state.currentCustomer.name}</p>
-              <p>{this.state.currentMovie.title}</p>
+              <p><strong>Selected Customer:</strong> {this.state.currentCustomer.name}</p>
+              <p><strong>Selected Movie:</strong> {this.state.currentMovie.title}</p>
+
+              <button className="checkout_button"
+                onClick={this.checkoutButtonClick}>Checkout</button>
             </div>
 
             <Route exact path="/" component={Home} />
@@ -56,15 +80,18 @@ class App extends Component {
               render={(routeProps) => (
                 <Customer {...routeProps}
                   currentCustomerCallback={this.currentCustomerCallback} />
-              )}
-            />
+              )} />
             <Route
               path="/library"
               render={(routeProps) => (
                 <Movie {...routeProps}
                   currentMovieCallback={this.currentMovieCallback} />
               )} />
-            <Route path="/search" component={Search} />
+            <Route
+              path="/search"
+              render={(routeProps) => (
+                <Search {...routeProps} />
+              )} />
 
           </div>
 
@@ -83,17 +110,7 @@ function Home() {
   />;
 }
 
-// function Customers() {
-//   return;
-// }
 
-// function Library() {
-//   return <Movie />;
-// }
-
-function MovieSearch() {
-  return <Search />;
-}
 
 function Header() {
   return (
