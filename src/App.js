@@ -91,21 +91,21 @@ class App extends Component {
 
     return (
       <div className="App">
-        <header className="App__header">
-          <h1 className="App__title">BitaRos Amazing VideoStore</h1>
+        <header className="App-header">
+          <h1 className="App-title">BitaRos Amazing VideoStore</h1>
         </header>
-        <section>
+        <section className="App-main" >
           <button
             type="button"
-            className="btn btn-danger"
+            className="movie-display"
             aria-label="Close"
             onClick={() => this.setDisplay("library")}
           >
-            Movie Library
+           Movie Library
           </button>
           <button
             type="button"
-            className="btn btn-danger"
+            className="movie-display"
             aria-label="Close"
             onClick={() => this.setDisplay("search")}
           >
@@ -113,7 +113,7 @@ class App extends Component {
           </button>
           <button
             type="button"
-            className="btn btn-danger"
+            className="movie-display"
             aria-label="Close"
             onClick={() => this.setDisplay("list")}
           >
