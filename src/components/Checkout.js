@@ -4,6 +4,10 @@ import axios from 'axios';
 class Checkout extends Component {
   constructor (props) {
     super(props);
+    this.state = {
+      successMessages: [],
+      errorMessages: [],
+    }
   }
   
   checkoutMovie = () => {
