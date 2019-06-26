@@ -20,6 +20,7 @@ class App extends Component {
     }
   }
 
+  
   componentDidMount() {
     
     axios.all([this.getCustomers(), this.getMovies()])
@@ -91,8 +92,57 @@ class App extends Component {
     this.setState(updatedState);
   }
 
+  onClickCheckout = () => {
+
+    this.addRental(this.state.selectedMovie, this.state.selectedCustomer)
+    
+    const updatedState = null
+
+    // reseting selected movie and customer back to null
+    this.setState({
+      selectedMovie: updatedState,
+      selectedCustomer: updatedState,
+    });
+  }
+
+  addRental = (movie, customer) => {
+
+    const dueDate = new Date ();
+    dueDate.setDate(dueDate.getDate() + 5);
+
+    const rentalDataForApi = {
+      movie: movie.title,
+      customer_id: customer.id,
+      due_date: dueDate
+    };
+
+    const rentalURL = `${URL}/rentals/${movie.title}/check-out`;
+    console.log(rentalDataForApi)
+
+    // posting new rental to the API - updating the backend
+    axios.post(rentalURL, rentalDataForApi) 
+      .then((response) => {
+
+        this.setState({
+          message: `${movie.title} succesfully checked out to ${customer.name}`
+        });
+        
+      })
+      .catch((error) => {
+        console.log(error.messages);
+    
+        this.setState({
+          message: error.message
+        });
+      });
+  }
+
 
   render() {
+    const { selectedMovie, selectedCustomer, message } = this.state
+
+    console.log(this.state.customers);
+    console.log(`MESSAGE: ${message}`);
     return (
       <Router>
         <body className="App">
@@ -113,18 +163,29 @@ class App extends Component {
               </li>
             </ul>
           </nav>
+          
+          {message !== '' &&
+            <section>
+              {message}
+            </section>
+          }
 
           <section className='currently-selected-items'>    
-            {this.state.selectedMovie && 
+            {selectedMovie && 
               <div>
-                <p>Selected Movie: {this.state.selectedMovie.title}</p>
+                <p>Selected Movie: {selectedMovie.title}</p>
                 <button onClick={() => { this.setState({ selectedMovie: null}) }}>Remove Movie from Rental</button>
               </div>
             }
-            {this.state.selectedCustomer &&
+            {selectedCustomer &&
               <div>
-                <p>Selected Customer: {this.state.selectedCustomer.name}</p>
+                <p>Selected Customer: {selectedCustomer.name}</p>
                 <button onClick={() => { this.setState({ selectedCustomer: null}) }}>Remove Customer from Rental</button>
+              </div>
+            }
+            {selectedMovie && selectedCustomer && 
+              <div>
+                <button onClick={this.onClickCheckout}>Checkout Rental</button>
               </div>
             }
           </section>
