@@ -1,5 +1,10 @@
 import React, { Component } from "react";
+import ReactDOM from "react-dom";
+
 import "./App.css";
+import registerServiceWorker from "./registerServiceWorker";
+import { Route, Link, BrowserRouter as Router } from "react-router-dom";
+
 import MovieLibrary from "./components/MovieLibrary";
 import MovieSearchResults from "./components/MovieSearchResults";
 import RentalCheckout from "./components/RentalCheckout";
@@ -46,6 +51,32 @@ class App extends Component {
     });
   };
 
+  // routing = (
+  //   <Router>
+  //     <div>
+  //       <ul>
+  //         <li>
+  //           <Link to="/">Home</Link>
+  //         </li>
+  //         <li>
+  //           <Link to="/MovieLibrary">MovieLibrary</Link>
+  //         </li>
+  //         <li>
+  //           <Link to="/MovieSearchForm">MovieSearchForm</Link>
+  //         </li>
+
+  //         <li>
+  //           <Link to="/CustomerList">CustomerList</Link>
+  //         </li>
+  //       </ul>
+  //       <Route exact path="/" component={App} />
+  //       <Route path="/MovieLibrary" component={MovieLibrary} />
+  //       <Route path="/MovieSearchForm" component={MovieSearchForm} />
+  //       <Route path="/CustomerList" component={CustomerList} />
+  //     </div>
+  //   </Router>
+  // );
+
   render() {
     let optionalComponent;
 
@@ -81,7 +112,7 @@ class App extends Component {
       );
     }
 
-    let searchResults = "";
+    let searchResults;
     if (this.state.searchComplete) {
       searchResults = (
         <MovieSearchResults
@@ -94,7 +125,10 @@ class App extends Component {
     return (
       <div className="App">
         <header className="App-header">
-          <h1 className="App-title">BitaRos Amazing VideoStore</h1>
+          <h1 className="App-title">
+            <Link to="/">BitaRos Amazing VideoStore </Link>
+          </h1>
+          {/* <h1 className="App-title">BitaRos Amazing VideoStore</h1> */}
         </header>
         <section className="App-main">
           <button
@@ -103,7 +137,8 @@ class App extends Component {
             aria-label="Close"
             onClick={() => this.setDisplay("library")}
           >
-            <p>Movie Library </p>
+            <Link to="/MovieLibrary">Movie Library</Link>{" "}
+            {/* <p>Movie Library </p> */}
           </button>
           <button
             type="button"
@@ -111,7 +146,8 @@ class App extends Component {
             aria-label="Close"
             onClick={() => this.setDisplay("search")}
           >
-            <p>Movie Search </p>
+            <Link to="/MovieSearchForm">Movie Search</Link>{" "}
+            {/* <p>Movie Search </p> */}
           </button>
           <button
             type="button"
@@ -119,7 +155,8 @@ class App extends Component {
             aria-label="Close"
             onClick={() => this.setDisplay("list")}
           >
-            <p>CustomerList </p>
+            <Link to="/CustomerList">Customer List</Link>{" "}
+            {/* <p>Customer  List </p> */}
           </button>
           {optionalSearch}
         </section>
@@ -134,3 +171,6 @@ class App extends Component {
 }
 
 export default App;
+ReactDOM.render(<app/>, document.getElementById("root"));
+registerServiceWorker();
+
