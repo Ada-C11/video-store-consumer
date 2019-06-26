@@ -2,8 +2,7 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import Customer from './Customer';
 
-const URL_CUSTOMERS = 'http://localhost:4000/customers';
-
+const URL_CUSTOMERS = 'http://localhost:4000/customers'
 class CustomerList extends Component {
   constructor() {
     super();
@@ -28,7 +27,7 @@ class CustomerList extends Component {
   }
 
   updateSelected = (customerId) => {
-    this.state.allCustomers.forEach((customer) => {
+    this.props.allCustomers.forEach((customer) => {
       if(customer.id === parseInt(customerId, 10)) {
         this.props.selectedCustomer(customer.name, customer.id);
       }
@@ -36,7 +35,7 @@ class CustomerList extends Component {
   }
 
   displayCustomers = () => {
-    const displayedCustomers = this.state.allCustomers.map((customer) => {
+    const displayedCustomers = this.props.allCustomers.map((customer) => {
       return(
         <Customer
           key={customer.id}

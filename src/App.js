@@ -10,7 +10,8 @@ import SearchResult from './components/SearchResult';
 import CustomerList from './components/CustomerList';
 
 
-const URL = 'http://localhost:4000/movies'
+const URL_MOVIES = 'http://localhost:4000/movies';
+const URL_CUSTOMERS = 'http://localhost:4000/customers';
 
 class App extends Component {
   constructor(){
@@ -21,6 +22,7 @@ class App extends Component {
       selectedMovie: '',
       searchResults: [],
       movieLibrary: [],
+      allCustomers: [],
       addConfirmation: true,
       behaviorMessage: ''
     }
@@ -28,7 +30,7 @@ class App extends Component {
 
   componentDidMount = () => {
     const movieLibrary = [];
-    axios.get(URL)
+    axios.get(URL_MOVIES)
     .then((response) => {
       response.data.forEach((element) => {
         movieLibrary.push(element);
@@ -38,6 +40,19 @@ class App extends Component {
     .catch((error) => {
       this.displayMessages(error.message)
     })
+
+    const allCustomers = [];
+    axios.get(URL_CUSTOMERS)
+    .then((response) => {
+      response.data.forEach((element) => {
+        allCustomers.push(element);
+      })
+      this.setState({allCustomers, });
+    })
+    .catch((error) => {
+      this.displayMessages(error.message)
+   
+    })
   }
 
   onSearchButtonCallback = (searchInput) => {
@@ -46,7 +61,7 @@ class App extends Component {
       const emptyMovieMessage = `Empty is not a valid title`
       this.displayMessages(emptyMovieMessage)
     } else {
-      axios.get(URL, {params: {query: searchInput}})
+      axios.get(URL_MOVIES, {params: {query: searchInput}})
       .then((response) => {
         this.displaySearchResults(response.data)
       })
@@ -88,7 +103,7 @@ class App extends Component {
     })
     
     if (repeated === 0){
-      axios.post(URL, addedMovieData)
+      axios.post(URL_MOVIES, addedMovieData)
       .then((response) => {
         this.displayMessages(`${response.data.title} added to movie library`)
         this.componentDidMount()
@@ -123,17 +138,14 @@ class App extends Component {
   }
 
   displayMessages = (message) => {
-    
     if (message == 'Network Error'){
       message += ' - Make sure the API is running!'
     } else {
       setTimeout(() => {this.setState({behaviorMessage: ''})}, 3000);
     }
-
     this.setState({
       behaviorMessage: message,
     });
-   
     return (
       <p>{message}</p>
     )
@@ -172,16 +184,17 @@ class App extends Component {
               selectedMovie={this.state.selectedMovie}
               clearSelectedCallback={this.clearSelected}
               displayMessages={this.displayMessages}
+              refreshList={this.componentDidMount}
               />
           </section>
 
             <Route path="/" />
             <Route path="/movielibrary" render={(props) => <MovieLibrary {...props} allMovies={this.state.movieLibrary} selectedMovie={this.selectMovie} />} />
             <Route path="/search" render={(props) => <Search onSearchButtonCallback={this.onSearchButtonCallback}/>} />
-            <Route path="/customerlist" render={(props) => <CustomerList {...props} selectedCustomer={this.selectCustomer} displayMessages={this.displayMessages}/>} />
+            <Route path="/customerlist" render={(props) => <CustomerList {...props} allCustomers={this.state.allCustomers} selectedCustomer={this.selectCustomer} displayMessages={this.displayMessages}/>} />
           </Router>
         </header>
-        
+
         <section>
           <SearchResult result={this.state.searchResults} addMovieToLibraryCallback={this.addMovieToLibraryCallback}/>
         </section>

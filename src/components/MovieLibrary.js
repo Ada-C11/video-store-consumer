@@ -1,31 +1,21 @@
 import React, { Component } from 'react';
-// import axios from 'axios';
 import Movie from './Movie';
-
-// const URL_MOVIES = 'http://localhost:4000/movies';
 
 class MovieLibrary extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      allMovies: this.props.allMovies,
-      selectedMovie: '',
-    }
   }
   
   updateSelected = (movieId) => {
-    this.state.allMovies.forEach((movie) => {
+    this.props.allMovies.forEach((movie) => {
       if(movie.id === movieId) {
         this.props.selectedMovie(movie.title);
-        this.setState({
-          selectedMovie: movie.tile,
-        })
       }
     })
   }
 
   displayMovies = () => {
-    const displayedMovies = this.state.allMovies.map((movie) => {
+    const displayedMovies = this.props.allMovies.map((movie) => {
       return(
         <Movie
           key={movie.id}

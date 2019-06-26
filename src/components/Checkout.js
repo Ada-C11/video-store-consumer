@@ -22,6 +22,7 @@ class Checkout extends Component {
     .then((response) => {
       const successMessages = `Movie: ${movieTitle} was successfully checked out!`
       this.props.displayMessages(successMessages);
+      this.props.refreshList();
     })
     .catch((error) => {
       const errorMessages = error.message || error.response
