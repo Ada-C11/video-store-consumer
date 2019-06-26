@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import './App.css';
-import VideoStore from './components/VideoStore'
 import Movie from './components/Movie';
 import Customer from './components/Customer';
 import Search from './components/Search';
@@ -50,7 +49,7 @@ class App extends Component {
               <p>{this.state.currentMovie.title}</p>
             </div>
 
-            <Route exact path="/" component={Home} />
+            {/* <Route exact path="/" component={} /> */}
             <Route
               path="/customers"
               render={(routeProps) => (
@@ -69,27 +68,13 @@ class App extends Component {
           </div>
 
         </Router>
-
+        <h3>Welcome to the Video Store</h3>
 
       </section>
     );
   }
 }
 
-
-function Home() {
-  return <VideoStore
-    url="http://localhost:3000/"
-  />;
-}
-
-// function Customers() {
-//   return;
-// }
-
-// function Library() {
-//   return <Movie />;
-// }
 
 function MovieSearch() {
   return <Search />;
