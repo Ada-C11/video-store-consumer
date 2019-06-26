@@ -23,7 +23,7 @@ const CustomerList = (props) => {
 
     const renderCustomers = customers.map( (customer, i) => {
         return (
-          <tr key={i}>
+          <tr scope="row" key={i}>
             <Customer 
               customer={customer} 
               onSelectCustomerCallback={onSelectCustomerCallback}
@@ -33,12 +33,12 @@ const CustomerList = (props) => {
       });
 
     return (
-        <section>
+        <section className="customer-table">
           <h1>Customers</h1>
           <table className="table">
-            <thead>
+            <thead className="thead-dark">
               <tr>
-                <th>
+                <th scope="col">
                   id
                 </th>
                 <th>

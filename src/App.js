@@ -150,10 +150,9 @@ class App extends Component {
   render() {
     const { selectedMovie, selectedCustomer, message } = this.state
 
-    console.log(`MESSAGE: ${message}`);
     return (
       <Router>
-        <body className="App">
+        <section className="App">
           <header>
             <h1>Last Resort Video Store</h1>
           </header>
