@@ -45,14 +45,13 @@ class Rentals extends Component {
  
   reserveRental = () => {
     const newRental = {
-      title: this.props.movie + '/checkout',
       customer_id: this.props.customerID,
       due_date: new Date(this.state.dueDate)
     }
-
-    axios.post(rentalURL, newRental)
+    console.log(newRental)
+    axios.post(rentalURL + this.props.movie + '/check-out', newRental)
    .then((response) => {
-     console.log(response.data)
+     console.log(response.status)
    })
    .catch((error) => {
      this.setState({errorMessage: error.message})
@@ -85,6 +84,7 @@ class Rentals extends Component {
     if(this.props.customerID && this.props.movie) {
       makeReservation = false;
     }
+
    return (
      <section>
        <h1> Rewind Rentals </h1>
