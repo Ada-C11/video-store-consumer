@@ -1,12 +1,14 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
-import {Card, Button, Toast} from 'react-bootstrap'
+import {Card, Button} from 'react-bootstrap'
 import axios from 'axios';
 import moment from 'moment';
 
-import Notification from "./Notification"
+import Notification from "./Notification";
+import MovieCard from "./MovieCard";
+import Customer from "./Customer";
 
-import './Selected.css'
+import './Selected.css';
 class Selected extends Component {
  
     onReserveButtonClick = () =>{
@@ -70,6 +72,12 @@ class Selected extends Component {
             
         )
     }
+}
+
+Selected.propTypes = {
+    movie: PropTypes.instanceOf(<MovieCard/>),
+    customer: PropTypes.instanceOf(<Customer/>),
+    addNotificationCallback: PropTypes.func
 }
 
 export default Selected;

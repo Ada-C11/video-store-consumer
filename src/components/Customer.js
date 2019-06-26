@@ -29,4 +29,14 @@ class Customer extends Component {
     
 }
 
+Customer.propTypes = {
+    name: PropTypes.string, 
+    city: PropTypes.string, 
+    stateName: PropTypes.string, 
+    phone: PropTypes.string, 
+    accountCredit: PropTypes.number, 
+    moviesCheckedOutCount: PropTypes.number,
+    selectCustomerCallback: PropTypes.func
+}
+
 export default Customer;

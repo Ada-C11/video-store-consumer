@@ -147,4 +147,8 @@ class Search extends Component {
   }
 }
 
+Search.propTypes = {
+  addNotificationCallback: PropTypes.func,
+}
+
 export default Search;

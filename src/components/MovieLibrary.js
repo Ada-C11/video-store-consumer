@@ -38,8 +38,6 @@ class MovieLibrary extends Component {
           return newMovie
         })
 
-        console.log(newMovieList);
-
         this.setState({movieList: newMovieList});
       
       })
@@ -87,7 +85,8 @@ class MovieLibrary extends Component {
 }
 
 MovieLibrary.propTypes = {
-  
+  selectMovie:PropTypes.func,
+  addNotificationCallback:PropTypes.func
 };
 
 export default MovieLibrary;

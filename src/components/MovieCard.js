@@ -84,4 +84,15 @@ class MovieCard extends Component {
   }
 };
 
+MovieCard.propTypes = {
+  title: PropTypes.string, 
+  overview: PropTypes.string, 
+  release_date: PropTypes.string, 
+  inventory: PropTypes.number, 
+  image_url: PropTypes.string, 
+  buttonDisplay:PropTypes.string, 
+  parentComponent: PropTypes.string, 
+  selectMovieCallback: PropTypes.func
+}
+
 export default MovieCard;

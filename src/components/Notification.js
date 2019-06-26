@@ -36,4 +36,10 @@ class Notification extends Component{
     
 }
 
+Notification.propTypes = {
+    error: PropTypes.bool, 
+    toastTitle:PropTypes.string, 
+    toastMessage:PropTypes.string, 
+    toastTimestamp:PropTypes.instanceOf(Date)
+}
 export default Notification;

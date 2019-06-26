@@ -1,12 +1,11 @@
 import React, {Component} from 'react';
-import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import { BrowserRouter as Router, Route} from "react-router-dom";
 import { LinkContainer } from 'react-router-bootstrap'
 
 import MovieLibrary from './components/MovieLibrary'
 import CustomerList from './components/CustomerList'
 import Search from './components/Search'
 import Selected from './components/Selected'
-import Notification from "./components/Notification"
 
 import './App.css';
 
@@ -86,7 +85,7 @@ class AppRouter extends Component {
           customer={this.state.selectedCustomer}
           addNotificationCallback={this.addNotification}
           />
-          
+
           <Route path="/" exact component={Index} />
           <Route path="/home" exact component={Index} />
           
@@ -102,6 +101,7 @@ class AppRouter extends Component {
               addNotificationCallback={this.addNotification}/>}
               
           />
+
           <Route
               path='/customers'
               render={(props) => <CustomerList {...props}selectCustomer={this.selectCustomer} 

@@ -65,5 +65,9 @@ class CustomerList extends Component {
         );
     }
 }
+CustomerList.propTypes = {
+    selectCustomer: PropTypes.func,
+    addNotificationCallback: PropTypes.func,
+}
 
 export default CustomerList;
