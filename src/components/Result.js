@@ -14,7 +14,7 @@ const Result = (props) => {
             </div>
           <div className="result__info">
             <span>
-              <button onClick={() => props.addMovieCallback(props.external_id)}>
+              <button onClick={() => props.addMovieCallback(props)}>
                 Add to Rental Library
               </button>
             </span> 

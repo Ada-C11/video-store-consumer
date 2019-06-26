@@ -37,17 +37,18 @@ class Search extends Component {
     });
   }
 
-  addMovieCallback = (movieID) => {
-    // const movieData = {
-    //   title: movie.title,
-    //   overview: movie.overview,
-    //   release_date: movie.release_date,
-    //   image_url: movie.image_url,
-    //   external_id: movie.external_id,
-    //   inventory: 15
-    // }
+  addMovieCallback = (movie) => {
+    const movieData = {
+      title: movie.title,
+      overview: movie.overview,
+      release_date: movie.release_date,
+      image_url: movie.image_url,
+      external_id: movie.external_id,
+      inventory: 15
+    }
 
-    axios.post('http://localhost:3000/movies', movieID)
+    axios.post('http://localhost:3000/movies', movieData)
+    
     .then((response) => {
       const newMovie = response.data.map((movie, i) => {
         return <Movie
@@ -63,7 +64,7 @@ class Search extends Component {
       })
       this.props.addMovieCallback(newMovie)
     })
-
+    
     
   }
 
