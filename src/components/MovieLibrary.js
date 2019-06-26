@@ -47,13 +47,10 @@ class MovieLibrary extends Component {
       })
   }
 
-  
-
   render() {
     const display = this.state.movieList.map((movie) => {
       const { id, title, overview, release_date, image_url, external_id, inventory } = movie;
       
-      console.log(inventory)
       return (<section>
         <MovieCard 
           id={id}
