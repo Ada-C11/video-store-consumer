@@ -43,27 +43,14 @@ class Search extends Component {
       })
   };
 
-  generateMovieComponents = () => {
-    return this.state.movies.map((movie, i) => {
-      return (
-        <Movie
-          key={movie.id}
-          index={i}
-          id={movie.id}
-          title={movie.title}
-          overview={movie.overview}
-          release_date={movie.release_date}
-          image_url={movie.image_url}
-        />
-      )
-    })
-
+  postMovieToLibrary = (movieIndex) => {
+    console.log("in post")
   }
 
 
   render() {
     // const movies = this.generateMovieComponents();
-    const movies = this.props.generateMovieComponentsCallback(this.state.movies, false);
+    const movies = this.props.generateMovieComponentsCallback(this.state.movies, false, this.postMovieToLibrary);
     return (
       <section>
         <SearchForm
