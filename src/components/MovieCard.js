@@ -20,9 +20,48 @@ class MovieCard extends Component {
     this.props.selectMovieCallback(this.props);
   }
 
-  render () { 
-    const { title, overview, release_date, image_url, inventoryDisplay, buttonDisplay } = this.props;
+  onInputChange = (event) => {
+    const updatedState = {};
 
+    const field = event.target.name;
+    const value = event.target.value;
+
+    updatedState[field] = value;
+    this.setState(updatedState);
+  }
+
+  render () { 
+    const { title, overview, release_date, inventory, image_url, buttonDisplay, parentComponent } = this.props;
+
+    const inventoryDisplay = {
+      'movieLibrary': (
+        <div><Card.Text>Inventory: {inventory}</Card.Text>
+         <Button onClick={ this.onSelectButtonClick } className="select-movie-btn" variant='primary'>{buttonDisplay}</Button><br/>
+        </div>),
+
+      'search': (
+        <Card.Text>
+          <form 
+            className="inventoryNum"
+            onSubmit={this.onSearchSubmit}>
+            <label>
+              Copies to Add: 
+              <input
+                name="numCopies"
+                value={this.state.numCopies}
+                onChange={this.onInputChange}
+                type="number" min="1" max="10"/>
+            </label>
+          </form>
+          <Button onClick={ this.onSelectButtonClick }
+            className="select-movie-btn"
+            variant='primary'
+            >{buttonDisplay}
+          </Button>
+          </Card.Text>
+      )
+    } 
+    
     return (
       <Card style={{ width: '18rem' }}>
         <Card.Img variant="top" src={image_url} alt={`cover for ${title}`}/>
@@ -30,11 +69,11 @@ class MovieCard extends Component {
           <Card.Title>{title}</Card.Title>
           <Card.Text>{overview}</Card.Text>
           <Card.Text>{release_date}</Card.Text>
-          <Card.Text>{inventoryDisplay}</Card.Text>
-          <Button onClick={ this.onSelectButtonClick }
+          {inventoryDisplay[parentComponent]}
+          {/* <Button onClick={ this.onSelectButtonClick }
             className="select-movie-btn"
             variant='primary'
-          >{buttonDisplay}</Button>
+          >{buttonDisplay}</Button> */}
         </Card.Body>
       </Card>
     );

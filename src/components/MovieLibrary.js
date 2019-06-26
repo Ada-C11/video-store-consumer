@@ -52,7 +52,7 @@ class MovieLibrary extends Component {
   render() {
     const display = this.state.movieList.map((movie) => {
       const { id, title, overview, release_date, image_url, external_id, inventory } = movie;
-      const inventoryDisplay = `Inventory: ${inventory}`
+      
       console.log(inventory)
       return (<section>
         <MovieCard 
@@ -66,7 +66,7 @@ class MovieLibrary extends Component {
           inventory={inventory}
           selectMovieCallback={this.props.selectMovie}
           buttonDisplay='Select Movie'
-          inventoryDisplay={inventoryDisplay}
+          parentComponent='movieLibrary'
         />
       </section>);
     });

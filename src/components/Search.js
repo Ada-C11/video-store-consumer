@@ -13,7 +13,6 @@ class Search extends Component {
       title: "",
       selectedResult: "",
       searchResults: [],
-      numCopies: 0
     };
 
     this.state = { ...this.cleared }
@@ -27,7 +26,11 @@ class Search extends Component {
 
     this.onSearch(title)
 
-    // this.setState({ ...this.cleared });
+    this.setState({ ...this.cleared });
+  }
+
+  onAddMovietoLibrary = () => {
+    
   }
 
    onSearch = (title) => {
@@ -82,22 +85,6 @@ class Search extends Component {
   }
 
   render() {
-    const inventoryDisplay = (
-      <form 
-        className="inventoryNum"
-        onSubmit={this.onSearchSubmit}
-      >
-        <label>
-          Copies to Add: 
-          <input
-            name="numCopies"
-            value={this.state.numCopies}
-            onChange={this.onInputChange}
-            type="number" min="1" max="10"/>
-        </label>
-      </form>
-    )
-
     const display = this.state.searchResults.map((movie) => {
       const { title, overview, release_date, image_url, external_id } = movie;
       return (<section>
@@ -110,7 +97,7 @@ class Search extends Component {
           external_id={external_id}
           selectMovieCallback={this.selectMovie}
           buttonDisplay="Add to Library"
-          inventoryDisplay={inventoryDisplay}
+          parentComponent='search'
         />
       </section>);
     });
