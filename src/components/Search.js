@@ -11,7 +11,8 @@ class Search extends Component {
 
     this.cleared = {
       title: "",
-      searchResults: []
+      selectedResult: "",
+      searchResults: [],
     };
 
     this.state = { ...this.cleared }
@@ -26,6 +27,10 @@ class Search extends Component {
     this.onSearch(title)
 
     this.setState({ ...this.cleared });
+  }
+
+  onAddMovietoLibrary = () => {
+    
   }
 
    onSearch = (title) => {
@@ -71,16 +76,20 @@ class Search extends Component {
   }
 
   selectMovie = (movie) => {
-    console.log(movie);
-    this.setState({selectedMovie: movie});
+    console.log(movie)
+    console.log(movie.title)
+    console.log(movie['title'])
+    this.setState({selectedResult: movie.title});
+    console.log(this.state)
+
   }
 
   render() {
     const display = this.state.searchResults.map((movie) => {
-      const { id, title, overview, release_date, image_url, external_id } = movie;
+      const { title, overview, release_date, image_url, external_id } = movie;
       return (<section>
         <MovieCard 
-          id={id}
+          key={external_id}
           title={title}
           overview={overview}
           release_date={release_date}
@@ -88,6 +97,7 @@ class Search extends Component {
           external_id={external_id}
           selectMovieCallback={this.selectMovie}
           buttonDisplay="Add to Library"
+          parentComponent='search'
         />
       </section>);
     });
