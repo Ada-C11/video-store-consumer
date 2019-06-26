@@ -6,6 +6,7 @@ import MovieLibrary from './components/MovieLibrary'
 import CustomerList from './components/CustomerList'
 import Search from './components/Search'
 import Selected from './components/Selected'
+import Notification from "./components/Notification"
 
 import './App.css';
 
@@ -24,6 +25,7 @@ class AppRouter extends Component {
     this.state = {
       selectedMovie: undefined,
       selectedCustomer:undefined,
+      notifications: []
     }
   }
 
@@ -37,6 +39,13 @@ class AppRouter extends Component {
   selectMovie = (movie) => {
     console.log(movie);
     this.setState({selectedMovie: movie});
+  }
+
+  addNotification = (notification) => {
+    console.log(notification);
+    this.setState({
+      notifications:[...this.state.notifications, notification]
+    })
   }
 
   render(){
@@ -66,9 +75,16 @@ class AppRouter extends Component {
             </LinkContainer>
           </Nav.Item>
         </Nav>
+
+        <div className='App-notification-list'>
+              {this.state.notifications}
+        </div>
+        
+
         <Selected 
           movie={this.state.selectedMovie}
           customer={this.state.selectedCustomer}
+          addNotificationCallback={this.addNotification}
           />
           <Route path="/" exact component={Index} />
           <Route path="/home" exact component={Index} />

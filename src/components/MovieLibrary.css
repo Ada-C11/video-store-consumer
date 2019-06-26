@@ -1,5 +1,5 @@
 .movie-library{
-        width:80%;
+        max-width:900px;
         display: flex;
         flex-flow: row wrap;
         margin:auto;
