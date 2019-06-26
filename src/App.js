@@ -182,18 +182,18 @@ class App extends Component {
             {selectedMovie && 
               <div>
                 <p>Selected Movie: {selectedMovie.title}</p>
-                <button onClick={() => { this.setState({ selectedMovie: null}) }}>Remove Movie from Rental</button>
+                <button className='btn btn-warning' onClick={() => { this.setState({ selectedMovie: null}) }}>Remove Movie from Rental</button>
               </div>
             }
             {selectedCustomer &&
               <div>
                 <p>Selected Customer: {selectedCustomer.name}</p>
-                <button onClick={() => { this.setState({ selectedCustomer: null}) }}>Remove Customer from Rental</button>
+                <button className='btn btn-warning' onClick={() => { this.setState({ selectedCustomer: null}) }}>Remove Customer from Rental</button>
               </div>
             }
             {selectedMovie && selectedCustomer && 
               <div>
-                <button onClick={this.onClickCheckout}>Checkout Rental</button>
+                <button className='btn btn-success' onClick={this.onClickCheckout}>Checkout Rental</button>
               </div>
             }
           </section>
