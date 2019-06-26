@@ -28,13 +28,21 @@ class App extends Component {
   }
 
   getMovies = (movies) => {
-    console.log(movies)
+
     this.setState( {movieList: movies})
   }
 
   onSelectMovie = (movieId) => {
     const movie = this.state.movieList.find(movie => movie.id === movieId);
     this.setState({selectedMovie: movie});
+  }
+
+  addMovie = (movie) => {
+    console.log(this.state.movieList)
+    const list = [...this.state.movieList]
+    list.push(movie);
+
+    this.setState({movieList: list});
   }
 
   render() {
@@ -65,7 +73,9 @@ class App extends Component {
               path="/customers" 
               render={(props) => <CustomerList {...props} selectCustomerCallback={this.onSelectCustomer} getCustomerCallback={this.getCustomers}/>}
             />
-            <Route path="/search" component={Search} />
+            <Route path="/search" 
+            render={(props) => <Search {...props} addMovieCallback={this.addMovie} /> }
+            />
           </main>
         </Router>
       </div>

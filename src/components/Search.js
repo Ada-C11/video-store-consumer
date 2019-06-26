@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import axios from 'axios';
+import Result from './Result'
 import Movie from './Movie'
 
 require('dotenv').config();
@@ -36,23 +37,54 @@ class Search extends Component {
     });
   }
 
+  addMovieCallback = (movie) => {
+    const movieData = {
+      title: movie.title,
+      overview: movie.overview,
+      release_date: movie.release_date,
+      image_url: movie.image_url,
+      external_id: movie.external_id,
+      inventory: 15
+    }
+
+    axios.post('http://localhost:3000/movies', movieData)
+    
+    .then((response) => {
+      const newMovie = response.data.map((movie, i) => {
+        return <Movie
+          key={movie.id}
+          id={movie.id}
+          title={movie.title}
+          overview={movie.overview}
+          release_date={movie.release_date}
+          image_url={movie.image_url}
+          external_id={movie.external_id}
+          selectMovieCallback={this.selectMovieCallback}
+        />
+      })
+      this.props.addMovieCallback(newMovie)
+    })
+    
+    
+  }
+
   componentDidMount () {
     this.searchMovie();
   };
 
   searchMovie = (searchTitle) => {
-    const URL = `https://api.themoviedb.org/3/search/movie?api_key=${process.env.REACT_APP_API_KEY}&language=en-US&query=${searchTitle}&page=1&include_adult=false`
+    const URL = `http://localhost:3000/movies?query=${searchTitle}`
 
     axios.get(URL)
     .then((response) => {
-      const movies = response.data.results.map((movie) => {
+      const movies = response.data.map((movie, i) => {
         return {
-          id: movie.id,
-          key: movie.id,
+          id: i,
+          key: i,
           title: movie.title,
           overview: movie.overview,
           release_date: movie.release_date,
-          image_url: `http://image.tmdb.org/t/p/w185//${movie.poster_path}`,
+          image_url: movie.image_url,
           external_id: movie.external_id,
         }
       })
@@ -69,8 +101,8 @@ class Search extends Component {
 
   render() {
     const results = this.state.result.map((movie, i) => {
-
-      return <Movie
+      return <Result
+            addMovieCallback={this.addMovieCallback}
             id={i}
             key={i}
             title={movie.title}
