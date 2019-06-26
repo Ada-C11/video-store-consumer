@@ -85,20 +85,15 @@ class App extends Component {
     // });
   }
 
-  // pass this as callback method to sidebar
-  // do we need to pass in customer id into this method to set params? 
-  // maybe we should update the select customer method to store 
-  // the entire customer object for reference elsewhere
-  checkoutMovie = (title) => {
-    axios.post(`/movies/${title}/check-out`, {
-      // this won't work until we've updated selectedCustomer
-      // to hold all customer data
-      params: {
-        customer_id: this.state.selectedCustomer.id
-      }
-    })
+  checkoutMovie = (movie, customer) => {
+    let dueDate = Date.now() + 604800000
+    const checkoutParams = {
+      customer_id: customer.id,
+      due_date: new Date(dueDate) 
+    };
+    axios.post(`/rentals/${movie.title}/check-out`, checkoutParams)
     .then(() => {
-      alert(`${title} was successfully checked out!`);
+      alert(`${movie.title} was successfully checked out to ${customer.name}!`);
     })
     .catch(error => console.log(error));
   }
@@ -121,11 +116,12 @@ class App extends Component {
               <li>
                 <Link to="/library/"> Movie Library </Link>
               </li>
-              <li>Selected Movie: {this.state.selectedMovie ? this.state.selectedMovie.title : "No movie selected"}</li>
               <li>
                 <Link to="/customers/"> Customer List </Link>
               </li>
+              <li>Selected Movie: {this.state.selectedMovie ? this.state.selectedMovie.title : "No movie selected"}</li>
               <li>Selected Customer: {this.state.selectedCustomer ? this.state.selectedCustomer.name : "No customer selected"}</li>
+              <button type="button" onClick={() => {this.checkoutMovie(this.state.selectedMovie, this.state.selectedCustomer)}}>Checkout Movie</button>
             </ul>
           </nav>
 
@@ -143,8 +139,6 @@ class App extends Component {
             render={(props) => <CustomerList {...props} selectCustomer={this.selectCustomer}
             customerList={this.state.customerList} />}
           />
-
-
         </div>
       </Router>
     );
