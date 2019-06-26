@@ -17,7 +17,7 @@ class VideoStore extends Component {
     };
   }
 
-  url = "https://enigmatic-chamber-40825.herokuapp.com/"
+  url = "http://localhost:3000/"
 
   componentDidMount() {
     axios.get(this.url)
@@ -56,9 +56,7 @@ class VideoStore extends Component {
     const searchURL = this.url+`movies?query=`+queryString
     axios.get(searchURL)
     .then((response) => {
-      console.log(`vvvvvvvvv`)
       console.log(response.data)
-      console.log(`^^^^^^^^^`)
 
       const searchMatches = response.data.map((movie) => {
         const newMovie = {
@@ -84,11 +82,24 @@ class VideoStore extends Component {
   }
 
   onMovieAdd = (movieID) => {
-    // Saves this movie on db
-        // queryString.id = response.data.id;
-        // console.log(queryString.id);
-    // const newMovies = [queryString, ...this.state.movieList];
-    // this.setState({ movieList: newMovies })
+    const movieToAdd = this.state.searchMatches.find(movie => movie.id === movieID);
+    const titleOfMovieToAdd = movieToAdd.title
+    const url = `${this.url}movies/${titleOfMovieToAdd}`;
+
+    console.log(`Sending POST to ${url} with payload`, titleOfMovieToAdd);
+
+    axios.post(url, titleOfMovieToAdd)
+    .then((response) => {
+      const newMovie = response.data[0];
+      newMovie.id = response.data[0].id;
+
+      const newMovieList = [newMovie, ...this.state.movieList];
+
+      this.setState({ movieList: newMovieList });
+    })
+    .catch((error) => {
+      this.setState({ error: error.message })
+    })
   };
   
   render() {
