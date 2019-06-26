@@ -1,5 +1,6 @@
 import React from 'react';
 import Movie from './Movie';
+import './MovieList.css';
 import PropTypes from 'prop-types';
 
 const MovieList = (props) => {
@@ -10,7 +11,7 @@ const MovieList = (props) => {
 
     const listOfMovies = props.movieList.map((movie, i) => {
         return (
-            <li key={i}>
+            <li key={i} className='library-movie-item'>
                 <Movie movie={movie} onSelectMovieClick={onSelectMovieClick}/>
             </li>
         )
@@ -19,7 +20,7 @@ const MovieList = (props) => {
     return (
         <section>
             <h1>Movie Library</h1>
-            <ul>
+            <ul className='library-movie-list'>
                 {listOfMovies}
             </ul>
         </section>
