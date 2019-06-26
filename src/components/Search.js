@@ -23,6 +23,7 @@ class Search extends Component {
 
     movieSearchCallback = (title) => {
         this.reportStatus("Searching through database...")
+        
         const getURL = 'http://localhost:3002/'
         axios.get(getURL, {
             params: {
