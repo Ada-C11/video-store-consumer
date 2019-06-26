@@ -1,4 +1,9 @@
 
+.nav_link {
+  color: white;
+  margin-right: 2rem;
+}
+
 .App {
   text-align: center;
 }

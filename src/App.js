@@ -67,7 +67,7 @@ class App extends Component {
   render() {
     const errorSection = (this.state.error) ?
     (<section>Error: {this.state.error}</section>) : null;
-
+    console.log(this.state)
     return (
       <Router>
         <div>
@@ -115,10 +115,10 @@ function Header() {
     <Navbar bg="primary" variant="dark">
     <Navbar.Brand href="/">Video World</Navbar.Brand>
     <Nav className="mr-auto">
-      <Nav.Link href="/">Home</Nav.Link>
-      <Nav.Link href="/search">Search</Nav.Link>
-      <Nav.Link href="/library">Library</Nav.Link>
-      <Nav.Link href="/customers">Customers</Nav.Link>
+      <Link className="nav_link" to="/">Home</Link>
+      <Link className="nav_link" to="/search">Search</Link>
+      <Link className="nav_link" to="/library">Library</Link>
+      <Link className="nav_link" to="/customers">Customers</Link>
     </Nav>
     </Navbar>
   );
