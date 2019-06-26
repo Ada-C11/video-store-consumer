@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import CustomerList from './components/CustomerList';
 import RentalLibrary from './components/RentalLibrary';
 import Search from './components/Search';
+import axios from 'axios';
 
 
 
@@ -55,6 +56,29 @@ class App extends Component {
     return customer
   }
 
+  checkout = () => {
+    const date = new Date();
+    let sevenDays = date.setDate(date.getDate() + 7)
+    sevenDays = new Date(sevenDays).toISOString()
+    console.log(date)
+    const params = {
+      customer_id: this.state.selectedCustomer.id, 
+      title: this.state.selectedMovie.title,
+      due_date: sevenDays
+    }
+    console.log(params.due_date);
+
+    axios.post(`http://localhost:3000/rentals/${this.state.selectedMovie.title}/check-out`, params)
+    .then((response) => {
+      console.log("success");
+    })
+    .catch((error) => {
+      this.setState({
+        errorMessage: error.message
+      });
+    });
+  }
+
   render() {
     return (
       <div>
@@ -66,7 +90,7 @@ class App extends Component {
                   <Link to="/search" className="search">Search</Link>
                 </li>
                 <li>
-                    <Link to="/movies" className="movies">Movies</Link>
+                  <Link to="/movies" className="movies">Movies</Link>
                 </li>
                 <li>
                   <Link to="/customers" className="customers">Customers</Link>
@@ -77,6 +101,7 @@ class App extends Component {
                 <li>
                   This Customer is Currently Selected: {this.getName()}
                 </li>
+                <li><a href="#" onClick={this.checkout}>Checkout</a></li>
               </ul>
             </nav>
           </div>
