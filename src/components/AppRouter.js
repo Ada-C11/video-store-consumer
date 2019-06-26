@@ -24,11 +24,11 @@ class AppRouter extends Component {
     }
   }
 
-  generateMovieComponents = (movieList, buttonBool) => {  // secondary bool arg
+  generateMovieComponents = (movieList, buttonBool, callbackFunction) => {  // secondary bool arg
     return movieList.map((movie, i) => {
       return (
         <Movie
-          key={movie.id}
+          key={i}
           index={i}
           id={movie.id}
           title={movie.title}
@@ -36,18 +36,22 @@ class AppRouter extends Component {
           release_date={movie.release_date}
           image_url={movie.image_url}
           isSelectButton={buttonBool}
+          callbackFunction={callbackFunction}
+
         />
       )
     })
   }
 
   selectCustomer = (customer) => {
+    console.log("selected customer", customer)
     this.setState({
       selectedCustomer: customer,
     })
   }
 
   selectMovie = (movie) => {
+    console.log("selected movie", movie)
     this.setState({
       selectedMovie: movie,
     })
@@ -81,26 +85,27 @@ class AppRouter extends Component {
           <Route
             path="/search/"
             // component={Search} 
-            render={(props) => 
-              <Search 
-                generateMovieComponentsCallback={this.generateMovieComponents} 
-                url={ VIDEO_STORE_API_URL } 
+            render={(props) =>
+              <Search
+                generateMovieComponentsCallback={this.generateMovieComponents}
+                url={VIDEO_STORE_API_URL}
               />}
           />
           <Route
             path="/library/"
             // component={Library}
-            render={(props) => 
-              <Library 
-                generateMovieComponentsCallback={this.generateMovieComponents} 
-                url={ VIDEO_STORE_API_URL } 
+            render={(props) =>
+              <Library
+                generateMovieComponentsCallback={this.generateMovieComponents}
+                url={VIDEO_STORE_API_URL}
+                selectMovieCallback={this.selectMovie}
               />}
           />
-          <Route 
-            path="/customers/" 
-            render={(props) => 
-              <CustomerList 
-                url={ VIDEO_STORE_API_URL } 
+          <Route
+            path="/customers/"
+            render={(props) =>
+              <CustomerList
+                url={VIDEO_STORE_API_URL}
                 selectCustomerCallback={this.selectCustomer}
               />}
           />

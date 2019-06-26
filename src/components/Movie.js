@@ -3,11 +3,12 @@ import propTypes from 'prop-types';
 
 
 const Movie = (props) => {
-  const { index, title, overview, release_date, image_url, isSelectButton } = props;
+  const { index, title, overview, release_date, image_url, isSelectButton, callbackFunction } = props;
+  // console.log(selectMovieCallback)
 
   // Flesh this out!
-  const decisionThing = isSelectButton ? <button>This is Coming From Library!</button> : <button>This is Coming from Search!</button>;
-  
+  const buttonText = isSelectButton ? "Select" : "Add to library";
+
 
   return (
     <div>
@@ -17,7 +18,12 @@ const Movie = (props) => {
         <li>{release_date}</li>
         <li>{overview}</li>
       </ul>
-      { decisionThing }
+      <button
+        value={index}
+        onClick={() => { callbackFunction(index) }}
+      >
+        {buttonText}
+      </button>
     </div>
   )
 }
