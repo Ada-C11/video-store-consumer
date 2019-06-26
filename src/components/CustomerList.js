@@ -20,31 +20,27 @@ class CustomerList extends Component {
   };
 
   render() {
-    if (this.state.selected) {
-      return <div>{this.state.selectedCustomer}</div>;
-    } else {
-      const customers = this.state.customers.map(customer => {
-        return (
-          <section key={customer}>
-            <span> {customer} </span>
-
-            <button
-              type="button"
-              className="btn btn-danger"
-              aria-label="Close"
-              onClick={() => this.selectToCheckoutCustomer(customer)}
-            >
-              SELECT
-            </button>
-          </section>
-        );
-      });
+    const customers = this.state.customers.map(customer => {
       return (
-        <div>
-          <h2> List of Customers</h2> {customers}
-        </div>
+        <section key={customer}>
+          <span> {customer} </span>
+
+          <button
+            type="button"
+            className="btn btn-danger"
+            aria-label="Close"
+            onClick={() => this.selectToCheckoutCustomer(customer)}
+          >
+            SELECT
+          </button>
+        </section>
       );
-    }
+    });
+    return (
+      <div>
+        <h2> List of Customers</h2> {customers}
+      </div>
+    );
   }
 }
 

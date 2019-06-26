@@ -22,7 +22,7 @@ class MovieSearchForm extends Component {
     axios
       .get(URL)
       .then(response => {
-        const movies = response.data["results"];
+        const movies = response.data.results;
         this.setState({ text: "" });
         this.props.getresultcallback(movies);
       })

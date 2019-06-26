@@ -19,31 +19,27 @@ class MovieLibrary extends Component {
   };
 
   render() {
-    if (this.state.selected) {
-      return <div>{this.state.selectedMovie}</div>;
-    } else {
-      const movies = this.props.librayMovies.map(movie => {
-        return (
-          <section key={movie.title}>
-            <span> {movie.title} </span>
-
-            <button
-              type="button"
-              className="btn btn-danger"
-              aria-label="Close"
-              onClick={() => this.selectToCheckoutMovie(movie)}
-            >
-              SELECT
-            </button>
-          </section>
-        );
-      });
+    const movies = this.props.librayMovies.map(movie => {
       return (
-        <div>
-          <h2> Movie Library</h2> {movies}
-        </div>
+        <section key={movie.title}>
+          <span> {movie.title} </span>
+
+          <button
+            type="button"
+            className="btn btn-danger"
+            aria-label="Close"
+            onClick={() => this.selectToCheckoutMovie(movie)}
+          >
+            SELECT
+          </button>
+        </section>
       );
-    }
+    });
+    return (
+      <div>
+        <h2> Movie Library</h2> {movies}
+      </div>
+    );
   }
 }
 

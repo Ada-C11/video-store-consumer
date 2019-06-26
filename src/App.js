@@ -39,6 +39,7 @@ class App extends Component {
     this.setState({ hasCustomer: customer });
   };
 
+  // what to do with duplicate clicks to add to library
   addMovietoLibray = movie => {
     this.setState({
       librayMovies: [...this.state.librayMovies, movie]
@@ -79,7 +80,7 @@ class App extends Component {
     }
 
     let searchResults = "";
-    if (this.state.searchComplete === true) {
+    if (this.state.searchComplete) {
       searchResults = (
         <MovieSearchResults
           movies={this.state.movies}
@@ -119,10 +120,9 @@ class App extends Component {
             CustomerList
           </button>
         </section>
-        <div>{searchResults} </div>
-
+        {searchResults}
         {optionalComponent}
-        <section>{rentalMovie}</section>
+        {rentalMovie}
       </div>
     );
   }

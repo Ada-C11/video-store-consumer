@@ -21,7 +21,7 @@ class RentalCheckout extends Component {
   render() {
     let checkoutText = "";
 
-    if (this.state.checkoutStatus === true) {
+    if (this.state.checkoutStatus) {
       checkoutText = `${
         this.state.checkout.customer
       } has check out the following movie: ${this.state.checkout.movie.title}`;
@@ -48,7 +48,7 @@ class RentalCheckout extends Component {
             {this.props.selectedMovie
               ? this.props.selectedMovie.title
               : "Please select Movie to checkout"}
-            {this.props.selectedCustomer}
+            {this.props.selectedCustomer ? this.props.selectedCustomer : "Please select a Customer to checkout"}
           </h2>
         </header>
         {checkoutRental}
