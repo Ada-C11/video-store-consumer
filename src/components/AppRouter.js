@@ -8,6 +8,7 @@ import Library from './Library';
 import CustomerList from './CustomerList';
 import SelectBar from './SelectBar';
 
+import './AppRouter.css';
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import Axios from 'axios';
 
@@ -65,7 +66,7 @@ class AppRouter extends Component {
     if (selectedMovie && selectedCustomer) {
       console.log(selectedMovie, selectedCustomer);
 
-      const checkoutURL = `${ VIDEO_STORE_API_URL }rentals/${ selectedMovie.title }/check-out?`;
+      const checkoutURL = `${VIDEO_STORE_API_URL}rentals/${selectedMovie.title}/check-out?`;
       const customerID = selectedCustomer.id;
       const dueDate = new Date();
       dueDate.setDate(dueDate.getDate() + 7);
@@ -74,16 +75,16 @@ class AppRouter extends Component {
       const customer = selectedCustomer.name;
 
       axios.post(checkoutURL, { due_date: dueDate, customer_id: customerID })
-      .then((response) => {
-        console.log(`Successfully checked out ${ movie }`);
-        this.setState({
-          selectMovie: null,
-          selectCustomer: null,
+        .then((response) => {
+          console.log(`Successfully checked out ${movie}`);
+          this.setState({
+            selectMovie: null,
+            selectCustomer: null,
+          })
         })
-      })
-      .catch((error) => {
-        console.log(`Unable to check out ${ movie } to ${ customer }. ${ error }`);
-      })
+        .catch((error) => {
+          console.log(`Unable to check out ${movie} to ${customer}. ${error}`);
+        })
     } else {
       console.log(`Need to select a movie and customer.`);
     }
@@ -93,7 +94,7 @@ class AppRouter extends Component {
     return (
       <Router>
         <div>
-          <nav>
+          <nav className="nav-bar">
             <ul>
               <li>
                 <Link to="/">Home</Link>
@@ -107,46 +108,52 @@ class AppRouter extends Component {
               <li>
                 <Link to="/customers/">Customers</Link>
               </li>
+
             </ul>
+            <SelectBar
+
+              selectedMovie={this.state.selectedMovie}
+              selectedCustomer={this.state.selectedCustomer}
+              checkoutCallback={this.checkoutMovie}
+            />
+
+
           </nav>
-          <SelectBar 
-            selectedMovie={this.state.selectedMovie}
-            selectedCustomer={this.state.selectedCustomer}
-            checkoutCallback={this.checkoutMovie}
-          />
+
+          <main >
 
 
-
-          <Route path="/" exact component={Index} />
-          <Route
-            path="/search/"
-            // component={Search} 
-            render={(props) =>
-              <Search
-                generateMovieComponentsCallback={this.generateMovieComponents}
-                url={VIDEO_STORE_API_URL}
-              />}
-          />
-          <Route
-            path="/library/"
-            // component={Library}
-            render={(props) =>
-              <Library
-                generateMovieComponentsCallback={this.generateMovieComponents}
-                url={VIDEO_STORE_API_URL}
-                selectMovieCallback={this.selectMovie}
-              />}
-          />
-          <Route
-            path="/customers/"
-            render={(props) =>
-              <CustomerList
-                url={VIDEO_STORE_API_URL}
-                selectCustomerCallback={this.selectCustomer}
-              />}
-          />
+            <Route path="/" exact component={Index} />
+            <Route
+              path="/search/"
+              // component={Search} 
+              render={(props) =>
+                <Search
+                  generateMovieComponentsCallback={this.generateMovieComponents}
+                  url={VIDEO_STORE_API_URL}
+                />}
+            />
+            <Route
+              path="/library/"
+              // component={Library}
+              render={(props) =>
+                <Library
+                  generateMovieComponentsCallback={this.generateMovieComponents}
+                  url={VIDEO_STORE_API_URL}
+                  selectMovieCallback={this.selectMovie}
+                />}
+            />
+            <Route
+              path="/customers/"
+              render={(props) =>
+                <CustomerList
+                  url={VIDEO_STORE_API_URL}
+                  selectCustomerCallback={this.selectCustomer}
+                />}
+            />
+          </main>
         </div>
-      </Router>
+      </Router >
     );
   };
 };
