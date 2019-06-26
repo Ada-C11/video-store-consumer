@@ -3,6 +3,8 @@ import MovieSearchBar from './MovieSearchBar';
 import SearchResult from './SearchResult';
 import Axios from 'axios';
 import 'bootstrap/dist/css/bootstrap.css';
+import './MovieSearchBar.css';
+import { Link } from "react-router-dom";
 
 
 const baseURL = `http://localhost:3001`;
@@ -12,7 +14,8 @@ class MovieSearchPage extends Component {
     this.state = {
       searchResults: [],
       rentalAddedMessage: false,
-      rentalToAdd: {}
+      rentalToAdd: {},
+      addRentalsLink: false,
     }
   };
 
@@ -22,7 +25,10 @@ class MovieSearchPage extends Component {
     Axios.get(`${baseURL}/movies?query=${formattedTerm}`)
       .then((response) => {
         const results = response.data;
-        this.setState({ searchResults: results })
+        this.setState({ 
+          searchResults: results,
+          success: `Found ${response.data.length} movies matching "${searchTerm}"`,
+          addRentalsLink: false, })
         })
       .catch((error) => {
           this.setState({ error: error.message });
@@ -39,9 +45,15 @@ class MovieSearchPage extends Component {
       external_id: movieData.external_id
     };
 
+    console.log(rental.image_url);
+
     Axios.post(`${baseURL}/movies`, rental)
     .then((response) => {
       console.log(response);
+      this.setState({ 
+        success: `Successfully added ${rental.title} to the library.`,
+        addRentalsLink: true,
+      })
     })
   }
 
@@ -64,14 +76,28 @@ class MovieSearchPage extends Component {
        Error: {this.state.error}
      </section>) : null;
 
+    const successSection = (this.state.success) ? 
+    (<section className="alert alert-success">
+      <p>
+      Success: {this.state.success} 
+      </p>
+    </section>) 
+    : null;
+
+    const libraryLink  = (this.state.addRentalsLink) ? 
+    (<section className="alert alert-success"> 
+    <Link to="/library">Go to rental library</Link>
+    </section>) : null; 
+
     return (
     <section>
       {errorSection}
+      {successSection}
+      {libraryLink}
       <div>
-        <h3>MoviesSearchPage</h3>
         <MovieSearchBar searchCallback={this.submitSearchQuery} />
       </div>
-      <div>
+      <div className="table-container">
         <table className="table table-striped">
           <thead>
           <tr>

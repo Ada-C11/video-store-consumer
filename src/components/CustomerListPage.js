@@ -44,7 +44,7 @@ class CustomerListPage extends Component {
     return (
       <section>
         {errorSection}
-        <div>
+        <div className="table-container">
           
           <table className="table table-striped">
             <thead>

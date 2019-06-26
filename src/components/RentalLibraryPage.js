@@ -25,8 +25,8 @@ class RentalLibraryPage extends Component {
   render() {
     const {movies} = this.state;
     const movieList = movies.map((movie) => {
-      const {id, title, overview, release_date} = movie;
-      return ( <Movie key={id} id={id} title={title}
+      const {id, title, overview, release_date, image_url} = movie;
+      return ( <Movie key={id} id={id} title={title} image_url={image_url}
               overview={overview} release_date={release_date} 
               onSelectHandler={this.props.onSelectMovieCallback} />)
     });
@@ -39,10 +39,11 @@ class RentalLibraryPage extends Component {
     return (
       <section>
         {errorSection}
-        <div>
+        <div className="table-container">
           <table className="table table-striped">
             <thead>
             <tr>
+              <th scope="col" >Poster</th>
               <th scope="col">#</th>
               <th scope="col">Title</th>
               <th scope="col">Overview</th>
