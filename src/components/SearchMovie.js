@@ -10,15 +10,11 @@ class SearchMovie extends Component {
 			image_url: props.movieData.image_url,
 			external_id: props.movieData.external_id,
 			addMovieToLibraryCallback: props.addMovieToLibraryCallback,
-
 		}
 	}
 
 	addMovieToLibrary = () => {
-		console.log(this.props)
-		console.log(`adding movie`)
 		this.props.addMovieToLibraryCallback(this.state)
-
 	}
 
 	render(){
