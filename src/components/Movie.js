@@ -20,6 +20,9 @@ class Movie extends Component {
       .then((response) => {
         const movies = response.data.map((movie) => {
           const newMovie = {
+            image_url: movie.image_url,
+            overview: movie.overview,
+            release_date: movie.release_date,
             title: movie.title,
             id: movie.id,
           }
@@ -45,7 +48,6 @@ class Movie extends Component {
             <li>{title}</li>
             <li>Overview: {overview}</li>
             <li>Release date: {release_date}</li>
-            <li>External ID: {external_id}</li>
             <button className="select_movie_button" onClick={this.props.currentMovieCallback(movie)} > Select this Movie </button>
           </ul>
         </div>
