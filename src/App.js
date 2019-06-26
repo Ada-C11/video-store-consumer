@@ -3,7 +3,7 @@ import {Route, Switch, Link} from 'react-router-dom'
 import './App.css';
 import CustomerList from './components/CustomerList'
 import Library from './components/Library'
-import image from './images/image.jpeg'
+import image from './images/frontpage.jpg'
 
 
 class App extends Component {
