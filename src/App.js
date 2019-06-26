@@ -10,7 +10,10 @@ class App extends Component {
       movieTitle: "",
       customer: "",
       checkoutButtonClassName: "checkout-button",
+      error: "",
+      errorClass: "no-error",
     }
+
   }
 
   onCheckoutClick = () => {
@@ -40,7 +43,16 @@ class App extends Component {
         customer: "",
         checkoutButtonClassName: "checkout-button",
     })
+    .catch((error)=>{
+      console.log(error.message)
+      this.setState({error: error.message, errorClass: 'display-error'});
+      console.log(this.state.error)
+      console.log(this.state.errorClass)
+
+    })
+    // this.setState({error: "", errorClass: 'no-error'});
   }
+
 
   addMovieToRent = (title) => {
     let movieTitle = this.state.movieTitle;
@@ -65,10 +77,15 @@ class App extends Component {
     }
   }
 
+  onClickAnywhere = () => {
+    this.setState({error: "", errorClass: 'no-error'});
+  }
+
   render () {    
     return (
       <Router>
-        <div>
+        <div onClick = {this.onClickAnywhere}>
+          <p className={this.state.errorClass} >{this.state.error}</p>
           <h2>{this.state.movieTitle}</h2>
           <h2>{this.state.customer.name}</h2>
           <button className={this.state.checkoutButtonClassName}
@@ -96,7 +113,8 @@ class Search extends Component {
   constructor() {
     super();
     this.state = {
-      title: ""
+      title: "",
+      searchList: []
     }
   }
 
@@ -113,10 +131,48 @@ class Search extends Component {
     event.preventDefault();
     axios.get('http://localhost:3090/movies?query=' + this.state.title.toString())
     .then((response) => {
+      console.log(response.data)
+      const searchList = response.data.map((movie) => {
+          return movie
+      })
+      this.setState({searchList})
+    })
+    
+  }
+
+
+  onMovieSelect = (movie) => {
+    return () => {
+    axios.post('http://localhost:3090/movies', 
+    {
+      title: movie.title,
+      overview: movie.overview,
+      release_date: movie.release_date,
+      image_url: movie.image_url,
+      external_id: movie.external_id,
+    }
+    )
+    .then((response) => {
       console.log(response)
       // be submitting post request to video store api from response?
     })
+      let newState = this.state
+      newState.searchList = [];
+      this.setState({newState});
+    }
   }
+
+  searchDisplay = () => {
+    return this.state.searchList.map((movie) => {
+        return (
+          <div>
+            <p>{movie.title}</p>
+            <p onClick={this.onMovieSelect(movie)}>Select!</p>
+          </div>
+        )
+    })
+  }
+
   render () {
     return (
       <div>
@@ -126,6 +182,7 @@ class Search extends Component {
           <input name="title" type="text" value={this.state.title} onChange={this.onChangeTitle}/>
           <input type="submit" value="Search" />
         </form>
+        <h4>{this.searchDisplay()}</h4>
       </div>
     );
   }
