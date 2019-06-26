@@ -1,0 +1,8 @@
+.table-hover tbody tr:hover td {
+  background: lightgoldenrodyellow;
+}
+
+img {
+  width: 200px;
+  height: 200px;
+}
