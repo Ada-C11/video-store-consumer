@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import './Checkout.css';
 import axios from 'axios';
 
 class Checkout extends Component {

@@ -155,7 +155,7 @@ class App extends Component {
     return (
       <div className="App">
         <Router>
-          <nav>
+          <nav className="nav-bar">
             <ul className="menu-items">
               <li className="menu-item">
                 <Link to='/' onClick={this.clearSearchResults}>Home</Link>
