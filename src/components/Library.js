@@ -14,9 +14,7 @@ class Library extends Component {
   }
 
     generateMovieList = () => {
-      console.log(this.props)
       return this.state.movieList.map((movie) => {
-        console.log(movie)
         return (<Movie 
         key={movie.id}
         id={movie.id}
@@ -36,7 +34,6 @@ class Library extends Component {
           return movie
         })
       this.setState({movieList})
-      console.log(movieList)
     })
   }
 

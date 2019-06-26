@@ -13,7 +13,6 @@ class Search extends Component {
 
   onChangeTitle = (event) => {
     let title = this.state.title;
-    // const field = event.target.name;
     const value = event.target.value;
     title = value;
     this.setState({title})
@@ -24,7 +23,6 @@ class Search extends Component {
     event.preventDefault();
     axios.get('http://localhost:3090/movies?query=' + this.state.title.toString())
     .then((response) => {
-      console.log(response.data)
       const searchList = response.data.map((movie) => {
           return movie
       })
@@ -47,7 +45,6 @@ class Search extends Component {
     )
     .then((response) => {
       console.log(response)
-      // be submitting post request to video store api from response?
     })
       let newState = this.state
       newState.searchList = [];

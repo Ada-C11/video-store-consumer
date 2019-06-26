@@ -2,7 +2,6 @@ import React from 'react';
 import 'bootstrap/dist/css/bootstrap.css';
 import './Customer.css';
 
-// import './Home.css';
 
 function Movie (props) {
   const onTitleClick = () => {

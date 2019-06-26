@@ -2,8 +2,8 @@
 nav.navbar.sticky-top {
     display: grid;
     grid-template-columns: 3fr 1fr 1fr;
-    /* justify-content: space-between; */
 }
+
 .navbar-nav {
     display: flex;
     flex-direction: row;
