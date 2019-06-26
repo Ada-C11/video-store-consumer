@@ -3,26 +3,19 @@ import PropTypes from 'prop-types';
 
 const Customer = (props) => {
 
-  const onClickCustomer = () => {
-    props.getCustomerNameCallback(props.name, props.id)
-  }
 
 
   return (
     <div className="customer">
         <div className="content">
-          <div>{props.name}</div>
-          <div>{props.address}</div>
-          <div>{props.city}, {props.state}</div>
-          <div>{props.postal}</div>
+          <ul>{props.name}</ul>
+            <li>{props.address}</li>
+            <li>{props.city}, {props.state}</li>
+            <div>{props.postal}</div>
 
-          <div>{props.phone}</div>
-          <div>${props.account_credit} account credit</div>
+            <li>{props.phone}</li>
+            <li>${props.account_credit} account credit</li>
         </div>
-      {/* <button onClick={onClickCustomer}
-        className="customer__select">
-        Select for rental
-      </button> */}
     </div>
 
   )
@@ -37,7 +30,6 @@ Customer.propTypes = {
   postal:PropTypes.string,
   phone:PropTypes.string,
   account_credit:PropTypes.number,
-  created_at:PropTypes.instanceOf(Date),
   getCustomerNameCallback:PropTypes.func,
 };
 
