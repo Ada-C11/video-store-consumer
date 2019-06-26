@@ -13,7 +13,7 @@ class Search extends Component {
     event.preventDefault()
     this.state.onSearchButtonCallback(this.state.searchInput)
     this.setState({
-      searchInput: ''
+      searchInput: '',
     })
   }
 
