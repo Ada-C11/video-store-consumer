@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import Movie from './Movie';
 import PropTypes from 'prop-types';
+import './SearchMovie.css';
 
 const URL = process.env.REACT_APP_API_URL
 class SearchMovie extends Component {
@@ -58,10 +59,6 @@ class SearchMovie extends Component {
           });
     }
 
-    getMovieForLibrary = () => {
-      console.log("i clicked 'add movie to library'!")
-    }
-
     render() {
         
         const listSearchResults = this.state.allSearchResults.map((movieFromSearch, i) => {
@@ -83,23 +80,24 @@ class SearchMovie extends Component {
         return (
           <div>
             <div className='search-movie-form'>
-                <h3>Search by Movie Title:</h3>
-        
-                <form onSubmit={this.handleSubmit}>
-                
-                        <input
-                        className='movie-search-area'
-                        name='text'
-                        value={this.state.searchTerm}
-                        placeholder='Ex: "Clueless"'
-                        type='text'
-                        onChange={this.onChangeHandler} 
-                        />
-                        
-                    <div>
-                        <input type="submit" value="Find Movie" />
-                    </div>
-                </form>
+              <h3>Search by Movie Title:</h3>
+      
+              <form onSubmit={this.handleSubmit}>
+                <div className="form-group">
+                  <input
+                  id="movie-search-area"
+                  className='form-control'
+                  name='text'
+                  value={this.state.searchTerm}
+                  placeholder='Ex: "Clueless"'
+                  type='text'
+                  onChange={this.onChangeHandler} 
+                  />
+                </div>   
+                <div>
+                  <input className="btn btn-dark" type="submit" value="Find Movie" />
+                </div>
+              </form>
             </div>
 
             <section className="search-results">
