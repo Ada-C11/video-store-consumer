@@ -6,19 +6,17 @@ const Movie = (props) => {
 
   return (
     <div className="movie">
-      <li>
         <div className="movie__section">
+          <h3 className="movie__title">{props.title}</h3>
             <img className="image" src={props.image_url} alt="this is an image"/>
-            <div class="middle">
-              <div class="text">{props.overview}</div>
+            <div className="middle">
+              <div className="text">{props.overview}</div>
             </div>
           <div className="movie__info">
             <span>
-            </span>
-            <h3 className="movie__title">{props.title}</h3>
+            </span> 
           </div>
         </div>
-      </li>
     </div>
   )
 }

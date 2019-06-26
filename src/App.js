@@ -3,6 +3,7 @@ import './App.css';
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import CustomerList from './components/CustomerList';
 import RentalLibrary from './components/RentalLibrary';
+import Search from './components/Search';
 
 
 
@@ -49,6 +50,7 @@ class App extends Component {
               path="/customers" 
               render={(props) => <CustomerList {...props} selectCustomerCallback={this.onSelectCustomer} getCustomerCallback={this.getCustomers}/>}
             />
+            <Route path="/search" component={Search} />
           </main>
         </Router>
       </div>
