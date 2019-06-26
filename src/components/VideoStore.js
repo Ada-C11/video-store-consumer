@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import Customer from './Customer';
-import axios from 'axios';
 
 
 class VideoStore extends Component {

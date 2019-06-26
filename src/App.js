@@ -74,7 +74,6 @@ class App extends Component {
     }
   }
 
-
   currentCustomerCallback = (customer) => {
     return () => {
       this.setState({
@@ -96,9 +95,6 @@ class App extends Component {
       <div className="status_message">
         <p>{this.state.statusMessage}</p>
       </div>;
-
-    let notificationDisplay;
-
 
     return (
       <section>
