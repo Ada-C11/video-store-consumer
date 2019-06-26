@@ -79,14 +79,14 @@ class App extends Component {
                 }
               </div>
               <div>
-                {this.state.selectedCustomer.length > 0 &&
+                {this.state.selectedCustomer.name &&
                   <p>{this.state.selectedCustomer.name}</p>
                 }
               </div>
               <div>
                 {
                   this.state.selectedMovie.length > 0 &&
-                  this.state.selectedCustomer.length > 0 &&
+                  this.state.selectedCustomer.name &&
                   <button>Check Out</button>
                 }
               </div>
