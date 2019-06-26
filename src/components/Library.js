@@ -39,7 +39,7 @@ class Library extends React.Component {
       return <Movie key={movie.id}
         id={movie.id}
         title={movie.title}
-        releaseDate={movie.release_date}
+        releaseDate={movie.overview}
         imageUrl={movie.image_url}
         external_id={movie.external_id}/>
     });
