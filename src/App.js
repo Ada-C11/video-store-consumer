@@ -45,6 +45,16 @@ class App extends Component {
     this.setState({movieList: list});
   }
 
+  getTitle = () => {
+    const movie = this.state.selectedMovie.title
+    return movie
+  }
+
+  getName = () => {
+    const customer = this.state.selectedCustomer.name
+    return customer
+  }
+
   render() {
     return (
       <div>
@@ -60,6 +70,12 @@ class App extends Component {
                 </li>
                 <li>
                   <Link to="/customers" className="customers">Customers</Link>
+                </li>
+                <li>
+                  This Movie is Currently Selected: {this.getTitle()}
+                </li>
+                <li>
+                  This Customer is Currently Selected: {this.getName()}
                 </li>
               </ul>
             </nav>
@@ -78,6 +94,7 @@ class App extends Component {
             />
           </main>
         </Router>
+        
       </div>
     );
   }
