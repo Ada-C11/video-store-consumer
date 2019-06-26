@@ -78,7 +78,9 @@ class Search extends Component {
     super();
     this.state = {
       title: "",
-      searchList: []
+      searchList: [],
+      error: ""
+      errorClass: "no-error"
     }
   }
 
@@ -100,7 +102,9 @@ class Search extends Component {
           return movie
       })
       this.setState({searchList})
-      console.log(searchList)
+    })
+    .catch((error)=>{
+      this.setState({error: error.message});
     })
   }
 
@@ -118,7 +122,10 @@ class Search extends Component {
     .then((response) => {
       console.log(response)
     })
-    console.log('inside on movie select')}
+      let newState = this.state
+      newState.searchList = [];
+      this.setState({newState});
+    }
   }
 
   searchDisplay = () => {
