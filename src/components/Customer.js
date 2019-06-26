@@ -2,6 +2,9 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
 const Customer = (props) => {
+  const selectCustomer = () => {
+    return props.selectedCustomerCallback(props.id)
+  }
 
   return (
     <div className="customer">
@@ -13,6 +16,7 @@ const Customer = (props) => {
 
             <li>{props.phone}</li>
             <li>${props.account_credit} account credit</li>
+            <li><a href="#" onClick={selectCustomer}>Select Customer</a></li>
         </div>
     </div>
 
@@ -28,7 +32,7 @@ Customer.propTypes = {
   postal:PropTypes.string,
   phone:PropTypes.string,
   account_credit:PropTypes.number,
-  getCustomerNameCallback:PropTypes.func,
+  selectedCustomerCallback: PropTypes.func,
 };
 
 export default Customer;
