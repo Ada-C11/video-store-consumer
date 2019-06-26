@@ -5,6 +5,7 @@ import { LinkContainer } from 'react-router-bootstrap'
 import MovieLibrary from './components/MovieLibrary'
 import CustomerList from './components/CustomerList'
 import Search from './components/Search'
+import Selected from './components/Selected'
 
 import './App.css';
 
@@ -65,7 +66,10 @@ class AppRouter extends Component {
             </LinkContainer>
           </Nav.Item>
         </Nav>
-  
+        <Selected 
+          movie={this.state.selectedMovie}
+          customer={this.state.selectedCustomer}
+          />
           <Route path="/" exact component={Index} />
           <Route path="/search/" exact component={Search} />
           

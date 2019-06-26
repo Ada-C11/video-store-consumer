@@ -1,0 +1,6 @@
+.selections {
+    position:fixed;
+    bottom:0;
+    z-index: 5;
+    box-shadow: 4px 4px 4px;
+}
