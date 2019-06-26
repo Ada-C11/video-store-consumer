@@ -46,9 +46,7 @@ class CustomerListPage extends Component {
       <section>
         {errorSection}
         <div>
-          <Link to="/library">Movie Rental Library</Link>
-          <Link to="/search">Search for a Movie</Link>
-          <Link to="/customers">Customers</Link>
+          
           <table className="table table-striped">
             <thead>
             <tr>

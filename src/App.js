@@ -7,14 +7,15 @@ import HomePage from './components/HomePage'
 import RentalLibraryPage from './components/RentalLibraryPage'
 import CustomerListPage from './components/CustomerListPage'
 import MovieSearchPage from './components/MovieSearchPage'
-import Axios from 'axios';
+
 
 class App extends Component {
   constructor(props){
     super(props);
     this.state = {
       selectedMovie: null,
-      selectedCustomer: null
+      selectedCustomer: null,
+      error: null
     };
   }
 
@@ -25,16 +26,26 @@ class App extends Component {
     this.setState({selectedMovie: movieTitle});
   }
   
-  onCheckOutClick = (rentalInfo) => {
+  onCheckOutClick = () => {
+    let d=new Date(new Date().getTime() + (7 * 24 * 60 * 60 * 1000));
+    let dueDate = d.toJSON().slice(0,10)
+    
+    const rentalInfo = {
+      customer_id: this.state.selectedCustomer,
+      due_date: dueDate
+    }
+    
     const url = "http://localhost:3001/rentals/"+this.state.selectedMovie+"/check-out"
     
-    console.log(Date.now())
     axios.post(url, rentalInfo)
       .then((response) => {
-        console.log("success")
+        this.setState({
+          selectedMovie: null,
+          selectedCustomer: null
+        })
       })
       .catch((error) => {
-        console.log("failure")
+        this.setState({ error: error.message });
       });
   }
   
@@ -44,16 +55,41 @@ class App extends Component {
       (<section>
         Selected Movie: {this.state.selectedMovie}
       </section>) : null;
+    
     const customerSection = (this.state.selectedCustomer) ?
     (<section>
       Selected Customer: {this.state.selectedCustomer}
     </section>) : null;
+    
     const checkOut = (this.state.selectedCustomer && this.state.selectedMovie) ? 
       (<section>
         <button className="btn btn-primary" onClick={this.onCheckOutClick}>Check Out</button>
       </section>) : null;
+    
+    const errorSection = (this.state.error) ? 
+    (<section className="error">
+       Error: {this.state.error}
+     </section>) : null;
+    
     return (
       <div>
+        <div className="navbar navbar-expand-lg navbar-dark bg-success">
+          <ul className="navbar-nav">
+          <li className="nav-item active">
+            <Link to="/" className="navbar-brand">Home</Link>
+          </li>
+          <li className="nav-item">
+            <Link to="/customers" className="nav-link">Customers</Link>
+          </li>
+          <li className="nav-item">
+            <Link to="/library" className="nav-link">Movie Rental Library</Link>
+          </li>
+          <li className="nav-item">
+            <Link to="/search" className="nav-link">Search for a Movie</Link>
+          </li>
+          </ul>
+        </div>
+        {errorSection}
         {movieSection}
         {customerSection}
         {checkOut}
