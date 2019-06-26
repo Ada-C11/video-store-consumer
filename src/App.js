@@ -54,8 +54,10 @@ class App extends Component {
   }
 
   addMovieToLibrary = (title) => {
-    axios.post(`/movies/${title}`)
-    .then(response => {
+    const url = `http://localhost:3000/movies`;
+    axios.post(url, title)
+    .then(() => {
+      alert(`${title} was successfully added to rental library!`);
       // console.log(response)
       // this.setState({
       //   movieLibrary: response.data
@@ -67,7 +69,7 @@ class App extends Component {
   selectMovie = (title) => {
     return () => { 
       this.setState({
-      selectedMovie: title
+        selectedMovie: title
       });
     }
     // const movie = this.state.movieLibrary.find(movie => movie.id === movieId)
@@ -114,7 +116,8 @@ class App extends Component {
           </nav>
 
           <Route path="/search/"
-            render={(props) => <Search {...props} selectMovie={this.selectMovie} addMovieCallback={this.addMovieToLibrary}/>}
+            render={(props) => <Search {...props} selectMovie={this.selectMovie} 
+            addMovieCallback={this.addMovieToLibrary}/>}
           />
           <Route 
             path="/library/" 
