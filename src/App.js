@@ -4,6 +4,8 @@ import './App.css';
 import Library from './components/Library'
 import CustomerList from './components/CustomerList'
 import Notfound from './notfound'
+import image from './images/image.jpeg'
+
 
 class App extends Component {
   constructor() {
@@ -45,14 +47,18 @@ class App extends Component {
               <Link to="customers">Customer Registry</Link>
             </li>
           </ul>
+        <h1> Rewind Movies</h1>
+        <div className="container">
+          <img src={image} alt="theater"/>
+        </div>
+      </div>
         <Switch>
           <Route exact path="/" render={() => (<h1>Rewind Movies</h1>)}/> />
           <Route path="/movies" component={Library} />
           <Route path="/customers" render={ (props) => (<CustomerList {...props} selectCustCallback={this.selectCustomer}/>)} />
           <Route component={Notfound} />
         </Switch>
-      </div>
-    </Router>);
+    );
   }
 }
 
