@@ -10,21 +10,19 @@ const Movie = (props) => {
     }
 
     // let button = '';
-    // if (props.isMovieSelected) {
-    //     if (props.isMovieSelected == movie) {
-    //         button = <button onClick={onHandleClick}>Remove from Rental</button>
-    //     } else {
-    //         button = <button disabled={props.isMovieSelected != movie}>Select for Rental</button>
-    //     }
+    // if (this.props.isASearchResult) {
+    //     button = <button>Add To Library</button>
     // } else {
     //     button = <button onClick={onHandleClick}>Select for Rental</button>
-    // }
+    // };
 
     return (
         <section>
             <img src={movie.image_url} alt={`movie poster for ${movie.title}`}/>
             <h4>{movie.title}</h4>
-            <button onClick={onHandleClick}>Select for Rental</button>
+            <p>{movie.external_id}</p>
+            {/* {button} */}
+            {<button onClick={onHandleClick}>Select for Rental</button>}
             <p>Release date: {movie.release_date}</p>
             <p>{movie.overview}</p>
         </section>
