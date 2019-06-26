@@ -45,8 +45,8 @@ class App extends Component {
             <Header />
 
             <div className="current_selections">
-              <p>{this.state.currentCustomer.name}</p>
-              <p>{this.state.currentMovie.title}</p>
+              <p><strong>Selected Customer:</strong> {this.state.currentCustomer.name}</p>
+              <p><strong>Selected Movie:</strong> {this.state.currentMovie.title}</p>
             </div>
 
             <Route exact path="/" component={Home} />

@@ -39,9 +39,9 @@ class Movie extends Component {
       const { id, title, overview, release_date, external_id, image_url } = movie;
 
       return (
-        <article className="movie_data" key={id}>
+        <div className="movie_data" key={id}>
+          <img src={image_url} alt="movie poster" className="movie-poster" />
           <ul>
-            <li>{image_url}</li>
             <li>{id}</li>
             <li>{title}</li>
             <li>Overview: {overview}</li>
@@ -49,7 +49,7 @@ class Movie extends Component {
             <li>External ID: {external_id}</li>
             <button className="select_movie_button" onClick={this.props.currentMovieCallback(movie)} > Select this Movie </button>
           </ul>
-        </article>
+        </div>
       )
     })
     return (
@@ -63,7 +63,9 @@ class Movie extends Component {
 Movie.propTypes = {
   title: PropTypes.string,
   id: PropTypes.number,
-
+  overview: PropTypes.string,
+  release_date: PropTypes.instanceOf(Date),
+  external_id: PropTypes.number,
 };
 
 export default Movie;
