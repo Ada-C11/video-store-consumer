@@ -1,0 +1,6 @@
+.search-results{
+	width: 100%;
+}
+tbody tr:nth-of-type(odd) { 
+	background-color: #E1DEE1; 
+}
