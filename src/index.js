@@ -5,6 +5,7 @@ import './index.css';
 import App from './App';
 import Library from './components/Library'
 import CustomerList from './components/CustomerList'
+import MovieSearch from './components/MovieSearch'
 
 
 import registerServiceWorker from './registerServiceWorker';
@@ -22,10 +23,14 @@ const routing = (
         <li className="nav-link">
           <Link to="customers">Customer Registry</Link>
         </li>
+        <li className="nav-link">
+          <Link to="moviesearch">Search Movies</Link>
+        </li>
       </ul>
       <Route exact path="/" component={App} />
       <Route path="/movies" component={Library} />
       <Route path="/customers" component={CustomerList} />
+      <Route path="/moviesearch/" component={MovieSearch} />
     </div>
   </Router>
 )

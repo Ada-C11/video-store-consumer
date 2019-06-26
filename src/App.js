@@ -4,6 +4,7 @@ import './App.css';
 import CustomerList from './components/CustomerList'
 import Library from './components/Library'
 import image from './images/frontpage.jpg'
+import MovieSearch from './components/MovieSearch'
 
 
 class App extends Component {
