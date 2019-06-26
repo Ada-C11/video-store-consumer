@@ -23,6 +23,7 @@ class MovieLibrary extends Component {
         allMovies.push(element);
       })
       this.setState({allMovies, });
+      this.props.displayMovieLibraryCallback(allMovies)
     })
     .catch((error) => {
       const errorMessage = this.state.errorMessage;
