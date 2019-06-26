@@ -79,6 +79,7 @@ class MovieSearch extends React.Component {
      return <Movie key={index}
      id={movie.external_id}
      title={movie.title}
+     overview={movie.overview}
      releaseDate={movie.release_date}
      imageUrl={movie.image_url}
      callback={this.addMovieToLibrary}

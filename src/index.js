@@ -18,13 +18,13 @@ const routing = (
           <Link to="/">Home</Link>
         </li>
         <li className="nav-link">
-          <Link to="/movies">Movies</Link>
+          <Link to="/movies">Rewind Movies</Link>
         </li>
         <li className="nav-link">
           <Link to="customers">Customer Registry</Link>
         </li>
         <li className="nav-link">
-          <Link to="moviesearch">Search Movies</Link>
+          <Link to="moviesearch">Search Movie Database</Link>
         </li>
       </ul>
       <Route exact path="/" component={App} />
