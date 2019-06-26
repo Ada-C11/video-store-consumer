@@ -11,7 +11,6 @@ class Search extends Component {
 
     this.cleared = {
       title: "",
-      selectedResult: "",
       searchResults: [],
     };
 
@@ -22,9 +21,8 @@ class Search extends Component {
     event.preventDefault();
 
     const title = this.state.title;
-    console.log(title)
 
-    this.onSearch(title)
+    this.onSearch(title);
 
     this.setState({ ...this.cleared });
   }
@@ -37,9 +35,9 @@ class Search extends Component {
       image_url: movieData.image_url,
       external_id: movieData.external_id,
       inventory: inventoryNum
-    }
+    };
 
-    const endpoint = 'http://localhost:3000/movies'
+    const endpoint = 'http://localhost:3000/movies';
 
     axios.post(endpoint, movie)
       .then((response) => {
@@ -52,13 +50,12 @@ class Search extends Component {
   }
 
    onSearch = (title) => {
-    const API_KEY = process.env.REACT_APP_API_KEY
-    const IMAGE_URL = 'https://image.tmdb.org/t/p/w185'
+    const API_KEY = process.env.REACT_APP_API_KEY;
+    const IMAGE_URL = 'https://image.tmdb.org/t/p/w185';
 
-    const endpoint = `https://api.themoviedb.org/3/search/movie?api_key=${API_KEY}&query=${title}`
+    const endpoint = `https://api.themoviedb.org/3/search/movie?api_key=${API_KEY}&query=${title}`;
   
     axios.get(endpoint)
-
       .then((response) => {
         const newSearchResults = response.data.results.map((movie) => {
           
@@ -69,10 +66,10 @@ class Search extends Component {
             image_url: IMAGE_URL + movie.poster_path,
             external_id: movie.id,
             inventory: movie.inventory
-          }
+          };
           
           return newMovie
-        })
+        });
   
         this.setState({searchResults: newSearchResults});
         console.log(response.data);
@@ -92,15 +89,6 @@ class Search extends Component {
     updatedState[field] = value;
     this.setState(updatedState);
   }
-
-  // selectMovie = (movie) => {
-  //   console.log(movie)
-  //   console.log(movie.title)
-  //   console.log(movie['title'])
-  //   this.setState({selectedResult: movie.title});
-  //   console.log(this.state)
-
-  // }
 
   render() {
     const display = this.state.searchResults.map((movie) => {
@@ -144,6 +132,3 @@ class Search extends Component {
 }
 
 export default Search;
-
-
-// /movies?query=<search term>
