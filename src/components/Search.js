@@ -45,6 +45,16 @@ class Search extends Component {
 
   postMovieToLibrary = (movieIndex) => {
     console.log("in post")
+    const movie = this.state.movies[movieIndex];
+
+    console.log(movie)
+    axios.post(this.props.url + 'movies', movie)
+      .then((response) => {
+        console.log(response.data)
+      })
+      .catch((error) => {
+        console.log(error)
+      })
   }
 
 

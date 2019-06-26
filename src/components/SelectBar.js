@@ -6,13 +6,21 @@ const SelectBar = (props) => {
 
   return (
     <div>
-      Selected Movie: { selectedMovie && selectedMovie.title }
-      Selected Customer: { selectedCustomer && selectedCustomer.name }
-      <button
-        type="button"
-        onClick={ () => { checkoutCallback()} }
-      >Checkout Rental</button>
-    </div>
+      <ul>
+        <li>
+          Selected Movie: {selectedMovie && selectedMovie.title}
+        </li>
+        <li>
+          Selected Customer: {selectedCustomer && selectedCustomer.name}
+        </li>
+        <li>
+          <button
+            type="button"
+            onClick={() => { checkoutCallback() }}
+          >Checkout Rental</button>
+        </li>
+      </ul>
+    </div >
   )
 }
 
