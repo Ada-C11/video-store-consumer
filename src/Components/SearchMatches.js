@@ -2,10 +2,10 @@ import React, { Component } from 'react';
 
 import Movie from './Movie';
 
-class Movies extends Component {
+class SearchMatches extends Component {
 
   render() {
-    const displayMovies = this.props.movieList.flatMap(
+    const displayMovies = this.props.searchMatches.flatMap(
       ({ id, title, overview, release_date, image_url, external_id }) => {
         // Construct a RegExp object with 'i' so that the match is case
         // insensitive.
@@ -20,22 +20,19 @@ class Movies extends Component {
                     release_date = {release_date}
                     image_url = {image_url}
                     external_id = {external_id}
-                    onMovieSelect = {this.props.onMovieSelect}
+                    onMovieAdd = {this.props.onMovieAdd}
                     />];
         } else {
           return [];
         }
     })
 
-    const displayCurrMovie = (this.props.currentMovie === undefined) ? "None" : this.props.currentMovie.title
-    
     return (
       <div>
-        Currently selected movie: { displayCurrMovie }
         { displayMovies }
       </div>
     )
   }
 }
 
-export default Movies;
+export default SearchMatches;
