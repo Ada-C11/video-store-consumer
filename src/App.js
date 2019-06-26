@@ -12,7 +12,6 @@ class App extends Component {
     super(props); 
     
     this.state = {
-      movieLibrary: [],
       customerList: [],
       selectedMovie: null,
       selectedCustomer: null,
@@ -21,15 +20,6 @@ class App extends Component {
 
  // Api Call to get movies from json
   componentDidMount() {
-    axios.get('/movies')
-      .then(response => {
-        console.log(response)
-        this.setState({
-          movieLibrary: response.data
-        })
-      })
-      .catch(error => console.log(error))
-      
       // Api call to get all customers
       axios.get('/customers')
       .then(response => {
@@ -144,7 +134,7 @@ class App extends Component {
           <Route 
             path="/library/" 
             render={(props) => <Library {...props} selectMovie={this.selectMovie}
-            movieLibrary={this.state.movieLibrary} />} 
+            />} 
           />
           <Route 
             path="/customers/" 

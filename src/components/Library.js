@@ -1,19 +1,40 @@
-import React from 'react';
+import React, {Component} from 'react';
 import MovieCard from './MovieCard';
+import axios from 'axios';
 
-const Library = (props) => {
-  const {movieLibrary} = props
-  const movieCards = movieLibrary.map((movie, i) => {
+class Library extends Component {
+  constructor(props) {
+    super(props); 
+    
+    this.state = {
+      movieLibrary: [],
+    }
+  }
+
+  componentDidMount() {
+    axios.get('/movies')
+      .then(response => {
+        console.log(response)
+        this.setState({
+          movieLibrary: response.data
+        })
+      })
+      .catch(error => console.log(error))
+  }
+
+  render () {
+    const movieCards = this.state.movieLibrary.map((movie, i) => {
+      return (
+        <MovieCard key={i} movie={movie} selectMovie={this.props.selectMovie} />
+      )
+    })
     return (
-      <MovieCard key={i} movie={movie} selectMovie={props.selectMovie} />
-    )
-  })
-  return (
-    <div>
-      <p>Movie Library</p>
-      { movieCards }
-    </div>
-  );
+      <div>
+        <p>Movie Library</p>
+        { movieCards }
+      </div>
+    );
+  }
 };
 
 
