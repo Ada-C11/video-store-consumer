@@ -7,8 +7,11 @@ class App extends Component {
     super();
     this.state = {
       movieTitle: "",
-      customer: ""
+      customer: "",
+      error: "",
+      errorClass: "no-error",
     }
+
   }
 
   onCheckoutClick = () => {
@@ -31,7 +34,17 @@ class App extends Component {
     .then((response) => {
       console.log(response)
     })
+
+    .catch((error)=>{
+      console.log(error.message)
+      this.setState({error: error.message, errorClass: 'display-error'});
+      console.log(this.state.error)
+      console.log(this.state.errorClass)
+
+    })
+    // this.setState({error: "", errorClass: 'no-error'});
   }
+
 
   addMovieToRent = (title) => {
     let movieTitle = this.state.movieTitle;
@@ -47,10 +60,15 @@ class App extends Component {
     
   }
 
+  onClickAnywhere = () => {
+    this.setState({error: "", errorClass: 'no-error'});
+  }
+
   render () {    
     return (
       <Router>
-        <div>
+        <div onClick = {this.onClickAnywhere}>
+          <p className={this.state.errorClass} >{this.state.error}</p>
           <h2>{this.state.movieTitle}</h2>
           <h2>{this.state.customer.name}</h2>
           <Header />
@@ -78,9 +96,7 @@ class Search extends Component {
     super();
     this.state = {
       title: "",
-      searchList: [],
-      error: ""
-      errorClass: "no-error"
+      searchList: []
     }
   }
 
@@ -103,10 +119,9 @@ class Search extends Component {
       })
       this.setState({searchList})
     })
-    .catch((error)=>{
-      this.setState({error: error.message});
-    })
+    
   }
+
 
   onMovieSelect = (movie) => {
     return () => {
@@ -149,7 +164,6 @@ class Search extends Component {
           <input type="submit" value="Search" />
         </form>
         <h4>{this.searchDisplay()}</h4>
-
       </div>
     );
   }
