@@ -4,6 +4,7 @@ import SearchResults from './SearchResults';
 import SearchForm from './SearchForm';
 import MOVIE_DATA from '../data/movie-data.json';
 import axios  from 'axios'
+import Message from './Message.js'
 
 class Search extends Component {
     constructor() {
@@ -37,15 +38,19 @@ class Search extends Component {
                     return movieResult
                 })
                 this.setState({ movies });
+                this.setState({message: "Search successful!"})
             })
             .catch((error) => {
                 this.setState({error: error.message });
+                this.setState({message: error.message})
             })
     }
 
     render() {
         return (
             <div>
+                
+                <Message message={this.state.message} />
                 <SearchForm movieSearchCallback={this.movieSearchCallback} />
                 <SearchResults movieData={this.state.movies} />
             </div>

@@ -4,6 +4,7 @@ import axios from 'axios'
 import Search from './components/Search.js'
 import Library from './components/Library'
 import Customers from './components/Customers.js'
+import Message from './components/Message.js'
 
 function Index() {
   return <h2>Home</h2>;
@@ -117,6 +118,10 @@ class App extends Component {
               </div>
             </section>
           </nav>
+
+          <section>
+            <Message />
+          </section>
   
           <Route path="/" exact component={Index} />
           <Route path="/search/" component={Search} />
