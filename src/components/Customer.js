@@ -5,8 +5,6 @@ import PropTypes from 'prop-types';
 const Customer = (props) => {
 
     const onSelectClick = (event) => {
-        // console.log("I've been selected!");
-        // console.log(props.name);
         props.selectCustomerCallback(props.name);
     }
 
