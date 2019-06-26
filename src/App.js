@@ -15,15 +15,20 @@ class App extends Component {
     this.state = {
       currentCustomer: "",
       currentMovie: "",
+      statusMessage: "",
     }
   }
 
-  checkoutButtonClick = (props) => {
-    // this.props.checkoutButtonClickCallback(this.props)
+  resetSelections = () => {
+    this.setState({
+      currentCustomer: "",
+      currentMovie: "",
+    })
+  }
 
+  checkoutButtonClick = () => {
     const movie = this.state.currentMovie
     const customer = this.state.currentCustomer;
-
     const dueDate = Date.now() + 604800000
     const rentalUrl = "http://localhost:3000/rentals/" + movie.title + "/check-out";
 
@@ -32,17 +37,41 @@ class App extends Component {
       title: movie.title,
       due_date: new Date(dueDate),
     }
-    console.log(newRental)
+
     axios.post(rentalUrl, newRental)
       .then((response) => {
         console.log(response)
         customer.movies_checked_out_count += 1;
-
+        this.resetSelections();
+        if (response.status === 200) {
+          this.setState({ statusMessage: "Successfully checked out movie!" })
+        }
       })
       .catch((error) => {
         this.setState({ errorMessages: error.message });
         console.log(this.state.errorMessages)
       });
+  }
+
+  showButton = () => {
+    if (this.state.currentMovie && this.state.currentCustomer) {
+      return true;
+    }
+  }
+
+  showRentalSection = () => {
+    if (this.state.currentCustomer || this.state.currentMovie) {
+      return (
+        <div className="current_selections">
+          <p><strong>Selected Customer:</strong> {this.state.currentCustomer.name}</p>
+          <p><strong>Selected Movie:</strong> {this.state.currentMovie.title}</p>
+
+          <button className="checkout_button"
+            onClick={this.checkoutButtonClick}
+            disabled={this.showButton ? false : true}>Checkout</button>
+        </div>
+      )
+    }
   }
 
 
@@ -63,6 +92,14 @@ class App extends Component {
   }
 
   render() {
+    const statusMessage =
+      <div className="status_message">
+        <p>{this.state.statusMessage}</p>
+      </div>;
+
+    let notificationDisplay;
+
+
     return (
       <section>
 
@@ -70,15 +107,8 @@ class App extends Component {
           <div>
             <Header />
 
-            <div className="current_selections">
-              <p><strong>Selected Customer:</strong> {this.state.currentCustomer.name}</p>
-              <p><strong>Selected Movie:</strong> {this.state.currentMovie.title}</p>
-
-              <button className="checkout_button"
-                onClick={this.checkoutButtonClick}>Checkout</button>
-            </div>
-
-            {/* <Rental checkoutButtonClickCallback={this.checkoutButtonClickCallback} /> */}
+            {this.showRentalSection()}
+            {statusMessage}
 
             <Route exact path="/" component={Home} />
             <Route
