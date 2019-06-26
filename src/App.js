@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import "./App.css";
 import MovieLibrary from "./components/MovieLibrary";
-import MovieSearch from "./components/MovieSearch";
+import MovieSearchResults from "./components/MovieSearchResults";
 import RentalCheckout from "./components/RentalCheckout";
 import CustomerList from "./components/CustomerList";
 import MovieSearchForm from "./components/MovieSearchForm";
@@ -20,15 +20,14 @@ class App extends Component {
   }
 
   getresult = movies => {
-    movies.map(movie => {
-      this.state.movies.push(movie);
+    this.setState({
+      movies: movies,
+      searchComplete: true
     });
-
-    this.setState({ searchComplete: true });
   };
 
   setDisplay = option => {
-    this.setState({ displayOption: option });
+    this.setState({ displayOption: option, searchComplete: false });
   };
 
   rentMovieWithMovie = movie => {
@@ -71,9 +70,7 @@ class App extends Component {
 
     let searchResults = "";
     if (this.state.searchComplete === true) {
-      
-      searchResults = <MovieSearch movies={this.state.movies} />
-      
+      searchResults = <MovieSearchResults movies={this.state.movies} />;
     }
 
     return (

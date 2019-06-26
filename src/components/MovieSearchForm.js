@@ -23,33 +23,16 @@ class MovieSearchForm extends Component {
     axios
       .get(URL)
       .then(response => {
-        console.log(response);
         const movies = response.data["results"];
-        // const movies = response.data["results"].map((movie) => {
-        //   const newMovie = {
-        //     title: movie["title"]
-        //   }
-        //   return newMovie
-        // })
-        console.log(response.data["results"]);
-        // this.setState({
-        //   movies: movies,
-        //   hasmovies: true
-        // });
+        this.setState({ text: "" });
         this.props.getresultcallback(movies);
-        this.setState({text: ""})
-
-        // console.log(this.state.movies)
       })
       .catch(error => {
-        console.log(error);
         alert("Error happened");
         this.setState({ error: error.message });
       });
 
     const movie = this.state;
-    console.log(this.props);
-    // this.setState({ movies: movie });
   };
   onInputChange = event => {
     const updatedState = {};
