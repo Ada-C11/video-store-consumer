@@ -6,8 +6,8 @@ import Movie from './Movie';
 import SearchForm from './SearchForm';
 
 class Search extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
 
     this.state = {
       movies: [],
@@ -33,7 +33,7 @@ class Search extends Component {
             id: movie.external_id,
           }
         });
-        console.log(movieList);
+        // console.log(movieList);
         this.setState({
           movies: movieList,
         })
@@ -44,11 +44,26 @@ class Search extends Component {
   };
 
   postMovieToLibrary = (movieIndex) => {
+    const url = this.props.url + 'movies/';
+
     console.log("in post")
     const movie = this.state.movies[movieIndex];
+    console.log(movie.title)
 
-    console.log(movie)
-    axios.post(this.props.url + 'movies', movie)
+    axios.get(url + movie.title)
+      .then((response) => {
+        console.log("got movie")
+        console.log(response.data)
+
+      })
+      .catch((error) => {
+        console.log("error")
+        console.log(error)
+      })
+
+    // console.log(movie)
+
+    axios.post(url, movie)
       .then((response) => {
         console.log(response.data)
       })
