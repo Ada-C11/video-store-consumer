@@ -31,7 +31,8 @@ class Search extends Component {
                         title: movie.title,
                         overview: movie.overview,
                         image_url: movie.image_url,
-                        release_date: movie.release_date
+                        release_date: movie.release_date,
+                        external_id: movie.external_id
                     }
                     return movieResult
                 })

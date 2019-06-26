@@ -6,6 +6,7 @@ const SearchResults = (props) => {
 
     const selectMovie = (event) => {
         const movie = props.movieData[event.target.id]
+        console.log(movie);
         const postURL = 'http://localhost:3002/movies/add-movie'
         axios.post(postURL, null, {
             params: {
