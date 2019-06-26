@@ -61,9 +61,15 @@ class App extends Component {
     // if (this.state.selected_customer !== "none") {
 
     // }
-    const url =  `http://localhost:3000/rentals/:title/check-out`
-    axios.post(url)
+    const config = {
+      movie_id: this.state.selected_movie["id"],
+      customer_id: this.state.selected_customer["id"],
+      due_date: "2060-06-16"
+  }
+    const url =  `http://localhost:3000/rentals/${this.state.selected_movie["title"]}/check-out`
+    axios.post(url, config)
     .then((response) => {
+
     })
     .catch((error) => {
       // Use the same idea we had in our GET request

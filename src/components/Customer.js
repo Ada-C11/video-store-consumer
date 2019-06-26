@@ -12,7 +12,6 @@ class Customer extends Component {
 
 
   render() {
-    console.log(this.props.content)
     return (
       <li><a href="#"onClick={this.onSelect}>{this.props.content["name"]}</a></li>
     );
