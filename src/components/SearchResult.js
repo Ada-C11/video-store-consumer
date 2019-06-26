@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import SearchMovie from './SearchMovie'
+import './SearchResult.css'
 
 class SearchResult extends Component {
 	constructor(props) {
@@ -14,18 +15,21 @@ class SearchResult extends Component {
 
 		const moviesFound = this.props.result.map((movie, i) => {
 			return (
-				<li key={i} >
-					<SearchMovie  movieData={movie} addMovieToLibraryCallback={this.state.addMovieToLibraryCallback}/>
-				</li>
+					<SearchMovie key={i} movieData={movie} addMovieToLibraryCallback={this.state.addMovieToLibraryCallback}/>
 			)
 		})
 	
 		return (
-			<div className='search-results'>
-				<ul>
-					{moviesFound}
-				</ul>
-			</div>
+				<table className='search-results'>
+					<thead>
+						<tr>
+							<th scope="row"></th>
+						</tr>
+					</thead>
+					<tbody>
+						{moviesFound}
+					</tbody>
+				</table>
 		)
 	}
 }

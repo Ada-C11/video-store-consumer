@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import './SearchMovie.css'
 
 class SearchMovie extends Component {
 	constructor(props) {
@@ -19,19 +20,17 @@ class SearchMovie extends Component {
 
 	render(){
 		return(
-			<div className='movie-search-result'>
-				<ul>
-					<li>
-						{this.state.title}
-					</li>
-					<li>
-						<img src={this.state.image_url} alt={this.state.title}/>
-					</li>
-					<li>
-						<button onClick={this.addMovieToLibrary}>Add to library</button>
-					</li>
-				</ul>
-			</div>
+			<tr className="search-result-row">
+					<td> 
+						<img className="search-result-image" src={this.state.image_url} alt={this.state.title}/>
+					</td>
+					<td>
+						<strong>{this.state.title}</strong>
+					</td>
+					<td>
+					  <button onClick={this.addMovieToLibrary}>Add to library</button> 
+					</td>
+			</tr>
 		)
 	}
 

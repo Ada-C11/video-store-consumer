@@ -1,0 +1,15 @@
+.search-result-row {
+	display: flex;
+	justify-content: space-around;
+	align-content: flex-start;
+	width: 100%;
+}
+
+.search-result-image {
+	height: 60px;
+  border-radius: 20%;
+}
+
+.search-result-row:hover{
+	background-color: lightgrey;
+}
