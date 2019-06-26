@@ -204,7 +204,7 @@ class App extends Component {
           <Route path="/search" render={(props) => <SearchMovie {...props} movieList={this.state.movies} addSearchToLibraryCallback={this.addSearchToLibrary}/> } />
           <Route path="/customers" render={(props) => <CustomerList {...props} customers={this.state.customers} onSelectCustomerCallback={this.onSelectCustomer} /> } />
           <Route path="/library" render={(props) => <MovieList {...props} movieList={this.state.movies} onSelectMovieCallback={this.onSelectMovie} /> } />
-        </body>
+        </section>
       </Router>
     );
   }
