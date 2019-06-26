@@ -22,7 +22,7 @@ class App extends Component {
       searchResults: [],
       movieLibrary: [],
       addConfirmation: true,
-      errorMessage: []
+      behaviorMessage: ''
     }
   }
 
@@ -30,30 +30,31 @@ class App extends Component {
     const movieLibrary = [];
     axios.get(URL)
     .then((response) => {
-      console.log(response.data);
       response.data.forEach((element) => {
         movieLibrary.push(element);
       })
       this.setState({movieLibrary, });
     })
     .catch((error) => {
-      const errorMessage = this.state.errorMessage;
-      const newError = error.response.data.errors.text;
-      newError.forEach((text) => {
-        errorMessage.push(text);
-      })
-      this.setState({errorMessage, });
+      this.displayMessages(error.message)
     })
   }
 
   onSearchButtonCallback = (searchInput) => {
-    axios.get(URL, {params: {query: searchInput}})
-    .then((response) => {
-      this.displaySearchResults(response.data)
-    })
-    .catch((error) => {
-      console.log(error)  
-    })
+
+    if (searchInput === ''){
+      const emptyMovieMessage = `Empty is not a valid title`
+      this.displayMessages(emptyMovieMessage)
+    } else {
+      axios.get(URL, {params: {query: searchInput}})
+      .then((response) => {
+        this.displaySearchResults(response.data)
+      })
+      .catch((error) => {
+        const apiErrorMessage = error.data || error.message
+        this.displayMessages(apiErrorMessage)
+      })
+    }
     this.setState({
       searchResults: [],
     })
@@ -82,7 +83,6 @@ class App extends Component {
     let repeated = 0;
     this.state.movieLibrary.map((v) => {
         if (v.external_id === addedMovieData.external_id){
-          console.log('the movie already exist in the library')
           repeated += 1
         }
     })
@@ -90,15 +90,16 @@ class App extends Component {
     if (repeated === 0){
       axios.post(URL, addedMovieData)
       .then((response) => {
-        console.log(`movie ${response.data.title} added`)
-        console.log(this.state.movieLibrary)
+        this.displayMessages(`${response.data.title} added to movie library`)
         this.componentDidMount()
-        
       })
       .catch((error)=>{
         console.log(error)
       })
-    } 
+    } else {
+      let repeatedMovieMessage = `${movieToAdd.title} is already in the movie library`
+      this.displayMessages(repeatedMovieMessage)
+    }
   }
 
   selectMovie = (movieTitle) => {
@@ -119,6 +120,23 @@ class App extends Component {
     this.setState({
       searchResults: [],
     })
+  }
+
+  displayMessages = (message) => {
+    
+    if (message == 'Network Error'){
+      message += ' - Make sure the API is running!'
+    } else {
+      setTimeout(() => {this.setState({behaviorMessage: ''})}, 3000);
+    }
+
+    this.setState({
+      behaviorMessage: message,
+    });
+   
+    return (
+      <p>{message}</p>
+    )
   }
   
   render() {
@@ -143,19 +161,24 @@ class App extends Component {
             </ul>
           </nav>
 
+          <section className="action-result-message">
+            {this.state.behaviorMessage} 
+          </section>
+
           <section>
             <Checkout 
               selectedCustomerName={this.state.selectedCustomerName}
               selectedCustomerId={this.state.selectedCustomerId}
               selectedMovie={this.state.selectedMovie}
               clearSelectedCallback={this.clearSelected}
+              displayMessages={this.displayMessages}
               />
           </section>
 
             <Route path="/" />
             <Route path="/movielibrary" render={(props) => <MovieLibrary {...props} allMovies={this.state.movieLibrary} selectedMovie={this.selectMovie} />} />
             <Route path="/search" render={(props) => <Search onSearchButtonCallback={this.onSearchButtonCallback}/>} />
-            <Route path="/customerlist" render={(props) => <CustomerList {...props} selectedCustomer={this.selectCustomer} />} />
+            <Route path="/customerlist" render={(props) => <CustomerList {...props} selectedCustomer={this.selectCustomer} displayMessages={this.displayMessages}/>} />
           </Router>
         </header>
         
