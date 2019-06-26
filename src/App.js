@@ -48,9 +48,11 @@ class App extends Component {
     const url = `http://localhost:3000/movies`;
     axios.post(url, movie)
     .then(() => {
+      let success = `${movie.title} was successfully added to rental library!`;
+      this.setState({userMessages: [success]})
       // let movieLibraryUpdate = this.state.movieLibrary;
       // this.setState({ movieLibrary: movieLibraryUpdate})
-      alert(`${movie.title} was successfully added to rental library!`);
+      // alert(`${movie.title} was successfully added to rental library!`);
       // console.log(response)
       // this.setState({
       //   movieLibrary: response.data
@@ -100,12 +102,20 @@ class App extends Component {
   }
 
   render() {
+    const allUserMessages = this.state.userMessages.map((message, i) => {
+      return <p key= {i}>{ message }</p>;
+    })
     return (
       <Router>
         <div className="App">
           <header>
               <h1>Video Store Consumer</h1>
           </header>
+
+          <section className="user-messages">
+            {allUserMessages}
+          </section>
+
           <nav>
             <ul className="nav-list">
               <li>

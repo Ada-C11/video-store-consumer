@@ -25,6 +25,7 @@ const CustomerList = (props) => {
 
 CustomerList.propTypes = {
   customerList: PropTypes.array,
+  selectCustomer: PropTypes.func.isRequired,
 };
 
 

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import MovieCard from './MovieCard';
+import PropTypes from 'prop-types';
 
 class Search extends Component {
   constructor(props){
@@ -50,11 +51,7 @@ class Search extends Component {
         <h2>Search Page</h2>
         <form onSubmit = {this.onFormSubmit}>
           <div>
-            <input
-              name="searchResults"
-              value = {this.state.queryString}
-              onChange = {this.queryChanged}
-              type="text" />
+            <input name="searchResults" value = {this.state.queryString} onChange = {this.queryChanged} type="text" />
           </div>
   
             <div >
@@ -67,5 +64,9 @@ class Search extends Component {
   }
 
 };
+
+Search.propTypes = {
+  addMovieCallback: PropTypes.func.isRequired,
+}
 
 export default Search;
