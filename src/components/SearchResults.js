@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import axios  from 'axios'
+import Message from './Message.js'
 
 const SearchResults = (props) => {
 
@@ -19,6 +20,7 @@ const SearchResults = (props) => {
         })
         .then((response) => {
             console.log(response)
+
         })
         .catch((error) => {
             console.log(error.message)
