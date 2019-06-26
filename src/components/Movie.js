@@ -24,6 +24,7 @@ class Movie extends Component {
             <p className="card-text">ID: {this.props.id}</p>
             <p className="card-text">Overview: {this.props.overview}</p>
             <p className="card-text">Release Date: {this.props.releaseDate}</p>
+            <br></br>
             <button
               type="button"
               className="btn btn-danger"
