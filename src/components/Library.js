@@ -35,8 +35,6 @@ class Library extends Component {
   }
 
   selectMovie = (title) => {
-    // console.log("Inside LIBRARY")
-    // console.log(title);
     this.props.selectMovieCallback(title);
   }
 

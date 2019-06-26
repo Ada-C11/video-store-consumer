@@ -3,14 +3,7 @@ import PropTypes from 'prop-types';
 
 const Movie = (props) => {
   const onMovieSelect = (event) => {
-    // const movie = props.title;
-
-    // console.log("Inside onMovieSelect:")
-    // console.log(props.title);
-
     props.selectMovieCallback(props.title);
-
-    // this.props.onMovieSelectCallback(movie)
   }
 
   return (

@@ -20,10 +20,6 @@ class App extends Component {
   }
 
   onMovieSelect = (title) => {
-    // this.setState({selectedMovie: props.title})
-    // console.log("Inside APP:")
-    // console.log(title);
-
     const selectedMovie = title;
     this.setState({selectedMovie})
   }
@@ -91,8 +87,6 @@ class App extends Component {
   
           <Route path="/" exact component={Index} />
           <Route path="/search/" component={Search} />
-          {/* <Route path="/library/" component={Library} /> */}
-          {/* <Route path="/customers/" component={Customers} /> */}
           <Route path="/library/" render={this.myLibraryComponent} />
           <Route path="/customers/" render={this.myCustomersComponent} />
         </div>
