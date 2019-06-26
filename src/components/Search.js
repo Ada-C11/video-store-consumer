@@ -13,8 +13,8 @@ class Search extends Component {
         };
     }
 
-    componentDidMount(){
-        axios.get('http://localhost:3001/movies?query=' + this.state.queryString)
+    getSearchResults = (queryString) => {
+        axios.get('http://localhost:3001/movies?query=' + queryString)
         .then((response) => {
             this.setState({
                 searchResults: response.data
@@ -28,11 +28,13 @@ class Search extends Component {
     }
 
     searchCallback = (queryString) => {
-        this.componentDidMount()
         this.setState({
           queryString,
           searched: true
         });
+
+        this.getSearchResults(queryString);
+
     };
 
     addMovieCallback = (movie) => {

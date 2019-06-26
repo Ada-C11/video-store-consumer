@@ -14,7 +14,7 @@ class SearchBar extends Component {
             queryString
         })
 
-        this.props.searchCallback(queryString);
+        this.props.searchCallback(event.target.value);
     }
     render() {
         return (
