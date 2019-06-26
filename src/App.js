@@ -23,9 +23,17 @@ class App extends Component {
   componentDidMount() {
       axios.get('/customers')
       .then(response => {
-        console.log(response)
         this.setState({
           customerList: response.data
+        })
+      })
+      .catch(error => console.log(error))
+
+      axios.get('/movies')
+      .then(response => {
+        console.log(response)
+        this.setState({
+          movieLibrary: response.data
         })
       })
       .catch(error => console.log(error))
@@ -34,7 +42,8 @@ class App extends Component {
   addMovieToLibrary = (movie) => {
     const url = `http://localhost:3000/movies`;
     axios.post(url, movie)
-    .then(() => {
+    .then((response) => {
+      console.log(response)
       let success = `${movie.title} was successfully added to rental library!`;
       this.setState({userMessages: [success]})
     })
@@ -42,17 +51,26 @@ class App extends Component {
   }
 
   selectMovie = (movie) => {
-    console.log(movie)
       this.setState({
         selectedMovie: movie
       });
   }
 
   selectCustomer = (customer) => {
-    console.log(customer)
       this.setState({
         selectedCustomer: customer
       });
+  }
+
+  filterMovies(title) {
+    console.log(this)
+    const library = this.state.movieLibrary
+    const movieExists = library.filter(movie => movie.title === title);
+    if (movieExists.length > 0) {
+      return true;
+    } else {
+      return false;
+    }
   }
 
   checkoutMovie = (movie, customer) => {
@@ -107,17 +125,23 @@ class App extends Component {
           </nav>
 
           <Route path="/search/"
-            render={(props) => <Search {...props} selectMovie={this.selectMovie} 
-            addMovieCallback={this.addMovieToLibrary}/>}
+            render={(props) => <Search {...props} 
+            selectMovie={this.selectMovie} 
+            addMovieCallback={this.addMovieToLibrary}
+            filterMoviesCallback={this.filterMovies}/>}
           />
           <Route 
             path="/library/" 
-            render={(props) => <Library {...props} selectMovie={this.selectMovie}
+            render={(props) => <Library {...props} 
+            selectMovie={this.selectMovie}
+            filterMoviesCallback={this.filterMovies}
+            movieLibrary={this.state.movieLibrary}
             />} 
           />
           <Route 
             path="/customers/" 
-            render={(props) => <CustomerList {...props} selectCustomer={this.selectCustomer}
+            render={(props) => <CustomerList {...props} 
+            selectCustomer={this.selectCustomer}
             customerList={this.state.customerList} />}
           />
         </div>

@@ -24,7 +24,7 @@ class Search extends Component {
 
   onFormSubmit = (event) => {
     event.preventDefault();
-    
+
     axios.get(`/movies?query=${this.state.queryString}`)
       .then((response) => {
         console.log(response)
@@ -39,7 +39,11 @@ class Search extends Component {
     const searchResultList = this.state.searchResults.map((movie, i) => {
       return (
         <div>
-          <MovieCard key={i} movie={movie} selectMovie={this.props.selectMovie} addMovieCallback={this.props.addMovieCallback} />
+          <MovieCard key={i} 
+            movie={movie}
+            selectMovie={this.props.selectMovie}
+            addMovieCallback={this.props.addMovieCallback}
+            filterMoviesCallback={this.props.filterMoviesCallback}/>
           {/* <button type="button" onClick={() => {this.props.addMovieCallback(movie)}}>Add Movie to Library</button> */}
         </div>
       )
