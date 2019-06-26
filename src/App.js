@@ -121,7 +121,6 @@ class App extends Component {
 
           { this.state.chosenCustomer && this.state.rentedMovie && <button onClick={this.rentMovie}>Rent Movie</button>}
 
-          <Header />
           {this.state.alert} 
           {errorSection}
 
