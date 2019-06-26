@@ -71,13 +71,18 @@ class App extends Component {
                 {this.state.selectedMovie.length > 0 &&
                   <p>{this.state.selectedMovie}</p>
                 }
- 
               </div>
               <div>
                 {this.state.selectedCustomer.length > 0 &&
                   <p>{this.state.selectedCustomer}</p>
                 }
- 
+              </div>
+              <div>
+                {
+                  this.state.selectedMovie.length > 0 &&
+                  this.state.selectedCustomer.length > 0 &&
+                  <button>Check Out</button>
+                }
               </div>
             </section>
           </nav>
