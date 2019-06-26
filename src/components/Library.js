@@ -14,6 +14,10 @@ class Library extends Component {
     }
   }
 
+  reportStatus = (text) => {
+    this.setState({message: text})
+  }
+
   componentDidMount() {
     const getURL = 'http://localhost:3002/movies'
     axios.get(getURL)
@@ -30,6 +34,7 @@ class Library extends Component {
           return movieListing
         })
         this.setState({ movies });
+        this.reportStatus("Successfully loaded library!")
       })
       .catch((error) => {
         this.setState({error: error.message});

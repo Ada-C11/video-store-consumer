@@ -23,7 +23,7 @@ class Search extends Component {
 
     movieSearchCallback = (title) => {
         this.reportStatus("Searching through database...")
-        
+
         const getURL = 'http://localhost:3002/'
         axios.get(getURL, {
             params: {
@@ -54,8 +54,9 @@ class Search extends Component {
     render() {
         return (
             <div>
-                
-                <Message message={this.state.message} />
+                <section>
+                  <Message message={this.state.message} />
+                </section>
                 <SearchForm movieSearchCallback={this.movieSearchCallback} />
                 <SearchResults movieData={this.state.movies} />
             </div>
