@@ -70,11 +70,13 @@ class App extends Component {
       axios.post(URL, addedMovieData)
       .then((response) => {
         console.log(`movie ${response.data.title} added`)
+        console.log(this.state.movieLibrary)
+        
       })
       .catch((error)=>{
         console.log(error)
       })
-    }
+    } 
   }
 
   selectMovie = (movieTitle) => {

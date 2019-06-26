@@ -12,10 +12,10 @@ class SearchResult extends Component {
 
 	render() {
 
-		const moviesFound = this.props.result.map((movie) => {
+		const moviesFound = this.props.result.map((movie, i) => {
 			return (
-				<li>
-					<SearchMovie movieData={movie} addMovieToLibraryCallback={this.state.addMovieToLibraryCallback}/>
+				<li key={i} >
+					<SearchMovie  movieData={movie} addMovieToLibraryCallback={this.state.addMovieToLibraryCallback}/>
 				</li>
 			)
 		})
