@@ -18,6 +18,7 @@ const Movie = (props) => {
         <input
           type="button"
           value="Select this Movie"
+          className="movie__button"
           onClick={onMovieSelect}
         />
       </div>

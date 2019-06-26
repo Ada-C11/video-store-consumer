@@ -1,22 +1,25 @@
 .movie {
-  padding: 1em 0;
-  margin: 0.5rem;
+  border: 1px solid black;
+  padding: 1em;
+  margin: 5rem;
 
   min-height: 250px;
   min-width: 225px;
   max-width: 500px;
-  flex-basis: 18%;
+  max-height: 500px;
 
   border-radius: 5px;
 
+  display: grid;
+  grid-template-columns: 1fr 2fr;
   align-items: center;
 }
 
 .movie__content {
   display: flex;
   flex-direction: column;
-  justify-content: space-around;
 
+  padding-left: 1em;
   text-align: center;
   font-weight: 100;
   overflow: hidden;
@@ -25,4 +28,15 @@
 .movie__image {
   max-width: 185px;
   float: left;
+}
+
+.movie__button {
+  color: white;
+  background-color: #374B4A;
+  font-size: 1.1em;
+  border-radius: 5px;
+}
+
+.movie__button:hover {
+  background-color: #5757bf;
 }
