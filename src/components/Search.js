@@ -24,9 +24,7 @@ class Search extends Component {
 
   onFormSubmit = (event) => {
     event.preventDefault();
-
-    // const URL = `http://localhost:3000/movies?query=${this.state.queryString}`;
-
+    
     axios.get(`/movies?query=${this.state.queryString}`)
       .then((response) => {
         console.log(response)
@@ -38,11 +36,11 @@ class Search extends Component {
   }
 
   render() {
-    const searchResultList = this.state.searchResults.map((movie, index) => {
+    const searchResultList = this.state.searchResults.map((movie, i) => {
       return (
         <div>
-          <MovieCard key={index} movie={movie} selectMovie={this.props.selectMovie}/>
-          <button type="button" onClick={() => {this.props.addMovieCallback(movie)}}>Add Movie to Library</button>
+          <MovieCard key={i} movie={movie} selectMovie={this.props.selectMovie} addMovieCallback={this.props.addMovieCallback} />
+          {/* <button type="button" onClick={() => {this.props.addMovieCallback(movie)}}>Add Movie to Library</button> */}
         </div>
       )
     })

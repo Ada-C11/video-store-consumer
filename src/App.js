@@ -14,6 +14,7 @@ class App extends Component {
     this.state = {
       userMessages: [],
       customerList: [],
+      movieLibrary: [],
       selectedMovie: null,
       selectedCustomer: null,
     }
@@ -29,17 +30,6 @@ class App extends Component {
       })
       .catch(error => console.log(error))
   }
-
-  // showMovieDetails = (title) => {
-  //   axios.get(`/movies/${title}`)
-  //     .then(response => {
-  //       console.log(response)
-  //       this.setState({
-  //         customerList: response.data
-  //       })
-  //     })
-  //     .catch(error => console.log(error))
-  // }
 
   addMovieToLibrary = (movie) => {
     const url = `http://localhost:3000/movies`;

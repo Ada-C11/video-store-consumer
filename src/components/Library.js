@@ -23,10 +23,19 @@ class Library extends Component {
       .catch(error => console.log(error))
   }
 
+  filterMovies(title) {
+    const movieExists = this.state.movieLibrary.filter(movie => movie.title === title);
+    if (movieExists) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
   render () {
     const movieCards = this.state.movieLibrary.map((movie, i) => {
       return (
-        <MovieCard key={i} movie={movie} selectMovie={() => {this.props.selectMovie(movie)}} />
+        <MovieCard key={i} movie={movie} filterMovies={this.filterMovies} selectMovie={() => {this.props.selectMovie(movie)}} />
       )
     })
     return (
@@ -39,7 +48,7 @@ class Library extends Component {
 };
 
 Library.propTypes = {
-  movieLibrary: PropTypes.array.isRequired,
+  movieLibrary: PropTypes.array,
   selectMovie: PropTypes.func.isRequired,
 }
 
