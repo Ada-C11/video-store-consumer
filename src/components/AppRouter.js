@@ -25,6 +25,7 @@ class AppRouter extends Component {
     this.state = {
       selectedCustomer: null,
       selectedMovie: null,
+      errorMessage: '',
     }
   }
 
@@ -61,6 +62,13 @@ class AppRouter extends Component {
     })
   }
 
+  addErrorMessage = (message) => {
+    console.log("added error message", message)
+    this.setState({
+      errorMessage: message,
+    })
+  }
+
   checkoutMovie = () => {
     const { selectedMovie, selectedCustomer } = this.state;
 
@@ -82,11 +90,14 @@ class AppRouter extends Component {
             selectMovie: null,
             selectCustomer: null,
           })
+          this.addErrorMessage('')
         })
         .catch((error) => {
+          this.addErrorMessage(`Unable to check out ${movie} to ${customer}. ${error}`)
           console.log(`Unable to check out ${movie} to ${customer}. ${error}`);
         })
     } else {
+      this.addErrorMessage('Need to select a movie and customer.')
       console.log(`Need to select a movie and customer.`);
     }
   }
@@ -116,13 +127,17 @@ class AppRouter extends Component {
               selectedMovie={this.state.selectedMovie}
               selectedCustomer={this.state.selectedCustomer}
               checkoutCallback={this.checkoutMovie}
+
+
             />
 
 
           </nav>
 
           <main >
-            <ErrorMessage />
+            <ErrorMessage
+              message={this.state.errorMessage}
+              addErrorMessageCallback={this.addErrorMessage} />
 
 
 
