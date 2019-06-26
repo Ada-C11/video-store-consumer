@@ -6,11 +6,9 @@ button.checkout-button {
   display: none;
 }
 
-<<<<<<< HEAD
 button.checkout-button-display {
   display: block;
 }
-=======
 .App-header {
   background-color: #222;
   height: 150px;
@@ -38,4 +36,3 @@ button.checkout-button-display {
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
 }
->>>>>>> karla
