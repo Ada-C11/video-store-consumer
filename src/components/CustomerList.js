@@ -10,6 +10,7 @@ class CustomerList extends React.Component {
       customers: []
     };
   }
+  
   componentDidMount() {
     axios.get('http://localhost:3000/customers')
     .then((response) => {

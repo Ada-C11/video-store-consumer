@@ -1,17 +1,20 @@
 import React, {Component} from 'react';
 import axios from 'axios';
+import Customer from './Customer'
 
 const rentalURL = 'http://localhost:3000/rentals/'
+
 class Rentals extends Component {
   constructor(props) {
     super(props);
 
     this.cleared = {
-      movie: '',
-      checkoutDate: '',
-      dueDate: '',
+      checkoutDate: null,
+      dueDate: null,
       rentalLibrary: [],
-      
+      searchName: '',
+      customerID: null,
+      customers: []
     }
 
     this.state = this.cleared
@@ -33,51 +36,76 @@ class Rentals extends Component {
   // TO DO: confirm this works
   onButtonClick = (movieTitle, e) => {
     e.preventDefault();
-    console.log(movieTitle);
     const rentalDate = Date.now();
-    this.setState({movie: movieTitle, checkoutDate: rentalDate, dueDate: rentalDate + 2})
+    
+    // due in 3 days
+    this.setState({checkoutDate: rentalDate, dueDate: rentalDate + 259200000})
+    this.props.selectRentalCallback(movieTitle)
   }
  
-  reserveRental () {
-    axios.post(`${rentalURL}${this.state.movie}/checkout`)
+  reserveRental = () => {
+    const newRental = {
+      title: this.props.movie + '/checkout',
+      customer_id: this.props.customerID,
+      due_date: new Date(this.state.dueDate)
+    }
+
+    axios.post(rentalURL, newRental)
    .then((response) => {
-     this.setState({rentalLibrary: response.data})
-     console.log(this.state.rentalLibrary)
+     console.log(response.data)
    })
    .catch((error) => {
      this.setState({errorMessage: error.message})
-     console.log(error.message)
+     console.log(error)
    })
   }
 
-  findCustomer(params) {
+  handleChange = (event) => {
+    this.setState({searchName: event.target.value});
+  }
+
+  onSubmitCustomerName = (e) => {
+    e.preventDefault()
 
   }
 
  render() {
-   const rentalCollection = this.state.rentalLibrary.map((movie, i) => {
-     return(
-      <tr key={i}>
-        <td>{movie.id}</td>
-        <td>{movie.title} </td>
-        <td> {movie.release_date} </td>
-        <td><button onClick={ (e) => this.onButtonClick(movie.title, e)}> Add to rental </button></td>
-      </tr>
-     )
-   });
+    const rentalCollection = this.state.rentalLibrary.map((movie, i) => {
+      return(
+        <tr key={i}>
+          <td>{movie.id}</td>
+          <td>{movie.title} </td>
+          <td> {movie.release_date} </td>
+          <td><button onClick={ (e) => this.onButtonClick(movie.title, e)}> Add to rental </button></td>
+        </tr>
+      )
+    });
+    
+    let makeReservation = true;
+    if(this.props.customerID && this.props.movie) {
+      makeReservation = false;
+    }
    return (
      <section>
        <h1> Rewind Rentals </h1>
        <section>
          <h4> Current Customer ID: {this.props.customerID ? this.props.customerID : 'none'}</h4>
-         <form>
+         <h4> Reserved movie: {this.props.movie ? this.props.movie : 'none selected'}</h4>
+         <div hidden={makeReservation}>
+            <button onClick={this.reserveRental}>Make Reservation</button>
+         </div>
+         {/* <form onSubmit={this.onSubmitCustomerName}>
           <label>
-            Find Customer:
-            <input type="text" name="name" />
+            Find Customer: 
+            <input type="text" 
+              onChange={this.handleChange} 
+              value={this.state.searchName} 
+              name="customerName" 
+              placeholder="customer name" 
+            />
           </label>
-          <input type="submit" value="Submit" />
-        </form>
-         <h4> Reserved movie: {this.state.movie ? this.state.movie : 'none selected'}</h4>
+          <input type="submit" value="Search" />
+        </form> */}
        </section>
        <table className="table table-striped table-hover table-sm"> 
        <thead>

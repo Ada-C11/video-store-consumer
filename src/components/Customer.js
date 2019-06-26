@@ -25,9 +25,9 @@ const Customer = (props) => {
       <Card.Text>{phone}</Card.Text>
       <Card.Text>${accountCredit} account credit</Card.Text>
       <Card.Text className="card-text">{moviesCheckedOutCount} movies currently checked out </Card.Text>
-      <button className="btn btn-secondary" onClick={onSelectCustomer}>
+      <Button className="btn btn-secondary" onClick={onSelectCustomer}>
         Select Customer
-      </button>
+      </Button>
     </Card.Body>
   </Card>
   )

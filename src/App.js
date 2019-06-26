@@ -15,6 +15,8 @@ class App extends Component {
     super();
       this.state = {
         selectedCustomer: null,
+        selectedRental: null,
+        customerSearch: [],
       }
   }
   
@@ -23,14 +25,9 @@ class App extends Component {
     this.setState({selectedCustomer: customerID})
   }
 
-  componentDidMount() {
-    axios.post()
-      .then(response => {
-
-      })
-      .catch(error => {
-
-      });
+  selectRental =(movieTitle) => {
+    console.log(movieTitle);
+    this.setState({movieTitle: movieTitle})
   }
 
   showHomePage() {
@@ -67,7 +64,9 @@ class App extends Component {
           <Route path="/customers" render={ (props) => (<CustomerList {...props} selectCustCallback={this.selectCustomer}/>)} />
           <Route path="/rental" render={ (props) => (
             <Rentals {...props} 
-              customerID={this.state.selectedCustomer}              
+              customerID={this.state.selectedCustomer}
+              movie={this.state.movieTitle}
+              selectRentalCallback={this.selectRental}            
             />)
           } />
           <Route component={Notfound} />
