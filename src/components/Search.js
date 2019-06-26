@@ -28,7 +28,10 @@ class Search extends Component {
                 console.log(response.data)
                 const movies = response.data.map((movie) => {
                     const movieResult = {
-                        title: movie.title
+                        title: movie.title,
+                        overview: movie.overview,
+                        image_url: movie.image_url,
+                        release_date: movie.release_date
                     }
                     return movieResult
                 })
