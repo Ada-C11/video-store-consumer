@@ -109,7 +109,7 @@ class Search extends Component {
           </label>
           <input type="submit" name="submit" value="Find Movie" />
         </form></section>
-        {display}
+        <div className="search-results">{display}</div>
       </div>
     );
   }

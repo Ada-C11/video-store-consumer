@@ -1,0 +1,6 @@
+.search-results {
+  width:80%;
+  display: flex;
+  flex-flow: row wrap;
+  margin:auto;
+}
