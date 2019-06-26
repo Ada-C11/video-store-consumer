@@ -16,6 +16,7 @@ class App extends Component {
       selectCustomerCallBack: this.selectCustomer,
       selectMovieCallBack: this.selectMovie,
       selected_movie: "none",
+      notification: null
     };
   }
 
@@ -57,19 +58,23 @@ class App extends Component {
   }
 
   onCheckOut = () => {
-    // const customer 
-    // if (this.state.selected_customer !== "none") {
+    if (this.state.selected_customer !== "none" && this.state.selected_movie !== "none") {
 
-    // }
+    const currentDate = new Date()
+    currentDate.setMonth(currentDate.getMonth() + 1)
+    const dueDate = currentDate
+
     const config = {
       movie_id: this.state.selected_movie["id"],
       customer_id: this.state.selected_customer["id"],
-      due_date: "2060-06-16"
-  }
+      due_date: dueDate
+    }
     const url =  `http://localhost:3000/rentals/${this.state.selected_movie["title"]}/check-out`
     axios.post(url, config)
     .then((response) => {
-
+       if(response.status === 200) {
+        this.setState({notification: `Succesfully checked out!`})
+      }
     })
     .catch((error) => {
       // Use the same idea we had in our GET request
@@ -77,8 +82,11 @@ class App extends Component {
     });
   }
 
+  }
+
 
   render() {
+    const notification = this.state.notification
     return (
       <div>
       <Router>
@@ -106,6 +114,9 @@ class App extends Component {
           <li>
             <button className="" onClick={this.onCheckOut}>
             Check Out</button>
+          </li>
+          <li>
+            {notification}
           </li>
         </ul>
       </nav>
