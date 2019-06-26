@@ -14,7 +14,7 @@ button.checkout-button-display {
   background-color: #222;
   height: 150px;
   padding: 20px;
-  color: white;
+  color: #ff7657;
 }
 
 .App-title {
@@ -36,7 +36,6 @@ button.checkout-button-display {
 body {
   font-family: 'Alegreya', serif;
   font-weight: bolder;
-
 }
 
 

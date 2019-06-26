@@ -26,9 +26,15 @@ function Header(props) {
           <p className="rental-body">Movie: {props.movieTitle}</p>
           <p className="rental-body">Customer: {props.customerName}</p>
       </div>
+<<<<<<< HEAD
       <div>
         <button className={`btn btn-light ${props.checkoutButtonClassName}`}
           onClick={props.onCheckoutClickCallback}>
+=======
+        <div className='button-container'>
+          <button className={`btn btn-light ${props.checkoutButtonClassName}`}
+            onClick={props.onCheckoutClickCallback}>
+>>>>>>> 397b076d114934970f7abce1161a8918ba647393
           Checkout!
         </button>
       </div>

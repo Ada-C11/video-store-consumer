@@ -1,5 +1,10 @@
 .table-hover tbody tr:hover td {
-  background: lightgoldenrodyellow;
+  background: #defcfc;
+}
+
+tr {
+  color: #33314F;
+  background-color: #f4dada;
 }
 
 img {

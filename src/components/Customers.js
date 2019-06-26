@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios'
 import 'bootstrap/dist/css/bootstrap.css';
+import './Customers.css';
 
 import Customer from './Customer'
 
