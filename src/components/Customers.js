@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import axios from 'axios'
 
+import 'bootstrap/dist/css/bootstrap.css';
+
 import Customer from './Customer'
 
 class Customers extends Component {
@@ -30,15 +32,26 @@ class Customers extends Component {
     })
     console.log(customerList)
     this.setState({customerList})
-
   })
-
 }
- 
+
   render () {
     return (
     <div>
-      <h2>{this.generateCustomerList()}</h2>
+      <table className="table table-striped table-hover">
+        <thead>
+          <tr>
+            <th scope="col">ID</th>
+            <th scope="col">Name</th>
+            <th scope="col">Address</th>
+            <th scope="col">Phone</th>
+            <th scope="col">Account Credit</th>
+          </tr>
+        </thead>
+        <tbody>
+          {this.generateCustomerList()}
+        </tbody>
+      </table>
     </div>
   );
 }

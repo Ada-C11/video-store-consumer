@@ -101,6 +101,7 @@ class App extends Component {
             onClick={this.onCheckoutClick}>
           Checkout!</button>
           <Header />
+          
           <Route exact path="/" component={Home} />
           <Route path="/search" component={Search} />
           <Route path="/library" render={(routeProps) => (<Library {...routeProps} addMovieToRentCallback={this.addMovieToRent}/>)}

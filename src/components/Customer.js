@@ -1,10 +1,22 @@
 import React from 'react';
+import 'bootstrap/dist/css/bootstrap.css';
+import './Customer.css';
 
 function Customer (props) {
   const onCustomerClick = () => {
     props.addCustomertoRentCallback(props.customer)
   }
-  return <p onClick={onCustomerClick}>{props.customer.name}</p>
+  return (
+      <tr onClick={onCustomerClick}>
+        <td scope="row">{props.customer.id}</td>
+        <td>{props.customer.name}</td>
+        <td>{props.customer.address}<br/>
+            {props.customer.city}, {props.customer.state} {props.customer.postal_code}</td>
+        <td>{props.customer.phone}</td>
+        <td>{props.customer.account_credit}</td>
+        <td><img src="https://media-public.canva.com/MADGxum5lYo/4/screen_2x.jpg"  /></td>
+      </tr>
+  )
 }
 
 export default Customer;
