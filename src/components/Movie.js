@@ -41,20 +41,20 @@ class Movie extends Component {
     const displayMovies = this.state.movies.map((movie) => {
       const { id, image_url, title, overview, release_date, external_id, } = movie;
       return (
-        <div className="movie_data" key={id}>
-          <img src={image_url} alt="movie poster" className="movie-poster" />
-          <ul>
-            <li>{id}</li>
-            <li>{title}</li>
-            <li>Overview: {overview}</li>
-            <li>Release date: {release_date}</li>
-            <button className="select_movie_button" onClick={this.props.currentMovieCallback(movie)} > Select this Movie </button>
+        <div className="card" key={id}>
+          <img src={image_url} alt="movie poster" className="card-img-top" />
+          <ul className="list-group list-group-flush">
+            <li className="list-group-item">{id}</li>
+            <li className="list-group-item">{title}</li>
+            <li className="list-group-item">Overview: {overview}</li>
+            <li className="list-group-item">Release date: {release_date}</li>
+            <button className="" onClick={this.props.currentMovieCallback(movie)} > Select this Movie </button>
           </ul>
         </div>
       )
     })
     return (
-      <section className="movies_list">
+      <section className="row">
         {displayMovies}
       </section>
     )
