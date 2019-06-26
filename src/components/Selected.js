@@ -4,7 +4,6 @@ import {Card, Button} from 'react-bootstrap'
 import axios from 'axios';
 import moment from 'moment';
 
-import Notification from "./Notification";
 import MovieCard from "./MovieCard";
 import Customer from "./Customer";
 
@@ -21,33 +20,34 @@ class Selected extends Component {
             axios.post(endpoint, params)
                 .then((response)=>{
                     this.props.addNotificationCallback(
-                        < Notification
-                        toastTitle= {"Success!"}
-                        toastMessage= {`Successfully rented ${this.props.movie.title} to ${this.props.customer.name}. Your movie is due on ${response.data.due_date}. `}
-                        toastTimestamp= {Date.now()}
-                        error= {false}
-                        />
+                        {
+                            toastTitle: "Success!",
+                            toastMessage:`Successfully rented ${this.props.movie.title} to ${this.props.customer.name}. Your movie is due on ${response.data.due_date}.`,
+                            toastTimestamp:Date.now(),
+                            error: true,
+                          }
+                        
                     );
                 })
                 .catch((error)=>{
                     this.props.addNotificationCallback (
-                        <Notification
-                        toastTitle= {"Error!"}
-                        toastMessage= {`Could not create rental: ${error.message}`}
-                        toastTimestamp= {Date.now()}
-                        error= {true}
-                        />
+                        {
+                            toastTitle: "Error!",
+                            toastMessage:`Could not create rental: ${error.message}`,
+                            toastTimestamp:Date.now(),
+                            error: true,
+                          }
                     );
                     ;
                 })
         } else {
                     this.props.addNotificationCallback (
-                        <Notification
-                        toastTitle= {"Error!"}
-                        toastMessage= {"You must select both a customer and a movie to create a rental."}
-                        toastTimestamp= {Date.now()}
-                        error= {true}
-                        />
+                        {
+                            toastTitle: "Error!",
+                            toastMessage:`You must select both a customer and a movie to create a rental.`,
+                            toastTimestamp:Date.now(),
+                            error: true,
+                          }
                     );
         }
        
@@ -77,7 +77,7 @@ class Selected extends Component {
 Selected.propTypes = {
     movie: PropTypes.instanceOf(<MovieCard/>),
     customer: PropTypes.instanceOf(<Customer/>),
-    addNotificationCallback: PropTypes.func
+    addNotificationCallback: PropTypes.func,
 }
 
 export default Selected;

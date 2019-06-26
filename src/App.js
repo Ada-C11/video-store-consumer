@@ -8,13 +8,20 @@ import Search from './components/Search'
 import Selected from './components/Selected'
 
 import './App.css';
+import Notification from "./components/Notification"
 
 import { Nav } from 'react-bootstrap'
 
 //  Below code is modified from React Router Tutorial https://reacttraining.com/react-router/web/guides/quick-start
 
 const Index = () => {
-  return (<p>home</p>);
+  return (
+    <div className='home-page'>
+      <h1>Erica and Shubha's Video Store</h1>
+      <img src="https://static1.squarespace.com/static/5048f125e4b0bd178ab3741a/t/557c49cfe4b00283cf1ed72f/1434208719772/" alt="empty movie theater"/>
+    </div>
+  
+    );
 }
 
 
@@ -24,7 +31,7 @@ class AppRouter extends Component {
     this.state = {
       selectedMovie: undefined,
       selectedCustomer:undefined,
-      notifications: []
+      notifications: [],
     }
   }
 
@@ -40,11 +47,34 @@ class AppRouter extends Component {
     this.setState({selectedMovie: movie});
   }
 
-  addNotification = (notification) => {
-    console.log(notification);
+  addNotification = (notificationProps) => {
+    const {toastTitle, toastMessage, toastTimestamp, error} = notificationProps;
+    const notification = (< Notification
+      id={this.state.notifications.length + 1}
+      key={this.state.notifications.length + 1}
+      toastTitle= {toastTitle}
+      toastMessage= {toastMessage}
+      toastTimestamp= {toastTimestamp}
+      error= {error}
+      dismissNotification={this.dismissNotification}
+      />);
+    
     this.setState({
-      notifications:[...this.state.notifications, notification]
+      notifications:[...this.state.notifications, notification],
+      notificationCount: this.state.notificationCount + 1
     })
+  }
+
+  dismissNotification = (notificationID) => {
+    const updatedNotifications = this.state.notifications.filter((obj)=>{
+      return obj.props.id !== notificationID;
+    });
+
+    
+
+    this.setState({
+      notifications: updatedNotifications
+    });
   }
 
   render(){
@@ -99,6 +129,7 @@ class AppRouter extends Component {
               path='/library'
               render={(props) => <MovieLibrary {...props}selectMovie={this.selectMovie} 
               addNotificationCallback={this.addNotification}/>}
+              
               
           />
 

@@ -4,7 +4,6 @@ import axios from 'axios';
 
 import MovieCard from './MovieCard'
 
-import Notification from "./Notification"
 
 import './MovieLibrary.css';
 
@@ -22,7 +21,6 @@ class MovieLibrary extends Component {
     const endpoint = 'http://localhost:3000/movies'
     axios.get(endpoint)
       .then((response) => {
-        console.log(response.data);
 
         const newMovieList = response.data.map((movie) => {
           
@@ -44,12 +42,12 @@ class MovieLibrary extends Component {
       
       .catch((error) => {
         this.props.addNotificationCallback(
-          <Notification
-                        toastTitle= {"Error!"}
-                        toastMessage= {`Could not retrieve movies: ${error.message}`}
-                        toastTimestamp= {Date.now()}
-                        error= {true}
-                        />
+                        {
+                          toastTitle: "Error!",
+                          toastMessage:`Could not retrieve movies: ${error.message}`,
+                          toastTimestamp:Date.now(),
+                          error: true,
+                      }
         )
         
       })
@@ -86,7 +84,7 @@ class MovieLibrary extends Component {
 
 MovieLibrary.propTypes = {
   selectMovie:PropTypes.func,
-  addNotificationCallback:PropTypes.func
+  addNotificationCallback:PropTypes.func,
 };
 
 export default MovieLibrary;

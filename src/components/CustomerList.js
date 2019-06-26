@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import axios from 'axios';
 
 import Customer from './Customer'
-import Notification from "./Notification"
+
 
 import './CustomerList.css'
 
@@ -42,12 +42,14 @@ class CustomerList extends Component {
         })
         .catch((error)=>{
             this.props.addNotificationCallback(
-                <Notification
-                              toastTitle= {"Error!"}
-                              toastMessage= {`Could not retrieve customers: ${error.message}`}
-                              toastTimestamp= {Date.now()}
-                              error= {true}
-                              />
+                {
+                    toastTitle: "Error!",
+                    toastMessage:`Could not retrieve customers: ${error.message}`,
+                    toastTimestamp:Date.now(),
+                    error: true,
+                    dismissNotification:this.props.dismissNotificationCallback 
+                }
+             
               )
         });   
     }

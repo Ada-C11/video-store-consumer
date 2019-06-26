@@ -7,20 +7,15 @@ import './Notification.css'
 
 
 
-class Notification extends Component{
-    constructor(props) {
-        super(props);
-        this.state = {
-            showToast: true,
-        }
-    }
+class Notification extends Component {
     render() {
-        const {error, toastTitle, toastMessage, toastTimestamp} = this.props;
-        const {showToast} = this.state;
-        const toggleShowToast = () => this.setState({ showToast: !showToast });
+        const {error, toastTitle, toastMessage, toastTimestamp, dismissNotification} = this.props;
+
+        const onCloseHandler = () => dismissNotification(this.props.id);
+
         return (
             <div className="notification">
-                <Toast className={error ? 'error' : 'success'}show={showToast} onClose={toggleShowToast}>
+                <Toast className={error ? 'error' : 'success'} onClose={onCloseHandler}>
                 <Toast.Header>
                     <strong className="mr-auto">{toastTitle}</strong>
                     <small>
@@ -36,10 +31,16 @@ class Notification extends Component{
     
 }
 
+
+        
+    
+
+
 Notification.propTypes = {
     error: PropTypes.bool, 
     toastTitle:PropTypes.string, 
     toastMessage:PropTypes.string, 
-    toastTimestamp:PropTypes.instanceOf(Date)
+    toastTimestamp:PropTypes.number,
+    dismissNotification:PropTypes.func
 }
 export default Notification;

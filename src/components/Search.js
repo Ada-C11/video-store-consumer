@@ -4,7 +4,6 @@ import axios from 'axios';
 
 import MovieCard from './MovieCard'
 
-import Notification from "./Notification"
 
 import './Search.css';
 class Search extends Component {
@@ -44,23 +43,23 @@ class Search extends Component {
     axios.post(endpoint, movie)
       .then((response) => {
         this.props.addNotificationCallback(
-          <Notification
-                        toastTitle= {"Success!"}
-                        toastMessage= {`Successfully added ${movie.title} to library`}
-                        toastTimestamp= {Date.now()}
-                        error= {false}
-                        />
+          {
+            toastTitle: "Success!",
+            toastMessage:`Successfully added ${movie.title} to library`,
+            toastTimestamp:Date.now(),
+            error: false,
+          }
         );
       })
       
       .catch((error) => {
         this.props.addNotificationCallback(
-          <Notification
-                        toastTitle= {"Error!"}
-                        toastMessage= {`Could not add movie to library: ${error.message}`}
-                        toastTimestamp= {Date.now()}
-                        error= {true}
-                        />
+          {
+            toastTitle: "Error!",
+            toastMessage:`Could not add movie to library: ${error.message}`,
+            toastTimestamp:Date.now(),
+            error: true,
+          }
         );
       })
   }

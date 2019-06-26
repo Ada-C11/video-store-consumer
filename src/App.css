@@ -28,7 +28,12 @@
   top:0;
   z-index: 5
 }
+
+.home-page{
+  text-align: center;
+}
 @keyframes App-logo-spin {
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
 }
+
