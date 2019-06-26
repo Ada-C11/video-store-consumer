@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import Movie from './Movie';
 import PropTypes from 'prop-types';
 
 const URL = process.env.REACT_APP_API_URL
@@ -59,18 +60,23 @@ class SearchMovie extends Component {
           });
     }
 
+    getMovieForLibrary = () => {
+      console.log("i clicked 'add movie to library'!")
+    }
+
     render() {
 
         const listSearchResults = this.state.allSearchResults.map((movieFromSearch, i) => {
 
           return (
             <li key={i}>
-              <img src={movieFromSearch.image_url} alt={`movie poster for ${movieFromSearch.title}`}/>
+              {/* <img src={movieFromSearch.image_url} alt={`movie poster for ${movieFromSearch.title}`}/>
                 <h4>{movieFromSearch.title}</h4>
                 <p>{movieFromSearch.external_id}</p>
-                <button>Add Movie to Library</button>
+                <button onClick={this.getMovieForLibrary}>Add Movie to Library</button>
                 <p>Release date: {movieFromSearch.release_date}</p>
-                <p>{movieFromSearch.overview}</p>
+                <p>{movieFromSearch.overview}</p> */}
+              <Movie movie={movieFromSearch}/>
             </li>
           )
         })
