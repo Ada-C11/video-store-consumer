@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import Movie from './Movie';
 
 class Search extends Component {
   constructor(props) {
@@ -38,15 +39,39 @@ class Search extends Component {
       });
   }
 
+  onAdd = (movie) => {
+
+    console.log(movie)
+    const url = `http://localhost:3000/movies`
+    const config = {
+      params: { external_id: movie.external_id,
+        image_url: movie.image_url,
+        overview: movie.overview,
+        release_date: movie.release_date,
+        title: movie.title,
+      }
+    }
+    axios.post(url, config)
+    .then((response) => {
+      console.log(response)
+    }) 
+    .catch((error) => {
+      console.log(error);
+    });
+    
+  }
+
   render() {
     const searchResults = this.state.searchResults.map((movie, i) => {
-      return <li>{movie.title}</li>
+      return <li>{movie.title}<button className="" onClick={() => this.onAdd(movie)}>
+      Add</button></li>
     })
+    console.log(searchResults)
 
     return (
       <div className="App">
         <header className="App__header">
-          <h1 className="App__title">Exquisite Corpse</h1>
+          <h1 className="App__title">Search for Movies to Add!</h1>
           <p className="App__intro-text">
             <form onSubmit={this.searchLibrary}>
               <input
