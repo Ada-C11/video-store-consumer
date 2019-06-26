@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import axios from 'axios';
 
-// import './Movie.css';
+import './Movie.css';
 
 class Movie extends Component {
   constructor(props) {
@@ -36,8 +36,7 @@ class Movie extends Component {
 
   render() {
     const displayMovies = this.state.movies.map((movie) => {
-      const { id, title, overview, release_date, external_id, image_url } = movie;
-
+      const { id, image_url, title, overview, release_date, external_id, } = movie;
       return (
         <div className="movie_data" key={id}>
           <img src={image_url} alt="movie poster" className="movie-poster" />

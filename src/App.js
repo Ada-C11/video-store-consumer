@@ -17,9 +17,15 @@ class App extends Component {
     }
   }
 
+  checkoutButtonClick = () => {
+    if (this.state.currentCustomer === "" || this.state.currentMovie === "") {
+
+    }
+    this.state.currentCustomer.movies_checked_out_count += 1;
+  }
+
 
   currentCustomerCallback = (customer) => {
-
     return () => {
       this.setState({
         currentCustomer: customer,
@@ -28,13 +34,13 @@ class App extends Component {
   }
 
   currentMovieCallback = (movie) => {
-
     return () => {
       this.setState({
         currentMovie: movie,
       })
     }
   }
+
 
   render() {
     return (
@@ -47,6 +53,9 @@ class App extends Component {
             <div className="current_selections">
               <p><strong>Selected Customer:</strong> {this.state.currentCustomer.name}</p>
               <p><strong>Selected Movie:</strong> {this.state.currentMovie.title}</p>
+
+              <button className="checkout_button"
+                onClick={this.checkoutButtonClick}>Checkout</button>
             </div>
 
             <Route exact path="/" component={Home} />
@@ -55,15 +64,18 @@ class App extends Component {
               render={(routeProps) => (
                 <Customer {...routeProps}
                   currentCustomerCallback={this.currentCustomerCallback} />
-              )}
-            />
+              )} />
             <Route
               path="/library"
               render={(routeProps) => (
                 <Movie {...routeProps}
                   currentMovieCallback={this.currentMovieCallback} />
               )} />
-            <Route path="/search" component={Search} />
+            <Route
+              path="/search"
+              render={(routeProps) => (
+                <Search {...routeProps} />
+              )} />
 
           </div>
 
@@ -82,9 +94,7 @@ function Home() {
   />;
 }
 
-function MovieSearch() {
-  return <Search />;
-}
+
 
 function Header() {
   return (

@@ -10,7 +10,7 @@ class VideoStore extends Component {
 
         this.state = {
             currentMovie: "",
-            currentCustomer: 0,
+            currentCustomer: "",
         };
     }
 
