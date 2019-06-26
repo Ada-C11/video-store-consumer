@@ -67,7 +67,7 @@ class App extends Component {
       </section>) : null;
     
     const errorSection = (this.state.error) ? 
-    (<section className="error">
+    (<section className="alert alert-danger">
        Error: {this.state.error}
      </section>) : null;
     

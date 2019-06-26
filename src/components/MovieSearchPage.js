@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
-import { Route, Link } from "react-router-dom";
 import MovieSearchBar from './MovieSearchBar';
 import SearchResult from './SearchResult';
 import Axios from 'axios';
+import 'bootstrap/dist/css/bootstrap.css';
+
 
 const baseURL = `http://localhost:3001`;
 class MovieSearchPage extends Component {
@@ -59,7 +60,7 @@ class MovieSearchPage extends Component {
     });
 
     const errorSection = (this.state.error) ? 
-    (<section className="error">
+    (<section className="alert alert-danger">
        Error: {this.state.error}
      </section>) : null;
 

@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { Route, Link } from "react-router-dom";
 import axios from 'axios'
 import Customer from './Customer'
 import 'bootstrap/dist/css/bootstrap.css';
@@ -38,7 +37,7 @@ class CustomerListPage extends Component {
     });
 
     const errorSection = (this.state.error) ? 
-    (<section className="error">
+    (<section className="alert alert-danger">
        Error: {this.state.error}
      </section>) : null;
 

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Route, Link } from "react-router-dom";
+import 'bootstrap/dist/css/bootstrap.css';
 import axios from 'axios'
 import Movie from "./Movie"
 
@@ -32,7 +32,7 @@ class RentalLibraryPage extends Component {
     });
 
     const errorSection = (this.state.error) ? 
-    (<section className="error">
+    (<section className="alert alert-danger">
        Error: {this.state.error}
      </section>) : null;
 
