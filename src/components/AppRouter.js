@@ -95,7 +95,7 @@ class AppRouter extends Component {
       <Router>
         <div>
           <nav className="nav-bar">
-            <ul>
+            <ul className="nav-list">
               <li>
                 <Link to="/">Home</Link>
               </li>
