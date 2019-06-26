@@ -1,40 +1,18 @@
 import React, { Component } from 'react';
-import axios from 'axios';
+// import axios from 'axios';
 import Movie from './Movie';
 
-const URL_MOVIES = 'http://localhost:4000/movies';
+// const URL_MOVIES = 'http://localhost:4000/movies';
 
 class MovieLibrary extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
-      allMovies: [],
-      errorMessage: [],
+      allMovies: this.props.allMovies,
       selectedMovie: '',
     }
   }
-
-  componentDidMount = () => {
-    const allMovies = [];
-    axios.get(URL_MOVIES)
-    .then((response) => {
-      console.log(response.data);
-      response.data.forEach((element) => {
-        allMovies.push(element);
-      })
-      this.setState({allMovies, });
-      this.props.displayMovieLibraryCallback(allMovies)
-    })
-    .catch((error) => {
-      const errorMessage = this.state.errorMessage;
-      const newError = error.response.data.errors.text;
-      newError.forEach((text) => {
-        errorMessage.push(text);
-      })
-      this.setState({errorMessage, });
-    })
-  }
-
+  
   updateSelected = (movieId) => {
     this.state.allMovies.forEach((movie) => {
       if(movie.id === movieId) {
@@ -62,6 +40,7 @@ class MovieLibrary extends Component {
   }
 
   render() {
+    
     return (
       <section>
         <h3>Movie Library</h3>
