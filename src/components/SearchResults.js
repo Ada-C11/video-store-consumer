@@ -20,7 +20,7 @@ const SearchResults = (props) => {
             console.log(response)
         })
         .catch((error) => {
-            console.log(response)
+            console.log(error.message )
         })
     }
 
