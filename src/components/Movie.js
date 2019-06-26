@@ -16,12 +16,12 @@ const Movie = (props) => {
     let button = '';
     if (props.isSearchResult) {
         if (props.alreadyInLibrary === false) {
-            button = <button onClick={onSearchResultClick}>Add To Library</button>
+            button = <button onClick={onSearchResultClick} className='btn btn-dark'>Add To Library</button>
         } else {
             button = <p>Already in Rental Library</p>
         }
     } else {
-        button = <button onClick={onHandleClick}>Select for Rental</button>
+        button = <button onClick={onHandleClick} className='btn btn-dark'>Select for Rental</button>
     };
 
     const formatDate = (date) => {
