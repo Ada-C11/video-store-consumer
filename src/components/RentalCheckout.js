@@ -16,7 +16,7 @@ class RentalCheckout extends Component {
       checkout: [...this.state.checkout, customer, movie],
       checkoutStatus: true
     });
-  };
+  };z
 
   render() {
     let checkoutText = "";

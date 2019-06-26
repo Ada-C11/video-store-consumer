@@ -11,6 +11,9 @@ class MovieLibrary extends Component {
     };
   }
 
+  addmoviestoLibrary = (movie) => {
+    
+  }
 
   selectToCheckoutMovie = movie => {
     this.setState({
@@ -48,6 +51,5 @@ class MovieLibrary extends Component {
     }
   }
 }
-
 
 export default MovieLibrary;

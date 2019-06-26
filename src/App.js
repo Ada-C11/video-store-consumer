@@ -72,7 +72,8 @@ class App extends Component {
     let searchResults = "";
     if (this.state.searchComplete === true) {
       searchResults = this.state.movies.map(movie => {
-        return movie["title"];
+        return (
+          movie["title"])
       });
     }
 
@@ -107,7 +108,7 @@ class App extends Component {
             CustomerList
           </button>
         </section>
-        <p>{searchResults} </p>
+        <div>{searchResults} </div>
 
         {optionalComponent}
         <section>{rentalMovie}</section>
