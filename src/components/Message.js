@@ -4,12 +4,11 @@ import PropTypes from 'prop-types';
 const Message = (props) => {
 
   return (
-      <div>
-
+    <div>
       {props.message && 
         <p>{props.message}</p>
       }
-      </div>
+    </div>
     
     )
 }
