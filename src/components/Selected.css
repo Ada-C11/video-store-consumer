@@ -5,3 +5,7 @@
     z-index: 5;
     box-shadow: 4px 4px 4px;
 }
+
+.error {
+    color:red;
+}
