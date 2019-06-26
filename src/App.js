@@ -4,7 +4,7 @@ import './App.css';
 // import PropTypes from 'prop-types';
 import Library from './components/Library';
 import Customers from './components/Customers';
-import Rental from './components/Rental';
+// import Rental from './components/Rental';
 import axios from 'axios';
 import Search from './components/Search';
 
@@ -18,7 +18,11 @@ class App extends Component {
       expandedMovies: {},
       rentedMovie: undefined,
       chosenCustomer: undefined,
-      error: null
+      // rentalExists: false,
+      dueDate: undefined,
+      checkoutDate: undefined,
+      alert: undefined,
+      error: null,
     };
   }
 
@@ -61,47 +65,46 @@ class App extends Component {
   }
 
   rentMovie = () => {
-    const movie = this.state.rentedMovie
-    const customer = this.state.chosenCustomer
-
     const checkoutDate = new Date();
     const dueDate = new Date();
     dueDate.setDate(dueDate.getDate() + 7 );
-
-    const checkoutDateFormatted = `${checkoutDate.getFullYear()}/${checkoutDate.getMonth() + 1}/${checkoutDate.getDate()}`;
-    const dueDateFormatted = `${dueDate.getFullYear()}/${dueDate.getMonth() + 1}/${dueDate.getDate()}`;
-
-    console.log(checkoutDate);
-    console.log(checkoutDateFormatted);
-    console.log(dueDate);
-    console.log(dueDateFormatted);
-
-
-    const url = `http://localhost:3001/rentals/${movie.title}/check-out`;
+  
+    const url = `http://localhost:3001/rentals/${this.state.rentedMovie.title}/check-out`;
 
     const params = {
       due_date: dueDate,
-      customer_id: customer.id,
+      customer_id: this.state.chosenCustomer.id,
     }
 
     axios.post(url, params)
     .then((response)=> {
-      console.log(response)
-      console.log(`Rented! "${movie.title}" checked out by ${customer.name}`)
+      const movie = this.state.rentedMovie.title
+      const customer = this.state.chosenCustomer.name
 
-          this.setState({
-              rentedMovie: undefined,
-              chosenCustomer: undefined,
-          })
-        return (
-          <Rental movie={movie} customer={customer} checkoutDate={checkoutDateFormatted} dueDate={dueDateFormatted} />
-        )
+      this.setState({
+        // rentalExists: true,
+        dueDate: dueDate,
+        checkoutDate: checkoutDate,
+        alert: `Rented! "${movie}" checked out by ${customer}`
+      })
+
+      this.onRentCallback()
     })
     .catch((error) => {
         this.setState({
             error: error.message
         })
-    });
+    })
+  }
+
+  onRentCallback = () => {
+    this.setState({
+      rentedMovie: undefined,
+      chosenCustomer: undefined,
+      // rentalExists: false,
+      dueDate: undefined,
+      checkoutDate: undefined,
+    })
   }
 
   render() {
@@ -115,10 +118,10 @@ class App extends Component {
 
           { this.state.chosenCustomer && <p>Customer Selection: {this.state.chosenCustomer.name}</p> }
 
-          { this.state.rentedMovie && this.state.chosenCustomer && <button onClick={this.rentMovie}>Rent Movie</button>}
-          {/* <Rental movie={this.state.rentedMovie} customer={this.state.chosenCustomer} dueDate="" /> } */}
+          { this.state.chosenCustomer && this.state.rentedMovie && <button onClick={this.rentMovie}>Rent Movie</button>}
 
           <Header />
+          {this.state.alert} 
           {errorSection}
 
           <Route exact path="/" component={Home} />
