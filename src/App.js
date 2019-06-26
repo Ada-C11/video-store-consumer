@@ -58,12 +58,13 @@ class App extends Component {
     .catch(error => console.log(error))
   }
 
-  selectMovie = (title) => {
-    return () => { 
+  selectMovie = (movie) => {
+    console.log(movie)
+    // return () => { 
       this.setState({
-        selectedMovie: title
+        selectedMovie: movie
       });
-    }
+    // }
     // const movie = this.state.movieLibrary.find(movie => movie.id === movieId)
     // console.log(this.state.selectedMovie)
   }
@@ -71,9 +72,10 @@ class App extends Component {
   // this method takes in a name rather than an id
   // we'll need the id to send to the checkout request
   selectCustomer = (customerId) => {
+  
     return () => { 
       this.setState({
-      selectedCustomer: customerId
+        selectedCustomer: customerId
       });
     }
     // const customer = this.state.customerLibrary.find(customer => customer.id === customerId)
@@ -119,7 +121,7 @@ class App extends Component {
               <li>
                 <Link to="/library/"> Movie Library </Link>
               </li>
-              <li>Selected Movie: {this.state.selectedMovie}</li>
+              <li>Selected Movie: {this.state.selectedMovie ? this.state.selectedMovie.title : "No movie selected"}</li>
               <li>
                 <Link to="/customers/"> Customer List </Link>
               </li>

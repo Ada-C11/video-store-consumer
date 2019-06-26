@@ -25,7 +25,7 @@ class Library extends Component {
   render () {
     const movieCards = this.state.movieLibrary.map((movie, i) => {
       return (
-        <MovieCard key={i} movie={movie} selectMovie={this.props.selectMovie} />
+        <MovieCard key={i} movie={movie} selectMovie={() => {this.props.selectMovie(movie)}} />
       )
     })
     return (
