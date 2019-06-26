@@ -1,5 +1,6 @@
 import React from 'react';
 import 'bootstrap/dist/css/bootstrap.css';
+import PropTypes from 'prop-types';
 
 const SearchResult = (props) => {
   const {id, title, overview, release_date, external_id, 
@@ -21,7 +22,16 @@ const SearchResult = (props) => {
       </td>
     </tr>
   );
-}
+};
+
+SearchResult.propTypes = {
+  title: PropTypes.string.isRequired,
+  overview: PropTypes.string,
+  release_date: PropTypes.string,
+  image_url: PropTypes.string,
+  external_id: PropTypes.number,
+  onSelectHandler: PropTypes.func,
+};
 
 
 export default SearchResult;

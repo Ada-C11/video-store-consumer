@@ -1,5 +1,6 @@
 import React from 'react';
 import 'bootstrap/dist/css/bootstrap.css';
+import PropTypes from 'prop-types';
 
 const Movie = (props) => {
   const {id, title, overview, release_date, image_url,
@@ -23,6 +24,15 @@ const Movie = (props) => {
     </tr>
   );
 }
+
+Movie.propTypes = {
+  title: PropTypes.string.isRequired,
+  overview: PropTypes.string,
+  release_date: PropTypes.string,
+  image_url: PropTypes.string,
+  external_id: PropTypes.number,
+  onSelectHandler: PropTypes.func,
+};
 
 
 export default Movie;

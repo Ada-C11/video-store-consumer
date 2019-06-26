@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import axios from 'axios'
 import Customer from './Customer'
 import 'bootstrap/dist/css/bootstrap.css';
+import PropTypes from 'prop-types';
+
 class CustomerListPage extends Component {
   constructor(props) {
     super(props);
@@ -69,6 +71,10 @@ class CustomerListPage extends Component {
       </section>
     );
   }
-}
+};
+
+CustomerListPage.propTypes = {
+  onSelectCustomerCallback: PropTypes.func,
+};
 
 export default CustomerListPage;

@@ -1,5 +1,6 @@
 import React from 'react';
 import 'bootstrap/dist/css/bootstrap.css';
+import PropTypes from 'prop-types';
 
 const Customer = (props) => {
   const {id, name, registered_at, address, 
@@ -32,6 +33,19 @@ const Customer = (props) => {
     </tr>
       
   );
-}
+};
+
+Customer.propTypes = {
+  id: PropTypes.number.isRequired,
+  name: PropTypes.string,
+  registered_at: PropTypes.string,
+  address: PropTypes.string,
+  city: PropTypes.string,
+  state: PropTypes.string,
+  postal_code: PropTypes.string,
+  phone: PropTypes.string,
+  account_credit: PropTypes.number,
+  movies_checked_out_count: PropTypes.number
+};
 
 export default Customer;

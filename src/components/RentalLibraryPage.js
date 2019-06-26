@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import 'bootstrap/dist/css/bootstrap.css';
-import axios from 'axios'
-import Movie from "./Movie"
+import axios from 'axios';
+import Movie from "./Movie";
+import PropTypes from 'prop-types';
 
 class RentalLibraryPage extends Component {
   constructor(props){
@@ -59,5 +60,9 @@ class RentalLibraryPage extends Component {
     );
   }
 }
+
+RentalLibraryPage.propTypes = {
+  onSelectMovieCallback: PropTypes.func,
+};
 
 export default RentalLibraryPage;

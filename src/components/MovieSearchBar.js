@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import 'bootstrap/dist/css/bootstrap.css';
+import PropTypes from 'prop-types';
 
 class MovieSearchBar extends Component {
 
@@ -41,6 +42,10 @@ class MovieSearchBar extends Component {
       </div>
     );
   }
-}
+};
+
+MovieSearchBar.propTypes = {
+  searchCallback: PropTypes.func,
+};
 
 export default MovieSearchBar;

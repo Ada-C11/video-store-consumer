@@ -75,7 +75,7 @@ class MovieSearchPage extends Component {
     const successSection = (this.state.success) ? 
     (<section className="alert alert-success">
       <p>
-      Success: {this.state.success} 
+      {this.state.success} 
       </p>
     </section>) 
     : null;
