@@ -43,6 +43,7 @@ class Customer extends Component {
 
 
   render() {
+    console.log(this.props)
     const displayCustomers = this.state.customers.map((customer) => {
       const { id, name, city, address, postal_code, phone, account_credit, movies_checked_out_count } = customer;
       return (
@@ -50,7 +51,7 @@ class Customer extends Component {
           <ul>
             <li>{id}</li>
             <li>{name}</li>
-            <li>{address}</li>
+            <li>{address}, {city}</li>
             <li>{postal_code}</li>
             <li>{phone}</li>
             <li>Account credit: ${account_credit}</li>
