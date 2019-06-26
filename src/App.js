@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import './App.css';
-import PropTypes from 'prop-types';
+// import PropTypes from 'prop-types';
 import Library from './components/Library';
 import Customers from './components/Customers';
 import Rental from './components/Rental';
@@ -60,55 +60,44 @@ class App extends Component {
 
   }
 
-  formatDate = (time) => {
-    let d = new Date(),
-    month = d.getMonth() + 1,
-    day = d.getDate(),
-    year = d.getFullYear();
-
-    if (time === "now") {
-      day = d.getDate()
-    } else if (time === "future") {
-      day = d.getDate() + 5
-    }
-
-    if (month < 10) month = '0' + month;
-    if (day < 10) day = '0' + day;
-
-    return [year, month, day].join('/');
-  }
-  // Referred to this post for formatting date: https://stackoverflow.com/questions/23593052/format-javascript-date-to-yyyy-mm-dd
-
-
   rentMovie = () => {
     const movie = this.state.rentedMovie
     const customer = this.state.chosenCustomer
 
-    const dueDate = this.formatDate("future")
-    const checkoutDate = this.formatDate("now")
+    const checkoutDate = new Date();
+    const dueDate = new Date();
+    dueDate.setDate(dueDate.getDate() + 7 );
 
-    const url = `http://localhost:3001/rentals/${movie.title}/check-out`
+    const checkoutDateFormatted = `${checkoutDate.getFullYear()}/${checkoutDate.getMonth() + 1}/${checkoutDate.getDate()}`;
+    const dueDateFormatted = `${dueDate.getFullYear()}/${dueDate.getMonth() + 1}/${dueDate.getDate()}`;
 
-    axios.post(url, {
+    console.log(checkoutDate);
+    console.log(checkoutDateFormatted);
+    console.log(dueDate);
+    console.log(dueDateFormatted);
+
+
+    const url = `http://localhost:3001/rentals/${movie.title}/check-out`;
+
+    const params = {
+      due_date: dueDate,
       customer_id: customer.id,
-      due_date: dueDate
-    })
+    }
+    axios.post(url, params)
     .then((response)=> {
       console.log(response)
-        // if (response.status === 200) {
-          console.log('success')
-            this.setState({
-                success: `Rented! "${movie.title}" checked out by ${customer.name}`,
-                rentedMovie: undefined,
-                chosenCustomer: undefined,
-            })
-            return (
-              <Rental movie={movie} customer={customer} checkoutDate={checkoutDate} dueDate={dueDate} />
-            )
-        // }
+      console.log(`Rented! "${movie.title}" checked out by ${customer.name}`)
+
+          this.setState({
+              rentedMovie: undefined,
+              chosenCustomer: undefined,
+          })
+        return (
+          <Rental movie={movie} customer={customer} checkoutDate={checkoutDateFormatted} dueDate={dueDateFormatted} />
+        )
     })
     .catch((error) => {
-      console.log(error)
+      console.log(error.message)
       console.log('err')
         this.setState({
             error: error.message
