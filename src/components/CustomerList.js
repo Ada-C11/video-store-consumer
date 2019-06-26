@@ -74,7 +74,7 @@ class CustomerList extends Component {
   render() {
     return(
       <div>
-        <h3>This is a Customer List!</h3>
+        <h3>Customers</h3>
         { this.generateCustomers() }
       </div>
     )

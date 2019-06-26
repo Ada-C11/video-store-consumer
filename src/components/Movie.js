@@ -1,6 +1,8 @@
 import React from 'react';
 import propTypes from 'prop-types';
 
+import './Movie.css';
+
 
 const Movie = (props) => {
   const { index, title, overview, release_date, image_url, isSelectButton, callbackFunction } = props;
@@ -11,15 +13,13 @@ const Movie = (props) => {
 
 
   return (
-    <div>
-      <h3>{title}</h3>
-      <ul>
-        <li><img src={image_url} /></li>
-        <li>{release_date}</li>
-        <li>{overview}</li>
-      </ul>
-      <button
-        value={index}
+    <div className="main card-body">
+      <img src={image_url} />
+      <h4>{title}</h4>
+      <p>{release_date}</p>
+      <p>{overview}</p>
+      <button 
+        value={index} 
         onClick={() => { callbackFunction(index) }}
       >
         {buttonText}

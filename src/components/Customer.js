@@ -11,12 +11,13 @@ class Customer extends Component {
 
   return (
     <section className="card-body">
-      <p>Customer ID: { id }</p>
-      <h3>{ name }</h3>
+      <p className="text-justify">Customer ID: { id }</p>
       <button
+        className="float-right"
         value={id}
         onClick={ () => { selectACustomerCallback(index) } }
       >Select</button>
+      <h4 className="text-justify">{ name }</h4>
     </section>
   )};
 }
