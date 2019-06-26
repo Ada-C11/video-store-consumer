@@ -1,0 +1,28 @@
+.movie {
+  padding: 1em 0;
+  margin: 0.5rem;
+
+  min-height: 250px;
+  min-width: 225px;
+  max-width: 500px;
+  flex-basis: 18%;
+
+  border-radius: 5px;
+
+  align-items: center;
+}
+
+.movie__content {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+
+  text-align: center;
+  font-weight: 100;
+  overflow: hidden;
+}
+
+.movie__image {
+  max-width: 185px;
+  float: left;
+}

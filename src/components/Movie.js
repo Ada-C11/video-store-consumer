@@ -1,5 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types';
+import './Movie.css'
 
 const Movie = (props) => {
   const onMovieSelect = (event) => {
@@ -7,16 +8,20 @@ const Movie = (props) => {
   }
 
   return (
-    <div>
-      <h3>{props.title}</h3>
-      <p>{props.overview}</p>
-      <p>Release date: {props.release_date}</p>
-      <img src={props.image_url}/>
-      <input
-        type="button"
-        value="Select this Movie"
-        onClick={onMovieSelect}
-      />
+    <div className="movie">
+      <img className="movie__image" src={props.image_url}/>
+      <div className="movie__content">
+        <h3>{props.title}</h3>
+        <p>{props.overview}</p>
+        <p>Release date: {props.release_date}</p>
+
+        <input
+          type="button"
+          value="Select this Movie"
+          onClick={onMovieSelect}
+        />
+      </div>
+
     </div>
   )
 }
