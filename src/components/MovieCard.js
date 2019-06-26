@@ -28,7 +28,7 @@ import PropTypes from 'prop-types';
 
 const MovieCard = (props) => {
   const { title, release_date, overview, image_url } = props.movie;
-  const displayButton = props.filterMoviesCallback ? <button type="button" onClick={props.selectMovie}>Select Movie</button> : <button type="button" onClick={() => {props.addMovieCallback(props.movie)}}>Add Movie to Library</button>
+  const displayButton = props.filterMovies(props.movie.title) ? <button type="button" onClick={props.selectMovie}>Select Movie</button> : <button type="button" onClick={() => {props.addMovieCallback(props.movie)}}>Add Movie to Library</button>
   return (
     <div>
       <h4>{ title }</h4>
@@ -44,7 +44,7 @@ const MovieCard = (props) => {
 MovieCard.propTypes = {
   selectMovie: PropTypes.func.isRequired,
   movie: PropTypes.object.isRequired,
-  filterMoviesCallback: PropTypes.func,
+  filterMovies: PropTypes.func,
 }
 
 export default MovieCard;

@@ -43,7 +43,7 @@ class Search extends Component {
             movie={movie}
             selectMovie={this.props.selectMovie}
             addMovieCallback={this.props.addMovieCallback}
-            filterMoviesCallback={this.props.filterMoviesCallback}/>
+            filterMoviesCallback={this.props.filterMoviesCallback} />
           {/* <button type="button" onClick={() => {this.props.addMovieCallback(movie)}}>Add Movie to Library</button> */}
         </div>
       )
