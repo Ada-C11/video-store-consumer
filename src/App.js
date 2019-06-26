@@ -3,6 +3,7 @@ import './App.css';
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import CustomerList from './components/CustomerList';
 import RentalLibrary from './components/RentalLibrary';
+import Search from './components/Search';
 
 
 
@@ -13,8 +14,8 @@ class App extends Component {
       selectedMovie: "",
       selectedCustomer: "",
       allRentals: [],
-      showMovies: false,
-      showCustomers: false
+      // showMovies: false,
+      // showCustomers: false
     }
   }
 
@@ -30,18 +31,18 @@ class App extends Component {
   //   return <h2>Users</h2>;
   // }
 
-  showCustomerToggle = () => {
-    const status = !this.state.showCustomers;
-    this.setState({showCustomers: status,
-                  showMovies: !status
-    });
-  }
+  // showCustomerToggle = () => {
+  //   const status = !this.state.showCustomers;
+  //   this.setState({showCustomers: status,
+  //                 showMovies: !status
+  //   });
+  // }
 
-  showMovieToggle = () => {
-    const status = !this.state.showMovies;
-    this.setState({showMovies: status,
-                    showCustomers: !status});
-  }
+  // showMovieToggle = () => {
+  //   const status = !this.state.showMovies;
+  //   this.setState({showMovies: status,
+  //                   showCustomers: !status});
+  // }
 
   render() {
     return (
@@ -57,6 +58,9 @@ class App extends Component {
                 <li>
                   <Link to="/customers" className="customers">Customers</Link>
                 </li>
+                <li>
+                  <Link to="/search" className="search">Search</Link>
+                </li>
               {/* <button onClick={this.showMovieToggle}>Show Movies</button>
               <button onClick={this.showCustomerToggle}>Show Customers</button> */}
               </ul>
@@ -65,6 +69,7 @@ class App extends Component {
           <main>
             <Route path="/movies" component={RentalLibrary} />
             <Route path="/customers" component={CustomerList} />
+            <Route path="/search" component={Search} />
             {/* {this.state.showCustomers && <CustomerList />}
             {this.state.showMovies && <RentalLibrary />} */}
           </main>
