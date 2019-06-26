@@ -3,6 +3,7 @@ import MovieSearchBar from './MovieSearchBar';
 import SearchResult from './SearchResult';
 import Axios from 'axios';
 import 'bootstrap/dist/css/bootstrap.css';
+import './MovieSearchBar.css';
 import { Link } from "react-router-dom";
 
 
@@ -96,7 +97,7 @@ class MovieSearchPage extends Component {
       <div>
         <MovieSearchBar searchCallback={this.submitSearchQuery} />
       </div>
-      <div>
+      <div className="table-container">
         <table className="table table-striped">
           <thead>
           <tr>
