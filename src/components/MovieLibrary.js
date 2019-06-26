@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import "./MovieLibrary.css";
-
+import axios from "axios";
 class MovieLibrary extends Component {
   constructor(props) {
     super(props);
@@ -18,10 +18,36 @@ class MovieLibrary extends Component {
     this.props.rentMovieWithMovieCallback(movie);
   };
 
+  componentDidMount() {
+    axios.get(`http://localhost:3001/movies`)
+      .then((response) => {
+        const movielist = response.data.map((movie) => {
+          this.props.addMovietoLibrayCallback(movie)
+          const newMovie = {
+            ...movie,
+          }
+          return newMovie
+
+        })
+        console.log(movielist)
+        // this.props.rentMovieWithMovieCallback(movie)
+
+      })
+      .catch((error) => {
+        console.log(error);
+        alert('Error happened');
+        this.setState({ error: error.message });
+      });
+    }
+
+
+
+
+
   render() {
     const movies = this.props.librayMovies.map(movie => {
       return (
-        <section key={movie.id}>
+        <section key={movie.name}>
           <div className="card w-75">
             <div className="card-body">
               <img

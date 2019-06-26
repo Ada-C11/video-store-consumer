@@ -54,6 +54,7 @@ class App extends Component {
         <MovieLibrary
           rentMovieWithMovieCallback={this.rentMovieWithMovie}
           librayMovies={this.state.librayMovies}
+          addMovietoLibrayCallback={this.addMovietoLibray}
         />
       );
     } else if (this.state.displayOption === "search") {
