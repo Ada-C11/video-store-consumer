@@ -20,6 +20,15 @@ class App extends Component {
     console.log('select Customer in App')
     
   }
+
+  showHome() {
+    return (
+      <div className="container">
+        <h1>Rewind Movies</h1>
+          <img src={image} alt="theater"/>
+      </div>
+    )
+  }
     // selectMovieForRental = (movieTitle) => {
     //   this.setState({
     //     selectedMovie: movieTitle
@@ -47,20 +56,23 @@ class App extends Component {
               <Link to="customers">Customer Registry</Link>
             </li>
           </ul>
-        <h1> Rewind Movies</h1>
-        <div className="container">
-          <img src={image} alt="theater"/>
-        </div>
       </div>
         <Switch>
-          <Route exact path="/" render={() => (<h1>Rewind Movies</h1>)}/> />
+          <Route exact path="/" render={() => (this.showHome())}/> />
           <Route path="/movies" component={Library} />
           <Route path="/customers" render={ (props) => (<CustomerList {...props} selectCustCallback={this.selectCustomer}/>)} />
           <Route component={Notfound} />
         </Switch>
+      </Router>
     );
   }
 }
 
-
 export default App;
+
+const movieRental = (props) => {
+  const {customerID, movieID} = props
+  return (
+    <div></div>
+  )
+}
