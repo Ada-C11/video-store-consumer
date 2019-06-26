@@ -1,4 +1,5 @@
 import React from 'react';
+import './Customer.css'
 
 const Customer = (props) => {
   const onClickHandler = () => {
@@ -6,7 +7,7 @@ const Customer = (props) => {
   }
 
   return(
-    <tr>
+    <tr className="customer-row">
       <td>{props.customerId}</td>
       <td>{props.name}</td>
       <td>{props.numMoviesCheckedOut}</td>

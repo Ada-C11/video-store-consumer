@@ -28,7 +28,7 @@ class SearchMovie extends Component {
 						<strong>{this.state.title}</strong>
 					</td>
 					<td>
-					  <button onClick={this.addMovieToLibrary}>Add to library</button> 
+					  <button type="button" className="btn btn-primary" onClick={this.addMovieToLibrary}>Add to library</button> 
 					</td>
 			</tr>
 		)

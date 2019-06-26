@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import './Movie.css'
 
 class Movie extends Component {
   constructor (props) {
@@ -12,7 +13,7 @@ class Movie extends Component {
   render () {
     return(
       <button onClick={this.onClickHandler}>
-        <section>
+        <section >
           <img src={this.props.imgUrl} alt={this.props.title}></img>
         </section>
       </button>

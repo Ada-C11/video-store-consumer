@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
-import Sidebar from 'react-sidebar';
 import './App.css';
 import axios from 'axios';
 
@@ -9,7 +8,6 @@ import MovieLibrary from './components/MovieLibrary';
 import Checkout from './components/Checkout';
 import SearchResult from './components/SearchResult';
 import CustomerList from './components/CustomerList';
-
 
 const URL_MOVIES = 'http://localhost:4000/movies';
 const URL_CUSTOMERS = 'http://localhost:4000/customers';
@@ -21,11 +19,11 @@ class App extends Component {
       selectedCustomerName: '',
       selectedCustomerId: null,
       selectedMovie: '',
-      searchResults: [],
+      searchResults: undefined,
       movieLibrary: [],
       allCustomers: [],
       addConfirmation: true,
-      behaviorMessage: ''
+      behaviorMessage: '',
     }
   }
 
@@ -72,7 +70,7 @@ class App extends Component {
       })
     }
     this.setState({
-      searchResults: [],
+      searchResults: undefined,
     })
   }
 
@@ -134,7 +132,7 @@ class App extends Component {
 
   clearSearchResults = () => {
     this.setState({
-      searchResults: [],
+      searchResults: undefined,
     })
   }
 
@@ -162,7 +160,7 @@ class App extends Component {
                 <Link to='/' onClick={this.clearSearchResults}>Home</Link>
               </li>
               <li>
-                <Link to='/search'>Search</Link>
+                <Link to='/search' onClick={this.clearSearchResults}>Search</Link>
               </li>
               <li>
                 <Link to='/movielibrary' onClick={this.clearSearchResults}>Movie Library</Link>
@@ -183,6 +181,10 @@ class App extends Component {
             {this.state.behaviorMessage} 
           </section>
 
+          <section className="search-result">
+            <SearchResult result={this.state.searchResults} addMovieToLibraryCallback={this.addMovieToLibraryCallback}/>
+          </section>  
+
           <section className="checkout">
             <Checkout 
               selectedCustomerName={this.state.selectedCustomerName}
@@ -194,9 +196,6 @@ class App extends Component {
               />
           </section>
 
-          <section className="search-result">
-            <SearchResult result={this.state.searchResults} addMovieToLibraryCallback={this.addMovieToLibraryCallback}/>
-          </section>  
       </div>
     )
   }
