@@ -17,11 +17,7 @@ class App extends Component {
     }
   }
 
-          <Route exact path="/" component={Home} />
-          <Route path="/customers" component={Customers} />
-          <Route path="/library" component={Library} />
-          <Route path="/search" component={MovieSearch} />
-            
+
 
   currentCustomerCallback = (customer) => {
 
