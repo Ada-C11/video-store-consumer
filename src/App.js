@@ -86,7 +86,7 @@ class App extends Component {
     
     const successSection = (this.state.success && this.state.show) ? 
     (<section className="alert alert-success" >
-      Movies was successfully checked out to the customer!
+      Movie was successfully checked out to the customer!
       <button type="button" className="close" data-dismiss="alert" aria-label="Close" onClick={this.handleHide}>
         <span aria-hidden="true">&times;</span>
       </button>
