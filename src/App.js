@@ -56,7 +56,9 @@ class App extends Component {
     .catch((error) => {
       this.setState({ error: error.message });
     });
+
   }
+
 
   render() {
     const errorSection = (this.state.error) ?
@@ -72,7 +74,7 @@ class App extends Component {
           <Header />
 
           <Route exact path="/" component={Home} />
-          <Route path="/search" component={Search} />
+          <Route path="/search" render={() => <Search />}/>
           <Route 
             path="/library" 
             render={() => (
