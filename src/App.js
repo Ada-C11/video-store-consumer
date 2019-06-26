@@ -46,15 +46,29 @@ class App extends Component {
   render() {
     return (
       <div>
-        <header>
-          {/* <Search /> */}
-          <button onClick={this.showMovieToggle}>Show Movies</button>
-          <button onClick={this.showCustomerToggle}>Show Customers</button>
-        </header>
-        <main>
-          {this.state.showCustomers && <CustomerList />}
-          {this.state.showMovies && <RentalLibrary />}
-        </main>
+        <Router>
+          <div>
+            <nav>
+              <ul>
+            {/* <Search /> */}
+                <li>
+                    <Link to="/movies" className="movies">Movies</Link>
+                  </li>
+                <li>
+                  <Link to="/customers" className="customers">Customers</Link>
+                </li>
+              {/* <button onClick={this.showMovieToggle}>Show Movies</button>
+              <button onClick={this.showCustomerToggle}>Show Customers</button> */}
+              </ul>
+            </nav>
+          </div>
+          <main>
+            <Route path="/movies" component={RentalLibrary} />
+            <Route path="/customers" component={CustomerList} />
+            {/* {this.state.showCustomers && <CustomerList />}
+            {this.state.showMovies && <RentalLibrary />} */}
+          </main>
+        </Router>
       </div>
     );
   // return (

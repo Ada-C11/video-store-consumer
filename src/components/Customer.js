@@ -3,8 +3,6 @@ import PropTypes from 'prop-types';
 
 const Customer = (props) => {
 
-
-
   return (
     <div className="customer">
         <div className="content">
