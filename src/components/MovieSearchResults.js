@@ -5,11 +5,18 @@ import "./MovieSearchResults.css";
 class MovieSearch extends Component {
   constructor(props) {
     super(props);
+
+    this.state = {
+      sendToLibraryIndicator: ""
+    };
   }
 
   sendToLibray = movie => {
+    this.setState({
+      sendToLibraryIndicator: `Added ${movie.title} to the library`
+    });
+
     this.props.addMovietoLibrayCallback(movie);
-    console.log(movie)
   };
 
   render() {
@@ -31,6 +38,8 @@ class MovieSearch extends Component {
     });
     return (
       <div>
+        <p className="send-to-library">{this.state.sendToLibraryIndicator} </p>
+
         <div>{collection}</div>
       </div>
     );

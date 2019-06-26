@@ -9,8 +9,7 @@ class MovieSearchForm extends Component {
     super(props);
 
     this.cleared = {
-      text: "",
-      hasmovies: false
+      text: ""
     };
 
     this.state = { ...this.cleared };
@@ -32,6 +31,7 @@ class MovieSearchForm extends Component {
         this.setState({ error: error.message });
       });
   };
+
   onInputChange = event => {
     const updatedState = {};
 
@@ -41,6 +41,7 @@ class MovieSearchForm extends Component {
     updatedState[field] = value;
     this.setState(updatedState);
   };
+  
   render() {
     return (
       <div className="new-card-form">
