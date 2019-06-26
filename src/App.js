@@ -18,7 +18,6 @@ class App extends Component {
   }
 
 
-
   currentCustomerCallback = (customer) => {
 
     return () => {
@@ -82,14 +81,6 @@ function Home() {
     url="http://localhost:3000/"
   />;
 }
-
-// function Customers() {
-//   return;
-// }
-
-// function Library() {
-//   return <Movie />;
-// }
 
 function MovieSearch() {
   return <Search />;
