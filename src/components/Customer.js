@@ -1,25 +1,19 @@
-import React, {Component} from 'react';
+import React from 'react';
 
-class Customer extends Component {
-  constructor (props) {
-    super(props);
+const Customer = (props) => {
+  const onClickHandler = () => {
+    props.selectedCallback(props.customerId);
   }
 
-  onChangeHandler = (event) => {
-    this.props.selectedCallback(this.props.customerId);
-  }
-
-  render () {
-    return(
-      <tr>
-        <td>{this.props.customerId}</td>
-        <td>{this.props.name}</td>
-        <td>{this.props.numMoviesCheckedOut}</td>
-        <td >${this.props.accountCredit}</td>
-        <td><button type="button" className="btn btn-primary">Add</button></td>
-      </tr>
-    );
-  }
+  return(
+    <tr>
+      <td>{props.customerId}</td>
+      <td>{props.name}</td>
+      <td>{props.numMoviesCheckedOut}</td>
+      <td >${props.accountCredit}</td>
+      <td><button type="button" className="btn btn-primary" onClick={onClickHandler}>Add</button></td>
+    </tr>
+  );
 }
 
 export default Customer;

@@ -10,7 +10,6 @@ class CustomerList extends Component {
     this.state = {
       allCustomers: [],
       errorMessage: [],
-      selectedCustomer: '',
     }
   }
 
@@ -36,16 +35,9 @@ class CustomerList extends Component {
   updateSelected = (customerId) => {
     this.state.allCustomers.forEach((customer) => {
       if(customer.id === parseInt(customerId, 10)) {
-        this.setState({
-          selectedCustomer: customer.name,
-        })
+        this.props.selectedCustomer(customer.name);
       }
     })
-  }
-
-  onSaveButtonClick = (event) => {
-    event.preventDefault();
-    this.props.selectedCustomer(this.state.selectedCustomer);
   }
 
   displayCustomers = () => {
@@ -58,18 +50,19 @@ class CustomerList extends Component {
           numMoviesCheckedOut={customer.movies_checked_out_count}
           accountCredit={customer.account_credit}
           selectedCallback={this.updateSelected}
-          isSelected={this.state.selectedCustomer}
         />
       )
     })
     return (
       <table className="table">
         <thead>
-          <th scope="col">Id</th>
-          <th scope="col">Name</th>
-          <th scope="col">Movies Checked Out Count</th>
-          <th scope="col">Account Credit</th>
-          <th scope="col"></th>
+          <tr>
+            <th scope="col">Id</th>
+            <th scope="col">Name</th>
+            <th scope="col">Movies Checked Out Count</th>
+            <th scope="col">Account Credit</th>
+            <th scope="col"></th>
+          </tr>
         </thead>
         <tbody>
           {displayedCustomers}
