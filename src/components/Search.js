@@ -15,6 +15,7 @@ class Search extends Component {
             title: "",
             returnedMovies: [],
             errorMessages: null,
+            addedMovie: null
         };
     }
 
@@ -39,10 +40,12 @@ class Search extends Component {
 
         this.searchCallback(this.state.title)
         this.clearForm()
+        this.setState({ addedMovie: null })
     }
 
     addToLibraryCallback = (title, overview, image_url, release_date) => {
         const fullUrl = "http://localhost:3000/movies"
+        this.setState({ addedMovie: null })
         axios.get(fullUrl)
             .then((response) => {
                 const movies = response.data.map((movie) => {
@@ -69,11 +72,7 @@ class Search extends Component {
                     axios.post(fullUrl, newMovie)
                         .then((response) => {
                             console.log(response)
-                            return(
-                                < div class="alert alert-success" >
-                                    {`${title} has been added to the Library`}
-                                </div >
-                            );
+                            this.setState({ addedMovie: true })
                         })
                         .catch((error) => {
                             this.setState({ errorMessages: error.message });
@@ -81,16 +80,21 @@ class Search extends Component {
                         });
                 } else {
                     console.log("already added!")
-                    return (
-                        <div class="alert alert-danger">
-                            Your movie has already been added to the library!
-                        </div>
-                    )
+                    this.setState({ addedMovie: false })
                 }
 
             })
     }
-
+    
+    addtoLibraryMessage = () => {
+        let message = ""
+        if (this.state.addedMovie === false) {
+            message = <p>Your movie has already been added to the library!</p>
+        } else if (this.state.addedMovie === true) {
+            message = <p>Movie added to the Library!</p>
+        }
+        return message
+    }
 
 
     displayMovies = (movies) => {
@@ -131,7 +135,8 @@ class Search extends Component {
 
     render() {
         return (
-            <div className="grid-container">
+            <div className="">
+               {this.addtoLibraryMessage()}
                 <div className="search-form__header">
                     Search for a Movie!
                 </div>
