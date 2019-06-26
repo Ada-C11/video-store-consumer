@@ -27,13 +27,8 @@ class App extends Component {
     
     axios.all([this.getCustomers(), this.getMovies()])
     .then(([response1, response2]) => {
-      // const customers = response1.data
-      // const movies = response2.data
-      // const customers = this.mapApiResponse(response1);
-      // const movies = this.mapApiResponse(response2);
 
       const customers = response1.data.map((apiObject) => {
-        // console.log(apiObject);
         return apiObject;
       });
 
@@ -41,19 +36,15 @@ class App extends Component {
         return apiObject;
       })
 
-      // console.log(customers);
-
       this.setState({ 
         customers: customers, 
         movies: movies
       });
-      // console.log(this.state.customers)
+
     })
     .catch((error) => {
-      // Show an error
       console.log(error.messages)
 
-      // updating message state
       this.setState({
         message: error.message
       });
@@ -69,19 +60,14 @@ class App extends Component {
   }
 
   onSelectMovie = (movie) => {
-    // let currentSelectedMovie = this.state.selectedMovie;
-    // currentSelectedMovie = movie;
-    
       this.setState({ 
         selectedMovie: movie
       });
     
-
     console.log('im in app and the movie clicked was:', movie.title)
   }
 
   onSelectCustomer = (customer) => {
-
       this.setState({
         selectedCustomer: customer
       });
@@ -100,7 +86,6 @@ class App extends Component {
     
     const updatedState = null
 
-    // reseting selected movie and customer back to null
     this.setState({
       selectedMovie: updatedState,
       selectedCustomer: updatedState,
@@ -122,11 +107,9 @@ class App extends Component {
     const rentalURL = `${URL}/rentals/${movie.title}/check-out`;
     console.log(rentalDataForApi)
 
-    // posting new rental to the API - updating the backend
     axios.post(rentalURL, rentalDataForApi) 
       .then((response) => {
 
-        // this.message(`${movie.title} succesfully checked out to ${customer.name}`)
         this.setState({
           message: `${movie.title} succesfully checked out to ${customer.name}`
         });
@@ -164,11 +147,9 @@ class App extends Component {
       });
   }
 
-
   render() {
     const { selectedMovie, selectedCustomer, message } = this.state
 
-    
     console.log(`MESSAGE: ${message}`);
     return (
       <Router>
@@ -197,9 +178,6 @@ class App extends Component {
           <section>
             {message}
           </section>
-          {/* <FlashMessage duration={5000}>
-            <strong>{message}</strong>
-          </FlashMessage> */}
 
           <section className='currently-selected-items'>    
             {selectedMovie && 

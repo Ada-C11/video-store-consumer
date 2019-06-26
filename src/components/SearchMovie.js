@@ -50,10 +50,8 @@ class SearchMovie extends Component {
             })
           })
           .catch((error) => {
-            // Show an error
             console.log(error.messages)
       
-            // updating message state
             this.setState({
               message: error.message
             });
@@ -65,7 +63,6 @@ class SearchMovie extends Component {
     }
 
     render() {
-        // console.log(this.props.addSearchToLibraryCallback)
         
         const listSearchResults = this.state.allSearchResults.map((movieFromSearch, i) => {
         let alreadyInLibrary = false
@@ -77,14 +74,7 @@ class SearchMovie extends Component {
           })
 
           return (
-
             <li key={i}>
-              {/* <img src={movieFromSearch.image_url} alt={`movie poster for ${movieFromSearch.title}`}/>
-                <h4>{movieFromSearch.title}</h4>
-                <p>{movieFromSearch.external_id}</p>
-                <button onClick={this.getMovieForLibrary}>Add Movie to Library</button>
-                <p>Release date: {movieFromSearch.release_date}</p>
-                <p>{movieFromSearch.overview}</p> */}
               <Movie movie={movieFromSearch} addSearchToLibraryCallback={this.props.addSearchToLibraryCallback} isSearchResult={true} alreadyInLibrary={alreadyInLibrary}/>
             </li>
           )
