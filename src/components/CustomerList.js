@@ -35,7 +35,7 @@ class CustomerList extends Component {
   updateSelected = (customerId) => {
     this.state.allCustomers.forEach((customer) => {
       if(customer.id === parseInt(customerId, 10)) {
-        this.props.selectedCustomer(customer.name);
+        this.props.selectedCustomer(customer.name, customer.id);
       }
     })
   }
@@ -53,7 +53,7 @@ class CustomerList extends Component {
         />
       )
     })
-    return (
+    return(
       <table className="table">
         <thead>
           <tr>
