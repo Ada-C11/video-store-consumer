@@ -23,12 +23,7 @@ class CustomerList extends Component {
       this.setState({allCustomers, });
     })
     .catch((error) => {
-      const errorMessage = this.state.errorMessage;
-      const newError = error.response.data.errors.text;
-      newError.forEach((text) => {
-        errorMessage.push(text);
-      })
-      this.setState({errorMessage, });
+      this.props.displayMessages(error.message)
     })
   }
 
