@@ -36,22 +36,17 @@ class Customers extends Component {
           .catch((error) => {
             //Do something if there's an error
             console.log(error);
-            // this.setState({ error: `${error.message} while loading your cards!` });
-
           });
     }
 
-    selectCustomer = (name) => {
-        // console.log("Inside CustomerSSSS:")
-        // console.log(name);
-        this.props.selectCustomerCallback(name);
+    selectCustomer = (name, id) => {
+        this.props.selectCustomerCallback(name, id);
     }
 
     render() {
 
         const customerComponents = this.state.customers.map((customer, index) => {
             return (
-                // <li key={index}>{customer.name}</li>
                 <li key={index}>
                    <Customer name={customer.name} id={customer.id} selectCustomerCallback={this.selectCustomer} />
                 </li>
