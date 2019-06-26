@@ -25,9 +25,6 @@ class App extends Component {
   }
 
   onCustomerSelect = (name) => {
-    console.log("Inside APP:")
-    console.log(name);
-
     const selectedCustomer = name;
 
     this.setState({selectedCustomer})
