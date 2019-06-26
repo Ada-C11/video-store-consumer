@@ -24,8 +24,11 @@ class App extends Component {
     this.setState({selectedMovie})
   }
 
-  onCustomerSelect = (name) => {
+  onCustomerSelect = (name, id) => {
     const selectedCustomer = name;
+
+    console.log("Customer ID inside Apps.js:")
+    console.log(id);
 
     this.setState({selectedCustomer})
   }

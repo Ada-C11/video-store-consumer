@@ -39,8 +39,8 @@ class Customers extends Component {
           });
     }
 
-    selectCustomer = (name) => {
-        this.props.selectCustomerCallback(name);
+    selectCustomer = (name, id) => {
+        this.props.selectCustomerCallback(name, id);
     }
 
     render() {
