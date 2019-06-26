@@ -10,10 +10,14 @@ class Movie extends Component {
     this.props.selectMovieCallBack(this.props.content)
   }
 
-
   render() {
+    console.log(this.props.content)
     return (
-      <li onClick={this.onSelect}>{this.props.content["title"]}</li>
+      <ul><section>
+        <li><a href="#" onClick={this.onSelect}>{this.props.content["title"]}</a></li>
+        <li><img src={this.props.content["image_url"]} alt="movie cover"></img></li>
+        
+        </section></ul>
     );
   }
 }
