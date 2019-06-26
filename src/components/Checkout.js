@@ -20,20 +20,13 @@ class Checkout extends Component {
 
     axios.post(checkoutUrl, queryParams)
     .then((response) => {
-      const successMessages = this.state.successMessages;
-      successMessages.push(`Movie: ${movieTitle} was successfully checked out!`)
-      this.setState({
-        successMessages,
-      })
-      setTimeout(() => {this.setState({successMessages: []})}, 3000);
+      const successMessages = `Movie: ${movieTitle} was successfully checked out!`
+      this.props.displayMessages(successMessages);
+      this.props.refreshList();
     })
     .catch((error) => {
-      const errorMessages = this.state.errorMessages;
-      errorMessages.push(`Status code: ${error.response.status}. ${error.response.statusText}`);
-      this.setState({
-        errorMessages,
-      })
-      setTimeout(() => {this.setState({errorMessages: []})}, 3000);
+      const errorMessages = error.message || error.response
+      this.props.displayMessages(errorMessages)
     })
   }
 
@@ -47,34 +40,11 @@ class Checkout extends Component {
     event.preventDefault();
     this.checkoutMovie();
     this.props.clearSelectedCallback();
-    this.props.refreshList();
-  }
-
-  displaySuccessMessages = () => {
-    const messages = this.state.successMessages.map((message, i) => {
-      return(
-        <li key={i}>{message}</li>
-      );
-    })
-    return messages;
-  }
-
-  displayErrorMessages = () => {
-    const messages = this.state.errorMessages.map((message, i) => {
-      return(
-        <li key={i}>{message}</li>
-      );
-    })
-    return messages;
   }
 
   render() {
     return(
       <div className="checkout-container">
-        <ul className="message-container">
-          {this.displaySuccessMessages()}
-          {this.displayErrorMessages()}
-        </ul>
         <div>
           Selected Customer: {this.props.selectedCustomerName}
         </div>

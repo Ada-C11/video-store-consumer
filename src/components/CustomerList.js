@@ -1,9 +1,29 @@
 import React, { Component } from 'react';
+import axios from 'axios';
 import Customer from './Customer';
 
+const URL_CUSTOMERS = 'http://localhost:4000/customers'
 class CustomerList extends Component {
   constructor() {
     super();
+    this.state = {
+      allCustomers: [],
+      errorMessage: [],
+    }
+  }
+
+  componentDidMount = () => {
+    const allCustomers = [];
+    axios.get(URL_CUSTOMERS)
+    .then((response) => {
+      response.data.forEach((element) => {
+        allCustomers.push(element);
+      })
+      this.setState({allCustomers, });
+    })
+    .catch((error) => {
+      this.props.displayMessages(error.message)
+    })
   }
 
   updateSelected = (customerId) => {

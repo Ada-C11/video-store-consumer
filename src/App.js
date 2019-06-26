@@ -12,7 +12,7 @@ import CustomerList from './components/CustomerList';
 
 
 const URL_MOVIES = 'http://localhost:4000/movies';
-const URL_CUSTOMERS = 'http://localhost:4000/customers'
+const URL_CUSTOMERS = 'http://localhost:4000/customers';
 
 class App extends Component {
   constructor(){
@@ -25,7 +25,7 @@ class App extends Component {
       movieLibrary: [],
       allCustomers: [],
       addConfirmation: true,
-      errorMessage: []
+      behaviorMessage: ''
     }
   }
 
@@ -33,19 +33,13 @@ class App extends Component {
     const movieLibrary = [];
     axios.get(URL_MOVIES)
     .then((response) => {
-      console.log(response.data);
       response.data.forEach((element) => {
         movieLibrary.push(element);
       })
       this.setState({movieLibrary, });
     })
     .catch((error) => {
-      const errorMessage = this.state.errorMessage;
-      const newError = error.response.data.errors.text;
-      newError.forEach((text) => {
-        errorMessage.push(text);
-      })
-      this.setState({errorMessage, });
+      this.displayMessages(error.message)
     })
 
     const allCustomers = [];
@@ -57,23 +51,26 @@ class App extends Component {
       this.setState({allCustomers, });
     })
     .catch((error) => {
-      const errorMessage = this.state.errorMessage;
-      const newError = error.response.data.errors.text;
-      newError.forEach((text) => {
-        errorMessage.push(text);
-      })
-      this.setState({errorMessage, });
+      this.displayMessages(error.message)
+   
     })
   }
 
   onSearchButtonCallback = (searchInput) => {
-    axios.get(URL_MOVIES, {params: {query: searchInput}})
-    .then((response) => {
-      this.displaySearchResults(response.data)
-    })
-    .catch((error) => {
-      console.log(error)  
-    })
+
+    if (searchInput === ''){
+      const emptyMovieMessage = `Empty is not a valid title`
+      this.displayMessages(emptyMovieMessage)
+    } else {
+      axios.get(URL_MOVIES, {params: {query: searchInput}})
+      .then((response) => {
+        this.displaySearchResults(response.data)
+      })
+      .catch((error) => {
+        const apiErrorMessage = error.data || error.message
+        this.displayMessages(apiErrorMessage)
+      })
+    }
     this.setState({
       searchResults: [],
     })
@@ -102,7 +99,6 @@ class App extends Component {
     let repeated = 0;
     this.state.movieLibrary.map((v) => {
         if (v.external_id === addedMovieData.external_id){
-          console.log('the movie already exist in the library')
           repeated += 1
         }
     })
@@ -110,15 +106,16 @@ class App extends Component {
     if (repeated === 0){
       axios.post(URL_MOVIES, addedMovieData)
       .then((response) => {
-        console.log(`movie ${response.data.title} added`)
-        console.log(this.state.movieLibrary)
+        this.displayMessages(`${response.data.title} added to movie library`)
         this.componentDidMount()
-        
       })
       .catch((error)=>{
         console.log(error)
       })
-    } 
+    } else {
+      let repeatedMovieMessage = `${movieToAdd.title} is already in the movie library`
+      this.displayMessages(repeatedMovieMessage)
+    }
   }
 
   selectMovie = (movieTitle) => {
@@ -139,6 +136,20 @@ class App extends Component {
     this.setState({
       searchResults: [],
     })
+  }
+
+  displayMessages = (message) => {
+    if (message == 'Network Error'){
+      message += ' - Make sure the API is running!'
+    } else {
+      setTimeout(() => {this.setState({behaviorMessage: ''})}, 3000);
+    }
+    this.setState({
+      behaviorMessage: message,
+    });
+    return (
+      <p>{message}</p>
+    )
   }
   
   render() {
@@ -171,14 +182,31 @@ class App extends Component {
             </section>
           </nav>
 
-          <section>
-            <div><Route path="/" /></div>
-            <div><Route path="/movielibrary" render={(props) => <MovieLibrary {...props} allMovies={this.state.movieLibrary} selectedMovie={this.selectMovie} />} /></div>
-            <div><Route path="/search" render={(props) => <Search onSearchButtonCallback={this.onSearchButtonCallback}/>} /></div>
-            <div><Route path="/customerlist" render={(props) => <CustomerList {...props} allCustomers={this.state.allCustomers} selectedCustomer={this.selectCustomer} />} /></div>
-            <div><SearchResult result={this.state.searchResults} addMovieToLibraryCallback={this.addMovieToLibraryCallback}/></div>
+          <section className="action-result-message">
+            {this.state.behaviorMessage} 
           </section>
-        </Router>
+
+          <section>
+            <Checkout 
+              selectedCustomerName={this.state.selectedCustomerName}
+              selectedCustomerId={this.state.selectedCustomerId}
+              selectedMovie={this.state.selectedMovie}
+              clearSelectedCallback={this.clearSelected}
+              displayMessages={this.displayMessages}
+              refreshList={this.componentDidMount}
+              />
+          </section>
+
+            <Route path="/" />
+            <Route path="/movielibrary" render={(props) => <MovieLibrary {...props} allMovies={this.state.movieLibrary} selectedMovie={this.selectMovie} />} />
+            <Route path="/search" render={(props) => <Search onSearchButtonCallback={this.onSearchButtonCallback}/>} />
+            <Route path="/customerlist" render={(props) => <CustomerList {...props} allCustomers={this.state.allCustomers} selectedCustomer={this.selectCustomer} displayMessages={this.displayMessages}/>} />
+          </Router>
+        </header>
+
+        <section>
+          <SearchResult result={this.state.searchResults} addMovieToLibraryCallback={this.addMovieToLibraryCallback}/>
+        </section>
       </div>
     )
   }
