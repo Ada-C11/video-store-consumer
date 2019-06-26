@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import axios from 'axios'
 import Movie from './Movie';
+import Message from './Message.js'
 import './Library.css'
 
 class Library extends Component {
@@ -34,10 +35,10 @@ class Library extends Component {
           return movieListing
         })
         this.setState({ movies });
-        this.reportStatus("Successfully loaded library!")
       })
       .catch((error) => {
         this.setState({error: error.message});
+        this.reportStatus(`Uh-oh!  There was a problem: ${error.message}`);
       })
   }
 
@@ -59,8 +60,13 @@ class Library extends Component {
         )
     })
     return (
-      <div className="library">
-        { movieComponents }
+      <div>
+        <section>
+          <Message message={this.state.message} />
+        </section>
+        <div className="library">
+          { movieComponents }
+        </div>
       </div>
     )
   }
