@@ -21,7 +21,6 @@ class CustomerList extends Component {
         allCustomers.push(element);
       })
       this.setState({allCustomers, });
-      this.props.displayCustomerListCallBack();
     })
     .catch((error) => {
       const errorMessage = this.state.errorMessage;
