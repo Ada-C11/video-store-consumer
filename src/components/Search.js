@@ -1,6 +1,6 @@
 import React, { Component} from 'react';
 import axios from 'axios';
-
+import './Search.css'
 
 class Search extends Component {
   constructor() {
@@ -66,11 +66,14 @@ class Search extends Component {
   render () {
     return (
       <div>
-        <h2>Search</h2>
-        <form onSubmit={this.onFormSubmit}>
-          <label htmlFor="title">Title</label>
-          <input name="title" type="text" value={this.state.title} onChange={this.onChangeTitle}/>
-          <input type="submit" value="Search" />
+        <form 
+        className="form-inline mr-auto"
+        onSubmit={this.onFormSubmit}
+        >
+          <div className="form-group">
+          <input className="form-control mr-sm-2" name="title" type="text" value={this.state.title} onChange={this.onChangeTitle} placeholder="Movie title" aria-label="Search"/>
+          <input className="btn btn-info btn-rounded btn-sm my-0" type="submit" value="Search" />
+          </div>
         </form>
         <h4>{this.searchDisplay()}</h4>
       </div>
