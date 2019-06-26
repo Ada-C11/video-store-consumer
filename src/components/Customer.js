@@ -1,15 +1,12 @@
-import React, {Component} from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import {Card, Button} from 'react-bootstrap'
 import './Customer.css'
 
-class Customer extends Component {
-    
-    onSelectButtonClick = () =>{
-        this.props.selectCustomerCallback(this.props);
-    }
-
-    render() {
+const Customer = (props)=> {
+        const onSelectButtonClick = () =>{
+            this.props.selectCustomerCallback(this.props);
+        }
         const {name, city, stateName, phone, accountCredit, moviesCheckedOutCount} = this.props;
         return (
             <Card style={{ width: '18rem' }}>
@@ -27,7 +24,6 @@ class Customer extends Component {
         )
     }
     
-}
 
 Customer.propTypes = {
     name: PropTypes.string, 
