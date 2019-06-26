@@ -23,6 +23,7 @@ const Movie = (props) => {
     } else {
         button = <button onClick={onHandleClick}>Select for Rental</button>
     };
+    console.log(movie.image_url)
 
     return (
         <section>
