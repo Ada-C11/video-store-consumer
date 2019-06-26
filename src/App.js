@@ -53,11 +53,13 @@ class App extends Component {
       .catch(error => console.log(error))
   }
 
-  addMovieToLibrary = (title) => {
+  addMovieToLibrary = (movie) => {
     const url = `http://localhost:3000/movies`;
-    axios.post(url, title)
+    axios.post(url, movie)
     .then(() => {
-      alert(`${title} was successfully added to rental library!`);
+      // let movieLibraryUpdate = this.state.movieLibrary;
+      // this.setState({ movieLibrary: movieLibraryUpdate})
+      alert(`${movie.title} was successfully added to rental library!`);
       // console.log(response)
       // this.setState({
       //   movieLibrary: response.data
