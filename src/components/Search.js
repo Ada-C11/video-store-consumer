@@ -70,9 +70,14 @@ class Search extends Component {
     this.setState(updatedState);
   }
 
+  selectMovie = (movie) => {
+    console.log(movie);
+    this.setState({selectedMovie: movie});
+  }
+
   render() {
     const display = this.state.searchResults.map((movie) => {
-      const { id, title, overview, release_date, image_url, external_id, inventory } = movie;
+      const { id, title, overview, release_date, image_url, external_id } = movie;
       return (<section>
         <MovieCard 
           id={id}
@@ -81,8 +86,8 @@ class Search extends Component {
           release_date={release_date}
           image_url={image_url}
           external_id={external_id}
-          inventory={inventory}
           selectMovieCallback={this.selectMovie}
+          buttonDisplay="Add to Library"
         />
       </section>);
     });

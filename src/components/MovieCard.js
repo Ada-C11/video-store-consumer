@@ -7,7 +7,7 @@ import './MovieCard.css';
 
 
 const MovieCard = (props) => {
-  const { title, overview, release_date, image_url, inventory, selectMovieCallback } = props;
+  const { title, overview, release_date, image_url, inventory, selectMovieCallback, buttonDisplay } = props;
 
   const onSelectButtonClick = () => {
     selectMovieCallback(props);
@@ -24,7 +24,7 @@ const MovieCard = (props) => {
         <Button onClick={ onSelectButtonClick }
           className="select-movie-btn"
           variant='primary'
-        >Select</Button>
+        >{buttonDisplay}</Button>
       </Card.Body>
       </Card>
   );

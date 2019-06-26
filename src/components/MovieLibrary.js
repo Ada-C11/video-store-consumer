@@ -63,6 +63,7 @@ class MovieLibrary extends Component {
           external_id={external_id}
           inventory={inventory}
           selectMovieCallback={this.props.selectMovie}
+          buttonDisplay='Select Movie'
         />
       </section>);
     });
