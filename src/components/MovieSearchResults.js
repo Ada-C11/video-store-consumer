@@ -1,7 +1,8 @@
 import React, { Component } from "react";
+import Movie from "./Movie";
 import "./MovieSearchResults.css";
 
-class MovieSearch extends Component {
+class MovieSearchResults extends Component {
   constructor(props) {
     super(props);
 
@@ -19,30 +20,24 @@ class MovieSearch extends Component {
   };
 
   render() {
-    const collection = this.props.movies.map(movie => {
+    const collection = this.props.movies.map((movie, i) => {
       return (
-        <section key={movie.id}>
-          <span> {movie.title} </span>
-
-          <button
-            type="button"
-            className="btn btn-danger"
-            aria-label="Close"
-            onClick={() => this.sendToLibray(movie)}
-          >
-            SELECT
-          </button>
-        </section>
+        <Movie
+          key={i}
+          id={movie.id}
+          title={movie.title}
+          sendToLibrayCallback={this.sendToLibray}
+        />
       );
     });
+
     return (
       <div>
         <p className="send-to-library">{this.state.sendToLibraryIndicator} </p>
-
         <div>{collection}</div>
       </div>
     );
   }
 }
 
-export default MovieSearch;
+export default MovieSearchResults;
