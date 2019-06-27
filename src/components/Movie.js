@@ -25,7 +25,6 @@ const Movie = (props) => {
           {props.viewMovieDetails && <Details {...props.movie} />}
         </div>
       </td>
-      
     </tr>
   )
 }
