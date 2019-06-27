@@ -39,27 +39,27 @@ class CustomerList extends Component {
   render() {
     const customers = this.state.customers.map((customer, i) => {
       return (
-        <table className="customer-grid" key={i}>
-          <div> Id: {customer.id}</div>
-          <div> Name: {customer.name}</div>
-          <div> # of Rentals: {customer.movies_checked_out_count}</div>
-          <div> Account Credit: ${customer.account_credit}</div>
-          <div> Contact: {customer.phone}</div>{" "}
-          <button
-            type="button"
-            className="block"
-            aria-label="Close"
-            onClick={() => this.selectToCheckoutCustomer(customer)}
-          >
-            SELECT CUSTOMER
-          </button>
-        </table>
+        <section className="customer-grid" key={i}>
+          <span> Id: {customer.id}</span>
+          <span> Name: {customer.name}</span>
+          <span> # of Rentals: {customer.movies_checked_out_count}</span>
+          <span> Account Credit: ${customer.account_credit}</span>
+          <span> Contact: {customer.phone}</span>
+            <button
+              type="button"
+              className="block"
+              aria-label="Close"
+              onClick={() => this.selectToCheckoutCustomer(customer)}
+            >
+              SELECT CUSTOMER
+            </button>
+        </section>
       );
     });
     return (
       <React.Fragment>
         <h2> Customers</h2>
-        <table className="customer-grid">{customers} </table>
+        <section className="customer-grid">{customers} </section>
       </React.Fragment>
     );
   }
