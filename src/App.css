@@ -2,6 +2,14 @@
   text-align: center;
 } */
 
+* {
+  box-sizing: border-box;
+}
+
+body {
+  /* font-family: 'Courier', sans-serif; */
+}
+
 .App-header {
   background-color: #222;
   height: 150px;
@@ -24,4 +32,19 @@
 
 .nav-list{
   list-style-type: none;
+}
+
+/* .nav-list li {
+  display: inline;
+} */
+
+.nav-spacer {
+  flex-grow: 1;
+}
+
+.store {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
 }

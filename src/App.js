@@ -111,50 +111,74 @@ class App extends Component {
     return (
       <Router>
         <div className="App">
-          <header>
+          {/* <header>
               <h1>Video Store Consumer</h1>
-          </header>
+          </header> */}
+
+          <nav className="navbar navbar-expand-lg navbar-light bg-light">
+              <a className="navbar-brand" href="#">crow//video</a>
+              <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span className="navbar-toggler-icon"></span>
+              </button>
+              <div className="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul className="navbar-nav mr-auto">
+                  <li className="nav-item">
+                    <Link to="/library/"> Movies </Link>
+                  </li>
+                  <li className="nav-item">                
+                    <Link to="/customers/"> Customers </Link>
+                  </li>
+                  <li className="nav-item">               
+                    <Link to="/search/"> Search Movies </Link>
+                  </li>
+                </ul>
+              </div>
+          </nav>
+          {/* <nav className="navbar navbar-default navbar-light bg-light">
+            <ul className="nav-list nav-spacer">
+              <li className="nav-item">
+                <Link to="/library/"> Movies </Link>
+              </li>
+              <li className="nav-item">
+                <Link to="/customers/"> Customers </Link>
+              </li>
+              <li className="nav-item">
+                <Link to="/search/"> Search Movies </Link>
+              </li>
+              <li className="nav-item">
+                crow//video
+              </li>
+            </ul>
+            {displaySelectedItems}
+          </nav> */}
 
           <section className="user-messages">
             {allUserMessages}
           </section>
 
-          <nav>
-            <ul className="nav-list">
-              <li>
-                <Link to="/library/"> Movies </Link>
-              </li>
-              <li>
-                <Link to="/customers/"> Customers </Link>
-              </li>
-              <li>
-                <Link to="/search/"> Search Movies </Link>
-              </li>
-            </ul>
-            {displaySelectedItems}
-          </nav>
-
-          <Route path="/search/"
-            render={(props) => <Search {...props} 
-            selectMovie={this.selectMovie} 
-            addMovieCallback={this.addMovieToLibrary}
-            filterMoviesCallback={this.filterMovies}
-            />}
-          />
-          <Route 
-            path="/library/" 
-            render={(props) => <Library {...props} 
-            selectMovie={this.selectMovie}
-            filterMoviesCallback={this.filterMovies}
-            movieLibrary={this.state.movieLibrary}
-            />} 
-          />
-          <Route 
-            path="/customers/" 
-            render={(props) => <CustomerList {...props} 
-            selectCustomer={this.selectCustomer}
-            customerList={this.state.customerList} />}
-          />
+          <section className="store">
+            <Route path="/search/"
+              render={(props) => <Search {...props} 
+              selectMovie={this.selectMovie} 
+              addMovieCallback={this.addMovieToLibrary}
+              filterMoviesCallback={this.filterMovies}
+              />}
+            />
+            <Route 
+              path="/library/" 
+              render={(props) => <Library {...props} 
+              selectMovie={this.selectMovie}
+              filterMoviesCallback={this.filterMovies}
+              movieLibrary={this.state.movieLibrary}
+              />} 
+            />
+            <Route 
+              path="/customers/" 
+              render={(props) => <CustomerList {...props} 
+              selectCustomer={this.selectCustomer}
+              customerList={this.state.customerList} />}
+            />
+          </section>
         </div>
       </Router>
     );
