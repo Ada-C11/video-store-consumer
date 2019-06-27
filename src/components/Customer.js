@@ -2,6 +2,9 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
 
+import './Customer.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
+
 class Customer extends Component {
   render() {
     const { index, name, id, registeredAt, address, city, state, zip, phone, accountCredit, moviesCheckedOutCount, selectACustomerCallback } = this.props;
@@ -26,6 +29,7 @@ class Customer extends Component {
       </tr>
     )
   };
+
 }
 
 Customer.propTypes = {

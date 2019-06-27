@@ -121,16 +121,15 @@ class AppRouter extends Component {
               <li>
                 <Link to="/customers/">Customers</Link>
               </li>
-
+              <li>
+                <SelectBar
+                  className="selected"
+                  selectedMovie={this.state.selectedMovie}
+                  selectedCustomer={this.state.selectedCustomer}
+                  checkoutCallback={this.checkoutMovie}
+                />
+              </li>
             </ul>
-            <SelectBar
-
-              selectedMovie={this.state.selectedMovie}
-              selectedCustomer={this.state.selectedCustomer}
-              checkoutCallback={this.checkoutMovie}
-
-
-            />
 
 
           </nav>
