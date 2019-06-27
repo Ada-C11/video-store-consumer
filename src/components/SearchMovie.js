@@ -101,7 +101,7 @@ class SearchMovie extends Component {
             </div>
 
             <section className="search-results">
-                {this.state.allSearchResults.length !== 0 && <ul>{listSearchResults}</ul>}
+                {this.state.allSearchResults.length !== 0 && <ul className='search-movie-list'>{listSearchResults}</ul>}
             </section>
         </div>
       );

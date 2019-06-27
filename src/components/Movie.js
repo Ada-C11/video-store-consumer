@@ -18,7 +18,7 @@ const Movie = (props) => {
         if (props.alreadyInLibrary === false) {
             button = <button onClick={onSearchResultClick} className='btn btn-dark'>Add To Library</button>
         } else {
-            button = <p>Already in Rental Library</p>
+            button = <p className='already-in-library'>Already in Rental Library</p>
         }
     } else {
         button = <button onClick={onHandleClick} className='btn btn-dark'>Select for Rental</button>
@@ -34,11 +34,10 @@ const Movie = (props) => {
             <img src={movie.image_url} alt={`movie poster for ${movie.title}`}/>
             <h4>{movie.title}</h4>
             {button}
-            
-                <section className='movie-information'>
-                    <p>Release date: {formatDate(movie.release_date)}</p>
-                    <p>{movie.overview}</p>
-                </section>
+            <section className='movie-information'>
+                <p>Release date: {formatDate(movie.release_date)}</p>
+                <p>{movie.overview}</p>
+            </section>
         </section>
     )
 };

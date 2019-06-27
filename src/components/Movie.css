@@ -1,5 +1,11 @@
 .movie-information {
     padding-left: 4em;
     padding-right: 4em;
-    /* padding-bottom: 10em */
+    padding-top: 1em
+}
+
+.already-in-library {
+    font-style: italic;
+    font-weight: bold;
+    color: #3555A1
 }
