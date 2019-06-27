@@ -42,18 +42,18 @@ class Movie extends Component {
       return (
         <div className="card" key={id}>
           <img src={image_url} alt="movie poster" className="card-img-top" />
-          <ul className="list-group list-group-flush">
-            <li className="list-group-item">{id}</li>
-            <li className="list-group-item">{title}</li>
-            <li className="list-group-item">Overview: {overview}</li>
-            <li className="list-group-item">Release date: {release_date}</li>
+          <ul className="card_data-ul">
+            <li className="card_data-li">{id}</li>
+            <li className="card_data-li">{title}</li>
+            <li className="card_data-li">Overview: {overview}</li>
+            <li className="card_data-li">Release date: {release_date}</li>
             <button className="" onClick={this.props.currentMovieCallback(movie)} > Select this Movie </button>
           </ul>
         </div>
       )
     })
     return (
-      <section className="row">
+      <section className="card_container">
         {displayMovies}
       </section>
     )

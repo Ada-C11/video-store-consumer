@@ -26,7 +26,6 @@ class App extends Component {
     })
   }
 
-
   checkoutButtonClick = () => {
     const movie = this.state.currentMovie
     const customer = this.state.currentCustomer;
@@ -72,7 +71,7 @@ class App extends Component {
           <p><strong>Selected Customer:</strong> {this.state.currentCustomer.name}</p>
           <p><strong>Selected Movie:</strong> {this.state.currentMovie.title}</p>
 
-          <button className="checkout_button"
+          <button
             onClick={this.checkoutButtonClick}
             disabled={this.showButton ? false : true}>Checkout</button>
         </div>
@@ -99,40 +98,37 @@ class App extends Component {
   render() {
     const statusMessage =
       <div className="status_message">
-        <p>{this.state.statusMessage}</p>
+        {this.state.statusMessage}
       </div>;
 
     return (
-      <section>
-
+      <section className="site_container">
         <Router>
-          <div>
-            <Header />
+          <Header />
+          
+          {this.showRentalSection()}
+          {statusMessage}
+            <div className="site_content_container">
+              <Route exact path="/" component={Home} />
+              <Route
+                path="/customers"
+                render={(routeProps) => (
+                  <Customer {...routeProps}
+                    currentCustomerCallback={this.currentCustomerCallback} />
+                )}
+              />
+              <Route
+                path="/library"
+                render={(routeProps) => (
+                  <Movie {...routeProps}
+                    currentMovieCallback={this.currentMovieCallback} />
+                )} />
+              <Route path="/search"
+                render={(routeProps) => (
+                  <Search {...routeProps} />
+                )} />
 
-            {this.showRentalSection()}
-            {statusMessage}
-
-            <Route exact path="/" component={Home} />
-            <Route
-              path="/customers"
-              render={(routeProps) => (
-                <Customer {...routeProps}
-                  currentCustomerCallback={this.currentCustomerCallback} />
-              )}
-            />
-            <Route
-              path="/library"
-              render={(routeProps) => (
-                <Movie {...routeProps}
-                  currentMovieCallback={this.currentMovieCallback} />
-              )} />
-            <Route path="/search"
-              render={(routeProps) => (
-                <Search {...routeProps} />
-              )} />
-
-          </div>
-
+            </div>
         </Router>
 
 

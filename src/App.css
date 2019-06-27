@@ -1,33 +1,87 @@
+* {
+  font-family: 'Anonymous Pro', monospace;
 
-
-
-
-
-/* .App {
-  text-align: center;
+  color: rgb(41, 41, 41);
 }
 
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 80px;
+div.site_container {
+    background-color: rgb(249, 252, 255);
 }
 
-.App-header {
-  background-color: #222;
-  height: 150px;
-  padding: 20px;
-  color: white;
+.navbar navbar-expand-lg navbar-light bg-light, .bg-light {
+  background-color: rgb(249, 252, 255) !important;
+  align-items: baseline;
 }
 
-.App-title {
-  font-size: 1.5em;
+button {
+  border: 2px solid #119DA4;
+  background-color: transparent;
+  color: #119DA4;
+  padding: 8px;
 }
 
-.App-intro {
-  font-size: large;
+button:hover {
+  border: 2px solid rgb(0, 226, 207);
+  background-color: transparent;
+  color: rgb(0, 226, 207);
+  padding: 8px;
 }
 
-@keyframes App-logo-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
-} */
+div.current_selections {
+  display: inline-block;
+  padding: 2rem;
+  color: rgb(0, 153, 255);
+}
+
+div.status_message {
+  padding-left: 2rem;
+  color: rgb(0, 153, 255);
+}
+
+.site_content_container {
+  margin: 2rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr; 
+}
+
+.card_container {
+  margin: 2rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-gap: 3rem;
+}
+
+
+ul {
+  margin: 0;
+  list-style-type: none;
+  display: flex;
+  flex-flow: column wrap;
+  justify-content: space-evenly;
+  margin-inline-start: 0;
+  margin-inline-end: 0;
+  padding-inline-start: 0;
+}
+
+.card_data-li {
+  border: none;
+}
+
+li {
+  margin-bottom: 10px;
+}
+
+
+div.card {
+  width: 18em;
+  height: auto;
+  border: none;
+}
+
+input {
+  width: 50;
+}
+
+.search_form {
+  width: 80%;
+}

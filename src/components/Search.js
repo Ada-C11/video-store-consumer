@@ -113,10 +113,7 @@ class Search extends Component {
                             <button className="" onClick={() => this.addToLibraryCallback(title, overview, image_url, release_date)}>Add Movie to Library</button>
                         </ul>
                     </ul>
-
-
                 </div>
-
             )
         });
         return searchedMovies
@@ -149,23 +146,21 @@ class Search extends Component {
                     <h6 className="search-form__header">
                         Search for a Movie!
                 </h6>
-                    <form className="new-card-form__form" onSubmit={this.onFormSubmit}>
+                    <form className="search_form" onSubmit={this.onFormSubmit}>
                         <div>
-                            <input type="text" name="title" value={this.state.title} onChange={this.onInputChange} className="new-search-form__form-input" />
+                            <input type="text" name="title" value={this.state.title} onChange={this.onInputChange} />
                         </div>
                         <div>
-                            <input type="submit" value="Search" className="search-form__form-button" />
+                            <button type="submit">Search</button>
                         </div>
                     </form>
 
-                    <div className="row">
+                    <div className="card_container">
                         {this.displayMovies(this.state.returnedMovies)}
                     </div>
                 </div>
 
             </div>
-
-
         )
     }
 

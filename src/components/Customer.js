@@ -43,25 +43,24 @@ class Customer extends Component {
 
 
   render() {
-    console.log(this.props)
     const displayCustomers = this.state.customers.map((customer) => {
       const { id, name, city, address, postal_code, phone, account_credit, movies_checked_out_count } = customer;
       return (
-        <article key={id} className="card" >
-          <ul className="list-group list-group-flush">
-            <li className="list-group-item name">{id}: {name}</li>
-            <li className="list-group-item"><strong>Address:</strong> {address}, {city} {postal_code}</li>
-            <li className="list-group-item"><strong>Phone Number: </strong>{phone}</li>
-            <li className="list-group-item"><strong>Account credit:</strong> ${account_credit}</li>
-            <li className="list-group-item"><strong>Movies checked out:</strong> {movies_checked_out_count}</li>
+        <div key={id} className="card" >
+          <ul className="card_data-ul">
+            <li className=""><strong>{id}. {name}</strong></li>
+            <li className="card_data-li">{address}, {city} {postal_code}</li>
+            <li className="card_data-li">{phone}</li>
+            <li className="card_data-li"><strong>Account credit:</strong> ${account_credit}</li>
+            <li className="card_data-li"><strong>Movies checked out:</strong> {movies_checked_out_count}</li>
             <button className="select_customer_button" onClick={this.props.currentCustomerCallback(customer)}>Select this Customer</button>
           </ul>
-        </article>
+        </div>
       )
     })
     return (
 
-      <section className="row" >
+      <section className="card_container" >
         {displayCustomers}
       </section>
     )
