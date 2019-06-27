@@ -43,16 +43,21 @@ class RentalCheckout extends Component {
 
     return (
       <div>
+        <p>{checkoutText} </p>
+
         <header className="App__header">
           <h2>
-            {this.props.selectedMovie
-              ? this.props.selectedMovie.title
-              : "Please select Movie to checkout"}
-            {this.props.selectedCustomer ? this.props.selectedCustomer : "Please select a Customer to checkout"}
+            <p>
+              {this.props.selectedMovie
+                ? this.props.selectedMovie.title
+                : "Please select Movie to checkout"}
+            </p>
+            <p>{this.props.selectedCustomer
+              ? this.props.selectedCustomer
+              : "Please select a Customer to checkout"} </p> 
           </h2>
         </header>
-        {checkoutRental}
-        <p> {checkoutText}</p>
+        <p>{checkoutRental} </p>
       </div>
     );
   }

@@ -50,7 +50,7 @@ class App extends Component {
   render() {
     let optionalComponent;
 
-    if (this.props.page === "library") {
+    if (this.props.match.params.page === "MovieLibrary") {
       optionalComponent = (
         <MovieLibrary
           rentMovieWithMovieCallback={this.rentMovieWithMovie}
@@ -58,7 +58,7 @@ class App extends Component {
           addMovietoLibrayCallback={this.addMovietoLibray}
         />
       );
-    } else if (this.props.page === "list") {
+    } else if (this.props.match.params.page === "CustomerList") {
       optionalComponent = (
         <CustomerList
           rentMovieWithCustomerCallback={this.rentMovieWithCustomer}
@@ -67,7 +67,7 @@ class App extends Component {
     }
 
     let optionalSearch;
-    if (this.props.page === "search") {
+    if (this.props.match.params.page === "MovieSearchForm") {
       optionalSearch = <MovieSearchForm getresultcallback={this.getresult} />;
     }
 
@@ -99,7 +99,9 @@ class App extends Component {
             <Link to="/">BitaRos Amazing VideoStore </Link>
           </h1>
         </header>
+
         <section className="App-main">
+          {rentalMovie}
           <Link to="/MovieLibrary">
             <button type="button" className="movie-display" aria-label="Close">
               <p>Movie Library</p>
@@ -120,7 +122,6 @@ class App extends Component {
         <section>
           {searchResults}
           {optionalComponent}
-          {rentalMovie}
         </section>
       </div>
     );
