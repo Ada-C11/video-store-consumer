@@ -20,7 +20,7 @@ class Selected extends Component {
                     this.props.addNotificationCallback(
                         {
                             toastTitle: "Success!",
-                            toastMessage:`Successfully rented ${this.props.movie.title} to ${this.props.customer.name}. Your movie is due on ${response.data.due_date}.`,
+                            toastMessage:`Successfully rented ${this.props.movie.title} to ${this.props.customer.name}. Your movie is due on ${moment(response.data.due_date).format('MMM do, YYYY')}.`,
                             toastTimestamp:Date.now(),
                             error: false,
                           }
