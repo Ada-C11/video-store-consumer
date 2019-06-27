@@ -25,13 +25,14 @@ class Library extends Component {
             id: movie.external_id,
           }
         });
-        console.log(movieList);
+        // console.log(movieList);
         this.setState({
           movies: movieList,
         })
       })
       .catch((error) => {
-        console.log(error);
+        this.props.addErrorMessageCallabck(`Unable to load movies. ${error.message}`)
+        console.log(error.message);
       })
   }
   selectMovie = (movieIndex) => {
