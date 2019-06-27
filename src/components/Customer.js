@@ -21,5 +21,11 @@ export default Customer;
 Customer.propTypes = {
     id: PropTypes.number,
     name: PropTypes.string,
+    address: PropTypes.string,
+    city: PropTypes.string,
+    state: PropTypes.string,
+    postalCode: PropTypes.string,
+    phone: PropTypes.string,
+    accountCredit: PropTypes.number,
     selectCustomerCallback: PropTypes.func,
 }
