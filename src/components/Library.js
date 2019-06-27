@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Movie from './Movie';
-import Table from 'react-bootstrap/Table'
-
-// import './Library.css';
+import Table from 'react-bootstrap/Table';
+import './Library.css';
 
 const Library = (props) => {
   const movieCollection = props.library.map((movie, i) => {
@@ -15,14 +14,18 @@ const Library = (props) => {
    });
    
   return (
-    <section>
-      <h2>Library</h2>
-      <thead>
-        <tr>
-          <th>Movie Title</th>
-        </tr>
-      </thead>
-      <Table>
+    <section className="library_container">
+      <h1>Library</h1>
+      
+      <Table striped size="sm">
+        {/* <thead>
+          <tr>
+            <th>ID</th>
+            <th>Movie Title</th>
+            <th></th>
+            <th></th>
+          </tr>
+        </thead> */}
         <tbody>
           {movieCollection}
         </tbody>

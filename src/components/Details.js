@@ -8,12 +8,11 @@ const Details = (props) => {
   const movieDetails = () => {
     return (
       <Card>
-        <Card.Img variant="top" class="pic" src={props.image_url} alt={`${props.title}`}/>
         <Card.Body>
-          <Card.Title>Title: {props.title}</Card.Title>
+          {/* <Card.Title>Title: {props.title}</Card.Title> */}
           <Card.Text>Overview: {props.overview} </Card.Text>
           <li>Id: {props.id}</li>
-          <li>Release Date: {props.release_date}</li>
+          {/* <li>Release Date: {props.release_date}</li> */}
           <li>External Id: {props.external_id}</li>
         </Card.Body>
       </Card>

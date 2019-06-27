@@ -46,19 +46,20 @@ class Search extends Component {
                 error: "Movie already exists!"
             })
         } else {
-            const movieToApi = {
+            const movieToLibrary = {
                 external_id: movie.external_id,
                 image_url: movie.image_url,
                 title: movie.title,
                 overview: movie.overview,
                 release_date: movie.release_date
             }
-            axios.post('http://localhost:3001/movies', movieToApi)
+            axios.post('http://localhost:3001/movies', movieToLibrary)
             .then((response)=> {
                 if (response.status === 200) {
                     this.setState({
                         success: "Movie has been added to the rental library!"
-                    })
+                    });
+                    this.props.addMovieCallback(movie);
                 }
             })
             .catch((error) => {
@@ -78,7 +79,7 @@ class Search extends Component {
         (<section>{this.state.success}</section>) : null;
     
         let movieCards;
-        let tableHeader;
+        // let tableHeader;
 
         if (this.state.searchResults !== null) {
             movieCards = this.state.searchResults.map((movie,i) => {
@@ -92,16 +93,17 @@ class Search extends Component {
                             addMovieCallback={this.addMovieCallback}/>]
             });
 
-            if (movieCards && movieCards.length > 0){
-                tableHeader = (<thead>
-                    <tr>
-                        <th>Image</th>
-                        <th>Title</th>
-                        <th>Overview</th>
-                        <th>Release Date</th>
-                    </tr>
-                </thead>);
-            }
+            // if (movieCards && movieCards.length > 0){
+            //     tableHeader = (<thead>
+            //         <tr>
+            //             <th>Image</th>
+            //             <th>Title</th>
+            //             <th>Overview</th>
+            //             <th>Release Date</th>
+            //             <th></th>
+            //         </tr>
+            //     </thead>);
+            // }
         } else if (this.state.searched) {
             movieCards = (<tr><td>No matched Results!</td></tr>);
         } else {
@@ -109,13 +111,13 @@ class Search extends Component {
         }
 
         return (
-            <section>
-                <h3 className="search_title">Search for Movies</h3>
+            <section className="search_container">
+                <h3 className="search_title">Search Titles</h3>
                 <SearchBar searchCallback={this.searchCallback}/>
                 {errorSection}
                 {successSection}
                 <Table>
-                        {tableHeader}
+                        {/* {tableHeader} */}
                     <tbody>
                         {movieCards}
                     </tbody>

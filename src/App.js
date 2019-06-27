@@ -1,10 +1,8 @@
 import React, { Component } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Nav from 'react-bootstrap/Nav';
-import Navbar from 'react-bootstrap/Navbar';
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import './App.css';
-// import PropTypes from 'prop-types';
 import Library from './components/Library';
 import Customers from './components/Customers';
 import Home from './components/Home';
@@ -145,6 +143,13 @@ class App extends Component {
   setOverdueMoviesCallback = (value) => {
     this.setState({ 
       overdueMovies: value
+    })
+  }
+
+  addMovieCallback = (movie) => {
+    const movieIds = this.state.movies.map(movie => movie.id)
+    this.setState({
+      movies: [...this.state.movies, {...movie, id: Math.max(...movieIds) + 1}]
     });
   }
 
@@ -159,7 +164,7 @@ class App extends Component {
           { this.state.rentedMovie && <p>Movie Selection: {this.state.rentedMovie.title}</p> }
 
           { this.state.chosenCustomer && <p>Customer Selection: {this.state.chosenCustomer.name}</p> }
-
+          
           { this.state.chosenCustomer && this.state.rentedMovie && <button onClick={this.rentMovie}>Rent Movie</button>}
 
           {this.state.currentRental.count && <div>Rental #{this.state.currentRental.count}: "{this.state.currentRental.movie}" checked out by Customer #{this.state.currentRental.customer}</div>} 
@@ -172,7 +177,10 @@ class App extends Component {
 
           {/* <Route exact path="/" component={Home} /> */}
           <Route path="/" render={() => <Home setOverdueMoviesCallback={this.setOverdueMoviesCallback} overdueMovies={this.state.overdueMovies}/>}/>
-          <Route path="/search" render={() => <Search moviesInLibrary={this.state.movies}/>}/>
+
+          <Route path="/search" render={() => <Search 
+                                                addMovieCallback={this.addMovieCallback}
+                                                moviesInLibrary={this.state.movies}/>}/>
           <Route 
             path="/library" 
             render={() => (
@@ -201,15 +209,17 @@ class App extends Component {
 
 function Header() {
   return (
-    <Navbar bg="primary" variant="dark">
-    <Navbar.Brand>Video World</Navbar.Brand>
-    <Nav className="mr-auto">
-      <Link className="nav_link" to="/">Home</Link>
-      <Link className="nav_link" to="/search">Search</Link>
-      <Link className="nav_link" to="/library">Library</Link>
-      <Link className="nav_link" to="/customers">Customers</Link>
-    </Nav>
-    </Navbar>
+    <nav className="nav_container">
+      <div>
+        <Link className="brand" to="/search">VIDEO WORLD</Link>
+      </div>
+
+      <Nav>
+        <Link className="nav_link" to="/search">Search</Link>
+        <Link className="nav_link" to="/library">Library</Link>
+        <Link className="nav_link" to="/customers">Customers</Link>
+      </Nav>
+    </nav>
   );
 }
 
