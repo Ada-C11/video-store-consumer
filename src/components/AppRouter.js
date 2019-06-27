@@ -129,7 +129,6 @@ class AppRouter extends Component {
               selectedCustomer={this.state.selectedCustomer}
               checkoutCallback={this.checkoutMovie}
 
-
             />
 
 

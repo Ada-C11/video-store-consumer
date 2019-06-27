@@ -1,5 +1,6 @@
 import React from 'react';
 import propTypes from 'prop-types';
+import MoviePopup from './MoviePopup2'
 
 
 const Movie = (props) => {
@@ -24,6 +25,11 @@ const Movie = (props) => {
       >
         {buttonText}
       </button>
+      <MoviePopup
+        movie={props}
+        buttonText={buttonText}
+      />
+
     </div>
   )
 }

@@ -1,0 +1,22 @@
+.popup ul {
+
+  padding: 0;
+}
+
+.popup {
+  width: 100%;
+  padding: 2rem;
+}
+
+
+.modal {
+  font-size: 12px;
+  border-radius: 25%;
+}
+.modal > .header {
+  width: 100%;
+  border-bottom: 1px solid gray;
+  font-size: 18px;
+  text-align: center;
+  padding: 5px;
+}
