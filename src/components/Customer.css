@@ -1,0 +1,48 @@
+.customer {
+  font-family: "Wire One", sans-serif;
+  text-align: center;
+  font-weight: bolder;
+}
+
+.card-title {
+  text-align: left;
+}
+
+.content {
+  font-family: 'Wire One', sans-serif;
+  font-size: 2rem;
+  font-weight: bolder;
+}
+
+.card {
+  margin: 5px;
+  width: 30rem;
+}
+
+.card-text {
+  text-align: center;
+  font-size: 1.2rem;
+  font-weight: bold;
+  padding-right: 35px;
+}
+
+.card-text.money {
+  font-size: 1.3rem;
+  text-decoration-line: underline
+}
+
+.customer__info {
+  list-style-type: none;
+}
+
+.select__button {
+  text-align: center;
+}
+
+.select__customer a {
+  color: white;
+}
+
+.select__customer a:hover {
+  color: goldenrod;
+}
