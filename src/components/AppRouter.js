@@ -40,6 +40,7 @@ class AppRouter extends Component {
           overview={movie.overview}
           release_date={movie.release_date}
           image_url={movie.image_url}
+          inventory={movie.inventory}
           isSelectButton={buttonBool}
           callbackFunction={callbackFunction}
 
