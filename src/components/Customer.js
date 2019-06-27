@@ -3,7 +3,12 @@ import PropTypes from 'prop-types';
 import CustomerStyles from './Customer.css';
 
 const Customer = (props) => {
-    return (
+
+onSelectCustomer = () => {
+    props.customerNameCallback(props.name)
+}
+
+   return (
         <div className="customer">
             <span className="customer__content">
                 <div className="customer__content-name">{props.name}</div>
@@ -13,7 +18,7 @@ const Customer = (props) => {
                 <div className="customer__content-account_credit">{props.account_credit}</div>
             </span>
 
-            <button 
+            <button onClick={onSelectCustomer}
             className="customer__select">
                 Rental
             </button>
@@ -31,6 +36,7 @@ Customer.propTypes = {
   phone:PropTypes.string,
   account_credit:PropTypes.number,
   created_at:PropTypes.instanceOf(Date),
+  customerNameCallback:PropTypes.func,
 };
 
 export default Customer;

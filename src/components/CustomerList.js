@@ -5,8 +5,8 @@ import Customer from './Customer';
 import './CustomerList.css';
 
 class CustomerList extends Component {
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
 
         this.state = {
             customers: []
@@ -39,7 +39,8 @@ class CustomerList extends Component {
           postal_code={customer.postal_code}
           phone={customer.phone}
           account_credit={customer.account_credit}
-          created_at={customer.created_at}/> 
+          created_at={customer.created_at}
+          customerNameCallback={this.props.customerNameCallback}/> 
       });
 
     return (
@@ -53,7 +54,7 @@ class CustomerList extends Component {
 }
 
 CustomerList.propTypes = {
-
+  customerNameCallback:PropTypes.func,
 };
 
 export default CustomerList;
