@@ -92,16 +92,20 @@ class App extends Component {
             </nav>
           </header>
           <main>
-            <ul className="checkout">
-              <li>
-                Selected Movie: {this.getTitle()}
-              </li>
-              <li>
-                Selected Customer: {this.getName()}
-              </li>
-              <li><a href="#" onClick={this.checkout}>Checkout</a></li>
-            </ul>
-            
+            <section>
+              <h4>
+                Currently Selected:
+              </h4>
+              <ul className="checkout">
+                <li>
+                  <strong>Movie:</strong> {this.getTitle()}
+                </li>
+                <li>
+                  <strong>Customer:</strong> {this.getName()}
+                </li>
+                <button className="btn btn-primary" onClick={this.checkout}>Checkout</button>
+              </ul>
+            </section>
             <Route
               exact={true} path="/" render={() => (
                 <div>
