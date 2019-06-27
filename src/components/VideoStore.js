@@ -153,9 +153,10 @@ class VideoStore extends Component {
 
   onRentalCheckout = () => {
     const { currentCustomer, currentMovie } = this.state;
-    const rentalUrl = `https://enigmatic-chamber-40825.herokuapp.com/rentals/${currentMovie}/check-out`;
-    let dueDate = (new Date()).toISOString().split('T')[0];
-    document.getElementById('date').innerHTML = dueDate;
+    const rentalUrl = `https://enigmatic-chamber-40825.herokuapp.com/rentals/${currentMovie.title}/check-out`;
+    
+    let dueDate = new Date(Date.now() + 7 * 24*60*60*1000);
+
     
     axios.post(rentalUrl, null, {
       params: {
@@ -167,8 +168,6 @@ class VideoStore extends Component {
         this.setState({ error: error.message })
       });
   };
-
-  // disableCheckoutButton = ((this.state.currentCustomer === "") && (this.state.currentMovie === "")) ? true : false
 
   render() {
     const disableCheckoutButton = ((this.state.currentCustomer === "") && (this.state.currentMovie === "")) ? true : false
@@ -243,3 +242,4 @@ class VideoStore extends Component {
 }
 
 export default VideoStore;
+
