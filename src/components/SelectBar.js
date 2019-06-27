@@ -7,8 +7,8 @@ const showClearButton = (selection, callback) => {
   if (selection) {
     console.log(selection);
     return(
-      <div>
-        { selection.title }
+      <div className="selection">
+        { selection.title ? selection.title : selection.name }
         <button 
           onClick={ () => { callback(selection) } } 
           href="#" 
@@ -25,7 +25,7 @@ const showClearButton = (selection, callback) => {
 }
 
 const SelectBar = (props) => {
-  const { selectedMovie, selectedCustomer, checkoutCallback } = props;
+  const { selectedMovie, selectedCustomer, checkoutCallback, clearSelectionCallback } = props;
   
 
   return (
@@ -35,13 +35,13 @@ const SelectBar = (props) => {
           Selected Movie:
         </li>
         <li>
-          { showClearButton(selectedMovie, checkoutCallback) }
+          { showClearButton(selectedMovie, clearSelectionCallback) }
         </li>
         <li>
           Selected Customer: 
         </li>
         <li>
-          { showClearButton(selectedCustomer, checkoutCallback) }
+          { showClearButton(selectedCustomer, clearSelectionCallback) }
         </li>
         <li>
           <button

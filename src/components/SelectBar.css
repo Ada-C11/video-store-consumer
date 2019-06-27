@@ -16,6 +16,6 @@
   color: #007bff;
 }
 
-.select-button {
-  max-height: 
+.selection {
+  min-height: 10px;
 }

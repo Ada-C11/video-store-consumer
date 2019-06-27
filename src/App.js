@@ -103,9 +103,7 @@ class AppRouter extends Component {
 
   clearSelection = (selection) => {
     console.log('Cleared Selection:', selection);
-    // this.setState({
-
-    // })
+    selection.title ? this.setState({ selectedMovie: null }) : this.setState({ selectedCustomer: null });
   };
 
   render() {
