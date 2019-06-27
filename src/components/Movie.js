@@ -14,7 +14,7 @@ class Movie extends Component {
     return (
       <ul><section>
         <li><a href="#" onClick={this.onSelect}>{this.props.content["title"]}</a></li>
-        <li><img src={this.props.content["image_url"]} alt="movie cover"></img></li>
+        <li><img src={this.props.content["image_url"]} alt={this.props.content["title"]}></img></li>
         
         </section></ul>
     );
