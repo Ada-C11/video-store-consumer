@@ -7,7 +7,8 @@ class Search extends Component {
     super();
     this.state = {
       title: "",
-      searchList: []
+      searchList: [],
+      displayAddedDatabaseClassName: ""
     }
   }
 
@@ -58,6 +59,10 @@ class Search extends Component {
           </div>
         )
     })
+  }
+
+  componentWillUnmount() {
+    this.setState({displayAddedDatabaseClassName: ""})
   }
 
   render () {
