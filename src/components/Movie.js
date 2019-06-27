@@ -8,8 +8,8 @@ import './Movie.css';
 const Movie = (props) => {
   const { index, title, overview, release_date, image_url, isSelectButton, callbackFunction } = props;
   // console.log(selectMovieCallback)
+  // console.log("Inventory", props.inventory)
 
-  // Flesh this out!
   const buttonText = isSelectButton ? "Select" : "Add to library";
 
 

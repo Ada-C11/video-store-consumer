@@ -26,26 +26,21 @@ class Library extends Component {
             id: movie.id
           }
         });
-        // console.log(movieList);
         this.setState({
           movies: movieList,
         })
       })
       .catch((error) => {
-        this.props.addErrorMessageCallabck(`Unable to load movies. ${error.message}`)
+        this.props.addErrorMessageCallabck(`Unable to load movies. ${error.message}`, 'alert-warning')
         console.log(error.message);
       })
   }
   selectMovie = (movieIndex) => {
-    console.log(this.props.selectMovieCallback)
     const selectedMovie = this.state.movies[movieIndex]
     this.props.selectMovieCallback(selectedMovie);
-
-
   }
 
   render() {
-    console.log(this.state.movies)
     const movies = this.props.generateMovieComponentsCallback(this.state.movies, true, this.selectMovie);
 
     return (
