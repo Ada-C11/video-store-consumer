@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import "./RentalCheckout.css";
-import axios from "axios"
+import axios from "axios";
 
 class RentalCheckout extends Component {
   constructor(props) {
@@ -25,21 +25,20 @@ class RentalCheckout extends Component {
       .then((response) => {
         return response.data
       })
-       
-      .catch((error) => {
 
-        console.log(error.messages)
-        alert('Error happened');
+      .catch(error => {
+        console.log(error.messages);
+        alert("Error happened");
         this.setState({ error: error.message });
-      })
-  }
+      });
+  };
 
   render() {
     let checkoutText = "";
 
     if (this.state.checkoutStatus) {
       checkoutText = `${
-        this.state.checkout.customer
+        this.state.checkout.customer.name
       } has check out the following movie: ${this.state.checkout.movie.title}`;
     }
 
@@ -68,9 +67,11 @@ class RentalCheckout extends Component {
                 ? this.props.selectedMovie.title
                 : "Please select Movie to checkout"}
             </p>
-            <p>{this.props.selectedCustomer
-              ? this.props.selectedCustomer.name
-              : "Please select a Customer to checkout"} </p> 
+            <p>
+              {this.props.selectedCustomer
+                ? this.props.selectedCustomer.name
+                : "Please select a Customer to checkout"}{" "}
+            </p>
           </h2>
         </header>
         <p>{checkoutRental} </p>
