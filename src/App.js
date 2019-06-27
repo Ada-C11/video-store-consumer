@@ -49,10 +49,12 @@ class App extends Component {
        <Navbar />
       
           <div>
-            <Route path="/" exact component={MovieList}/>
+            <Route exact path="/" render={ (routerprops) => <MovieList {...routerprops}
+          movieTitleCallback={this.movieToRent } /> }
+          />
             <Route exact path="/customers"
           render={ (routerprops) => <CustomerList {...routerprops}
-          customerNameCallback={this.rentalsCustomer} /> }
+          customerNameCallback={this.customerRenting} /> }
           />
             <Route path="/search" component={
               (routerProps) => <Search searchResults={this.state.searchResults} {...routerProps} />

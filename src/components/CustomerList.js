@@ -28,7 +28,7 @@ class CustomerList extends Component {
     }
 
     customerNameCallback = (customerName) => {
-      console.log(customerName);
+    console.log(customerName);
     }
 
     render() {
