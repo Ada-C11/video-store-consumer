@@ -2,9 +2,10 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import axios  from 'axios'
 import Customer from './Customer';
+import Message from './Message.js'
 
 class Customers extends Component {
-    constructor() {
+    constructor(props) {
         super();
 
         this.state = {
@@ -12,7 +13,13 @@ class Customers extends Component {
             error: null
         }
 
+        props.reportStatusCallback(null);
+
     }
+
+    reportStatus = (text) => {
+        this.props.reportStatusCallback(text);
+      }
 
     componentDidMount() {
 
@@ -34,8 +41,7 @@ class Customers extends Component {
             this.setState({ customers });
           })
           .catch((error) => {
-            //Do something if there's an error
-            console.log(error);
+            this.reportStatus(`Uh-oh!  There was a problem: ${error.message}`)
           });
     }
 
@@ -54,7 +60,12 @@ class Customers extends Component {
         })
         return (
             <div>
+              <section>
+                <Message message={this.state.message} />
+              </section>
+              <div>
                 { customerComponents }
+              </div>
             </div>
         );
     }
@@ -64,4 +75,5 @@ export default Customers
 
 Customers.propTypes = {
     selectCustomerCallback: PropTypes.func,
+    reportStatusCallback: PropTypes.func,
 }

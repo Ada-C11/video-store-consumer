@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import axios from 'axios'
 import Movie from './Movie';
+import Message from './Message.js'
 import './Library.css'
 
 class Library extends Component {
@@ -12,13 +13,18 @@ class Library extends Component {
       movies: [],
       error: null
     }
+
+    props.reportStatusCallback(null);
+  }
+
+  reportStatus = (text) => {
+    this.props.reportStatusCallback(text);
   }
 
   componentDidMount() {
     const getURL = 'http://localhost:3002/movies'
     axios.get(getURL)
       .then((response) => {
-        console.log(response.data)
         const movies = response.data.map((movie) => {
           const movieListing = {
             title: movie.title,
@@ -33,6 +39,7 @@ class Library extends Component {
       })
       .catch((error) => {
         this.setState({error: error.message});
+        this.reportStatus(`Uh-oh!  There was a problem: ${error.message}`);
       })
   }
 
@@ -54,15 +61,21 @@ class Library extends Component {
         )
     })
     return (
-      <div className="library">
-        { movieComponents }
+      <div>
+        <section>
+          <Message message={this.state.message} />
+        </section>
+        <div className="library">
+          { movieComponents }
+        </div>
       </div>
     )
   }
 }
 
 Library.propTypes = {
-  selectMovieCallback: PropTypes.func
+  selectMovieCallback: PropTypes.func,
+  reportStatusCallback: PropTypes.func,
 }
 
 export default Library
