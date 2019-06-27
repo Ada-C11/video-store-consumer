@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import axios  from 'axios'
 import Customer from './Customer';
 import Message from './Message.js'
+import './Customers.css'
 
 class Customers extends Component {
     constructor(props) {
