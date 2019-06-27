@@ -86,22 +86,26 @@ class App extends Component {
               <Link to="/movies" className="nav-item nav-link">Movies</Link>
               <Link to="/customers" className="nav-item nav-link">Customers</Link>
               <form class="form-inline my-2 my-lg-0">
-                {/* <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search"></input> */}
+                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search"></input>
                 <Link to="/search"><button id="search-button" className="btn btn-primary nav-item nav-link" type="submit">Search</button></Link>
               </form>
             </nav>
           </header>
           <main>
-            <ul className="checkout">
-              <li>
-                Selected Movie: {this.getTitle()}
-              </li>
-              <li>
-                Selected Customer: {this.getName()}
-              </li>
-              <button className="btn btn-primary" onClick={this.checkout}>Checkout</button>
-            </ul>
-            
+            <section>
+              <h4>
+                Currently Selected:
+              </h4>
+              <ul className="checkout">
+                <li>
+                  <strong>Movie:</strong> {this.getTitle()}
+                </li>
+                <li>
+                  <strong>Customer:</strong> {this.getName()}
+                </li>
+                <button className="btn btn-primary" onClick={this.checkout}>Checkout</button>
+              </ul>
+            </section>
             <Route
               exact={true} path="/" render={() => (
                 <div>
