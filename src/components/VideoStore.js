@@ -29,7 +29,7 @@ class VideoStore extends Component {
     };
   }
   url = "https://enigmatic-chamber-40825.herokuapp.com"
-  customersUrl = "https://enigmatic-chamber-40825.herokuapp.com/customers"
+  customersURL = "https://enigmatic-chamber-40825.herokuapp.com/customers"
 
   componentDidMount() {
     this.getCustomers();
@@ -37,7 +37,7 @@ class VideoStore extends Component {
   }
 
   getCustomers = () => {
-    axios.get(this.customers_url)
+    axios.get(this.customersURL)
     .then(response => {
       console.log(response)
 
