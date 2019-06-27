@@ -9,11 +9,12 @@ const MoviePopup = (props) => {
   return (
     <div>
       <Popup
-
+        className="modal"
         trigger={<button className="button"> Open Modal </button>} modal>
         <div
           className="popup">
-          <h3>{title}</h3>
+          <h3
+          >{title}</h3>
           <ul>
             <li><img src={image_url} /></li>
             <li>{release_date}</li>
