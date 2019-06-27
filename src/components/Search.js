@@ -68,11 +68,15 @@ class Search extends Component {
 
   render() {
     const searchResults = this.state.searchResults.map((movie, i) => {
-      return <Movie
+      return <div><Movie
         key={i}
         content={movie}
         selectMovieCallBack={this.addMovie}
       />
+      <button className="btn" onClick={this.addMovie}>
+      Add to Library
+    </button>
+    </div>
     })
     
     const notification = this.state.notification
