@@ -182,28 +182,59 @@ class App extends Component {
             {selectedMovie && 
               <div>
                 <p>Selected Movie: {selectedMovie.title}</p>
-                <button className='btn btn-warning' onClick={() => { this.setState({ selectedMovie: null}) }}>Remove Movie from Rental</button>
+                <button 
+                  className='btn btn-warning' 
+                  onClick={() => { this.setState({ selectedMovie: null}) }}>
+                Remove Movie from Rental
+                </button>
               </div>
             }
             {selectedCustomer &&
               <div>
                 <p>Selected Customer: {selectedCustomer.name}</p>
-                <button className='btn btn-warning' onClick={() => { this.setState({ selectedCustomer: null}) }}>Remove Customer from Rental</button>
+                <button 
+                  className='btn btn-warning' 
+                  onClick={() => { this.setState({ selectedCustomer: null}) }}>
+                Remove Customer from Rental
+                </button>
               </div>
             }
             {selectedMovie && selectedCustomer && 
               <div>
-                <button className='btn btn-success' onClick={this.onClickCheckout}>Checkout Rental</button>
+                <button 
+                  className='btn btn-success' 
+                  onClick={this.onClickCheckout}>
+                Checkout Rental
+                </button>
               </div>
             }
           </section>
         
           <Route exact={true} path="/" render={() => (
-            <h1>Welcome</h1>
+            <img 
+              className="vhs-tape" 
+              src="https://i.ibb.co/47Qqpt4/7ml0qn-large.png" 
+              alt="vhs tape with label that says all we have is now"
+            />
           )} />
-          <Route path="/search" render={(props) => <SearchMovie {...props} movieList={this.state.movies} addSearchToLibraryCallback={this.addSearchToLibrary}/> } />
-          <Route path="/customers" render={(props) => <CustomerList {...props} customers={this.state.customers} onSelectCustomerCallback={this.onSelectCustomer} /> } />
-          <Route path="/library" render={(props) => <MovieList {...props} movieList={this.state.movies} onSelectMovieCallback={this.onSelectMovie} /> } />
+          <Route 
+            path="/search" 
+            render={(props) => <SearchMovie {...props} 
+            movieList={this.state.movies} 
+            addSearchToLibraryCallback={this.addSearchToLibrary}/> } 
+          />
+          <Route 
+            path="/customers" 
+            render={(props) => <CustomerList {...props} 
+            customers={this.state.customers} o
+            nSelectCustomerCallback={this.onSelectCustomer} /> } 
+          />
+          <Route 
+            path="/library"
+            render={(props) => <MovieList {...props} 
+            movieList={this.state.movies} 
+            onSelectMovieCallback={this.onSelectMovie} /> } 
+          />
         </section>
       </Router>
     );
