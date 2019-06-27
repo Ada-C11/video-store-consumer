@@ -50,19 +50,6 @@ class Search extends Component {
     const movie = this.state.movies[movieIndex];
     console.log(movie.title)
 
-    // axios.get(url + movie.title)
-    //   .then((response) => {
-    //     console.log("got movie")
-    //     console.log(response.data)
-
-    //   })
-    //   .catch((error) => {
-    //     console.log("error")
-    //     console.log(error)
-    //   })
-
-    // console.log(movie)
-
     axios.post(url, movie)
       .then((response) => {
         console.log(response.data)
@@ -74,14 +61,13 @@ class Search extends Component {
 
 
   render() {
-    // const movies = this.generateMovieComponents();
     const movies = this.props.generateMovieComponentsCallback(this.state.movies, false, this.postMovieToLibrary);
     return (
       <section>
         <SearchForm
           searchCallback={this.searchCallback}
         />
-        <div>
+        <div className="row product-list">
           {movies}
         </div>
       </section>

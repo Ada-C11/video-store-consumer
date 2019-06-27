@@ -30,7 +30,7 @@ class SearchForm extends Component {
   render() {
     return (
       <section>
-        <h3>Searching...</h3>
+        <h3>Search our Database</h3>
         <form onSubmit={this.onSubmit}>
           <label>Search</label>
           <input name="search"
