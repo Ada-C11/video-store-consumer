@@ -81,34 +81,28 @@ class App extends Component {
     return (
       <div>
         <Router>
-          <div>
-            <nav>
-              <ul className="navbar">
-                <li>
-                  <Link to="/">Home</Link>
-                </li>
-                <li>
-                  <Link to="/movies">Movies</Link>
-                </li>
-                <li>
-                  <Link to="/customers">Customers</Link>
-                </li>
-                <li className="search_icon">
-                  <Link to="/search"><img src="https://www.freeiconspng.com/uploads/search-icon-png-0.png" alt="search icon" width="30" height="30"></img></Link>
-                </li>
-              </ul>
-              <ul className="checkout">
-                <li>
-                  Selected Movie: {this.getTitle()}
-                </li>
-                <li>
-                  Selected Customer: {this.getName()}
-                </li>
-                <li><a href="#" onClick={this.checkout}>Checkout</a></li>
-              </ul>
+          <header>
+            <nav className="nav navbar navbar fixed-top navbar navbar-dark bg-primary">
+              <Link to="/" className="navbar-brand">AA Video Rental</Link>
+              <Link to="/movies" className="nav-item nav-link">Movies</Link>
+              <Link to="/customers" className="nav-item nav-link">Customers</Link>
+              <form class="form-inline my-2 my-lg-0">
+                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search"></input>
+                <Link to="/search"><button id="search-button" className="btn btn-primary nav-item nav-link" type="submit">Search</button></Link>
+              </form>
             </nav>
-          </div>
+          </header>
           <main>
+            <ul className="checkout">
+              <li>
+                Selected Movie: {this.getTitle()}
+              </li>
+              <li>
+                Selected Customer: {this.getName()}
+              </li>
+              <li><a href="#" onClick={this.checkout}>Checkout</a></li>
+            </ul>
+            
             <Route
               exact={true} path="/" render={() => (
                 <div>
