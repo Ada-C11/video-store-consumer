@@ -87,6 +87,9 @@ class App extends Component {
             <nav>
               <ul>
                 <li>
+                  <Link to="/" className="home">Home</Link>
+                </li>
+                <li>
                   <Link to="/search" className="search">Search</Link>
                 </li>
                 <li>
@@ -106,6 +109,14 @@ class App extends Component {
             </nav>
           </div>
           <main>
+            <Route
+              exact={true} path="/" render={() => (
+                <div>
+                  <h1 className="homepage__title">Welcome to Double A Video Rentals</h1>
+                  <p>Select Customers or Movies at the top to start the checkout process!</p>
+                </div>
+            )}/> 
+
             <Route 
               path="/movies"
               render={(props) => <RentalLibrary {...props} selectMovieCallback={this.onSelectMovie} getMovieCallback={this.getMovies}/>}
