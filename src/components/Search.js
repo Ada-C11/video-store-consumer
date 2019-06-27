@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import './Search.css'
 
 class Search extends Component {
   constructor(props) {
@@ -38,7 +39,7 @@ class Search extends Component {
           </div>
 
           <div className='search-submission-form__submit'>
-            <input type='submit' value='Search' onClick={this.onSearchButton}>
+            <input className="btn btn-primary"type='submit' value='Search' onClick={this.onSearchButton}>
             </input>
           </div>
 

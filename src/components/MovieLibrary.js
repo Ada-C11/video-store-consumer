@@ -32,8 +32,8 @@ class MovieLibrary extends Component {
 
   render() {
     return (
-      <section>
-        <h3 className="movie-library-title">Movie Library</h3>
+      <section className="site-content">
+        <h3 className="movie-library">Movie Library</h3>
         <div className="all-movies">
           {this.displayMovies()}
         </div>

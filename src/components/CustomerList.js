@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import Customer from './Customer';
+import './CustomerList.css'
 
 const URL_CUSTOMERS = 'http://localhost:4000/customers'
 class CustomerList extends Component {
