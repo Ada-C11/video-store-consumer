@@ -19,7 +19,7 @@ const Movie = (props) => {
       <h4 className="movie-title">{title}</h4>
       <p>{release_date}</p>
       {/* <p>{overview}</p> */}
-      <div className="flex">
+      <div className="flex button-row">
         <button
           className="button"
           value={index}

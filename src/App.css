@@ -8,6 +8,7 @@
 
 ul {
   list-style-type: none; 
+  padding-left: 0;
 
 }
 
@@ -19,12 +20,9 @@ ul {
   font-size: large;
 }
 
-<<<<<<< HEAD
-
-=======
 .nav-bar {
   height: 100%;
-  width: 13rem;
+  width: 14rem;
   position: fixed;
   z-index: 1;
   top: 0;
@@ -57,7 +55,7 @@ ul.nav-list {
 
 main {
   font-family: 'Lato', sans-serif;
-  margin-left: 13rem;
+  margin-left: 14rem;
   padding: 2rem;
 }
 
@@ -66,4 +64,6 @@ h3 {
   width: 100%;
   border-bottom: 1px solid #042A2B;
 }
->>>>>>> ee6d581b99d42f84e504ddebba46e49b4f1fc662
+
+
+

@@ -24,6 +24,7 @@ class AppRouter extends Component {
       selectedCustomer: null,
       selectedMovie: null,
       errorMessage: '',
+      errorStyle: '',
     }
   }
 
@@ -35,6 +36,7 @@ class AppRouter extends Component {
           index={i}
           id={movie.id}
           title={movie.title}
+          inventory={movie.inventory}
           overview={movie.overview}
           release_date={movie.release_date}
           image_url={movie.image_url}
@@ -60,10 +62,11 @@ class AppRouter extends Component {
     })
   }
 
-  addErrorMessage = (message) => {
+  addErrorMessage = (message, style) => {
     console.log("added error message", message)
     this.setState({
       errorMessage: message,
+      errorStyle: style
     })
   }
 
@@ -88,15 +91,15 @@ class AppRouter extends Component {
             selectedMovie: null,
             selectedCustomer: null,
           })
-          this.addErrorMessage('')
+          this.addErrorMessage('Movie successfully checked out!', 'alert-info')
         })
         .catch((error) => {
 
-          this.addErrorMessage(`Unable to check out ${movie} to ${customer}. ${error}`)
+          this.addErrorMessage(`Unable to check out ${movie} to ${customer}. ${error}`, "alert-warning")
           console.log(`Unable to check out ${movie} to ${customer}. ${error}`);
         })
     } else {
-      this.addErrorMessage('Need to select a movie and customer.')
+      this.addErrorMessage('Need to select a movie and customer.', "alert-warning")
       console.log(`Need to select a movie and customer.`);
     }
   }
@@ -109,7 +112,7 @@ class AppRouter extends Component {
   render() {
     return (
       <Router>
-        <div>
+        <div className="App">
           <nav className="nav-bar">
             <ul className="nav-list">
               <li>
@@ -141,7 +144,8 @@ class AppRouter extends Component {
           <main >
             <ErrorMessage
               message={this.state.errorMessage}
-              addErrorMessageCallback={this.addErrorMessage} />
+              addErrorMessageCallback={this.addErrorMessage}
+              errorStyle={this.state.errorStyle} />
 
 
 
@@ -152,6 +156,7 @@ class AppRouter extends Component {
               render={(props) =>
                 <Search
                   generateMovieComponentsCallback={this.generateMovieComponents}
+                  addErrorMessageCallback={this.addErrorMessage}
                   url={VIDEO_STORE_API_URL}
                 />}
             />

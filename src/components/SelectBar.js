@@ -6,13 +6,13 @@ import './SelectBar.css'
 const showClearButton = (selection, callback) => {
   if (selection) {
     console.log(selection);
-    return(
+    return (
       <div className="selection">
-        { selection.title ? selection.title : selection.name }
-        <button 
-          onClick={ () => { callback(selection) } } 
-          href="#" 
-          className="close select-button" 
+        {selection.title ? selection.title : selection.name}
+        <button
+          onClick={() => { callback(selection) }}
+          href="#"
+          className="close select-button"
           aria-label="close"
         >
           &times;
@@ -26,22 +26,22 @@ const showClearButton = (selection, callback) => {
 
 const SelectBar = (props) => {
   const { selectedMovie, selectedCustomer, checkoutCallback, clearSelectionCallback } = props;
-  
+
 
   return (
     <div className="select-bar">
-      <ul>
+      <ul >
         <li>
           Selected Movie:
         </li>
         <li>
-          { showClearButton(selectedMovie, clearSelectionCallback) }
+          {showClearButton(selectedMovie, clearSelectionCallback)}
         </li>
         <li>
-          Selected Customer: 
+          Selected Customer:
         </li>
         <li>
-          { showClearButton(selectedCustomer, clearSelectionCallback) }
+          {showClearButton(selectedCustomer, clearSelectionCallback)}
         </li>
         <li>
           <button
