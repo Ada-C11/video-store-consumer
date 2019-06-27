@@ -15,41 +15,49 @@ class VideoStore extends Component {
 
     this.state = {
       movieList: [],  
-      currentMovie: undefined,
+      currentMovie: "",
       queryString: "",
       searchMatches: [],
-      customers: [],
-      currentCustomer: undefined,
+      customerList: [],
+      currentCustomer: "",
     };
   }
 
   customers_url = "https://enigmatic-chamber-40825.herokuapp.com/customers"
 
-  componentDidMount() {
+  getCustomers = () => {
     axios.get(this.customers_url)
     .then(response => {
       console.log(response)
-      const customerData = response.data.map(customer => {
-        return (
-          <Customer
-            key={customer.id}
-            id={customer.id}
-            name={customer.name}
-          />
-        )
+
+      const customerList = response.data.map((customer) => {
+        const newCustomer = {
+          id: customer.id,
+          name: customer.name,
+        }
+        return newCustomer;
       })
-      this.setState({customers: customerData})
-    })
-    .catch((error) => {
-      this.setState({ error: error.message })
-    })
+
+      console.log(customerList);
+
+      this.setState({ customerList });
+     })
+      .catch((error) => {
+        this.setState({ error: error.message })
+      })
   }
 
+  onCustomerSelect = (customerID) => {
+    const currentCustomer = this.state.customerList.filter(customer => customer.id === customerID)[0]
+
+    console.log(currentCustomer)
+    this.setState({ currentCustomer });
+  };
 
 
   url = "https://enigmatic-chamber-40825.herokuapp.com"
 
-  componentDidMount() {
+  getMovies = () => {
     axios.get(this.url)
     .then((response) => {
       console.log(response.data);
@@ -73,6 +81,11 @@ class VideoStore extends Component {
     .catch((error) => {
       this.setState({ error: error.message })
     })
+  }
+
+  componentDidMount() {
+    this.getMovies();
+    this.getCustomers();
   }
 
   onMovieSelect = (movieID) => {
@@ -132,6 +145,27 @@ class VideoStore extends Component {
     })
   };
 
+  movieCheckout = () => {
+    const { currentCustomer, currentMovie } = this.state;
+    const rental_url = `https://enigmatic-chamber-40825.herokuapp.com/rentals/${currentMovie}/check-out`;
+    const dueDate = new Date().getDate() + 7;
+    
+    axios
+      .post(rental_url, { customer_id: currentCustomer.id, due_date: dueDate })
+      .then(response => {
+        console.log(response);
+       
+        this.setState({
+          currentCustomer: undefined,
+          currentMovie: undefined,
+        });
+      })
+      .catch(error => {
+        this.setState({ error: error.message })
+      });
+  };
+  
+
   render() {
     return (
       <div>
@@ -152,6 +186,12 @@ class VideoStore extends Component {
             </li>
           </ul>
         </nav>
+        
+
+        <section className="checkoutBar">
+          <div>Checking out for customer: {this.state.currentCustomer.name}</div>
+          <div>Checking out title: {this.state.currentMovie.title}</div>
+        </section>
 
         <Route exact path="/" render={() => (
           <Movies
@@ -165,7 +205,9 @@ class VideoStore extends Component {
 
         <Route path="/customers" render={() => (
           <Customers
-            customers={this.state.customers}
+            customerList={this.state.customerList}
+            currentCustomer={this.state.currentCustomer}
+            onCustomerSelect={this.onCustomerSelect}
           />
           )}
         />

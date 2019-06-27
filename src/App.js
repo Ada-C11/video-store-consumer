@@ -16,7 +16,7 @@ class App extends Component {
     console.log("test")
     return (
     
-      <VideoStore/>
+      <VideoStore />
      
     )
   }

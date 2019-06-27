@@ -3,13 +3,11 @@ import PropTypes from 'prop-types';
 
 class Customer extends Component {
   render() {
+    const displayClickableCustomer = (this.props.onCustomerSelect === undefined) ? <h3>{this.props.name}</h3> : <h3 onClick={() => this.props.onCustomerSelect(this.props.id)}>{this.props.name}</h3>
 
     return (
-      <section onClick = {() => this.props.onCustomerSelect(this.props.id)}>
-        <h3> { this.props.id }. {this.props.name} </h3>
-        {/* <p>
-          Customer Name: {this.props.name }
-        </p> */}
+      <section>
+        <p> { this.props.id }. { displayClickableCustomer } </p>
       </section>
     )
   }
