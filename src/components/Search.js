@@ -48,7 +48,8 @@ class Search extends Component {
         } else {
             const movieToLibrary = {
                 external_id: movie.external_id,
-                image_url: movie.image_url,
+                image_url: movie.image_url.substring(31, movie.image_url.length),
+                // image_url: movie.image_url,
                 title: movie.title,
                 overview: movie.overview,
                 release_date: movie.release_date

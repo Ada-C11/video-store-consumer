@@ -42,6 +42,8 @@ const Movie = (props) => {
               </div>
   }
   
+  console.log("Rendering movie with image URL:", props.movie.image_url);
+
   return (
     
     <tr>
