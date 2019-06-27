@@ -18,7 +18,7 @@ const Movie = (props) => {
         if (props.alreadyInLibrary === false) {
             button = <button onClick={onSearchResultClick} className='btn btn-dark'>Add To Library</button>
         } else {
-            button = <p>Already in Rental Library</p>
+            button = <p className='already-in-library'>Already in Rental Library</p>
         }
     } else {
         button = <button onClick={onHandleClick} className='btn btn-dark'>Select for Rental</button>
