@@ -40,22 +40,25 @@ class Search extends Component {
       });
   }
 
-  onAdd = (movie) => {
+  addMovie = (movie) => {
     const url = `http://localhost:3000/movies`
-    const config = {
-        external_id: movie.external_id,
-        image_url: movie.image_url,
-        overview: movie.overview,
-        release_date: movie.release_date,
-        title: movie.title,
+    // Only need the image name, not whole URL.
+    const image_url_parts = movie.image_url.split("/")
+    const image_name = image_url_parts[image_url_parts.length - 1]
+    const data = {
+      external_id: movie.external_id,
+      image_url: image_name,
+      overview: movie.overview,
+      release_date: movie.release_date,
+      title: movie.title,
     }
-    axios.post(url, config)
+    axios.post(url, data)
     .then((response) => {
       console.log(response)
-      if(response.status === 200) {
+      if (response.status === 200) {
         this.setState({notification: `Succesfully Added ${movie.title}!`})
       }
-    }) 
+    })        
     .catch((error) => {
       console.log(error);
     });
@@ -64,8 +67,10 @@ class Search extends Component {
 
   render() {
     const searchResults = this.state.searchResults.map((movie, i) => {
-      return <li>{movie.title}<button className="" onClick={() => this.onAdd(movie)}>
-      Add</button></li>
+      return (
+        <li>{movie.title}<button className="" onClick={() => this.addMovie(movie)}>
+        Add</button></li>
+      )
     })
     
     const notification = this.state.notification

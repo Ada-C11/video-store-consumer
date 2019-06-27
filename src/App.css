@@ -1,4 +1,8 @@
-* {
+ul { 
+  list-style-type: none; 
+}
+
+/* * {
   background-color: white;
   color: thistle
 }
@@ -12,11 +16,8 @@
  }
 
 
-ul { 
-  list-style-type: none; 
-}
 
 button {
   background-color: white;
   color: thistle
-}
+} */

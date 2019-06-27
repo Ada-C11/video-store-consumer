@@ -13,7 +13,7 @@ class Customer extends Component {
 
   render() {
     return (
-      <li><a href="#"onClick={this.onSelect}>{this.props.content["name"]}</a></li>
+      <li><a href="#" className="text-light" onClick={this.onSelect}>{this.props.content["name"]}</a></li>
     );
   }
 }

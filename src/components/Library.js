@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import axios from 'axios';
 import Movie from './Movie';
+import './Library.css';
 
 class Library extends Component {
 
@@ -14,11 +14,9 @@ class Library extends Component {
     })
 
     return (
-      <div className="App">
-        <header className="App__header">
-          <h1 className="App__title">Movies</h1>
-          <ul>{allMovies}</ul>
-        </header>
+      <div className="">
+        <h1 className="">Movies</h1>
+        <ul className="movie-list">{allMovies}</ul>
       </div>
     );
   }

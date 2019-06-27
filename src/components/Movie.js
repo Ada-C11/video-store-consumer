@@ -12,12 +12,21 @@ class Movie extends Component {
 
   render() {
     return (
-      <ul><section>
-        <li><a href="#" onClick={this.onSelect}>{this.props.content["title"]}</a></li>
-        <li><img src={this.props.content["image_url"]} alt="movie cover"></img></li>
-        
-        </section></ul>
-    );
+		<ul>
+			<section>
+				<li>
+					<a href="#" className="text-light" onClick={this.onSelect}>
+						{this.props.content['title']}
+					</a>
+				</li>
+				<li>
+          <a href="#" onClick={this.onSelect}>
+					  <img src={this.props.content['image_url']} alt="movie cover" />
+          </a>
+				</li>
+			</section>
+		</ul>
+	);
   }
 }
 
