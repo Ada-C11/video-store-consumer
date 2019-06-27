@@ -100,6 +100,8 @@ class App extends Component {
       <Router>
           <div>
             <nav className="navbar navbar-expand-sm bg-dark navbar-dark">
+            <div class="container">
+              </div>
               <div className="navbar-brand">Movie Rentals</div>
               <ul className="navbar-nav">
                 <li className="nav-item">
