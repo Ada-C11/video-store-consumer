@@ -2,23 +2,10 @@ ul {
   list-style-type: none; 
 }
 
-
-/* * {
-  background-color: white;
-  color: thistle
+.press {
+  background-color: white
 }
 
-.navbar{
-  text-align: center;
-  flex-direction: row
- }
-
- .navbar li {
- }
-
-
-
-button {
-  background-color: white;
-  color: thistle
-} */
+.container {
+  background-color: white
+}

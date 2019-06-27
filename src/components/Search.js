@@ -73,7 +73,7 @@ class Search extends Component {
         content={movie}
         selectMovieCallBack={this.addMovie}
       />
-      <button className="btn" onClick={this.addMovie}>
+      <button className="btn press add" onClick={this.addMovie}>
       Add to Library
     </button>
     </div>

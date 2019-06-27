@@ -14,16 +14,12 @@ class Movie extends Component {
     return (
 		<ul>
 			<section>
-				<li>
-					<a href="#" className="text-light" onClick={this.onSelect}>
+					<a href="#" className="text-light title" onClick={this.onSelect}>
 						{this.props.content['title']}
 					</a>
-				</li>
-				<li>
-          <a href="#" onClick={this.onSelect}>
+          <p><a href="#" onClick={this.onSelect}>
 					  <img src={this.props.content['image_url']} alt="movie cover" />
-          </a>
-				</li>
+          </a></p>
 			</section>
 		</ul>
 	);

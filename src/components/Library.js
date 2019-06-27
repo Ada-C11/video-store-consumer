@@ -11,9 +11,9 @@ class Library extends Component {
         content={movie}
         selectMovieCallBack={this.props.selectMovieCallBack}
       />
-      <button className="btn" onClick={() => this.props.selectMovieCallBack(movie)}>
+      <li><button className="btn press select" onClick={() => this.props.selectMovieCallBack(movie)}>
       Select Movie
-    </button>
+    </button></li>
     </div>
 
     })
