@@ -90,7 +90,8 @@ class AppRouter extends Component {
     return (
       <Router>
         <div>
-        <Nav variant="tabs" as="ul"> 
+        
+        <Nav justify variant="tabs" as="ul" > 
           <Nav.Item as="li">
             <LinkContainer to="/home">
               <Nav.Link>Home</Nav.Link>
