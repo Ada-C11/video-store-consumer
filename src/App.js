@@ -86,7 +86,7 @@ class App extends Component {
               <Link to="/movies" className="nav-item nav-link">Movies</Link>
               <Link to="/customers" className="nav-item nav-link">Customers</Link>
               <form class="form-inline my-2 my-lg-0">
-                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search"></input>
+                {/* <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search"></input> */}
                 <Link to="/search"><button id="search-button" className="btn btn-primary nav-item nav-link" type="submit">Search</button></Link>
               </form>
             </nav>
@@ -99,7 +99,7 @@ class App extends Component {
               <li>
                 Selected Customer: {this.getName()}
               </li>
-              <li><a href="#" onClick={this.checkout}>Checkout</a></li>
+              <button className="btn btn-primary" onClick={this.checkout}>Checkout</button>
             </ul>
             
             <Route

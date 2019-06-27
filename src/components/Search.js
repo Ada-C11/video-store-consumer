@@ -109,7 +109,7 @@ class Search extends Component {
       <div>
         <form className="search-movie-form" onSubmit={this.onSearch}>
           <div className="search-movie">
-              <h3 className="search-movie__header">Search Movie</h3>
+              <h3 className="search-movie__header">Search for new Movie</h3>
           </div>
           <div>
               <label 
