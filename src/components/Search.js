@@ -18,8 +18,6 @@ class Search extends Component {
     }
 
     reportStatus = (text) => {
-        // this.setState({message: text})
-
         this.props.reportStatusCallback(text);
     }
 
