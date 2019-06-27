@@ -28,6 +28,7 @@ class App extends Component {
         count: undefined,
         movie: undefined,
         customer: undefined,
+        checkin: false,
       },
       error: null,
     };
@@ -114,9 +115,33 @@ class App extends Component {
     })
   }
 
-  // checkinMovie = () => {
-      // currentRental: undefined,
-  // }
+  checkinMovie = () => {
+    const url = `http://localhost:3001/rentals/${this.state.currentRental.movie}/return`;
+
+    const params = {
+      customer_id: this.state.currentRental.customer,
+    }
+
+    axios.post(url, params)
+    .then(() => {
+      console.log("CHECKIN SUCCESS")
+      this.setState((prevState) => ({
+        currentRental: {
+          ...prevState.currentRental,
+          count: undefined,
+          movie: undefined,
+          customer: undefined,
+          checkin: true,
+        }
+      }))
+    })
+      .catch((error) => {
+        this.setState({
+            error: error.message
+        })
+      })
+    }
+
 
   render() {
     const errorSection = (this.state.error) ?
@@ -133,7 +158,11 @@ class App extends Component {
           { this.state.chosenCustomer && this.state.rentedMovie && <button onClick={this.rentMovie}>Rent Movie</button>}
 
           {this.state.currentRental.count && <div>Rental #{this.state.currentRental.count}: "{this.state.currentRental.movie}" checked out by Customer #{this.state.currentRental.customer}</div>} 
+          {this.state.currentRental.count && <button onClick={this.checkinMovie}>Check-in Movie</button>}
 
+          {!this.state.chosenCustomer && !this.state.rentedMovie && 
+            this.state.currentRental.checkin && <p>Movie Successfully Checked-In!</p>}
+          
           {errorSection}
 
           <Route exact path="/" component={Home} />
