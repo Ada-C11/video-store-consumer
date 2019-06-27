@@ -102,7 +102,8 @@ class App extends Component {
   myLibraryComponent = () => {
     return (
       <Library
-        selectMovieCallback={this.onMovieSelect.bind(this)} 
+        selectMovieCallback={this.onMovieSelect.bind(this)}
+        reportStatusCallback={this.reportStatus.bind(this)} 
       />
     );
   }

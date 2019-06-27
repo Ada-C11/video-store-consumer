@@ -16,7 +16,7 @@ class Library extends Component {
   }
 
   reportStatus = (text) => {
-    this.setState({message: text})
+    this.props.reportStatusCallback(text);
   }
 
   componentDidMount() {
@@ -73,7 +73,8 @@ class Library extends Component {
 }
 
 Library.propTypes = {
-  selectMovieCallback: PropTypes.func
+  selectMovieCallback: PropTypes.func,
+  reportStatusCallback: PropTypes.func,
 }
 
 export default Library
