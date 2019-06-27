@@ -15,6 +15,14 @@ const Customer = (props) => {
     selectCustCallback(id)
   }
 
+  const checkedOutFormat = (count) => {
+    if (count === 1) {
+      return (`${count} movie currently checked out.`)
+    }
+    else {
+      return (`${count} movies currently checked out.`)
+    }
+  }
   return (
 
     <Card style={{ width: '18rem' }} className="card">
@@ -24,7 +32,7 @@ const Customer = (props) => {
       <Card.Text>{city}, {state}, {postalCode} </Card.Text>
       <Card.Text>{phone}</Card.Text>
       <Card.Text>${accountCredit} account credit</Card.Text>
-      <Card.Text className="card-text">{moviesCheckedOutCount} movies currently checked out </Card.Text>
+      <Card.Text className="card-text">{checkedOutFormat(moviesCheckedOutCount)}</Card.Text>
       <Button className="btn btn-secondary" onClick={onSelectCustomer}>
         Select Customer
       </Button>

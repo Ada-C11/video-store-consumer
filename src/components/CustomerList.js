@@ -22,7 +22,7 @@ class CustomerList extends React.Component {
   }
 
   render() {
-    console.log(this.props)
+    console.log(this.state.customers)
     const customerList = this.state.customers.map((cust, i) => {
      return <Customer 
         key={i}

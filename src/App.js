@@ -7,6 +7,9 @@ import MovieSearch from './components/MovieSearch'
 import Notfound from './notfound'
 import Rentals from './components/Rentals'
 import image from './images/frontpage.jpg'
+import axios from 'axios'
+
+const rentalURL = 'http://localhost:3000/rentals/'
 
 class App extends Component {
   constructor() {
@@ -14,6 +17,8 @@ class App extends Component {
       this.cleared = {
         rentalCustomerID: null,
         selectedRental: null,
+        dueDate: null,
+        checkoutDate: null,
       }
 
       this.state = this.cleared
@@ -27,9 +32,15 @@ class App extends Component {
   clearRentalReservation = () => {
     this.setState({...this.cleared})
   }
+
   selectRental =(movieTitle) => {
     console.log(movieTitle);
-    this.setState({selectedRental: movieTitle})
+    const rentalDate = Date.now();
+    // due in 3 days
+    this.setState({
+      selectedRental: movieTitle,
+      checkoutDate: rentalDate,
+      dueDate: rentalDate + 259200000})
   }
 
   showHomePage() {
@@ -38,6 +49,33 @@ class App extends Component {
         <h1>Rewind Movies</h1>
           <img src={image} alt="theater"/>
       </div>
+    )
+  }
+
+  reserveRental = () => {
+    const newRental = {
+      customer_id: this.state.rentalCustomerID,
+      due_date: new Date(this.state.dueDate)
+    }
+    axios.post(rentalURL + this.state.selectedRental + '/check-out', newRental)
+   .then((response) => {
+     console.log(response.status)
+   })
+   .catch((error) => {
+     this.setState({errorMessage: error.message})
+     console.log(error)
+   })
+   this.setState({...this.cleared});
+   this.clearRentalReservation();
+  }
+
+  showRentalDetails() {
+    return (
+      <section hidden={!this.state.rentalCustomerID && !this.state.selectedRental}>
+        <p>Customer: {this.state.rentalCustomerID}</p>
+        <p>Movie to rent: {this.state.selectedRental}</p>
+        <button onClick={this.reserveRental}>Make Reservation</button>
+      </section>
     )
   }
   
@@ -63,6 +101,9 @@ class App extends Component {
             </li>
           </ul>
       </div>
+        <div className="reservation-float">
+          {this.showRentalDetails()}
+        </div>
         <Switch>
           <Route exact path="/" render={() => (this.showHomePage())}/> />
           <Route path="/movies" component={Library} />
