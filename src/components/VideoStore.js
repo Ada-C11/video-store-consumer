@@ -2,28 +2,38 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 
-import Movies from './Movies';
-import SearchBar from './SearchBar';
-import SearchMatches from './SearchMatches';
-
 import Customer from './Customer';
 import Customers from './Customers';
+import Movies from './Movies';
+import Rentals from './Rentals';
+import SearchBar from './SearchBar';
+import SearchMatches from './SearchMatches';
 
 class VideoStore extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
+      // Customers
+      customerList: [],
+      currentCustomer: undefined,
+      // Movies
       movieList: [],  
-      currentMovie: "",
+      currentMovie: undefined,
+      // SearchBar
       queryString: "",
       searchMatches: [],
-      customerList: [],
-      currentCustomer: "",
+      // Rentals
+      rentalList: [],
     };
   }
-
+  url = "https://enigmatic-chamber-40825.herokuapp.com"
   customers_url = "https://enigmatic-chamber-40825.herokuapp.com/customers"
+
+  componentDidMount() {
+    this.getCustomers();
+    this.getMovies();
+  }
 
   getCustomers = () => {
     axios.get(this.customers_url)
@@ -46,16 +56,6 @@ class VideoStore extends Component {
         this.setState({ error: error.message })
       })
   }
-
-  onCustomerSelect = (customerID) => {
-    const currentCustomer = this.state.customerList.filter(customer => customer.id === customerID)[0]
-
-    console.log(currentCustomer)
-    this.setState({ currentCustomer });
-  };
-
-
-  url = "https://enigmatic-chamber-40825.herokuapp.com"
 
   getMovies = () => {
     axios.get(this.url)
@@ -83,10 +83,12 @@ class VideoStore extends Component {
     })
   }
 
-  componentDidMount() {
-    this.getMovies();
-    this.getCustomers();
-  }
+  onCustomerSelect = (customerID) => {
+    const currentCustomer = this.state.customerList.filter(customer => customer.id === customerID)[0]
+
+    console.log(currentCustomer)
+    this.setState({ currentCustomer });
+  };
 
   onMovieSelect = (movieID) => {
     const currentMovie = this.state.movieList.filter(movie => movie.id === movieID)[0]
@@ -145,13 +147,13 @@ class VideoStore extends Component {
     })
   };
 
-  movieCheckout = () => {
+  onRentalCheckout = () => {
     const { currentCustomer, currentMovie } = this.state;
-    const rental_url = `https://enigmatic-chamber-40825.herokuapp.com/rentals/${currentMovie}/check-out`;
+    const rentalUrl = `https://enigmatic-chamber-40825.herokuapp.com/rentals/${currentMovie}/check-out`;
     const dueDate = new Date().getDate() + 7;
     
     axios
-      .post(rental_url, { customer_id: currentCustomer.id, due_date: dueDate })
+      .post(rentalUrl, { customer_id: currentCustomer.id, due_date: dueDate })
       .then(response => {
         console.log(response);
        
@@ -170,48 +172,47 @@ class VideoStore extends Component {
     return (
       <div>
         <Router>
-        <nav>
-          <ul>
-            <li>
-              <Link to="/">Home</Link>
-            </li>
-            <li>
-              <Link to="/search/">Search</Link>
-            </li>
-            <li>
-              <Link to="/">Library</Link>
-            </li>
-            <li>
-              <Link to="/customers/">Customers</Link>
-            </li>
-          </ul>
-        </nav>
+          <nav>
+            <ul>
+              <li>
+                <Link to="/">Home</Link>
+              </li>
+              <li>
+                <Link to="/search/">Search</Link>
+              </li>
+              <li>
+                <Link to="/">Library</Link>
+              </li>
+              <li>
+                <Link to="/customers/">Customers</Link>
+              </li>
+            </ul>
+          </nav>
         
 
-        <section className="checkoutBar">
-          <div>Checking out for customer: {this.state.currentCustomer.name}</div>
-          <div>Checking out title: {this.state.currentMovie.title}</div>
-        </section>
+          <section className="checkoutBar">
+            <div>Checking out for customer: {this.state.currentCustomer.name}</div>
+            <div>Checking out title: {this.state.currentMovie.title}</div>
+          </section>
 
-        <Route exact path="/" render={() => (
-          <Movies
-            movieList={this.state.movieList}
-            currentMovie={this.state.currentMovie}
-            onMovieSelect={this.onMovieSelect}
-            queryString={this.state.queryString}
-            />
-          )}
-        />
-
-        <Route path="/customers" render={() => (
-          <Customers
-            customerList={this.state.customerList}
-            currentCustomer={this.state.currentCustomer}
-            onCustomerSelect={this.onCustomerSelect}
+          <Route exact path="/" render={() => (
+            <Movies
+              movieList={this.state.movieList}
+              currentMovie={this.state.currentMovie}
+              onMovieSelect={this.onMovieSelect}
+              queryString={this.state.queryString}
+              />
+            )}
           />
-          )}
-        />
-      </Router>
+          <Route path="/customers" render={() => (
+            <Customers
+              customerList={this.state.customerList}
+              currentCustomer={this.state.currentCustomer}
+              onCustomerSelect={this.onCustomerSelect}
+            />
+            )}
+          />
+        </Router>
 
       <SearchBar
         searchCallback={this.searchCallback}
@@ -227,28 +228,6 @@ class VideoStore extends Component {
       </div>
     )
   }
-  
-  // render() {
-  //   return (
-  //     <div>
-  //       <SearchBar
-  //         searchCallback={this.searchCallback}
-  //         onChange={this.queryChanged}
-  //         queryString={this.state.queryString} 
-  //         />
-  //       <Movies
-  //         movieList={this.state.movieList}
-  //         currentMovie={this.state.currentMovie}
-  //         onMovieSelect={this.onMovieSelect}
-  //         queryString={this.state.queryString}
-  //         />
-  //       <SearchMatches
-  //         searchMatches={this.state.searchMatches}
-  //         onMovieAdd={this.onMovieAdd}
-  //         />
-  //     </div>
-  //   )
-  // }
 }
 
 export default VideoStore;

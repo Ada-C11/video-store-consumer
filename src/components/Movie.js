@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 class Movie extends Component {
   render() {
     // Movie from SearchMatches gets onMovieAdd
-    const displayAddButton = (this.props.onMovieAdd === undefined) ? "" : <button onClick = {() => this.props.onMovieAdd(this.props.id)}>Add Me</button>
+    const displayAddButton = (this.props.onMovieAdd === undefined) ? <button>Already in Library</button> : <button onClick = {() => this.props.onMovieAdd(this.props.id)}>Add Me</button>
 
     // Movie from Movies gets onMovieSelect
     const displayClickableTitle = (this.props.onMovieSelect === undefined) ? <h3>{this.props.title}</h3> : <h3 onClick={() => this.props.onMovieSelect(this.props.id)}>{this.props.title}</h3>
