@@ -37,7 +37,6 @@ class App extends Component {
   }
 
   addMovie = (movie) => {
-    console.log(this.state.movieList)
     const list = [...this.state.movieList]
     list.push(movie);
 

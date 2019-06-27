@@ -46,7 +46,10 @@ class CustomerList extends Component {
     
     return (
       <div>
-        {customers}
+        <h1 className="customer">All Customers</h1>
+        <div className="row">
+          {customers}
+        </div>
       </div>
     )
   }

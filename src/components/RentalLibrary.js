@@ -46,8 +46,11 @@ class RentalLibrary extends Component {
 
     return (
       <div >
-        <div className="rentals">
-          {allRentals}
+        <div>
+          <h1 className="movie movie__header">Rent Today!</h1>
+          <div className="row">
+            {allRentals}
+          </div>
         </div>
       </div>
     )
