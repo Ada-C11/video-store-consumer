@@ -9,13 +9,15 @@ class CustomerList extends Component {
 
     this.state = {
       customers: [],
-      selectedCustomer: ""
+      selectedCustomer: "",
+      error: ""
     };
   }
 
   selectToCheckoutCustomer = customer => {
     this.setState({
-      selectedCustomer: customer
+      selectedCustomer: customer,
+      error: "",
     });
 
     this.props.rentMovieWithCustomerCallback(customer);
