@@ -9,7 +9,7 @@ const Customer = (props)=> {
         }
         const {name, city, stateName, phone, accountCredit, moviesCheckedOutCount} = props;
         return (
-            <Card style={{ width: '18rem' }}>
+            <Card className="customer-card">
             <Card.Body>
                 <Card.Title>{name}</Card.Title>
                 <Card.Text>{city}, {stateName} </Card.Text>

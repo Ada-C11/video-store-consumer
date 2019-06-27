@@ -67,11 +67,11 @@ class MovieCard extends Component {
     } 
     
     return (
-      <Card style={{ width: '18rem' , height: '60rem'}}>
+      <Card className='movie-card'>
         <Card.Img variant="top" src={image_url} alt={`cover for ${title}`}/>
         <Card.Body>
           <Card.Title>{title}</Card.Title>
-          <Card.Text>{overview}</Card.Text>
+          <Card.Text className='overview'>{overview}</Card.Text>
           <Card.Text>{release_date}</Card.Text>
           {inventoryDisplay[parentComponent]}
           {/* <Button onClick={ this.onSelectButtonClick }
