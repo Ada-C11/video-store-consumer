@@ -137,8 +137,9 @@ class App extends Component {
           <Route path="/search/"
             render={(props) => <Search {...props} 
             selectMovie={this.selectMovie} 
-            addMovieCallback={this.addMovieToLibrary}
-            filterMoviesCallback={this.filterMovies}/>}
+            addMovieCallback={this.addMovieToLibrary} 
+            filterMoviesCallback={this.filterMovies}
+            />}
           />
           <Route 
             path="/library/" 

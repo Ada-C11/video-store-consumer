@@ -27,9 +27,9 @@ class Search extends Component {
 
     axios.get(`/movies?query=${this.state.queryString}`)
       .then((response) => {
-        console.log(response)
         this.setState({
-          searchResults: response.data
+          searchResults: response.data,
+          queryString: ''
         })
       })
       .catch(error => console.log(error))
