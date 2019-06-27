@@ -22,24 +22,24 @@ class MovieSearchResults extends Component {
   render() {
     const collection = this.props.movies.map((movie, i) => {
       return (
-        <Movie
+        <Movie 
           key={i}
           id={movie.id}
           title={movie.title}
           overview={movie.overview}
           releaseDate={movie.release_date}
           image={movie.poster_path}
-
           sendToLibrayCallback={this.sendToLibray}
         />
       );
     });
 
     return (
-      <div>
+      <React.Fragment>
         <p className="send-to-library">{this.state.sendToLibraryIndicator} </p>
-        <div>{collection}</div>
-      </div>
+        <h2>Movie search results</h2>
+        <section className="movie-grid">{collection}</section>
+      </React.Fragment>
     );
   }
 }

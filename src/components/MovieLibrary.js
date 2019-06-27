@@ -22,13 +22,9 @@ class MovieLibrary extends Component {
     axios
       .get(`http://localhost:3000/movies`)
       .then(response => {
-        const movielist = response.data.map(movie => {
-          this.props.addMovietoLibrayCallback(movie);
-          const newMovie = {
-            ...movie
-          };
-          return newMovie;
-        });
+        const movielist = response.data;
+
+        this.props.addMovietoLibrayCallback(movielist);
       })
       .catch(error => {
         console.log(error);
@@ -47,25 +43,24 @@ class MovieLibrary extends Component {
               src={movie.image_url}
               alt="Card image cap"
             />
-            <h5 className="card-title">Title: {movie.title}</h5>
-            <p className="card-text">ID: {movie.id}</p>
-            <br />
+            <h5 className="card-title">{movie.title}</h5>
             <button
               type="button"
               className="btn btn-danger"
               aria-label="Close"
               onClick={() => this.selectToCheckoutMovie(movie)}
             >
-              SELECT
+              ADD TO CHECKOUT
             </button>
           </div>
         </section>
       );
     });
     return (
-      <div>
-        <h2> Movie Library</h2> {movies}
-      </div>
+      <React.Fragment>
+        <h2> Movie Library</h2>
+        <section className="movie-grid">{movies}</section>
+      </React.Fragment>
     );
   }
 }

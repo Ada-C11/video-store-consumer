@@ -20,15 +20,16 @@ class App extends Component {
       displayOption: null,
       hasMovie: null,
       hasCustomer: null,
-      searchComplete: false,
+      showResults: false,
       librayMovies: []
+      
     };
   }
 
   getresult = movies => {
     this.setState({
       movies: movies,
-      searchComplete: true
+      showResults: true
     });
   };
 
@@ -40,11 +41,16 @@ class App extends Component {
     this.setState({ hasCustomer: customer });
   };
 
-  // what to do with duplicate clicks to add to library
-  addMovietoLibray = movie => {
+  addMovietoLibray = movies => {
+    // Movies could be single or array of movies
+    const movieList = Array.isArray(movies) ? movies : [movies];
     this.setState({
-      librayMovies: [...this.state.librayMovies, movie]
+      librayMovies: [...this.state.librayMovies, ...movieList]
     });
+  };
+
+  setDisplay = () => {
+    this.setState({ showResults: false });
   };
 
   render() {
@@ -83,7 +89,7 @@ class App extends Component {
     }
 
     let searchResults;
-    if (this.state.searchComplete) {
+    if (this.state.showResults) {
       searchResults = (
         <MovieSearchResults
           movies={this.state.movies}
@@ -103,17 +109,32 @@ class App extends Component {
         <section className="App-main">
           {rentalMovie}
           <Link to="/MovieLibrary">
-            <button type="button" className="movie-display" aria-label="Close">
+            <button
+              type="button"
+              className="movie-display"
+              aria-label="Close"
+              onClick={this.setDisplay}
+            >
               <p>Movie Library</p>
             </button>
           </Link>
           <Link to="/MovieSearchForm">
-            <button type="button" className="movie-display" aria-label="Close">
+            <button
+              type="button"
+              className="movie-display"
+              aria-label="Close"
+              onClick={this.setDisplay}
+            >
               <p>Movie Search</p>
             </button>
           </Link>
           <Link to="/CustomerList">
-            <button type="button" className="movie-display" aria-label="Close">
+            <button
+              type="button"
+              className="movie-display"
+              aria-label="Close"
+              onClick={this.setDisplay}
+            >
               <p>Customer List</p>
             </button>
           </Link>

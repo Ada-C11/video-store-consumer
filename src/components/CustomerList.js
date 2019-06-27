@@ -24,9 +24,7 @@ class CustomerList extends Component {
     axios
       .get(`http://localhost:3000/customers`)
       .then(response => {
-        const customers = response.data.map(customer => {
-          return customer;
-        });
+        const customers = response.data;
         this.setState({
           customers: customers
         });
@@ -45,11 +43,11 @@ class CustomerList extends Component {
           <div className="card w-75">
             <div className="card-body">
               <h5 className="card-title">Name: {customer.name}</h5>
-              <p className="card-text">ID: {customer.id}</p>
-              <p className="card-text">
+              <p >ID: {customer.id}</p>
+              <p >
                 # of Movies checked out: {customer.movies_checked_out_count}
               </p>
-              <p className="card-text">Phone number: {customer.phone}</p>
+              <p >Contact: {customer.phone}</p>
 
               <br />
               <button
@@ -66,9 +64,10 @@ class CustomerList extends Component {
       );
     });
     return (
-      <div>
-        <h2> List of Customers</h2> {customers}
-      </div>
+      <React.Fragment>
+        <h2> List of Customers</h2>
+        <section className="customer-layout">{customers} </section>
+      </React.Fragment>
     );
   }
 }

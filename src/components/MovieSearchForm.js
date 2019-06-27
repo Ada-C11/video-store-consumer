@@ -67,8 +67,4 @@ class MovieSearchForm extends Component {
     );
   }
 }
-// MovieSearchForm.propTypes = {
-//     // addCardCallback: PropTypes.func.isRequired,
-// };
-
 export default MovieSearchForm;
