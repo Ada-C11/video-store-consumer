@@ -14,7 +14,7 @@ import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import Axios from 'axios';
 
 function Index() {
-  return <h2>Home</h2>;
+  return <h3>Home</h3>;
 }
 
 const VIDEO_STORE_API_URL = 'https://video-store-api-sh.herokuapp.com/';
