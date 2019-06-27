@@ -4,7 +4,7 @@ import {Card, Button} from 'react-bootstrap'
 import axios from 'axios';
 import moment from 'moment';
 
-
+import listErrors from '../listErrors.js';
 import './Selected.css';
 class Selected extends Component {
  
@@ -28,10 +28,17 @@ class Selected extends Component {
                     this.props.clearSelectionCallback();
                 })
                 .catch((error)=>{
-                    this.props.addNotificationCallback (
+                    let errorList = null;
+                    if (error.response && error.response.data && error.response.data.errors) {
+                        errorList = listErrors(error.response.data.errors);
+                    }
+                    console.log(errorList);
+                    this.props.
+                    addNotificationCallback (
                         {
                             toastTitle: "Error!",
-                            toastMessage:`Could not create rental: ${error.message}`,
+                            toastMessage:`Could not create rental: ${ error.message}.`,
+                            errorList: errorList,
                             toastTimestamp:Date.now(),
                             error: true,
                           }

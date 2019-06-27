@@ -8,7 +8,7 @@ import './Notification.css'
 
 
 const Notification = (props) =>  {
-        const {error, toastTitle, toastMessage, toastTimestamp, dismissNotification} = props;
+        const {error, toastTitle, toastMessage, toastTimestamp, dismissNotification, errorList} = props;
 
         const onCloseHandler = () => dismissNotification(props.id);
 
@@ -21,7 +21,10 @@ const Notification = (props) =>  {
                         <Moment fromNow>{toastTimestamp}</Moment>
                     </small>
                 </Toast.Header>
-                <Toast.Body>{toastMessage}</Toast.Body>
+                <Toast.Body>
+                    {toastMessage}
+                    {errorList}
+                </Toast.Body>
             </Toast>
             </div>
             

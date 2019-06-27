@@ -50,13 +50,14 @@ class AppRouter extends Component {
   }
 
   addNotification = (notificationProps) => {
-    const {toastTitle, toastMessage, toastTimestamp, error} = notificationProps;
+    const {toastTitle, toastMessage, toastTimestamp, error,errorList} = notificationProps;
     const notification = (< Notification
       id={this.state.notifications.length + 1}
       key={this.state.notifications.length + 1}
       toastTitle= {toastTitle}
       toastMessage= {toastMessage}
       toastTimestamp= {toastTimestamp}
+      errorList={errorList}
       error= {error}
       dismissNotification={this.dismissNotification}
       />);
