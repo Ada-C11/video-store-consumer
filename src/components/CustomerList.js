@@ -17,7 +17,7 @@ const CustomerList = (props) => {
 
   return (
     <section>
-      <p>Customer List</p>
+      <p>Customers:</p>
       { displayCustomers }
     </section>
   );

@@ -31,7 +31,6 @@ class App extends Component {
 
       axios.get('/movies')
       .then(response => {
-        console.log(response)
         this.setState({
           movieLibrary: response.data
         })
@@ -43,17 +42,22 @@ class App extends Component {
     const url = `http://localhost:3000/movies`;
     axios.post(url, movie)
     .then((response) => {
-      console.log(response)
       let success = `${movie.title} was successfully added to rental library!`;
-      this.setState({userMessages: [success]})
-      // setstate with new movie
+      let updatedLibrary = this.state.movieLibrary.slice();
+      updatedLibrary.push(movie);
+      this.setState(
+        {
+          userMessages: [success],
+          movieLibrary: updatedLibrary,
+        })
     })
     .catch(error => console.log(error))
   }
 
   selectMovie = (movie) => {
+      const movieRecord = this.state.movieLibrary.filter(libraryMovie => libraryMovie.title === movie.title);
       this.setState({
-        selectedMovie: movie
+        selectedMovie: movieRecord[0]
       });
   }
 
@@ -64,8 +68,7 @@ class App extends Component {
   }
 
   filterMovies = (title) => {
-    const library = this.state.movieLibrary
-    const movieExists = library.filter(movie => movie.title === title);
+    const movieExists = this.state.movieLibrary.filter(movie => movie.title === title);
     if (movieExists.length > 0) {
       return true;
     } else {
@@ -81,7 +84,7 @@ class App extends Component {
     };
     axios.post(`/rentals/${movie.title}/check-out`, checkoutParams)
     .then(() => {
-      let success = `${movie.title} was successfully added to rental library!`;
+      let success = `${movie.title} was successfully checked out to ${customer.name}!`;
       this.setState({userMessages: [success]})
     })
     .catch(error => console.log(error));
@@ -93,6 +96,14 @@ class App extends Component {
     })
 
     const enabledCheckout = this.state.selectedCustomer && this.state.selectedMovie !== null
+
+    const displaySelectedItems = (this.state.selectedCustomer || this.state.selectedMovie !== null) ?
+          <div>
+            <p>Selected Movie: {this.state.selectedMovie ? this.state.selectedMovie.title : "No movie selected"}</p>
+            <p>Selected Customer: {this.state.selectedCustomer ? this.state.selectedCustomer.name : "No customer selected"}</p>
+            <button disabled={!enabledCheckout} type="button" onClick={() => {this.checkoutMovie(this.state.selectedMovie, this.state.selectedCustomer)}}>Checkout Movie</button>
+          </div> : ''
+
     return (
       <Router>
         <div className="App">
@@ -107,21 +118,16 @@ class App extends Component {
           <nav>
             <ul className="nav-list">
               <li>
-                <Link to="/"> Home </Link>
+                <Link to="/library/"> Movies </Link>
               </li>
               <li>
-                <Link to="/search/"> Search </Link>
+                <Link to="/customers/"> Customers </Link>
               </li>
               <li>
-                <Link to="/library/"> Movie Library </Link>
+                <Link to="/search/"> Search Movies </Link>
               </li>
-              <li>
-                <Link to="/customers/"> Customer List </Link>
-              </li>
-              <li>Selected Movie: {this.state.selectedMovie ? this.state.selectedMovie.title : "No movie selected"}</li>
-              <li>Selected Customer: {this.state.selectedCustomer ? this.state.selectedCustomer.name : "No customer selected"}</li>
-              <button disabled={!enabledCheckout} type="button" onClick={() => {this.checkoutMovie(this.state.selectedMovie, this.state.selectedCustomer)}}>Checkout Movie</button>
             </ul>
+            {displaySelectedItems}
           </nav>
 
           <Route path="/search/"

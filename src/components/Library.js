@@ -7,12 +7,15 @@ const Library = (props) => {
 
   const movieCards = movieLibrary.map((movie, i) => {
     return (
-        <MovieCard key={i} movie={movie} filterMoviesCallback={filterMoviesCallback} selectMovie={() => {selectMovie(movie)}} />
+        <MovieCard key={i} 
+          movie={movie} 
+          filterMoviesCallback={filterMoviesCallback}
+          selectMovie={() => {selectMovie(movie)}} />
       )
   })
   return (
     <div>
-      <p>Movie Library</p>
+      <p>Movies:</p>
       { movieCards }
     </div>
   );

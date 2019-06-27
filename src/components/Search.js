@@ -41,7 +41,7 @@ class Search extends Component {
         <div>
           <MovieCard key={i} 
             movie={movie}
-            selectMovie={this.props.selectMovie}
+            selectMovie={() => {this.props.selectMovie(movie)}}
             addMovieCallback={this.props.addMovieCallback}
             filterMoviesCallback={this.props.filterMoviesCallback} />
           {/* <button type="button" onClick={() => {this.props.addMovieCallback(movie)}}>Add Movie to Library</button> */}
