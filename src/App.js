@@ -2,13 +2,12 @@ import React, { Component } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Nav from 'react-bootstrap/Nav';
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
-import './App.css';
+import Search from './components/Search';
 import Library from './components/Library';
 import Customers from './components/Customers';
-import Home from './components/Home';
+import Log from './components/Log';
 import axios from 'axios';
-import Search from './components/Search';
-
+import './App.css';
 
 class App extends Component {
   constructor() {
@@ -35,14 +34,30 @@ class App extends Component {
     };
   }
 
-  // onClickDetailsCallback = (movieId) => {
-  //   const movie = this.state.movies.find(movie => movie.id === movieId);
-  //   this.setState({ 
-  //     expandedMovies: movie,
-  //     isDetailsClicked: true
-  //   });
+  componentDidMount() {
+    axios.get('http://localhost:3001/movies')
+    .then((response) => {
+      this.setState({ movies: response.data});
+    })
+    .catch((error) => {
+      this.setState({ error: error.message });
+    });
 
-  // }
+    axios.get('http://localhost:3001/customers')
+    .then((response) => {
+      this.setState({ customers: response.data });
+    })
+    .catch((error) => {
+      this.setState({ error: error.message });
+    });
+  }
+
+  addMovieCallback = (movie) => {
+    const movieIds = this.state.movies.map(movie => movie.id)
+    this.setState({
+      movies: [...this.state.movies, {...movie, id: Math.max(...movieIds) + 1}]
+    });
+  }
 
   onClickDetailsCallback = (id) => {
     this.setState((prevState) => ({ 
@@ -61,24 +76,6 @@ class App extends Component {
   onSelectCustomerCallback = (index) => {
     const selectedCustomer = this.state.customers[index]
     this.setState({ chosenCustomer: selectedCustomer });
-  }
-
-  componentDidMount() {
-    axios.get('http://localhost:3001/movies')
-    .then((response) => {
-      this.setState({ movies: response.data});
-    })
-    .catch((error) => {
-      this.setState({ error: error.message });
-    });
-
-    axios.get('http://localhost:3001/customers')
-    .then((response) => {
-      this.setState({ customers: response.data });
-    })
-    .catch((error) => {
-      this.setState({ error: error.message });
-    });
   }
 
   rentMovie = () => {
@@ -133,7 +130,6 @@ class App extends Component {
 
     axios.post(url, params)
     .then(() => {
-      console.log("CHECKIN SUCCESS")
       this.setState((prevState) => ({
         currentRental: {
           ...prevState.currentRental,
@@ -157,10 +153,9 @@ class App extends Component {
     })
   }
 
-  addMovieCallback = (movie) => {
-    const movieIds = this.state.movies.map(movie => movie.id)
-    this.setState({
-      movies: [...this.state.movies, {...movie, id: Math.max(...movieIds) + 1}]
+  setErrorOverdueCallback = (error) => {
+    this.setState({ 
+      error: error.message
     });
   }
 
@@ -188,12 +183,15 @@ class App extends Component {
           
           {errorSection}
 
-          {/* <Route exact path="/" component={Home} /> */}
-          <Route path="/" render={() => <Home setOverdueMoviesCallback={this.setOverdueMoviesCallback} overdueMovies={this.state.overdueMovies}/>}/>
-
-          <Route path="/search" render={() => <Search 
-                                                addMovieCallback={this.addMovieCallback}
-                                                moviesInLibrary={this.state.movies}/>}/>
+          <Route 
+            path="/search" 
+            render={() => (
+              <Search
+                addMovieCallback={this.addMovieCallback}
+                moviesInLibrary={this.state.movies}
+              />
+            )}
+          />
           <Route 
             path="/library" 
             render={() => (
@@ -215,6 +213,16 @@ class App extends Component {
               />
             )} 
           />
+          <Route 
+            path="/log" 
+            render={() => (
+              <Log 
+                setOverdueMoviesCallback={this.setOverdueMoviesCallback} 
+                overdueMovies={this.state.overdueMovies}
+                setErrorOverdueCallback={this.setErrorOverdueCallback}
+              />
+            )}
+          />
         </div>
       </Router>
     );
@@ -232,6 +240,7 @@ function Header() {
         <Link className="nav_link" to="/search">Search</Link>
         <Link className="nav_link" to="/library">Library</Link>
         <Link className="nav_link" to="/customers">Customers</Link>
+        <Link className="nav_link" to="/log">Log</Link>
       </Nav>
     </nav>
   );
