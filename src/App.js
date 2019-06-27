@@ -6,8 +6,6 @@ import RentalLibrary from './components/RentalLibrary';
 import Search from './components/Search';
 import axios from 'axios';
 
-
-
 class App extends Component {
   constructor(props) {
     super(props)
@@ -85,24 +83,26 @@ class App extends Component {
         <Router>
           <div>
             <nav>
-              <ul>
+              <ul className="navbar">
                 <li>
-                  <Link to="/" className="home">Home</Link>
+                  <Link to="/">Home</Link>
                 </li>
                 <li>
-                  <Link to="/search" className="search">Search</Link>
+                  <Link to="/movies">Movies</Link>
                 </li>
                 <li>
-                  <Link to="/movies" className="movies">Movies</Link>
+                  <Link to="/customers">Customers</Link>
+                </li>
+                <li className="search_icon">
+                  <Link to="/search"><img src="https://www.freeiconspng.com/uploads/search-icon-png-0.png" alt="search icon" width="30" height="30"></img></Link>
+                </li>
+              </ul>
+              <ul className="checkout">
+                <li>
+                  Selected Movie: {this.getTitle()}
                 </li>
                 <li>
-                  <Link to="/customers" className="customers">Customers</Link>
-                </li>
-                <li>
-                  This Movie is Currently Selected: {this.getTitle()}
-                </li>
-                <li>
-                  This Customer is Currently Selected: {this.getName()}
+                  Selected Customer: {this.getName()}
                 </li>
                 <li><a href="#" onClick={this.checkout}>Checkout</a></li>
               </ul>
