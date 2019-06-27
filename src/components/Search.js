@@ -48,8 +48,7 @@ class Search extends Component {
 
     render() {
         return (
-            <div>
-                
+            <div >
                 <Message message={this.state.message} />
                 <SearchForm movieSearchCallback={this.movieSearchCallback} />
                 <SearchResults movieData={this.state.movies} />

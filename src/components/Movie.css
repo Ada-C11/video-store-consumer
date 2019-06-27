@@ -30,8 +30,9 @@
   background-color: #374B4A;
   font-size: 1.1em;
   border-radius: 5px;
+  padding: .25em .5em;
 }
 
 .movie__button:hover {
-  background-color: #5757bf;
+  background-color: #2552a8;
 }

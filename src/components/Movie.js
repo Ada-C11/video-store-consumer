@@ -22,7 +22,6 @@ const Movie = (props) => {
           onClick={onMovieSelect}
         />
       </div>
-
     </div>
   )
 }
