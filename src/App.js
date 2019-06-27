@@ -20,22 +20,22 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-        currentCustomer: "",
-        currentMovie: "",
+        currentCustomer: "none",
+        currentMovie: "none",
     };
   }
    
-  movieToRent= (movieName) => {
-    console.log(`Current Movie =${movieName}`);
+  movieToRent = (movieName) => {
+    console.log(`Current Movie = ${movieName}`);
     this.setState({
-      movieToRent: this.movieToRent,
+      currentMovie: movieName,
     });
   }
 
-  customerRenting= (customerName) => {
-    console.log(`Current Customer =${customerName}`);
+  customerRenting = (customerName) => {
+    console.log(`Current Customer = ${customerName}`);
     this.setState({
-      customerRenting: this.movieToRent,
+      currentCustomer: customerName,
     });
   }
 
@@ -50,7 +50,10 @@ class App extends Component {
       
           <div>
             <Route path="/" exact component={MovieList}/>
-            <Route path="/customers" component={CustomerList}/>
+            <Route exact path="/customers"
+          render={ (routerprops) => <CustomerList {...routerprops}
+          customerNameCallback={this.rentalsCustomer} /> }
+          />
             <Route path="/search" component={
               (routerProps) => <Search searchResults={this.state.searchResults} {...routerProps} />
             }/>

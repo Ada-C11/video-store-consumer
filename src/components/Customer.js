@@ -4,7 +4,7 @@ import CustomerStyles from './Customer.css';
 
 const Customer = (props) => {
 
-onSelectCustomer = () => {
+const onSelectCustomer = () => {
     props.customerNameCallback(props.name)
 }
 
@@ -19,7 +19,7 @@ onSelectCustomer = () => {
             </span>
 
             <button onClick={onSelectCustomer}
-            className="customer__select">
+             className="customer__select">
                 Rental
             </button>
         </div>

@@ -9,7 +9,7 @@ class CustomerList extends Component {
         super(props);
 
         this.state = {
-            customers: []
+            customers: [],
         };
     }
 
@@ -27,6 +27,10 @@ class CustomerList extends Component {
           });
     }
 
+    customerNameCallback = (customerName) => {
+      console.log(customerName);
+    }
+
     render() {
     const allCustomers = this.state.customers.map((customer) => {
         return <Customer
@@ -40,7 +44,7 @@ class CustomerList extends Component {
           phone={customer.phone}
           account_credit={customer.account_credit}
           created_at={customer.created_at}
-          customerNameCallback={this.props.customerNameCallback}/> 
+          customerNameCallback={this.customerNameCallback}/> 
       });
 
     return (
@@ -53,8 +57,9 @@ class CustomerList extends Component {
   }
 }
 
+
 CustomerList.propTypes = {
-  customerNameCallback:PropTypes.func,
+  customerNameCallback: PropTypes.func,
 };
 
 export default CustomerList;
