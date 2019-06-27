@@ -7,9 +7,9 @@ function Header(props) {
   return (
     <nav className="navbar sticky-top navbar-lg" >
       <ul className="nav navbar-nav">
-        <li className="nav-item">
+        {/* <li className="nav-item">
           <Link to="/">Home</Link>
-        </li>
+        </li> */}
         <li className="nav-item">
           <Link to="/search">Search</Link>
         </li>
@@ -26,15 +26,9 @@ function Header(props) {
           <p className="rental-body">Movie: {props.movieTitle}</p>
           <p className="rental-body">Customer: {props.customerName}</p>
       </div>
-<<<<<<< HEAD
-      <div>
-        <button className={`btn btn-light ${props.checkoutButtonClassName}`}
-          onClick={props.onCheckoutClickCallback}>
-=======
         <div className='button-container'>
           <button className={`btn btn-light ${props.checkoutButtonClassName}`}
             onClick={props.onCheckoutClickCallback}>
->>>>>>> 397b076d114934970f7abce1161a8918ba647393
           Checkout!
         </button>
       </div>

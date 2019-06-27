@@ -28,10 +28,7 @@ class Search extends Component {
       })
       this.setState({searchList})
     })
-    
   }
-
-
   onMovieSelect = (movie) => {
     return () => {
     axios.post('http://localhost:3090/movies', 
@@ -56,8 +53,8 @@ class Search extends Component {
     return this.state.searchList.map((movie) => {
         return (
           <div>
-            <p>{movie.title}</p>
-            <p onClick={this.onMovieSelect(movie)}>Select!</p>
+            <p className='movie-name'>{movie.title}</p>
+            <button className="select-link" onClick={this.onMovieSelect(movie)}>Select!</button>
           </div>
         )
     })
