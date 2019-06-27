@@ -5,6 +5,7 @@ import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import './App.css';
 import Library from './components/Library';
 import Customers from './components/Customers';
+import Home from './components/Home';
 import axios from 'axios';
 import Search from './components/Search';
 
@@ -16,12 +17,18 @@ class App extends Component {
     this.state = {
       movies: [],
       customers: [],
+      overdueMovies: undefined,
       expandedMovies: {},
       rentedMovie: undefined,
       chosenCustomer: undefined,
       dueDate: undefined,
       checkoutDate: undefined,
-      alert: undefined,
+      currentRental: {
+        count: undefined,
+        movie: undefined,
+        customer: undefined,
+        checkin: false,
+      },
       error: null,
     };
   }
@@ -70,7 +77,6 @@ class App extends Component {
     .catch((error) => {
       this.setState({ error: error.message });
     });
-
   }
 
   rentMovie = () => {
@@ -87,13 +93,16 @@ class App extends Component {
 
     axios.post(url, params)
     .then((response)=> {
-      const movie = this.state.rentedMovie.title
-      const customer = this.state.chosenCustomer.name
-      this.setState({
+      this.setState((prevState) => ({
         dueDate: dueDate,
         checkoutDate: checkoutDate,
-        alert: `Rental #${response.data["rental"]}! "${movie}" checked out by ${customer}`
-      })
+        currentRental: {
+          ...prevState.currentRental,
+          count: response.data["rental"],
+          movie: prevState.rentedMovie.title,
+          customer: prevState.chosenCustomer.id,
+        }
+      }))
 
       this.onRentCallback()
     })
@@ -113,6 +122,39 @@ class App extends Component {
     })
   }
 
+  checkinMovie = () => {
+    const url = `http://localhost:3001/rentals/${this.state.currentRental.movie}/return`;
+
+    const params = {
+      customer_id: this.state.currentRental.customer,
+    }
+
+    axios.post(url, params)
+    .then(() => {
+      console.log("CHECKIN SUCCESS")
+      this.setState((prevState) => ({
+        currentRental: {
+          ...prevState.currentRental,
+          count: undefined,
+          movie: undefined,
+          customer: undefined,
+          checkin: true,
+        }
+      }))
+    })
+      .catch((error) => {
+        this.setState({
+            error: error.message
+        })
+      })
+    }
+
+  setOverdueMoviesCallback = (value) => {
+    this.setState({ 
+      overdueMovies: value
+    })
+  }
+
   addMovieCallback = (movie) => {
     const movieIds = this.state.movies.map(movie => movie.id)
     this.setState({
@@ -123,6 +165,7 @@ class App extends Component {
   render() {
     const errorSection = (this.state.error) ?
     (<section>Error: {this.state.error}</section>) : null;
+
     return (
       <Router>
         <div>
@@ -133,10 +176,17 @@ class App extends Component {
           
           { this.state.chosenCustomer && this.state.rentedMovie && <button onClick={this.rentMovie}>Rent Movie</button>}
 
-          {this.state.alert} 
+          {this.state.currentRental.count && <div>Rental #{this.state.currentRental.count}: "{this.state.currentRental.movie}" checked out by Customer #{this.state.currentRental.customer}</div>} 
+          {this.state.currentRental.count && <button onClick={this.checkinMovie}>Check-in Movie</button>}
+
+          {!this.state.chosenCustomer && !this.state.rentedMovie && 
+            this.state.currentRental.checkin && <p>Movie Successfully Checked-In!</p>}
+          
           {errorSection}
 
           {/* <Route exact path="/" component={Home} /> */}
+          <Route path="/" render={() => <Home setOverdueMoviesCallback={this.setOverdueMoviesCallback} overdueMovies={this.state.overdueMovies}/>}/>
+
           <Route path="/search" render={() => <Search 
                                                 addMovieCallback={this.addMovieCallback}
                                                 moviesInLibrary={this.state.movies}/>}/>
