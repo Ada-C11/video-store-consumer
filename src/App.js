@@ -85,8 +85,6 @@ class App extends Component {
 
     axios.post(url, params)
     .then((response)=> {
-      // const movie = this.state.rentedMovie.title
-      // const customer = this.state.chosenCustomer.name
       this.setState((prevState) => ({
         dueDate: dueDate,
         checkoutDate: checkoutDate,
@@ -94,9 +92,8 @@ class App extends Component {
           ...prevState.currentRental,
           count: response.data["rental"],
           movie: prevState.rentedMovie.title,
-          customer: prevState.chosenCustomer.name,
+          customer: prevState.chosenCustomer.id,
         }
-        // `Rental #${response.data["rental"]}! "${movie}" checked out by ${customer}`
       }))
 
       this.onRentCallback()
@@ -114,13 +111,12 @@ class App extends Component {
       chosenCustomer: undefined,
       dueDate: undefined,
       checkoutDate: undefined,
-      // currentRental: undefined,
     })
   }
 
-  checkinMovie = () => {
-
-  }
+  // checkinMovie = () => {
+      // currentRental: undefined,
+  // }
 
   render() {
     const errorSection = (this.state.error) ?
@@ -136,7 +132,7 @@ class App extends Component {
 
           { this.state.chosenCustomer && this.state.rentedMovie && <button onClick={this.rentMovie}>Rent Movie</button>}
 
-          {this.state.currentRental.count} 
+          {this.state.currentRental.count && <div>Rental #{this.state.currentRental.count}: "{this.state.currentRental.movie}" checked out by Customer #{this.state.currentRental.customer}</div>} 
 
           {errorSection}
 
