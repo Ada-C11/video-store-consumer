@@ -56,7 +56,7 @@ class Search extends Component {
           </div>
   
             <div >
-              <input type="submit" value="Submit Line" />
+              <input type="submit" value="Search" />
             </div>
           </form>
         {searchResultList}
