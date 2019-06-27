@@ -34,11 +34,10 @@ const Movie = (props) => {
             <img src={movie.image_url} alt={`movie poster for ${movie.title}`}/>
             <h4>{movie.title}</h4>
             {button}
-            
-                <section className='movie-information'>
-                    <p>Release date: {formatDate(movie.release_date)}</p>
-                    <p>{movie.overview}</p>
-                </section>
+            <section className='movie-information'>
+                <p>Release date: {formatDate(movie.release_date)}</p>
+                <p>{movie.overview}</p>
+            </section>
         </section>
     )
 };
