@@ -89,6 +89,7 @@ class MovieSearch extends React.Component {
 
    return (
      <section>
+       <h1>Search for New Inventory</h1>
        <div className="search-form-container">
          <form onSubmit={this.onFormSubmit}>
             <input name="title" placeholder="Movie title..." type="text"

@@ -9,3 +9,7 @@
   padding-right: 25%;
   padding-bottom: 10px;
 }
+
+.form {
+  min-width: 25%;
+}
