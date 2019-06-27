@@ -35,7 +35,7 @@ class Library extends Component {
         // console.log("movieList", movieList)
       })
       .catch((error) => {
-        this.props.addErrorMessageCallabck(`Unable to load movies. ${error.message}`)
+        this.props.addErrorMessageCallabck(`Unable to load movies. ${error.message}`, 'alert-warning')
         console.log(error.message);
       })
   }

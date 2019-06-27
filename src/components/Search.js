@@ -53,6 +53,7 @@ class Search extends Component {
 
     axios.post(url, movie)
       .then((response) => {
+        this.props.addErrorMessageCallback("Movie successfully added to Library", "alert-info")
         console.log(response.data)
       })
       .catch((error) => {

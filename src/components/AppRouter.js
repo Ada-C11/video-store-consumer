@@ -26,6 +26,7 @@ class AppRouter extends Component {
       selectedCustomer: null,
       selectedMovie: null,
       errorMessage: '',
+      errorStyle: '',
     }
   }
 
@@ -63,10 +64,11 @@ class AppRouter extends Component {
     })
   }
 
-  addErrorMessage = (message) => {
+  addErrorMessage = (message, style) => {
     console.log("added error message", message)
     this.setState({
       errorMessage: message,
+      errorStyle: style
     })
   }
 
@@ -91,15 +93,15 @@ class AppRouter extends Component {
             selectedMovie: null,
             selectedCustomer: null,
           })
-          this.addErrorMessage('')
+          this.addErrorMessage('Movie successfully checked out!', 'alert-info')
         })
         .catch((error) => {
 
-          this.addErrorMessage(`Unable to check out ${movie} to ${customer}. ${error}`)
+          this.addErrorMessage(`Unable to check out ${movie} to ${customer}. ${error}`, "alert-warning")
           console.log(`Unable to check out ${movie} to ${customer}. ${error}`);
         })
     } else {
-      this.addErrorMessage('Need to select a movie and customer.')
+      this.addErrorMessage('Need to select a movie and customer.', "alert-warning")
       console.log(`Need to select a movie and customer.`);
     }
   }
@@ -138,6 +140,7 @@ class AppRouter extends Component {
           <main >
             <ErrorMessage
               message={this.state.errorMessage}
+              errorStyle={this.state.errorStyle}
               addErrorMessageCallback={this.addErrorMessage} />
 
 
@@ -149,6 +152,7 @@ class AppRouter extends Component {
               render={(props) =>
                 <Search
                   generateMovieComponentsCallback={this.generateMovieComponents}
+                  addErrorMessageCallback={this.addErrorMessage}
                   url={VIDEO_STORE_API_URL}
                 />}
             />
