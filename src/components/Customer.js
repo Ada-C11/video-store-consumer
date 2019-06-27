@@ -13,38 +13,30 @@ const Customer = (props) => {
     return formattedDate.toLocaleDateString('en-US');
   }
 
+  console.log(customer);
+
+  const createTableData = () => {
+    if (customer) {
+      return Object.keys(customer).map((rowData, i) => {
+
+        if (rowData === "registered_at") {
+          customer[rowData] = formatDate(customer[rowData]);
+        } else if (rowData === "account_credit") {
+          customer[rowData] = `$${customer[rowData]}`
+        }
+
+        return (
+          <td key={i}>
+            {customer[rowData]}
+          </td>
+        )
+      });
+    };
+  }
+
   return (
     <tr id="table-rows" onClick={onClickCustomer}>
-      <td>
-        {customer.id}
-      </td>
-      <td>
-        {customer.name}
-      </td>
-      <td>
-        {customer.phone}
-      </td>
-      <td>
-        {customer.address}
-      </td>
-      <td>
-        {customer.city}
-      </td>
-      <td>
-        {customer.state}
-      </td>
-      <td>
-        {customer.postal_code}
-      </td>
-      <td>
-        {formatDate(customer.registered_at)}
-      </td>
-      <td>
-        {customer.movies_checked_out_count}
-      </td>
-      <td>
-        ${customer.account_credit}
-      </td>
+      {createTableData()}
     </tr>
   )
 };

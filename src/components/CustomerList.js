@@ -6,21 +6,21 @@ import PropTypes from 'prop-types';
 const CustomerList = (props) => {
     const { customers, onSelectCustomerCallback } = props
 
-    // const tableHeaders
-    // if (customerObject) { console.log( Object.keys(customerObject) ) }
-  
-    // // come back and refactor table headers
-    // const tableHeaders = () => {
-    //   if (customerObject) {
-    //     Object.keys(customerList[0]).map((key) => {
-    //       return (
-    //         <th>
-    //           {key}
-    //         </th>
-    //       )
-    //     });
-    //   }
-    // }
+    const firstCustomer = customers[0]
+
+
+    const createTableHeaders = () => {
+      if (firstCustomer) {
+        return Object.keys(firstCustomer).map((header, i) => {
+          return (
+            <th key={i}>
+              {header.replace(/_/g, " ")}
+            </th>
+          )
+        });
+      };
+    }
+
 
     const renderCustomers = customers.map( (customer, i) => {
         return (
@@ -39,36 +39,7 @@ const CustomerList = (props) => {
           <table className="table table-hover">
             <thead className="thead-dark">
               <tr>
-                <th scope="col">
-                  id
-                </th>
-                <th scope='col'>
-                  name
-                </th>
-                <th>
-                  phone 
-                </th>
-                <th>
-                  address
-                </th>
-                <th>
-                  city
-                </th>
-                <th>
-                  state
-                </th>
-                <th>
-                  postal
-                </th>
-                <th>
-                  registered
-                </th>
-                <th>
-                  rentals out
-                </th>
-                <th>
-                  credit
-                </th>
+                {createTableHeaders()}
               </tr>
             </thead>
             <tbody>

@@ -210,8 +210,9 @@ class App extends Component {
               className="vhs-tape" 
               src="https://i.ibb.co/47Qqpt4/7ml0qn-large.png" 
               alt="vhs tape with label that says all we have is now"
-            />
-          )} />
+              />
+            )} 
+          />
           <Route 
             path="/search" 
             render={(props) => <SearchMovie {...props} 
