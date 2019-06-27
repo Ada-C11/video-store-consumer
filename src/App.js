@@ -94,7 +94,8 @@ class App extends Component {
   myCustomersComponent = () => {
     return (
       <Customers
-        selectCustomerCallback={this.onCustomerSelect.bind(this)} 
+        selectCustomerCallback={this.onCustomerSelect.bind(this)}
+        reportStatusCallback={this.reportStatus.bind(this)}  
       />
     );
   }

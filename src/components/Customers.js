@@ -16,8 +16,7 @@ class Customers extends Component {
     }
 
     reportStatus = (text) => {
-        console.log("Inside App.js");
-        // this.setState({message: text})
+        this.props.reportStatusCallback(text);
       }
 
     componentDidMount() {
@@ -40,8 +39,6 @@ class Customers extends Component {
             this.setState({ customers });
           })
           .catch((error) => {
-            //Do something if there's an error
-            console.log(error);
             this.reportStatus(`Uh-oh!  There was a problem: ${error.message}`)
           });
     }
@@ -76,4 +73,5 @@ export default Customers
 
 Customers.propTypes = {
     selectCustomerCallback: PropTypes.func,
+    reportStatusCallback: PropTypes.func,
 }
