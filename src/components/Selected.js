@@ -4,8 +4,6 @@ import {Card, Button} from 'react-bootstrap'
 import axios from 'axios';
 import moment from 'moment';
 
-import MovieCard from "./MovieCard";
-import Customer from "./Customer";
 
 import './Selected.css';
 class Selected extends Component {

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import {Card, Button} from 'react-bootstrap'
+import moment from 'moment';
 
 import './MovieCard.css';
 
@@ -72,12 +73,8 @@ class MovieCard extends Component {
         <Card.Body>
           <Card.Title>{title}</Card.Title>
           <Card.Text className='overview'>{overview}</Card.Text>
-          <Card.Text>{release_date}</Card.Text>
+          <Card.Text>Release date: {moment(release_date).format("MMM Do, YYYY")}</Card.Text>
           {inventoryDisplay[parentComponent]}
-          {/* <Button onClick={ this.onSelectButtonClick }
-            className="select-movie-btn"
-            variant='primary'
-          >{buttonDisplay}</Button> */}
         </Card.Body>
       </Card>
     );
