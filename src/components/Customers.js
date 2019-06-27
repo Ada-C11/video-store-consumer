@@ -14,12 +14,12 @@ const Customers = (props) => {
   return (
     <section className="customers_container">
       <h1>Customers</h1>
-        <thead>
+        {/* <thead>
           <tr>
             <th>Name</th>
           </tr>
-        </thead>
-        <Table striped size="sm">
+        </thead> */}
+      <Table striped size="sm">
         <tbody>{customerCollection}</tbody>
       </Table>
     </section>

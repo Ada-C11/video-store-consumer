@@ -104,6 +104,13 @@ class App extends Component {
     })
   }
 
+  addMovieCallback = (movie) => {
+    const movieIds = this.state.movies.map(movie => movie.id)
+    this.setState({
+      movies: [...this.state.movies, {...movie, id: Math.max(...movieIds) + 1}]
+    });
+  }
+
   render() {
     const errorSection = (this.state.error) ?
     (<section>Error: {this.state.error}</section>) : null;
@@ -121,7 +128,9 @@ class App extends Component {
           {errorSection}
 
           {/* <Route exact path="/" component={Home} /> */}
-          <Route path="/search" render={() => <Search moviesInLibrary={this.state.movies}/>}/>
+          <Route path="/search" render={() => <Search 
+                                                addMovieCallback={this.addMovieCallback}
+                                                moviesInLibrary={this.state.movies}/>}/>
           <Route 
             path="/library" 
             render={() => (

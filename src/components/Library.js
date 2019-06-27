@@ -17,14 +17,15 @@ const Library = (props) => {
     <section className="library_container">
       <h1>Library</h1>
       
-      <Table striped>
-        <thead>
+      <Table striped size="sm">
+        {/* <thead>
           <tr>
+            <th>ID</th>
             <th>Movie Title</th>
             <th></th>
             <th></th>
           </tr>
-        </thead>
+        </thead> */}
         <tbody>
           {movieCollection}
         </tbody>

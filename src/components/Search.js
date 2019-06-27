@@ -46,19 +46,20 @@ class Search extends Component {
                 error: "Movie already exists!"
             })
         } else {
-            const movieToApi = {
+            const movieToLibrary = {
                 external_id: movie.external_id,
                 image_url: movie.image_url,
                 title: movie.title,
                 overview: movie.overview,
                 release_date: movie.release_date
             }
-            axios.post('http://localhost:3001/movies', movieToApi)
+            axios.post('http://localhost:3001/movies', movieToLibrary)
             .then((response)=> {
                 if (response.status === 200) {
                     this.setState({
                         success: "Movie has been added to the rental library!"
-                    })
+                    });
+                    this.props.addMovieCallback(movie);
                 }
             })
             .catch((error) => {
