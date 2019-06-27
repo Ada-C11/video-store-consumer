@@ -40,14 +40,15 @@ class CustomerList extends Component {
     const customers = this.state.customers.map((customer, i) => {
       return (
         <section key={i}>
-          <div className="card w-75">
-            <div className="card-body">
+          <p className="card w-75">
+            <p className="card-body">
               <h5 className="card-title">Name: {customer.name}</h5>
-              <p >ID: {customer.id}</p>
-              <p >
+              <p>ID: {customer.id}</p>
+              <p>
                 # of Movies checked out: {customer.movies_checked_out_count}
               </p>
-              <p >Contact: {customer.phone}</p>
+              <p>Account credit: ${customer.account_credit.toFixed(2)}</p>
+              <p>Contact: {customer.phone}</p>
 
               <br />
               <button
@@ -56,10 +57,10 @@ class CustomerList extends Component {
                 aria-label="Close"
                 onClick={() => this.selectToCheckoutCustomer(customer.name)}
               >
-                SELECT
+                SELECT CUSTOMER
               </button>
-            </div>
-          </div>
+            </p>
+          </p>
         </section>
       );
     });
