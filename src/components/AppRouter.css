@@ -34,6 +34,13 @@ ul.nav-list {
 }
 
 main {
+  font-family: 'Lato', sans-serif;
   margin-left: 13rem;
   padding: 2rem;
+}
+
+h2 {
+  text-transform: uppercase;
+  width: 100%;
+  border-bottom: 1px solid #042A2B;
 }

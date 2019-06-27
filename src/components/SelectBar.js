@@ -1,17 +1,25 @@
 import React from 'react';
 import propTypes from 'prop-types';
 
+import './SelectBar.css'
+
 const SelectBar = (props) => {
   const { selectedMovie, selectedCustomer, checkoutCallback } = props;
 
   return (
-    <div>
-      <ul className="nav-list">
+    <div className="select-bar">
+      <ul>
         <li>
-          Selected Movie: {selectedMovie && selectedMovie.title}
+          Selected Movie:
         </li>
         <li>
-          Selected Customer: {selectedCustomer && selectedCustomer.name}
+          {selectedMovie && selectedMovie.title}
+        </li>
+        <li>
+          Selected Customer: 
+        </li>
+        <li>
+          {selectedCustomer && selectedCustomer.name}
         </li>
         <li>
           <button
@@ -20,7 +28,7 @@ const SelectBar = (props) => {
           >Checkout Rental</button>
         </li>
       </ul>
-    </div >
+    </div>
   )
 }
 
