@@ -11,12 +11,13 @@ const MovieCard = (props) => {
     <div className="card">
       <div className="card-body">
         <h4>{ title }</h4>
-        <img className="" src={image_url} alt={ title } />
-        <div className="card-text">{ release_date }</div>
-        <p className="card-text">{ overview }</p>
-        {displayButton}
+          <img className="" src={image_url} alt={ title } />
+          <div className="card-text">{ release_date }</div>
+          <p className="card-text">{ overview }</p>
+          {displayButton}
       </div>
     </div>
+ 
   );
 };
 

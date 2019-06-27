@@ -15,8 +15,10 @@ const Library = (props) => {
   })
   return (
     <div>
-      <p>Movies:</p>
-      { movieCards }
+      <h2>Movies:</h2>
+      <div className="card-columns">
+        { movieCards }
+      </div>
     </div>
   );
 }
