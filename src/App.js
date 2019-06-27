@@ -10,20 +10,33 @@ import { withRouter } from "react-router";
 import MovieList from './components/MovieList.js';
 // import { BrowserRouter as Router, Link} from 'react-router-dom';
 
-const customerData = () => (
-  <div>
-    <CustomerList/>
-  </div>
-);
-
-
+// const customerData = () => (
+//   <div>
+//     <CustomerList/>
+//   </div>
+// );
 
 class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
         currentCustomer: "",
+        currentMovie: "",
     };
+  }
+   
+  movieToRent= (movieName) => {
+    console.log(`Current Movie =${movieName}`);
+    this.setState({
+      movieToRent: this.movieToRent,
+    });
+  }
+
+  customerRenting= (customerName) => {
+    console.log(`Current Customer =${customerName}`);
+    this.setState({
+      customerRenting: this.movieToRent,
+    });
   }
 
   render() {
@@ -37,7 +50,7 @@ class App extends Component {
       
           <div>
             <Route path="/" exact component={MovieList}/>
-            <Route path="/customers" component={customerData}/>
+            <Route path="/customers" component={CustomerList}/>
             <Route path="/search" component={
               (routerProps) => <Search searchResults={this.state.searchResults} {...routerProps} />
             }/>
