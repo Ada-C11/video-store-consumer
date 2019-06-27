@@ -23,7 +23,6 @@ class Library extends Component {
     const getURL = 'http://localhost:3002/movies'
     axios.get(getURL)
       .then((response) => {
-        console.log(response.data)
         const movies = response.data.map((movie) => {
           const movieListing = {
             title: movie.title,
