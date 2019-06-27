@@ -6,19 +6,11 @@
   flex-wrap: wrap;
   flex-direction: column;
   position: relative;
-  height: 7rem;
-}
-
-.nav_link {
-  color: white;
-  margin-right: 2rem;
-  padding-top: 2.7rem;
-  /* border: 1px solid black; */
+  height: 12rem;
 }
 
 .brand {
   color: white;
-  margin-right: 3rem;
   font-size: 3rem;
   text-decoration-line: none;
   font-family: 'Lobster', cursive;
@@ -32,24 +24,17 @@
   display: flex;
   flex-direction: row;
   right: 0;
-  /* top: 1rem; */
-  /* float: right; */
-  /* text-align: right; */
-  /* align-items: flex-end; */
-  /* align-self: right; */
-  /* height: 10rem; */
-  /* border: 1px solid black; */
 
 }
 
-
 .nav_link {
+  color: white;
   margin-right: 1rem;
   font-size: 1rem;
   text-decoration: none;
   display: inline-block;
   padding: .1rem 2.1rem;
-  padding-top: 4rem;
+  margin-top: 9rem;
   /* border-left: 2px solid white;; */
   /* float: right; */
 }

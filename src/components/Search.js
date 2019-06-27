@@ -79,7 +79,6 @@ class Search extends Component {
         (<section>{this.state.success}</section>) : null;
     
         let movieCards;
-        // let tableHeader;
 
         if (this.state.searchResults !== null) {
             movieCards = this.state.searchResults.map((movie,i) => {
@@ -93,17 +92,6 @@ class Search extends Component {
                             addMovieCallback={this.addMovieCallback}/>]
             });
 
-            // if (movieCards && movieCards.length > 0){
-            //     tableHeader = (<thead>
-            //         <tr>
-            //             <th>Image</th>
-            //             <th>Title</th>
-            //             <th>Overview</th>
-            //             <th>Release Date</th>
-            //             <th></th>
-            //         </tr>
-            //     </thead>);
-            // }
         } else if (this.state.searched) {
             movieCards = (<tr><td>No matched Results!</td></tr>);
         } else {

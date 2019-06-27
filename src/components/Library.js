@@ -18,14 +18,6 @@ const Library = (props) => {
       <h1>Library</h1>
       
       <Table striped size="sm">
-        {/* <thead>
-          <tr>
-            <th>ID</th>
-            <th>Movie Title</th>
-            <th></th>
-            <th></th>
-          </tr>
-        </thead> */}
         <tbody>
           {movieCollection}
         </tbody>

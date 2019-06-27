@@ -26,14 +26,23 @@ class App extends Component {
     };
   }
 
-  onClickDetailsCallback = (id) => {
-    this.setState((prevState) => ({ 
+  onClickDetailsCallback = (movie) => {
+    this.setState({ 
       expandedMovies: {
         ...prevState.expandedMovies, 
         [id]: !prevState.expandedMovies[id],
       }
-    }));
+    });
   }
+
+  // onClickDetailsCallback = (id) => {
+  //   this.setState((prevState) => ({ 
+  //     expandedMovies: {
+  //       ...prevState.expandedMovies, 
+  //       [id]: !prevState.expandedMovies[id],
+  //     }
+  //   }));
+  // }
 
   onSelectMovieCallback = (index) => {
     const selectedMovie = this.state.movies[index]
