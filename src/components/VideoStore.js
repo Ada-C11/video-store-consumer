@@ -166,7 +166,9 @@ class VideoStore extends Component {
         this.setState({ error: error.message })
       });
   };
-  
+
+  disableCheckoutButton = ((this.state.currentCustomer === undefined) && (this.state.currentMovie === undefined)) ? true : false
+
   render() {
     return (
       <div>
@@ -187,11 +189,16 @@ class VideoStore extends Component {
               </li>
             </ul>
           </nav>
-        
-
+    
           <section className="checkoutBar">
             <div>Checking out for customer: {this.state.currentCustomer.name}</div>
             <div>Checking out title: {this.state.currentMovie.title}</div>
+            <button 
+              onClick={this.onRentalCheckout}
+              disabled={this.disableCheckoutButton}
+              >
+                Checkout
+            </button>
           </section>
 
           <Route exact path="/" render={() => (
