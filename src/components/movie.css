@@ -16,6 +16,7 @@
   }
   
   .movie__content {
+    font-size: 2rem;
     grid-column-start: 2;
   
     display: flex;
@@ -33,12 +34,14 @@
   }
   
   .movie__content-overview {
-    font-size: 1.5rem;
+    font-size: 2rem;
     padding: 0;
     margin: 0;
   }
 
   .movie__content-release_date, .movie_content-image_url {
+    font-size: 1rem;
+    
     padding: 0;
     margin: 0;
   }
