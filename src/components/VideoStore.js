@@ -28,7 +28,7 @@ class VideoStore extends Component {
     };
   }
   url = "https://enigmatic-chamber-40825.herokuapp.com"
-  customers_url = "https://enigmatic-chamber-40825.herokuapp.com/customers"
+  customersUrl = "https://enigmatic-chamber-40825.herokuapp.com/customers"
 
   componentDidMount() {
     this.getCustomers();
@@ -153,24 +153,20 @@ class VideoStore extends Component {
   onRentalCheckout = () => {
     const { currentCustomer, currentMovie } = this.state;
     const rentalUrl = `https://enigmatic-chamber-40825.herokuapp.com/rentals/${currentMovie}/check-out`;
-    const dueDate = new Date().getDate() + 7;
+    let dueDate = (new Date()).toISOString().split('T')[0];
+    document.getElementById('date').innerHTML = dueDate;
     
-    axios
-      .post(rentalUrl, { customer_id: currentCustomer.id, due_date: dueDate })
-      .then(response => {
-        console.log(response);
-       
-        this.setState({
-          currentCustomer: undefined,
-          currentMovie: undefined,
-        });
-      })
+    axios.post(rentalUrl, null, {
+      params: {
+        customer_id: currentCustomer.id,
+        due_date: dueDate
+      }
+    })
       .catch(error => {
         this.setState({ error: error.message })
       });
   };
   
-
   render() {
     return (
       <div>
