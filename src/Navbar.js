@@ -25,6 +25,9 @@ class Navbar extends Component {
                     <div className="nav-item">
                         <div>current movie: {this.props.movie}</div>
                     </div>
+                    <div className="nav-item">
+                        <Link to="/customers" className="nav-link btn btn-outline-primary">check out<span class="sr-only">(current)</span></Link>
+                    </div>
                 </div>
             </nav>
         )
