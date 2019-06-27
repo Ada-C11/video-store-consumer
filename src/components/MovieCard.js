@@ -5,8 +5,8 @@ import './MovieCard.css';
 const MovieCard = (props) => {
   const { title, release_date, overview, image_url } = props.movie;
   const displayButton = props.filterMoviesCallback(props.movie.title) ? 
-  <button type="button" onClick={props.selectMovie}>Select Movie</button> : 
-  <button type="button" onClick={() => {props.addMovieCallback(props.movie)}}>Add Movie to Library</button>
+  <button type="button" className="btn btn-info" onClick={props.selectMovie}>Select Movie</button> : 
+  <button type="button" className="btn btn-info" onClick={() => {props.addMovieCallback(props.movie)}}>Add Movie to Library</button>
   return (
     <div className="card">
       <div className="card-body">
