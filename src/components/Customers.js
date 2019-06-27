@@ -16,7 +16,8 @@ class Customers extends Component {
     }
 
     reportStatus = (text) => {
-        this.setState({message: text})
+        console.log("Inside App.js");
+        // this.setState({message: text})
       }
 
     componentDidMount() {

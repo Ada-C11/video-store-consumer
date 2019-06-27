@@ -67,6 +67,30 @@ class App extends Component {
     })
   }
 
+  addMovie = (movie) => {
+    // console.log(movie.image_url);
+    //  const movie = props.movieData[event.target.id
+        const postURL = 'http://localhost:3002/movies/add-movie'
+        axios.post(postURL, null, {
+            params: {
+                external_id: movie.external_id,
+                image_url: movie.image_url,
+                overview: movie.overview,
+                release_date: movie.release_date,
+                title: movie.title
+            }
+        })
+        .then((response) => {
+            console.log(response)
+            this.reportStatus("Movie successfully added to library!");
+
+        })
+        .catch((error) => {
+            console.log(error.message)
+            this.reportStatus(`Uh-oh!  There was a problem: ${error.message}`)
+        })
+  }
+
   myCustomersComponent = () => {
     return (
       <Customers
@@ -79,6 +103,15 @@ class App extends Component {
     return (
       <Library
         selectMovieCallback={this.onMovieSelect.bind(this)} 
+      />
+    );
+  }
+
+  mySearchComponent = () => {
+    return (
+      <Search
+        addMovieCallback={this.addMovie.bind(this)} 
+        reportStatusCallback={this.reportStatus.bind(this)}
       />
     );
   }
@@ -130,7 +163,7 @@ class App extends Component {
           </section>
   
           <Route path="/" exact component={Index} />
-          <Route path="/search/" component={Search} />
+          <Route path="/search/" render={this.mySearchComponent} />
           <Route path="/library/" render={this.myLibraryComponent} />
           <Route path="/customers/" render={this.myCustomersComponent} />
         </div>

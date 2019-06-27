@@ -18,7 +18,14 @@ class Search extends Component {
     }
 
     reportStatus = (text) => {
-        this.setState({message: text})
+        // this.setState({message: text})
+
+        this.props.reportStatusCallback(text);
+    }
+
+    addMovieCallback = (movie) => {
+        this.setState({message: null})
+        this.props.addMovieCallback(movie);
     }
 
     movieSearchCallback = (title) => {
@@ -58,10 +65,15 @@ class Search extends Component {
                   <Message message={this.state.message} />
                 </section>
                 <SearchForm movieSearchCallback={this.movieSearchCallback} />
-                <SearchResults movieData={this.state.movies} />
+                <SearchResults movieData={this.state.movies} addMovieCallback={this.addMovieCallback}/>
             </div>
         );
     }
 }
 
 export default Search
+
+Search.propType = {
+    addMovieCallback: PropTypes.func,
+    reportStatusCallback: PropTypes.func,
+}
