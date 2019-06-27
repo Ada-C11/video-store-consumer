@@ -16,6 +16,8 @@ class App extends Component {
     this.state = {
       movies: [],
       customers: [],
+      allRentals: undefined,
+      customerRentals: undefined,
       overdueMovies: undefined,
       expandedMovies: {},
       rentedMovie: undefined,
@@ -157,6 +159,127 @@ class App extends Component {
     });
   }
 
+
+  gatherAllRentals = (customerID) => {
+    let uniqueRentals = {}
+
+    axios.get('http://localhost:3001/rentals')
+    .then((response) => {
+      console.log("succcess")
+      console.log(response.data)
+      response.data.forEach((rental, i) => {
+        if (rental !== null) {
+          uniqueRentals[i] = {
+            "customer": rental.customer_id,
+            "movie": rental.title,
+            "checkout_date": rental.checkout_date,
+            "due_date": rental.due_date
+          }
+        }
+      })
+      // props.setAllRentals(rentalCollection)
+      console.log(this.state.allRentals)
+
+      this.setState({ 
+        allRentals: uniqueRentals
+      })
+      console.log(this.state.allRentals)
+
+      this.findCustomerRentals(customerID)
+    })
+    .catch((error) => {
+      // props.setAllRentalsError(error)
+      this.setState({ 
+        error: error.message
+      });
+    });
+
+
+    // const rentalCollection = Object.keys(uniqueRentals).map((key, i) => {
+    //   return <li key={i}>{key} checked out by Customer #{uniqueRentals[key]["customer_id"]} on {uniqueRentals[key]["checkout_date"]} due {uniqueRentals[key]["due_date"]} </li>
+    // })
+  }
+
+  findCustomerRentals = (customerID) => {
+    console.log("find customers rentals")
+    console.log(this.state.allRentals)
+    
+    // console.log(this.state.allRentals[customerID])
+    const rentals = []
+
+for (let key in this.state.allRentals) {
+  console.log(this.state.allRentals[key]["customer"])
+  if (this.state.allRentals[key]["customer"] === customerID) {
+    rentals.push(
+      {
+        "movie": this.state.allRentals[key]["movie"],
+        "checkout_date": this.state.allRentals[key]["checkout_date"],
+        "due_date": this.state.allRentals[key]["due_date"]
+      }
+    )
+    
+    // `<tr><td>${this.state.allRentals[key]["movie"]}</td><td>${this.state.allRentals[key]["checkout_date"]}</td><td>${this.state.allRentals[key]["due_date"]}</td></tr>`)
+  }
+}
+
+console.log(rentals)
+// this.state.allRentals.forEach((rental) => {
+  // console.log(rental)
+// })
+      // const customerRentalCollection = Object.keys(this.state.allRentals).map((key, i) => {
+      //   console.log(key)
+      //   if (key === customerID) {
+      //   //   return (<li key={i}>"{key["movie"]}": checked out {key["checkout_date"]} due {key["due_date"]} </li>)
+      //   }
+      // })
+
+      this.setState({
+        customerRentals: rentals,
+      });
+    // }
+
+    // console.log(this.state.customerRentals)
+  }
+
+
+  // setAllRentals = (value) => {
+  //   this.setState({ 
+  //     allRentals: value
+  //   })
+  // }
+
+  // setAllRentalsError = (error) => {
+  //   this.setState({ 
+  //     error: error.message
+  //   });
+  // }
+
+
+  onCustomerRentalsCallback = (customerID) => {
+    this.gatherAllRentals(customerID)
+    // this.findCustomerRentals(customerID)
+    // this.setState((prevState) => ({ 
+    //   allRentals: prevState.allRentals
+    // }))
+
+    // console.log(
+      // "works?"
+    // )
+    // console.log(this.state.allRentals)
+    // console.log(this.state.customerRentals)
+
+
+    // const customerRentalCollection = Object.keys(this.state.allRentals).map((key, i) => {
+    //   if (key === customerID) {
+    //     return (<li key={i}>"{key["movie"]}": checked out {key["checkout_date"]} due {key["due_date"]} </li>)
+    //   }
+    // })
+
+    // this.setState({
+    //   customerRentals: customerRentalCollection,
+    // });
+  }
+
   render() {
     const errorSection = (this.state.error) ?
     (<section>Error: {this.state.error}</section>) : null;
@@ -203,17 +326,23 @@ class App extends Component {
             path="/customers" 
             render={() => (
               <Customers 
+                // allRentals={this.state.allRentals}
+                customerRentals={this.state.customerRentals}
                 customers={this.state.customers} 
                 onSelectCustomerCallback={this.onSelectCustomerCallback}
+                onCustomerRentalsCallback={this.onCustomerRentalsCallback}
               />
             )} 
           />
           <Route 
             path="/log" 
             render={() => (
-              <Log 
-                setOverdueMoviesCallback={this.setOverdueMoviesCallback} 
+              <Log  
                 overdueMovies={this.state.overdueMovies}
+                allRentals={this.state.allRentals}
+                setAllRentals={this.setAllRentals}
+                setAllRentalsError={this.setAllRentalsError}
+                setOverdueMoviesCallback={this.setOverdueMoviesCallback}
                 setErrorOverdueCallback={this.setErrorOverdueCallback}
               />
             )}

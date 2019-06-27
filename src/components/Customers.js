@@ -8,7 +8,7 @@ import './Customers.css';
 
 const Customers = (props) => {
   const customerCollection = props.customers.map((customer, i) => {
-    return <Customer key={i} id={customer.id} name={customer.name} onSelectCustomerCallback={props.onSelectCustomerCallback}/>
+    return <Customer key={i} id={customer.id} name={customer.name} customerRentals={props.customerRentals} onSelectCustomerCallback={props.onSelectCustomerCallback} onCustomerRentalsCallback={props.onCustomerRentalsCallback}/>
    });
 
   return (
