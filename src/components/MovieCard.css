@@ -1,11 +1,14 @@
-.card {
-  display: flex;
-  width: 33%;
-  /* mar: 20px; */
-}
+/* .card-body{
+  object-fit: cover;
+  width: 50%;
+} */
 
+.card-text {
+  padding: 10px;
+}
 .card-body {
   text-align: center;
+  padding: 0;
 }
 .card-columns {
   padding: 25px;

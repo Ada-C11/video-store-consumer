@@ -10,9 +10,8 @@ const MovieCard = (props) => {
   return (
     <div className="card">
       <div className="card-body">
-        <h4>{ title }</h4>
-          <img className="" src={image_url} alt={ title } />
-          <div className="card-text">{ release_date }</div>
+          <img className="card-img-top" src={image_url} alt={ title } />
+          <h4>{ title }</h4>
           <p className="card-text">{ overview }</p>
           {displayButton}
       </div>
