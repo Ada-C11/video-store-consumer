@@ -7,11 +7,15 @@
 
 .select-bar li:nth-child(even) {
   text-transform: capitalize;
-  line-height: 0;
+  margin: 0px 0px 1rem;
 }
 
 .select-bar li:nth-child(odd) {
-  line-height: .1rem;
+  margin: 0px;
   letter-spacing: 0;
   color: #007bff;
+}
+
+.selection {
+  min-height: 10px;
 }

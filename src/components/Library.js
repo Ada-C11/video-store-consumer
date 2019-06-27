@@ -16,8 +16,6 @@ class Library extends Component {
     axios.get(this.props.url)
       .then((response) => {
         const movieList = response.data.map((movie) => {
-          // console.log("loaded movie", movie)
-          // console.log("Inventory", movie.inventory)
           return {
             title: movie.title,
             overview: movie.overview,
@@ -28,11 +26,9 @@ class Library extends Component {
             id: movie.id
           }
         });
-        // console.log(movieList);
         this.setState({
           movies: movieList.reverse(),
         })
-        // console.log("movieList", movieList)
       })
       .catch((error) => {
         this.props.addErrorMessageCallabck(`Unable to load movies. ${error.message}`, 'alert-warning')
@@ -40,15 +36,11 @@ class Library extends Component {
       })
   }
   selectMovie = (movieIndex) => {
-    // console.log(this.props.selectMovieCallback)
     const selectedMovie = this.state.movies[movieIndex]
     this.props.selectMovieCallback(selectedMovie);
-
-
   }
 
   render() {
-    // console.log(this.state.movies)
     const movies = this.props.generateMovieComponentsCallback(this.state.movies, true, this.selectMovie);
 
     return (
