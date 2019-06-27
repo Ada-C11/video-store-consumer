@@ -12,7 +12,6 @@ class CustomerList extends Component {
         super(props);
         this.state = {
             customers: [],
-            selected: undefined
         }
     }
 
@@ -53,11 +52,14 @@ class CustomerList extends Component {
               )
         });   
     }
+    
     componentDidMount() {
         this.getCustomers();
     }
-    componentDidUpdate() {
-        this.getCustomers();
+    componentDidUpdate(prevProps, prevState) {
+        if (prevProps.selected !== this.props.selected) {
+            this.getCustomers();
+          }
     }
 
     render() {

@@ -13,7 +13,6 @@ class MovieLibrary extends Component {
 
     this.state = {
       movieList: [],
-      selectedMovie: ""
     }
   }
 
@@ -57,8 +56,10 @@ class MovieLibrary extends Component {
     this.getMovies();
   }
 
-  componentDidUpdate() {
-    this.getMovies();
+  componentDidUpdate(prevProps, prevState) {
+    if (prevProps.selected !== this.props.selected) {
+      this.getMovies();
+    }
   }
 
   render() {
