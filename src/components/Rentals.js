@@ -26,7 +26,7 @@ class Rentals extends Component {
     axios.get('http://localhost:3000/movies')
     .then((response) => {
       this.setState({rentalLibrary: response.data})
-      console.log(this.state.rentalLibrary)
+      console.log(response.data)
     })
     .catch((error) => {
       this.setState({errorMessage: error.message})

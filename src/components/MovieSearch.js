@@ -37,12 +37,12 @@ class MovieSearch extends React.Component {
   });
 
   
-  const url = `http://localhost:3000/movies?query=` + searchQuery.title
-  axios.get(url)
-    .then((response) => {
+  const url = `http://localhost:3000/movies?query=${searchQuery.title}`
       console.log(searchQuery);
       console.log(url);
-      console.log(response.data);
+  axios.get(url)
+    .then((response) => {
+      
       this.setState({movies: response.data})
     })
     .catch((error) => {
@@ -68,6 +68,7 @@ class MovieSearch extends React.Component {
      axios.post('http://localhost:3000/movies/', movieData)
       .then((response) => {
         alert(`Sucessfully added ${movieData.title} to rental library!`);
+        console.log(response.status)
       })
       .catch((error) => {
         alert(`Error: ${error.message}`);
