@@ -14,8 +14,8 @@ class Customers extends Component {
       <div className="App">
         <header className="App__header">
           <h1 className="App__title">Customers</h1>
-         {allCustomers}
         </header>
+        <ul className="customer-list">{allCustomers}</ul>
       </div>
     );
   }

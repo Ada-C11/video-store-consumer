@@ -20,8 +20,10 @@ class Library extends Component {
 
     return (
       <div className="">
-        <h1 className="">Movies</h1>
+        <h1 className="App__title">Movies</h1>
+        <div className="">
         <ul className="movie-list">{allMovies}</ul>
+        </div>
       </div>
     );
   }

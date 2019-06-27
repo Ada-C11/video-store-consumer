@@ -99,10 +99,10 @@ class App extends Component {
       <div>
       <Router>
           <div>
-            <nav className="navbar navbar-expand-sm bg-dark navbar-dark">
-            <div class="container">
-              </div>
-              <div className="navbar-brand">Movie Rentals</div>
+            <nav className="navbar navbar-expand-s bg-dark navbar-dark">
+              <div className="navbar-brand">
+                
+                <h1>Movie Rentals</h1>
               <ul className="navbar-nav">
                 <li className="nav-item">
                   <Link className="nav-link" to="/">Home</Link>
@@ -116,6 +116,9 @@ class App extends Component {
                 <li className="nav-item">
                   <Link className="nav-link" to="/customers/">Customers</Link>
                 </li>
+                </ul>
+                </div>
+                <ul>
                 <li className="nav-item">
                   <div className="navbar-text">
                   Selected Customer: {selectedCustomer}
@@ -123,7 +126,7 @@ class App extends Component {
                 </li>
                 <li className="nav-item">
                   <div className="navbar-text">
-                    Selected Movie: {this.state.selected_movie.title}
+                    Selected Movie: {selectedMovie}
                   </div>
                 </li>
                 <li className="nav-item">

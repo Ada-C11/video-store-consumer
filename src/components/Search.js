@@ -86,7 +86,7 @@ class Search extends Component {
         <header className="App__header">
           <h1 className="App__title">Search for Movies to Add!</h1>
           <p className="App__intro-text">
-            <div>{notification}</div>
+            <div className="notification">{notification}</div>
             <form onSubmit={this.searchLibrary}>
               <input
                 type="text"

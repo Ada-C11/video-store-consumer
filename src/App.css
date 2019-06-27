@@ -9,3 +9,12 @@ ul {
 .container {
   background-color: white
 }
+
+.App__title {
+  text-align: center;
+  padding: 2rem
+}
+
+.notification {
+  background-color: white
+}
