@@ -22,7 +22,7 @@ class CustomerList extends Component {
   };
   componentDidMount() {
     axios
-      .get(`http://localhost:3000/customers`)
+      .get(`http://localhost:3001/customers`)
       .then(response => {
         const customers = response.data;
         this.setState({
@@ -44,9 +44,9 @@ class CustomerList extends Component {
             <p className="card-body">
               <h5 className="card-title">Name: {customer.name}</h5>
               <p>ID: {customer.id}</p>
-              <p>
+              <span>
                 # of Movies checked out: {customer.movies_checked_out_count}
-              </p>
+              </span>
               <p>Account credit: ${customer.account_credit.toFixed(2)}</p>
               <p>Contact: {customer.phone}</p>
 
@@ -55,7 +55,7 @@ class CustomerList extends Component {
                 type="button"
                 className="btn btn-danger"
                 aria-label="Close"
-                onClick={() => this.selectToCheckoutCustomer(customer.name)}
+                onClick={() => this.selectToCheckoutCustomer(customer)}
               >
                 SELECT CUSTOMER
               </button>

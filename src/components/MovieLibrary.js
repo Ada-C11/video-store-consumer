@@ -20,7 +20,7 @@ class MovieLibrary extends Component {
 
   componentDidMount() {
     axios
-      .get(`http://localhost:3000/movies`)
+      .get(`http://localhost:3001/movies`)
       .then(response => {
         const movielist = response.data;
 
