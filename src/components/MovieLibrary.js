@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Movie from './Movie';
+import './MovieLibrary.css';
 
 class MovieLibrary extends Component {
   constructor(props) {
@@ -31,9 +32,11 @@ class MovieLibrary extends Component {
 
   render() {
     return (
-      <section>
-        <h3>Movie Library</h3>
-        {this.displayMovies()}
+      <section className="site-content">
+        <h3 className="movie-library">Movie Library</h3>
+        <div className="all-movies">
+          {this.displayMovies()}
+        </div>
       </section>)
   }
 }

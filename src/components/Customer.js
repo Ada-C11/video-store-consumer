@@ -12,7 +12,7 @@ const Customer = (props) => {
       <td>{props.name}</td>
       <td>{props.numMoviesCheckedOut}</td>
       <td >${props.accountCredit}</td>
-      <td><button type="button" className="btn btn-primary" onClick={onClickHandler}>Add</button></td>
+      <td><button type="button" className="btn btn-primary" onClick={onClickHandler}>Select</button></td>
     </tr>
   );
 }

@@ -8,6 +8,7 @@ import MovieLibrary from './components/MovieLibrary';
 import Checkout from './components/Checkout';
 import SearchResult from './components/SearchResult';
 import CustomerList from './components/CustomerList';
+import Home from './components/Home'
 
 const URL_MOVIES = 'http://localhost:4000/movies';
 const URL_CUSTOMERS = 'http://localhost:4000/customers';
@@ -24,6 +25,8 @@ class App extends Component {
       allCustomers: [],
       addConfirmation: true,
       behaviorMessage: '',
+      messageStatus: '', 
+      welcomeMessage: 'Welcome to our Movie store',
     }
   }
 
@@ -62,10 +65,12 @@ class App extends Component {
     } else {
       axios.get(URL_MOVIES, {params: {query: searchInput}})
       .then((response) => {
+        console.log(response)
         this.displaySearchResults(response.data)
       })
       .catch((error) => {
         const apiErrorMessage = error.data || error.message
+        console.log(error.message)
         this.displayMessages(apiErrorMessage)
       })
     }
@@ -75,6 +80,7 @@ class App extends Component {
   }
 
   displaySearchResults = (result) => {
+    console.log(result)
     this.setState({
       searchResults: result,
     });
@@ -133,69 +139,75 @@ class App extends Component {
   clearSearchResults = () => {
     this.setState({
       searchResults: undefined,
+      welcomeMessage: '',
     })
   }
 
   displayMessages = (message) => {
+    console.log(message)
     if (message == 'Network Error'){
       message += ' - Make sure the API is running!'
     } else {
-      setTimeout(() => {this.setState({behaviorMessage: ''})}, 3000);
+      setTimeout(() => {this.setState({behaviorMessage: '', messageStatus: ''})}, 3000);
     }
     this.setState({
       behaviorMessage: message,
+      messageStatus: 'display'
     });
+    console.log(message)
     return (
       <p>{message}</p>
     )
   }
   
   render() {
+
     return (
       <div className="App">
+        
         <Router>
           <nav>
             <ul>
+              <li className="home-link">
+                <Link className="nav-option" to='/' onClick={this.clearSearchResults}><span>Home</span></Link>
+              </li>
+             
               <li>
-                <Link to='/' onClick={this.clearSearchResults}>Home</Link>
+                <Link className="nav-option" to='/movielibrary' onClick={this.clearSearchResults}><span>Movies</span></Link>
               </li>
               <li>
-                <Link to='/search' onClick={this.clearSearchResults}>Search</Link>
+                <Link className="nav-option" to='/customerlist' onClick={this.clearSearchResults}><span>Customers</span> </Link>
               </li>
               <li>
-                <Link to='/movielibrary' onClick={this.clearSearchResults}>Movie Library</Link>
-              </li>
-              <li>
-                <Link to='/customerlist' onClick={this.clearSearchResults}>Customer List</Link>
+                <Link className="nav-option" to='/search' onClick={this.clearSearchResults}><span>Search</span></Link>
               </li>
             </ul>
           </nav>
 
-          <Route path="/" />
-          <Route path="/movielibrary" render={(props) => <MovieLibrary {...props} allMovies={this.state.movieLibrary} selectedMovie={this.selectMovie} />} />
-          <Route path="/search" render={(props) => <Search onSearchButtonCallback={this.onSearchButtonCallback}/>} />
-          <Route path="/customerlist" render={(props) => <CustomerList {...props} allCustomers={this.state.allCustomers} selectedCustomer={this.selectCustomer} displayMessages={this.displayMessages}/>} />
-        </Router>
-
-          <section className="action-result-message">
-            {this.state.behaviorMessage} 
-          </section>
-
-          <section className="search-result">
-            <SearchResult result={this.state.searchResults} addMovieToLibraryCallback={this.addMovieToLibraryCallback}/>
-          </section>  
-
           <section className="checkout">
-            <Checkout 
-              selectedCustomerName={this.state.selectedCustomerName}
-              selectedCustomerId={this.state.selectedCustomerId}
-              selectedMovie={this.state.selectedMovie}
-              clearSelectedCallback={this.clearSelected}
-              displayMessages={this.displayMessages}
-              refreshList={this.componentDidMount}
-              />
-          </section>
+              <Checkout 
+                selectedCustomerName={this.state.selectedCustomerName}
+                selectedCustomerId={this.state.selectedCustomerId}
+                selectedMovie={this.state.selectedMovie}
+                clearSelectedCallback={this.clearSelected}
+                displayMessages={this.displayMessages}
+                refreshList={this.componentDidMount}
+                />
+            </section>
 
+            <section className={"result-message-" + this.state.messageStatus}>
+              {this.state.behaviorMessage} 
+            </section>
+
+            <section className="site-content">
+              <Route path="/" render={(props) => <Home welcomeMessage={this.state.welcomeMessage} />}/>
+              <Route path="/movielibrary" render={(props) => <MovieLibrary {...props} allMovies={this.state.movieLibrary} selectedMovie={this.selectMovie} />} />
+              <Route path="/search" render={(props) => <Search onSearchButtonCallback={this.onSearchButtonCallback}/>} />
+              <Route path="/customerlist" render={(props) => <CustomerList {...props} allCustomers={this.state.allCustomers} selectedCustomer={this.selectCustomer} displayMessages={this.displayMessages}/>} />
+              <SearchResult result= {this.state.searchResults} addMovieToLibraryCallback={this.addMovieToLibraryCallback}/>
+            </section>
+        </Router>
+            
       </div>
     )
   }

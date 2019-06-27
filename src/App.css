@@ -1,6 +1,120 @@
 .App {
-  text-align: center;
+  width: 100%;
+  min-height: 900vh;
+  display: grid;
+  grid-template-columns: 250px auto;
+  grid-template-rows: 60px 300px auto;
+  grid-template-areas:
+    "navigation navigation" 
+    "checkout site "
+    "message site"
 }
+
+.site-content {
+  grid-area: site;
+  background-color: #F7FFF7;
+}
+
+.checkout {
+  grid-area: checkout;
+  background-color: #1A535C;
+  grid-column-start: 1; 
+  grid-row-start: 2; 
+  box-sizing: border-box;
+  padding-top: 40px;
+  padding-left: px;
+}
+
+nav {
+  grid-area: navigation;
+  background-color: #39968F;
+}
+
+li {
+  list-style: none;
+  float: right;
+  margin-right: 60px;
+}
+
+.home-link {
+  float: left;
+}
+
+.home-page {
+  grid-area: site;
+  background-color: red;
+}
+
+
+.nav-option {
+  display: block;
+  padding: 20px;
+  color: white;
+}
+
+.nav-option {
+  display: inline-block;
+  border: none;
+  color: #FFFFFF;
+  text-align: left;
+  font-size: 20px;
+  padding: 20px;
+  width: 100px;
+  transition: all 0.5s;
+  cursor: pointer;
+}
+
+.nav-option span {
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  transition: 0.5s;
+}
+
+.nav-option span:after {
+  position: absolute;
+  opacity: 0;
+  top: 0;
+}
+
+.nav-option:hover span {
+  padding: 20px;
+  background-color: #FFE66D;
+}
+
+.nav-option:hover span:after {
+  opacity: 1;
+  right: 0;
+}
+
+.result-message-{
+  grid-area: message;
+  background-color: #1A535C;
+  font-size: 30px;
+}
+
+.result-message-display{
+  grid-area: message;
+  background-color: #E86262;
+  color: white;
+  text-align: center;
+  padding: 20px;
+  font-size: 20px;
+  font-family: "Courier New", Courier, monospace;
+}
+
+.btn {
+  color: #F7FFF7 !important;
+  background-color: #39968F !important;
+  border-color: #39968F !important;
+}
+.btn:hover {
+  background-color: #A34545 !important;
+  border-color: #A34545 !important;
+}
+
+
+
 
 
 

@@ -1,3 +1,9 @@
 .customer-row:hover{
   background-color: lightgrey;
 }
+
+.btn {
+  color: #fff;
+  background-color: #FF6B6B;
+  border-color: #007bff;
+}

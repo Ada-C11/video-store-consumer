@@ -12,7 +12,6 @@ class SearchResult extends Component {
 	}
 
 	displaySearchResults = () => {
-		console.log(this.props.result)
 		if (this.props.result !== undefined){
 			const moviesFound = this.props.result.map((movie, i) => {
 				return (

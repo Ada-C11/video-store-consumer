@@ -12,11 +12,7 @@ class Movie extends Component {
 
   render () {
     return(
-      <button onClick={this.onClickHandler}>
-        <section >
-          <img src={this.props.imgUrl} alt={this.props.title}></img>
-        </section>
-      </button>
+      <img className="movie" onClick={this.onClickHandler} src={this.props.imgUrl} alt={this.props.title}></img>
     );
   }
 }

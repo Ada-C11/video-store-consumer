@@ -1,6 +1,10 @@
 
 tbody tr:nth-of-type(odd) { 
-	background-color: #E1DEE1; 
+	background-color: #F7FFF7; 
+	
+}
+tbody tr:nth-of-type(even) { 
+	background-color: #9EE3DE;
 }
 
 .search-result-title {

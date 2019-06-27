@@ -1,12 +1,17 @@
 
+.movie {
+	padding: 20px;
+  }
+  
 /* Thanks Mario Duarte for sharing this animation on https://codepen.io/MarioDesigns/pen/woJgeo */
 
-button:hover{
+.movie:hover{
     overflow: hidden;
 	box-shadow: 0 5px 15px 0px rgba(0,0,0,0.6);
 	transform: translatey(0px);
     animation: float 6s ease-in-out infinite;
     border-width: 5px;
+    background-color: white;
 }
 
 @keyframes float {

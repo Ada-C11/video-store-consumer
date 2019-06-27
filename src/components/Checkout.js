@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import './Checkout.css';
 import axios from 'axios';
 
 class Checkout extends Component {
@@ -20,9 +21,10 @@ class Checkout extends Component {
 
     axios.post(checkoutUrl, queryParams)
     .then((response) => {
-      const successMessages = `Movie: ${movieTitle} was successfully checked out!`
-      this.props.displayMessages(successMessages);
+      console.log(response)
+      let successMessages = `Movie: ${movieTitle} was successfully checked out!`
       this.props.refreshList();
+      this.props.displayMessages(successMessages);
     })
     .catch((error) => {
       const errorMessages = error.message || error.response
@@ -45,16 +47,17 @@ class Checkout extends Component {
   render() {
     return(
       <div className="checkout-container">
-        <div>
-          Selected Customer: {this.props.selectedCustomerName}
+        <h5 className="checkout-title">Current selections</h5>
+        <div className="checkout-info">
+          Customer: {this.props.selectedCustomerName}
         </div>
-        <div>
-          Selected Movie: {this.props.selectedMovie}
+        <div className="checkout-info">
+          Movie: {this.props.selectedMovie}
         </div>
         <div>
           <button 
             onClick={this.onCheckoutButtonClick}
-            className="btn btn-primary"
+            className="btn btn-info"
           >
             Check out
           </button>
