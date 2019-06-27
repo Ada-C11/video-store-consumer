@@ -67,6 +67,10 @@ class App extends Component {
       });
   }
 
+  hideDescription = (movie) => {
+    
+  }
+
   filterMovies = (title) => {
     const movieExists = this.state.movieLibrary.filter(movie => movie.title === title);
     if (movieExists.length > 0) {

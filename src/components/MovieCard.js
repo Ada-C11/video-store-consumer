@@ -11,7 +11,7 @@ const MovieCard = (props) => {
     <div className="card">
       <div className="card-body">
           <img className="card-img-top" src={image_url} alt={ title } />
-          <h4>{ title }</h4>
+          <h4 className="movie-title">{ title }</h4>
           <p className="card-text">{ overview }</p>
           {displayButton}
       </div>
