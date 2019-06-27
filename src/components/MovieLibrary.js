@@ -17,7 +17,7 @@ class MovieLibrary extends Component {
     }
   }
 
-  componentDidMount() {
+  getMovies(){
     const endpoint = 'http://localhost:3000/movies'
     axios.get(endpoint)
       .then((response) => {
@@ -51,6 +51,14 @@ class MovieLibrary extends Component {
         )
         
       })
+  }
+
+  componentDidMount() {
+    this.getMovies();
+  }
+
+  componentDidUpdate() {
+    this.getMovies();
   }
 
   render() {

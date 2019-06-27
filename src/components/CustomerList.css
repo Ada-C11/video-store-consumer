@@ -1,5 +1,5 @@
 .customer-list {
-    width:80%;
+    width:900px;
     display: flex;
     flex-flow: row wrap;
     margin:auto;

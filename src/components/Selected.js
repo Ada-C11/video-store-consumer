@@ -24,7 +24,7 @@ class Selected extends Component {
                             toastTitle: "Success!",
                             toastMessage:`Successfully rented ${this.props.movie.title} to ${this.props.customer.name}. Your movie is due on ${response.data.due_date}.`,
                             toastTimestamp:Date.now(),
-                            error: true,
+                            error: false,
                           }
                     );
                     this.props.clearSelectionCallback();

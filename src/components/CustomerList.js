@@ -56,6 +56,9 @@ class CustomerList extends Component {
     componentDidMount() {
         this.getCustomers();
     }
+    componentDidUpdate() {
+        this.getCustomers();
+    }
 
     render() {
         const customerList = this.state.customers;

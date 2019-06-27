@@ -5,6 +5,7 @@ import axios from 'axios';
 import MovieCard from './MovieCard'
 
 
+
 import './Search.css';
 class Search extends Component {
   constructor(props) {

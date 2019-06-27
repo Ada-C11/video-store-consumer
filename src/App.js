@@ -134,15 +134,14 @@ class AppRouter extends Component {
           
           <Route
               path='/library'
-              render={(props) => <MovieLibrary {...props}selectMovie={this.selectMovie} 
+              render={(props) => <MovieLibrary {...props}selectMovie={this.selectMovie}
               addNotificationCallback={this.addNotification}/>}
-              
-              
           />
 
           <Route
               path='/customers'
-              render={(props) => <CustomerList {...props}selectCustomer={this.selectCustomer} 
+              render={(props) => <CustomerList {...props}
+              selectCustomer={this.selectCustomer} 
               addNotificationCallback={this.addNotification}/>}
               
           />
