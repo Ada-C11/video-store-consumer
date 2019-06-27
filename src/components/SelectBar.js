@@ -13,7 +13,6 @@ const showClearButton = (selection, callback) => {
           onClick={ () => { callback(selection) } } 
           href="#" 
           className="close select-button" 
-          // data-dismiss="alert" 
           aria-label="close"
         >
           &times;
@@ -21,7 +20,7 @@ const showClearButton = (selection, callback) => {
       </div>
     )
   } else {
-    return "nothing selected"
+    return "---"
   }
 }
 
@@ -42,7 +41,7 @@ const SelectBar = (props) => {
           Selected Customer: 
         </li>
         <li>
-          {selectedCustomer && selectedCustomer.name}
+          { showClearButton(selectedCustomer, checkoutCallback) }
         </li>
         <li>
           <button
