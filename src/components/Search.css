@@ -20,3 +20,13 @@
     padding: 20px;
     padding-bottom: 300px;
 }
+
+.classname-message {
+    display: none;
+
+}
+
+.classname-message-display {
+    display: block;
+    margin: 30px;
+}

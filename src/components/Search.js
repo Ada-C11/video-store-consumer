@@ -10,11 +10,12 @@ class Search extends Component {
     this.state = {
       title: "",
       searchList: [],
-      displayAddedDatabaseClassName: ""
+      displayAddedDatabaseClassName: "classname-message"
     }
   }
 
   onChangeTitle = (event) => {
+    this.setState({displayAddedDatabaseClassName: "classname-message"})
     let title = this.state.title;
     const value = event.target.value;
     title = value;
@@ -49,6 +50,7 @@ class Search extends Component {
       let newState = this.state
       newState.searchList = [];
       this.setState({newState});
+      this.setState({title: "", displayAddedDatabaseClassName: "classname-message-display"})
     }
   }
 
@@ -71,10 +73,6 @@ class Search extends Component {
     })
   }
 
-  componentWillUnmount() {
-    this.setState({displayAddedDatabaseClassName: ""})
-  }
-
   render () {
     return (
       <div>
@@ -87,6 +85,7 @@ class Search extends Component {
           <input className="btn btn-info btn-rounded btn-sm my-0" type="submit" value="Search" />
           </div>
         </form>
+        <p className={this.state.displayAddedDatabaseClassName}>You've added the movie to the database!</p>
         <h4>{this.searchDisplay()}</h4>
       </div>
     );
