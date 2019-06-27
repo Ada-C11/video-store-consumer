@@ -24,7 +24,6 @@ class RentalCheckout extends Component {
     axios.post(`http://localhost:3001/rentals/${movie.title}/check-out`, { customer_id: customer.id, due_date: dueDate})
       .then((response) => {
         return response.data
-        console.log("Did checked out")
       })
        
       .catch((error) => {
