@@ -34,6 +34,12 @@ class Customers extends Component {
                 const customerEntry = {
                     id: customer.id,
                     name: customer.name,
+                    address: customer.address,
+                    city: customer.city,
+                    state: customer.state,
+                    postalCode: customer.postal_code,
+                    phone: customer.postal_code,
+                    accountCredit: customer.account_credit
                 }
 
                 return customerEntry;
