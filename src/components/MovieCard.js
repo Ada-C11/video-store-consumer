@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-
+import './MovieCard.css';
+ 
 const MovieCard = (props) => {
   const { title, release_date, overview, image_url } = props.movie;
   const displayButton = props.filterMoviesCallback(props.movie.title) ? 
