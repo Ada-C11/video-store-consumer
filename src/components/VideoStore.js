@@ -140,7 +140,10 @@ class VideoStore extends Component {
 
       const newMovieList = [newMovie, ...this.state.movieList];
 
-      this.setState({ movieList: newMovieList });
+      this.setState({ 
+        movieList: newMovieList,
+        queryString: ""
+       });
     })
     .catch((error) => {
       this.setState({ error: error.message })
