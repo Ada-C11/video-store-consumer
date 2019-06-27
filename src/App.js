@@ -32,6 +32,7 @@ class AppRouter extends Component {
       selectedMovie: undefined,
       selectedCustomer:undefined,
       notifications: [],
+      activeRentals:0
     }
   }
 
@@ -80,6 +81,7 @@ class AppRouter extends Component {
     this.setState( {
       selectedMovie: undefined,
       selectedCustomer:undefined,
+      activeRentals: this.state.activeRentals + 1,
     });
   }
 
@@ -135,7 +137,7 @@ class AppRouter extends Component {
           <Route
               path='/library'
               render={(props) => <MovieLibrary {...props}selectMovie={this.selectMovie}
-              selected = {this.state.selectedMovie}
+              activeRentals = {this.state.activeRentals}
               addNotificationCallback={this.addNotification}/>}
           />
 
@@ -143,7 +145,7 @@ class AppRouter extends Component {
               path='/customers'
               render={(props) => <CustomerList {...props}
               selectCustomer={this.selectCustomer} 
-              selected = {this.state.selectedCustomer}
+              activeRentals = {this.state.activeRentals}
               addNotificationCallback={this.addNotification}/>}
               
           />

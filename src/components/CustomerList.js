@@ -57,7 +57,7 @@ class CustomerList extends Component {
         this.getCustomers();
     }
     componentDidUpdate(prevProps, prevState) {
-        if (prevProps.selected !== this.props.selected) {
+        if (prevProps.activeRentals !== this.props.activeRentals)  {
             this.getCustomers();
           }
     }

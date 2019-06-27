@@ -57,7 +57,7 @@ class MovieLibrary extends Component {
   }
 
   componentDidUpdate(prevProps, prevState) {
-    if (prevProps.selected !== this.props.selected) {
+    if (prevProps.activeRentals !== this.props.activeRentals) {
       this.getMovies();
     }
   }
