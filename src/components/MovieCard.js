@@ -67,7 +67,7 @@ class MovieCard extends Component {
     } 
     
     return (
-      <Card style={{ width: '18rem' }}>
+      <Card style={{ width: '18rem' , height: '60rem'}}>
         <Card.Img variant="top" src={image_url} alt={`cover for ${title}`}/>
         <Card.Body>
           <Card.Title>{title}</Card.Title>
