@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import axios from 'axios';
 
 import Customer from './Customer';
+import './CustomerList.css'
 
 class CustomerList extends Component {
   constructor(props) {
@@ -17,30 +18,30 @@ class CustomerList extends Component {
     const customerURL = this.props.url + 'customers/';
 
     axios.get(customerURL)
-    .then((response) => {
-      const customerList = response.data.map((customer) => {
+      .then((response) => {
+        const customerList = response.data.map((customer) => {
 
-        return {
-          id: customer.id,
-          name: customer.name,
-          registeredAt: customer.registered_at,
-          address: customer.address,
-          city: customer.city,
-          state: customer.state,
-          zip: customer.postal_code,
-          phone: customer.phone,
-          accountCredit: customer.account_credit,
-          moviesCheckedOutCount: customer.movies_checked_out_count,
-        }
-      });
-      console.log(customerList);
-      this.setState({
-        customers: customerList,
+          return {
+            id: customer.id,
+            name: customer.name,
+            registeredAt: customer.registered_at,
+            address: customer.address,
+            city: customer.city,
+            state: customer.state,
+            zip: customer.postal_code,
+            phone: customer.phone,
+            accountCredit: customer.account_credit,
+            moviesCheckedOutCount: customer.movies_checked_out_count,
+          }
+        });
+        console.log(customerList);
+        this.setState({
+          customers: customerList,
+        })
       })
-    })
-    .catch((error) => {
-      console.log(error);
-    })
+      .catch((error) => {
+        console.log(error);
+      })
   }
 
   selectACustomer = (index) => {
@@ -68,14 +69,30 @@ class CustomerList extends Component {
           selectACustomerCallback={this.selectACustomer}
         />
       )
-      });
+    });
   };
 
   render() {
-    return(
+    return (
       <div>
-        <h3>This is a Customer List!</h3>
-        { this.generateCustomers() }
+        <h3>Customer List</h3>
+        <table className="table" >
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Name</th>
+              <th>Address</th>
+              <th>Phone Number</th>
+              <th>Movie Count</th>
+              <th>Select Customer</th>
+            </tr>
+          </thead>
+          <tbody>
+
+            {this.generateCustomers()}
+
+          </tbody>
+        </table>
       </div>
     )
   }
@@ -83,6 +100,6 @@ class CustomerList extends Component {
 
 CustomerList.propTypes = {
   url: PropTypes.string
-  }
+}
 
 export default CustomerList;

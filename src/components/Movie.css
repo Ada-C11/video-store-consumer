@@ -1,0 +1,14 @@
+.main {
+  background-color: #5EB1BF;
+  margin: 20px;
+  width: 200px;
+}
+
+.flex {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.movie-title {
+  min-height: 3.5rem;
+}

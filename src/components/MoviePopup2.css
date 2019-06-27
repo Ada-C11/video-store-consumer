@@ -1,5 +1,4 @@
 .popup ul {
-
   padding: 0;
 }
 
@@ -8,15 +7,43 @@
   padding: 2rem;
 }
 
+.popup-body {
+  /* display: flex; */
+  /* flex-direction: row; */
+}
+
+.popup-body ul {
+  margin-left: 1em;
+}
+
+.popup-body ul li {
+  position: inherit;
+  text-transform: inherit;
+  text-align: left;
+}
+/* .flexbox {
+  display: flex;
+} */
 
 .modal {
-  font-size: 12px;
+  font-size: 8px;
   border-radius: 25%;
+  width: 20rem;
 }
-.modal > .header {
+
+.popup-photo {
+  /* display: inline-block; */
+  float: left;
+  padding-right: 2rem;
+  padding-bottom: 1rem;
+}
+/* .modal > .header {
   width: 100%;
   border-bottom: 1px solid gray;
   font-size: 18px;
   text-align: center;
   padding: 5px;
+} */
+.popup-content {
+  min-height: 18rem;
 }
