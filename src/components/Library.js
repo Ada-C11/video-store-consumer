@@ -30,7 +30,7 @@ class Library extends Component {
         });
         // console.log(movieList);
         this.setState({
-          movies: movieList,
+          movies: movieList.reverse(),
         })
         // console.log("movieList", movieList)
       })
