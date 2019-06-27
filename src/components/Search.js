@@ -2,6 +2,8 @@ import React, { Component} from 'react';
 import axios from 'axios';
 import './Search.css'
 
+import Movie from './Movie'
+
 class Search extends Component {
   constructor() {
     super();
@@ -51,12 +53,20 @@ class Search extends Component {
 
   searchDisplay = () => {
     return this.state.searchList.map((movie) => {
-        return (
-          <div>
-            <p className='movie-name'>{movie.title}</p>
-            <button className="select-link" onClick={this.onMovieSelect(movie)}>Select!</button>
-          </div>
-        )
+      return (
+        <tbody>
+          <td><button className="select-link" onClick={this.onMovieSelect(movie)}>Select!</button></td>
+          <Movie 
+            key={movie.id}
+            id={movie.id}
+            title={movie.title}
+            release_date={movie.release_date}
+            overview={movie.overview}
+            image_url={movie.image_url}
+            addMovieToRentCallback = {this.props.addMovieToRentCallback}
+          />          
+        </tbody>
+      )
     })
   }
 
