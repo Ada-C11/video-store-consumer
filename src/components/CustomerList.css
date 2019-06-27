@@ -1,7 +1,12 @@
 tr:nth-child(even) {
-  background-color: #CDEDF6;
+  /* background-color: #CDEDF6; */
+  background-color: #5EB1BF;
 }
 
 tr:nth-child(odd) {
-  background-color: rgb(131, 196, 208);
+  /* background-color: #5EB1BF; */
+  /* background-color: #CDEDF6; */
+
+  background-color: rgb(152, 208, 218);
 }
+
