@@ -7,14 +7,15 @@ import axios  from 'axios'
 import Message from './Message.js'
 
 class Search extends Component {
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
 
         this.state = {
             movies: [],
             error: null
         }
 
+        props.reportStatusCallback(null);
     }
 
     reportStatus = (text) => {

@@ -20,6 +20,10 @@ class App extends Component {
     }
   }
 
+  // componentDidUpdate = () => {
+  //   console.log("Inside componentDidMount!");
+  // }
+
   reportStatus = (text) => {
     this.setState({message: text})
   }

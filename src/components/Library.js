@@ -13,6 +13,8 @@ class Library extends Component {
       movies: [],
       error: null
     }
+
+    props.reportStatusCallback(null);
   }
 
   reportStatus = (text) => {

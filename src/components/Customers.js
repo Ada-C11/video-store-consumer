@@ -5,13 +5,15 @@ import Customer from './Customer';
 import Message from './Message.js'
 
 class Customers extends Component {
-    constructor() {
+    constructor(props) {
         super();
 
         this.state = {
             customers: [],
             error: null
         }
+
+        props.reportStatusCallback(null);
 
     }
 
