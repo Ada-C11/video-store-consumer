@@ -17,10 +17,10 @@ class VideoStore extends Component {
     this.state = {
       // Customers
       customerList: [],
-      currentCustomer: undefined,
+      currentCustomer: "",
       // Movies
       movieList: [],  
-      currentMovie: undefined,
+      currentMovie: "",
       // SearchBar
       queryString: "",
       searchMatches: [],
@@ -168,9 +168,11 @@ class VideoStore extends Component {
       });
   };
 
-  disableCheckoutButton = ((this.state.currentCustomer === undefined) && (this.state.currentMovie === undefined)) ? true : false
+  // disableCheckoutButton = ((this.state.currentCustomer === "") && (this.state.currentMovie === "")) ? true : false
 
   render() {
+    const disableCheckoutButton = ((this.state.currentCustomer === "") && (this.state.currentMovie === "")) ? true : false
+
     return (
       <div>
         <Router>
@@ -196,7 +198,7 @@ class VideoStore extends Component {
             <div>Checking out title: {this.state.currentMovie.title}</div>
             <button 
               onClick={this.onRentalCheckout}
-              disabled={this.disableCheckoutButton}
+              disabled={disableCheckoutButton}
               >
                 Checkout
             </button>
