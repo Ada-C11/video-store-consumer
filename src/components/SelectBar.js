@@ -3,8 +3,31 @@ import propTypes from 'prop-types';
 
 import './SelectBar.css'
 
+const showClearButton = (selection, callback) => {
+  if (selection) {
+    console.log(selection);
+    return(
+      <div>
+        { selection.title }
+        <button 
+          onClick={ () => { callback(selection) } } 
+          href="#" 
+          className="close select-button" 
+          // data-dismiss="alert" 
+          aria-label="close"
+        >
+          &times;
+        </button>
+      </div>
+    )
+  } else {
+    return "nothing selected"
+  }
+}
+
 const SelectBar = (props) => {
   const { selectedMovie, selectedCustomer, checkoutCallback } = props;
+  
 
   return (
     <div className="select-bar">
@@ -13,7 +36,7 @@ const SelectBar = (props) => {
           Selected Movie:
         </li>
         <li>
-          {selectedMovie && selectedMovie.title}
+          { showClearButton(selectedMovie, checkoutCallback) }
         </li>
         <li>
           Selected Customer: 
@@ -23,6 +46,7 @@ const SelectBar = (props) => {
         </li>
         <li>
           <button
+            className="select-button"
             type="button"
             onClick={() => { checkoutCallback() }}
           >Checkout Rental</button>

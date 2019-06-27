@@ -16,7 +16,6 @@ class Library extends Component {
     axios.get(this.props.url)
       .then((response) => {
         const movieList = response.data.map((movie) => {
-          console.log(movie)
           return {
             title: movie.title,
             overview: movie.overview,

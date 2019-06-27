@@ -25,8 +25,6 @@ class Customer extends Component {
             Select
           </button>
         </td>
-
-
       </tr>
     )
   };
