@@ -4,7 +4,7 @@ import Customer from './Customer';
 import Table from 'react-bootstrap/Table'
 
 // import axios from 'axios';
-// import './Customers.css';
+import './Customers.css';
 
 const Customers = (props) => {
   const customerCollection = props.customers.map((customer, i) => {
@@ -12,14 +12,14 @@ const Customers = (props) => {
    });
 
   return (
-    <section>
-      <h2>Customers</h2>
-      <Table>
+    <section className="customers_container">
+      <h1>Customers</h1>
         <thead>
           <tr>
-            <th>Customer Name</th>
+            <th>Name</th>
           </tr>
         </thead>
+        <Table striped size="sm">
         <tbody>{customerCollection}</tbody>
       </Table>
     </section>

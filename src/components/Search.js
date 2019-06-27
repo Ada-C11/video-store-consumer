@@ -99,6 +99,7 @@ class Search extends Component {
                         <th>Title</th>
                         <th>Overview</th>
                         <th>Release Date</th>
+                        <th></th>
                     </tr>
                 </thead>);
             }
@@ -109,8 +110,8 @@ class Search extends Component {
         }
 
         return (
-            <section>
-                <h3 className="search_title">Search for Movies</h3>
+            <section className="search_container">
+                <h3 className="search_title">Search Titles</h3>
                 <SearchBar searchCallback={this.searchCallback}/>
                 {errorSection}
                 {successSection}
