@@ -8,6 +8,7 @@ import Movies from './Movies';
 import Rentals from './Rentals';
 import SearchBar from './SearchBar';
 import SearchMatches from './SearchMatches';
+import Search from './Search'
 
 class VideoStore extends Component {
   constructor(props) {
@@ -208,19 +209,22 @@ class VideoStore extends Component {
             />
             )}
           />
+          <Route path="/search" render={() => (
+            <div>
+              <SearchBar
+              searchCallback={this.searchCallback}
+              onChange={this.queryChanged}
+              queryString={this.state.queryString} 
+              />
+      
+              <SearchMatches
+              searchMatches={this.state.searchMatches}
+              onMovieAdd={this.onMovieAdd}
+              />
+            </div>
+            )}
+          />
         </Router>
-
-      <SearchBar
-        searchCallback={this.searchCallback}
-        onChange={this.queryChanged}
-        queryString={this.state.queryString} 
-      />
-
-      <SearchMatches
-        searchMatches={this.state.searchMatches}
-        onMovieAdd={this.onMovieAdd}
-      />
-
       </div>
     )
   }
