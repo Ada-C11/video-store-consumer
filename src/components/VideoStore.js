@@ -8,6 +8,7 @@ import Movies from './Movies';
 import Rentals from './Rentals';
 import SearchBar from './SearchBar';
 import SearchMatches from './SearchMatches';
+import Search from './Search'
 
 class VideoStore extends Component {
   constructor(props) {
@@ -16,10 +17,10 @@ class VideoStore extends Component {
     this.state = {
       // Customers
       customerList: [],
-      currentCustomer: undefined,
+      currentCustomer: "",
       // Movies
       movieList: [],  
-      currentMovie: undefined,
+      currentMovie: "",
       // SearchBar
       queryString: "",
       searchMatches: [],
@@ -28,7 +29,7 @@ class VideoStore extends Component {
     };
   }
   url = "https://enigmatic-chamber-40825.herokuapp.com"
-  customersUrl = "https://enigmatic-chamber-40825.herokuapp.com/customers"
+  customersURL = "https://enigmatic-chamber-40825.herokuapp.com/customers"
 
   componentDidMount() {
     this.getCustomers();
@@ -36,7 +37,7 @@ class VideoStore extends Component {
   }
 
   getCustomers = () => {
-    axios.get(this.customers_url)
+    axios.get(this.customersURL)
     .then(response => {
       console.log(response)
 
@@ -167,9 +168,11 @@ class VideoStore extends Component {
       });
   };
 
-  disableCheckoutButton = ((this.state.currentCustomer === undefined) && (this.state.currentMovie === undefined)) ? true : false
+  // disableCheckoutButton = ((this.state.currentCustomer === "") && (this.state.currentMovie === "")) ? true : false
 
   render() {
+    const disableCheckoutButton = ((this.state.currentCustomer === "") && (this.state.currentMovie === "")) ? true : false
+
     return (
       <div>
         <Router>
@@ -195,7 +198,7 @@ class VideoStore extends Component {
             <div>Checking out title: {this.state.currentMovie.title}</div>
             <button 
               onClick={this.onRentalCheckout}
-              disabled={this.disableCheckoutButton}
+              disabled={disableCheckoutButton}
               >
                 Checkout
             </button>
@@ -218,19 +221,22 @@ class VideoStore extends Component {
             />
             )}
           />
+          <Route path="/search" render={() => (
+            <div>
+              <SearchBar
+              searchCallback={this.searchCallback}
+              onChange={this.queryChanged}
+              queryString={this.state.queryString} 
+              />
+      
+              <SearchMatches
+              searchMatches={this.state.searchMatches}
+              onMovieAdd={this.onMovieAdd}
+              />
+            </div>
+            )}
+          />
         </Router>
-
-      <SearchBar
-        searchCallback={this.searchCallback}
-        onChange={this.queryChanged}
-        queryString={this.state.queryString} 
-      />
-
-      <SearchMatches
-        searchMatches={this.state.searchMatches}
-        onMovieAdd={this.onMovieAdd}
-      />
-
       </div>
     )
   }
