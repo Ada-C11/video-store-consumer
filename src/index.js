@@ -12,25 +12,10 @@ import { Route, Link, BrowserRouter as Router } from "react-router-dom";
 const routing = (
   <Router>
     <div>
-      {/* <ul>
-        <li>
-          <Link to="/">Home</Link>
-        </li>
-        <li>
-          <Link to="/MovieLibrary">MovieLibrary</Link>
-        </li>
-        <li>
-          <Link to="/MovieSearchForm">MovieSearchForm</Link>
-        </li>
-
-        <li>
-          <Link to="/CustomerList">CustomerList</Link>
-        </li>
-      </ul> */}
-      <Route exact path="/" component={App} />
-      <Route path="/MovieLibrary" component={MovieLibrary} />
-      <Route path="/MovieSearchForm" component={MovieSearchForm} />
-      <Route path="/CustomerList" component={CustomerList} />
+      <Route exact path="/" component={() => <App />} />
+      <Route path="/MovieLibrary" component={() => <App page="library" />} />
+      <Route path="/MovieSearchForm" component={() => <App page="search" />} />
+      <Route path="/CustomerList" component={() => <App page="list" />} />
     </div>
   </Router>
 );

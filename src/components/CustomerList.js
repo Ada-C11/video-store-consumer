@@ -27,7 +27,6 @@ class CustomerList extends Component {
         const customers = response.data.map(customer => {
           return customer;
         });
-        console.log(response.data);
         this.setState({
           customers: customers
         });

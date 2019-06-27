@@ -32,10 +32,6 @@ class App extends Component {
     });
   };
 
-  setDisplay = option => {
-    this.setState({ displayOption: option, searchComplete: false });
-  };
-
   rentMovieWithMovie = movie => {
     this.setState({ hasMovie: movie });
   };
@@ -51,36 +47,10 @@ class App extends Component {
     });
   };
 
-  // routing = (
-  //   <Router>
-  //     <div>
-  //       <ul>
-  //         <li>
-  //           <Link to="/">Home</Link>
-  //         </li>
-  //         <li>
-  //           <Link to="/MovieLibrary">MovieLibrary</Link>
-  //         </li>
-  //         <li>
-  //           <Link to="/MovieSearchForm">MovieSearchForm</Link>
-  //         </li>
-
-  //         <li>
-  //           <Link to="/CustomerList">CustomerList</Link>
-  //         </li>
-  //       </ul>
-  //       <Route exact path="/" component={App} />
-  //       <Route path="/MovieLibrary" component={MovieLibrary} />
-  //       <Route path="/MovieSearchForm" component={MovieSearchForm} />
-  //       <Route path="/CustomerList" component={CustomerList} />
-  //     </div>
-  //   </Router>
-  // );
-
   render() {
     let optionalComponent;
 
-    if (this.state.displayOption === "library") {
+    if (this.props.page === "library") {
       optionalComponent = (
         <MovieLibrary
           rentMovieWithMovieCallback={this.rentMovieWithMovie}
@@ -88,7 +58,7 @@ class App extends Component {
           addMovietoLibrayCallback={this.addMovietoLibray}
         />
       );
-    } else if (this.state.displayOption === "list") {
+    } else if (this.props.page === "list") {
       optionalComponent = (
         <CustomerList
           rentMovieWithCustomerCallback={this.rentMovieWithCustomer}
@@ -97,7 +67,7 @@ class App extends Component {
     }
 
     let optionalSearch;
-    if (this.state.displayOption === "search") {
+    if (this.props.page === "search") {
       optionalSearch = <MovieSearchForm getresultcallback={this.getresult} />;
     }
 
@@ -128,36 +98,23 @@ class App extends Component {
           <h1 className="App-title">
             <Link to="/">BitaRos Amazing VideoStore </Link>
           </h1>
-          {/* <h1 className="App-title">BitaRos Amazing VideoStore</h1> */}
         </header>
         <section className="App-main">
-          <button
-            type="button"
-            className="movie-display"
-            aria-label="Close"
-            onClick={() => this.setDisplay("library")}
-          >
-            <Link to="/MovieLibrary">Movie Library</Link>{" "}
-            {/* <p>Movie Library </p> */}
-          </button>
-          <button
-            type="button"
-            className="movie-display"
-            aria-label="Close"
-            onClick={() => this.setDisplay("search")}
-          >
-            <Link to="/MovieSearchForm">Movie Search</Link>{" "}
-            {/* <p>Movie Search </p> */}
-          </button>
-          <button
-            type="button"
-            className="movie-display"
-            aria-label="Close"
-            onClick={() => this.setDisplay("list")}
-          >
-            <Link to="/CustomerList">Customer List</Link>{" "}
-            {/* <p>Customer  List </p> */}
-          </button>
+          <Link to="/MovieLibrary">
+            <button type="button" className="movie-display" aria-label="Close">
+              <p>Movie Library</p>
+            </button>
+          </Link>
+          <Link to="/MovieSearchForm">
+            <button type="button" className="movie-display" aria-label="Close">
+              <p>Movie Search</p>
+            </button>
+          </Link>
+          <Link to="/CustomerList">
+            <button type="button" className="movie-display" aria-label="Close">
+              <p>Customer List</p>
+            </button>
+          </Link>
           {optionalSearch}
         </section>
         <section>
@@ -171,6 +128,3 @@ class App extends Component {
 }
 
 export default App;
-ReactDOM.render(<app/>, document.getElementById("root"));
-registerServiceWorker();
-

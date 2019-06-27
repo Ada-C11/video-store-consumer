@@ -13,16 +13,17 @@
 }
 
 .App-main {
-  padding-top: 7rem;
+  padding-top: 8rem;
   padding-bottom: 5rem;
   text-align: center;
   background-color: #c5d86d;
-  
 }
 
-.App-title {
+.App-title a {
   text-align: center;
   font-size: 1.5em;
+  color: #fff;
+  text-decoration: none;
 }
 
 .movie-display {
@@ -37,4 +38,3 @@
   background-color: #fff;
   color: #444;
 }
-

@@ -29,7 +29,6 @@ class MovieLibrary extends Component {
           };
           return newMovie;
         });
-        console.log(movielist);
       })
       .catch(error => {
         console.log(error);
@@ -40,7 +39,6 @@ class MovieLibrary extends Component {
 
   render() {
     const movies = this.props.librayMovies.map(movie => {
-      console.log(movie);
       return (
         <section key={movie.name}>
           <div className="card-body">
