@@ -85,7 +85,11 @@ class App extends Component {
     axios.post(`/rentals/${movie.title}/check-out`, checkoutParams)
     .then(() => {
       let success = `${movie.title} was successfully checked out to ${customer.name}!`;
-      this.setState({userMessages: [success]})
+      this.setState({
+        userMessages: [success],
+        selectedCustomer: null,
+        selectedMovie: null,
+      })
     })
     .catch(error => console.log(error));
   }
