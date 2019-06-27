@@ -5,11 +5,11 @@ import Customer from './Customer';
 import './CustomerList.css';
 
 class CustomerList extends Component {
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
 
         this.state = {
-            customers: []
+            customers: [],
         };
     }
 
@@ -25,6 +25,10 @@ class CustomerList extends Component {
           .catch((error) => {
             this.setState({ error: error.message });
           });
+    }
+
+    customerNameCallback = (customerName) => {
+    console.log(customerName);
     }
 
     render() {
@@ -52,8 +56,9 @@ class CustomerList extends Component {
   }
 }
 
-CustomerList.propTypes = {
 
+CustomerList.propTypes = {
+  customerNameCallback: PropTypes.func,
 };
 
 export default CustomerList;

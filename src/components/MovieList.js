@@ -6,8 +6,8 @@ import Movie from './Movie';
 //import './MovieList.css';
 
 class MovieList extends Component {
-    constructor() {
-      super();
+    constructor(props) {
+      super(props);
   
       this.state = {
         movies: [],
@@ -28,6 +28,9 @@ class MovieList extends Component {
       });
     }
   
+    movieTitleCallback = (title) => {
+    console.log(title);
+    }
 
     render() {
       const allMovies = this.state.movies.map((movie) => {
@@ -38,9 +41,9 @@ class MovieList extends Component {
           overview={movie.overview}
           release_date={movie.release_date}
           image_url={movie.image_url}
-          external_id={movie.external_id}/>
+          external_id={movie.external_id}
+          movieTitleCallback={this.movieTitleCallback}/>
       });
-  
   
       return (
         <div >
@@ -53,7 +56,7 @@ class MovieList extends Component {
   }
   
   MovieList.propTypes = {
-  
+    movieTitleCallback: PropTypes.func,
   };
   
   export default MovieList;

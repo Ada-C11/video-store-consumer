@@ -6,12 +6,12 @@ class Navbar extends Component {
     render() {
         return (
             <nav className="navbar navbar-expand-lg navbar-light bg-light justify-content-center">
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                   <span class="navbar-toggler-icon"></span>
+                <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                   <span className="navbar-toggler-icon"></span>
                 </button>
                 <div className="collapse navbar-collapse navbar-nav nav-fill justify-content-between" id="navbarSupportedContent">
                     <div className="nav-item">
-                        <Link to="/customers" className="nav-link btn btn-outline-primary">customers<span class="sr-only">(current)</span></Link>
+                        <Link to="/customers" className="nav-link btn btn-outline-primary">customers<span className="sr-only">(current)</span></Link>
                     </div>
                     <div className="nav-item">
                         <Link to="/" className="nav-link btn btn-outline-primary">rental library</Link>

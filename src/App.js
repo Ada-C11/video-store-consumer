@@ -10,20 +10,33 @@ import { withRouter } from "react-router";
 import MovieList from './components/MovieList.js';
 // import { BrowserRouter as Router, Link} from 'react-router-dom';
 
-const customerData = () => (
-  <div>
-    <CustomerList/>
-  </div>
-);
-
-
+// const customerData = () => (
+//   <div>
+//     <CustomerList/>
+//   </div>
+// );
 
 class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-        currentCustomer: "",
+        currentCustomer: "none",
+        currentMovie: "none",
     };
+  }
+   
+  movieToRent = (movieName) => {
+    console.log(`Current Movie = ${movieName}`);
+    this.setState({
+      currentMovie: movieName,
+    });
+  }
+
+  customerRenting = (customerName) => {
+    console.log(`Current Customer = ${customerName}`);
+    this.setState({
+      currentCustomer: customerName,
+    });
   }
 
   render() {
@@ -36,8 +49,13 @@ class App extends Component {
        <Navbar />
       
           <div>
-            <Route path="/" exact component={MovieList}/>
-            <Route path="/customers" component={customerData}/>
+            <Route exact path="/" render={ (routerprops) => <MovieList {...routerprops}
+          movieTitleCallback={this.movieToRent } /> }
+          />
+            <Route exact path="/customers"
+          render={ (routerprops) => <CustomerList {...routerprops}
+          customerNameCallback={this.customerRenting} /> }
+          />
             <Route path="/search" component={
               (routerProps) => <Search searchResults={this.state.searchResults} {...routerProps} />
             }/>
