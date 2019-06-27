@@ -7,18 +7,29 @@ import axios  from 'axios'
 import Message from './Message.js'
 
 class Search extends Component {
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
 
         this.state = {
             movies: [],
             error: null
         }
 
+        props.reportStatusCallback(null);
+    }
+
+    reportStatus = (text) => {
+        this.props.reportStatusCallback(text);
+    }
+
+    addMovieCallback = (movie) => {
+        this.setState({message: null})
+        this.props.addMovieCallback(movie);
     }
 
     movieSearchCallback = (title) => {
-        console.log(title)
+        this.reportStatus("Searching through database...")
+
         const getURL = 'http://localhost:3002/'
         axios.get(getURL, {
             params: {
@@ -38,24 +49,27 @@ class Search extends Component {
                     return movieResult
                 })
                 this.setState({ movies });
-                this.setState({message: "Search successful!"})
+                this.reportStatus("Search successful!")
             })
             .catch((error) => {
                 this.setState({error: error.message });
-                this.setState({message: error.message})
+                this.reportStatus(error.message)
             })
     }
 
     render() {
         return (
             <div>
-                
-                <Message message={this.state.message} />
-                <SearchForm movieSearchCallback={this.movieSearchCallback} />
-                <SearchResults movieData={this.state.movies} />
+              <SearchForm movieSearchCallback={this.movieSearchCallback} />
+              <SearchResults movieData={this.state.movies} addMovieCallback={this.addMovieCallback}/>
             </div>
         );
     }
 }
 
 export default Search
+
+Search.propType = {
+    addMovieCallback: PropTypes.func,
+    reportStatusCallback: PropTypes.func,
+}

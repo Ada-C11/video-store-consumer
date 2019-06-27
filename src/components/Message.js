@@ -1,16 +1,14 @@
 import React from 'react'
 import PropTypes from 'prop-types';
-import { stringLiteral } from '@babel/types';
 
 const Message = (props) => {
 
   return (
-      <div>
-
+    <div>
       {props.message && 
         <p>{props.message}</p>
       }
-      </div>
+    </div>
     
     )
 }
