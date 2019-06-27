@@ -16,13 +16,15 @@ class Library extends Component {
     axios.get(this.props.url)
       .then((response) => {
         const movieList = response.data.map((movie) => {
-
+          console.log(movie)
           return {
             title: movie.title,
             overview: movie.overview,
             release_date: movie.release_date,
             image_url: movie.image_url,
-            id: movie.external_id,
+            external_id: movie.external_id,
+            inventory: movie.inventory,
+            id: movie.id
           }
         });
         // console.log(movieList);
@@ -44,13 +46,14 @@ class Library extends Component {
   }
 
   render() {
+    console.log(this.state.movies)
     const movies = this.props.generateMovieComponentsCallback(this.state.movies, true, this.selectMovie);
 
     return (
       <div>
         <h3>Movie Library</h3>
         <div className="row product-list">
-          { movies }
+          {movies}
         </div>
       </div>
     )

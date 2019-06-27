@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import PropTypes from 'prop-types';
+import MoviePopup from './MoviePopup2'
 
 import Movie from './Movie';
 import SearchForm from './SearchForm';
@@ -69,6 +70,9 @@ class Search extends Component {
         />
         <div className="row product-list">
           {movies}
+        </div>
+        <div>
+
         </div>
       </section>
     )

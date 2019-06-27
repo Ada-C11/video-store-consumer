@@ -1,5 +1,6 @@
 button.button {
   background-color: rgb(228, 149, 64);
+  border: 3px solid rgb(228, 149, 64);
   /* border: 3px solid #DE1A1A; */
 }
 

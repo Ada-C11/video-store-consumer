@@ -1,5 +1,6 @@
 import React from 'react';
 import propTypes from 'prop-types';
+import MoviePopup from './MoviePopup2'
 
 import './Movie.css';
 
@@ -15,15 +16,23 @@ const Movie = (props) => {
   return (
     <div className="main card-body">
       <img src={image_url} />
-      <h4>{title}</h4>
+      <h4 className="movie-title">{title}</h4>
       <p>{release_date}</p>
-      <p>{overview}</p>
-      <button 
-        value={index} 
-        onClick={() => { callbackFunction(index) }}
-      >
-        {buttonText}
-      </button>
+      {/* <p>{overview}</p> */}
+      <div className="flex">
+        <button
+          className="button"
+          value={index}
+          onClick={() => { callbackFunction(index) }}
+        >
+          {buttonText}
+        </button>
+        <MoviePopup
+          movie={props}
+          buttonText={buttonText}
+        />
+      </div>
+
     </div>
   )
 }
