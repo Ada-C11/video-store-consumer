@@ -18,16 +18,12 @@ class RentalCheckout extends Component {
       checkoutStatus: true
     });
     let dueDate = new Date();
-    dueDate.setDate(dueDate.getDate() + 7);
-    console.log(dueDate);
-
-    axios
-      .post(`http://localhost:3001/rentals/${movie.title}/check-out`, {
-        customer_id: customer.id,
-        due_date: dueDate
-      })
-      .then(response => {
-        return response.data;
+    dueDate.setDate(dueDate.getDate() + 7)
+    console.log(dueDate)
+    
+    axios.post(`http://localhost:3001/rentals/${movie.title}/check-out`, { customer_id: customer.id, due_date: dueDate})
+      .then((response) => {
+        return response.data
       })
 
       .catch(error => {

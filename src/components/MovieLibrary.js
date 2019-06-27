@@ -36,7 +36,7 @@ class MovieLibrary extends Component {
   render() {
     const movies = this.props.librayMovies.map(movie => {
       return (
-        <section key={movie.name}>
+        <section key={movie.id}>
           <div className="card-body">
             <img
               className="card-img-top"
