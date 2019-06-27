@@ -53,6 +53,8 @@ class App extends Component {
     this.setState({ showResults: false });
   };
 
+  
+
   render() {
     let optionalComponent;
 

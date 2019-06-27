@@ -26,7 +26,7 @@ class Movie extends Component {
             <p className="card-text">Release Date: {this.props.releaseDate}</p>
             <button
               type="button"
-              className="btn btn-danger"
+              className="block"
               aria-label="Close"
               onClick={this.onSelectedClick}
             >

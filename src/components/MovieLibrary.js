@@ -46,7 +46,7 @@ class MovieLibrary extends Component {
             <h5 className="card-title">{movie.title}</h5>
             <button
               type="button"
-              className="btn btn-danger"
+              className="block"
               aria-label="Close"
               onClick={() => this.selectToCheckoutMovie(movie)}
             >

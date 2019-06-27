@@ -39,35 +39,27 @@ class CustomerList extends Component {
   render() {
     const customers = this.state.customers.map((customer, i) => {
       return (
-        <section key={i}>
-          <p className="card w-75">
-            <p className="card-body">
-              <h5 className="card-title">Name: {customer.name}</h5>
-              <p>ID: {customer.id}</p>
-              <span>
-                # of Movies checked out: {customer.movies_checked_out_count}
-              </span>
-              <p>Account credit: ${customer.account_credit.toFixed(2)}</p>
-              <p>Contact: {customer.phone}</p>
-
-              <br />
-              <button
-                type="button"
-                className="btn btn-danger"
-                aria-label="Close"
-                onClick={() => this.selectToCheckoutCustomer(customer)}
-              >
-                SELECT CUSTOMER
-              </button>
-            </p>
-          </p>
-        </section>
+        <table className="customer-grid" key={i}>
+          <div> Id: {customer.id}</div>
+          <div> Name: {customer.name}</div>
+          <div> # of Rentals: {customer.movies_checked_out_count}</div>
+          <div> Account Credit: ${customer.account_credit}</div>
+          <div> Contact: {customer.phone}</div>{" "}
+          <button
+            type="button"
+            className="block"
+            aria-label="Close"
+            onClick={() => this.selectToCheckoutCustomer(customer)}
+          >
+            SELECT CUSTOMER
+          </button>
+        </table>
       );
     });
     return (
       <React.Fragment>
-        <h2> List of Customers</h2>
-        <section className="customer-layout">{customers} </section>
+        <h2> Customers</h2>
+        <table className="customer-grid">{customers} </table>
       </React.Fragment>
     );
   }
