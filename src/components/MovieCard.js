@@ -8,12 +8,14 @@ const MovieCard = (props) => {
   <button type="button" onClick={props.selectMovie}>Select Movie</button> : 
   <button type="button" onClick={() => {props.addMovieCallback(props.movie)}}>Add Movie to Library</button>
   return (
-    <div>
-      <h4>{ title }</h4>
-      <img src={image_url} alt={title} />
-      <div>{ release_date }</div>
-      <p>{ overview }</p>
-      {displayButton}
+    <div className="card">
+      <div className="card-body">
+        <h4>{ title }</h4>
+        <img className="" src={image_url} alt={ title } />
+        <div className="card-text">{ release_date }</div>
+        <p className="card-text">{ overview }</p>
+        {displayButton}
+      </div>
     </div>
   );
 };
