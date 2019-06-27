@@ -3,53 +3,50 @@ import Customer from './Customer';
 import './CustomerList.css';
 import PropTypes from 'prop-types';
 
+const HEADERS = ["id", "name", "member since", "address", "city", "state", 
+                  "zip code", "phone", "credit", "checked out"]
+
 const CustomerList = (props) => {
-    const { customers, onSelectCustomerCallback } = props
+  const { customers, onSelectCustomerCallback } = props
 
-    const firstCustomer = customers[0]
+  const renderTableHeaders = () => {
+    return HEADERS.map((header, i) => {
+      return (
+        <th key={i}>
+          {header}
+        </th>
+      );
+    });
+  };
 
+  const renderCustomers = customers.map( (customer, i) => {
+      return (
+        <Fragment key={i}>
+          <Customer 
+            customer={customer} 
+            onSelectCustomerCallback={onSelectCustomerCallback}
+            />
+        </Fragment>
+      );
+    });
 
-    const createTableHeaders = () => {
-      if (firstCustomer) {
-        return Object.keys(firstCustomer).map((header, i) => {
-          return (
-            <th key={i}>
-              {header.replace(/_/g, " ")}
-            </th>
-          )
-        });
-      };
-    }
+  return (
+      <section id="customer-table">
+        <h1>Customers</h1>
+        <table className="table table-hover">
+          <thead className="thead-dark">
+            <tr>
+              {renderTableHeaders()}
+            </tr>
+          </thead>
+          <tbody>
+            {renderCustomers}
+          </tbody>
+        </table>
+      </section>
+      
 
-
-    const renderCustomers = customers.map( (customer, i) => {
-        return (
-          <Fragment key={i}>
-            <Customer 
-              customer={customer} 
-              onSelectCustomerCallback={onSelectCustomerCallback}
-             />
-          </Fragment>
-        );
-      });
-
-    return (
-        <section id="customer-table">
-          <h1>Customers</h1>
-          <table className="table table-hover">
-            <thead className="thead-dark">
-              <tr>
-                {createTableHeaders()}
-              </tr>
-            </thead>
-            <tbody>
-              {renderCustomers}
-            </tbody>
-          </table>
-        </section>
-        
-
-    )
+  )
 };
 
 CustomerList.propTypes = {

@@ -169,7 +169,7 @@ class App extends Component {
             </ul>
           </nav>
  
-          <section className='alert alert-dark'>
+          <section>
             {message}
           </section>
 

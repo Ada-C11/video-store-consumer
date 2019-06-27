@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 const Customer = (props) => {
-    const { customer, onSelectCustomerCallback } = props
+  const { customer, onSelectCustomerCallback } = props
 
   const onClickCustomer = () => {
     onSelectCustomerCallback(customer);
@@ -13,25 +13,24 @@ const Customer = (props) => {
     return formattedDate.toLocaleDateString('en-US');
   }
 
-  console.log(customer);
 
   const createTableData = () => {
-    if (customer) {
-      return Object.keys(customer).map((rowData, i) => {
+    return Object.keys(customer).map((rowData, i) => {
 
-        if (rowData === "registered_at") {
-          customer[rowData] = formatDate(customer[rowData]);
-        } else if (rowData === "account_credit") {
-          customer[rowData] = `$${customer[rowData]}`
-        }
+      let updatedRowData = customer[rowData]
 
-        return (
-          <td key={i}>
-            {customer[rowData]}
-          </td>
-        )
-      });
-    };
+      if (rowData === "registered_at") {
+        updatedRowData = formatDate(updatedRowData);
+      } else if (rowData === "account_credit") {
+        updatedRowData = `$${updatedRowData}`
+      } 
+
+      return (
+        <td key={i}>
+          {updatedRowData}
+        </td>
+      )
+    });
   }
 
   return (
