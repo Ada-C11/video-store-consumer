@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
-import FlashMessage from 'react-flash-message';
 import './App.css';
 import axios from 'axios';
 import SearchMovie from './components/SearchMovie';
@@ -63,8 +62,6 @@ class App extends Component {
       this.setState({ 
         selectedMovie: movie
       });
-    
-    console.log('im in app and the movie clicked was:', movie.title)
   }
 
   onSelectCustomer = (customer) => {
@@ -104,10 +101,9 @@ class App extends Component {
       due_date: dueDate
     };
 
-    const rentalURL = `${URL}/rentals/${movie.title}/check-out`;
-    console.log(rentalDataForApi)
+    const RENTAL_URL = `${URL}/rentals/${movie.title}/check-out`;
 
-    axios.post(rentalURL, rentalDataForApi) 
+    axios.post(RENTAL_URL, rentalDataForApi) 
       .then((response) => {
 
         this.setState({
@@ -126,7 +122,6 @@ class App extends Component {
 
   addSearchToLibrary = (movie) => {
     
-    console.log('im in App and addSearchToLibrary was triggered!!!!!')
     axios.post(`${URL}/movies`, movie)
       .then((response) => {
         let currentMovieList = this.state.movies;
@@ -173,8 +168,8 @@ class App extends Component {
               </li>
             </ul>
           </nav>
-          
-          <section>
+ 
+          <section className='alert alert-dark'>
             {message}
           </section>
 
@@ -226,8 +221,8 @@ class App extends Component {
           <Route 
             path="/customers" 
             render={(props) => <CustomerList {...props} 
-            customers={this.state.customers} o
-            nSelectCustomerCallback={this.onSelectCustomer} /> } 
+            customers={this.state.customers} 
+            onSelectCustomerCallback={this.onSelectCustomer} /> } 
           />
           <Route 
             path="/library"

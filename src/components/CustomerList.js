@@ -4,7 +4,7 @@ import './CustomerList.css';
 import PropTypes from 'prop-types';
 
 const CustomerList = (props) => {
-    const { customers, onSelectCustomerCallback, selectedCustomer } = props
+    const { customers, onSelectCustomerCallback } = props
 
     // const tableHeaders
     // if (customerObject) { console.log( Object.keys(customerObject) ) }
@@ -82,8 +82,20 @@ const CustomerList = (props) => {
 };
 
 CustomerList.propTypes = {
-  customers: PropTypes.array.isRequired, 
-  onSelectCustomerCallback: PropTypes.func.isRequired,
+  customers: PropTypes.arrayOf(
+    PropTypes.shape({
+      name: PropTypes.string.isRequired,
+      phone: PropTypes.string.isRequired,
+      address: PropTypes.string.isRequired,
+      city: PropTypes.string.isRequired,
+      state: PropTypes.string.isRequired,
+      postal_code: PropTypes.string.isRequired,
+      registered_at: PropTypes.string.isRequired,
+      movies_checked_out_count: PropTypes.number.isRequired,
+      account_credit: PropTypes.number.isRequired,
+    })
+  ).isRequired, 
+  onSelectCustomerCallback: PropTypes.func,
 };
 
 export default CustomerList;

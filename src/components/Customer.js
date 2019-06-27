@@ -1,4 +1,4 @@
-import React, {Fragment} from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 
 const Customer = (props) => {
@@ -50,8 +50,18 @@ const Customer = (props) => {
 };
 
 Customer.propTypes = {
-  customer: PropTypes.object, 
-  onSelectCustomerCallback: PropTypes.func.isRequired,
+  customer: PropTypes.shape({
+    name: PropTypes.string.isRequired,
+    phone: PropTypes.string.isRequired,
+    address: PropTypes.string.isRequired,
+    city: PropTypes.string.isRequired,
+    state: PropTypes.string.isRequired,
+    postal_code: PropTypes.string.isRequired,
+    registered_at: PropTypes.string.isRequired,
+    movies_checked_out_count: PropTypes.number.isRequired,
+    account_credit: PropTypes.number.isRequired,
+  }),
+  onSelectCustomerCallback: PropTypes.func,
 };
 
 export default Customer;

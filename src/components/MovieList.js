@@ -29,7 +29,7 @@ const MovieList = (props) => {
 
 MovieList.propTypes = {
     movieList: PropTypes.array.isRequired, 
-    onSelectMovieCallback: PropTypes.func.isRequired,
+    onSelectMovieCallback: PropTypes.func,
 };
 
 export default MovieList;

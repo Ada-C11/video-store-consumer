@@ -36,18 +36,17 @@ class SearchMovie extends Component {
     };
 
     onSearch = (searchTerm) => {
-        console.log('this is what i searched: ', searchTerm)
+  
         this.setState({searchTerm})
 
         axios.get(`${URL}/movies?query=<${searchTerm}>`)
           .then((response) => {
 
-            console.log(response.data[0])
-            response.data.map((foundMovie, i) => {
+            response.data.map((foundMovie) => {
               let allResults = this.state.allSearchResults;
               allResults.push(foundMovie);
 
-              this.setState({allSearchResults: allResults})
+              return this.setState({allSearchResults: allResults})
             })
           })
           .catch((error) => {
@@ -110,7 +109,7 @@ class SearchMovie extends Component {
 
 SearchMovie.propTypes = {
   movieList: PropTypes.array.isRequired, 
-  addSearchToLibraryCallback: PropTypes.func.isRequired,
+  addSearchToLibraryCallback: PropTypes.func,
 };
 
 export default SearchMovie;

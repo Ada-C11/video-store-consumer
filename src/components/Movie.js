@@ -44,8 +44,8 @@ const Movie = (props) => {
 
 Movie.propTypes = {
     movie: PropTypes.object, 
-    addSearchToLibraryCallback: PropTypes.func.isRequired,
-    onSelectMovieClick: PropTypes.func.isRequired,
+    addSearchToLibraryCallback: PropTypes.func,
+    onSelectMovieClick: PropTypes.func,
 };
 
 export default Movie;
