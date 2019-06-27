@@ -10,8 +10,9 @@ const Customer = (props) => {
 
     return (
             <section>
-              <h3>{props.city}</h3>
-              <div>{props.address}</div>
+              <h3>{props.name}</h3>
+              <p>{props.address}</p>
+              <p>{props.city}, {props.state} {props.postalCode}</p>
               {<button id={props.id} onClick={onSelectClick}>Select Customer</button>}
             </section>
     );
