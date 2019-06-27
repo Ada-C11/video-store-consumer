@@ -7,7 +7,7 @@ import './App.css';
 // import PropTypes from 'prop-types';
 import Library from './components/Library';
 import Customers from './components/Customers';
-// import Rental from './components/Rental';
+import Home from './components/Home';
 import axios from 'axios';
 import Search from './components/Search';
 
@@ -19,6 +19,7 @@ class App extends Component {
     this.state = {
       movies: [],
       customers: [],
+      overdueMovies: undefined,
       expandedMovies: {},
       rentedMovie: undefined,
       chosenCustomer: undefined,
@@ -69,7 +70,6 @@ class App extends Component {
     .catch((error) => {
       this.setState({ error: error.message });
     });
-
   }
 
   rentMovie = () => {
@@ -142,6 +142,11 @@ class App extends Component {
       })
     }
 
+  setOverdueMoviesCallback = (value) => {
+    this.setState({ 
+      overdueMovies: value
+    });
+  }
 
   render() {
     const errorSection = (this.state.error) ?
@@ -165,7 +170,8 @@ class App extends Component {
           
           {errorSection}
 
-          <Route exact path="/" component={Home} />
+          {/* <Route exact path="/" component={Home} /> */}
+          <Route path="/" render={() => <Home setOverdueMoviesCallback={this.setOverdueMoviesCallback} overdueMovies={this.state.overdueMovies}/>}/>
           <Route path="/search" render={() => <Search moviesInLibrary={this.state.movies}/>}/>
           <Route 
             path="/library" 
@@ -191,10 +197,6 @@ class App extends Component {
       </Router>
     );
   }
-}
-
-function Home() {
-  return <h2>Home</h2>;
 }
 
 function Header() {
