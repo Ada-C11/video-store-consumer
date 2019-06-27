@@ -7,7 +7,7 @@ import Customer from './components/Customer.js';
 import CustomerList from './components/CustomerList.js';
 import Search from './components/Search';
 import { withRouter } from "react-router";
-import Library from './components/Library.js';
+import MovieList from './components/MovieList.js';
 // import { BrowserRouter as Router, Link} from 'react-router-dom';
 
 const customerData = () => (
@@ -36,7 +36,7 @@ class App extends Component {
        <Navbar />
       
           <div>
-            <Route path="/" exact component={Library}/>
+            <Route path="/" exact component={MovieList}/>
             <Route path="/customers" component={customerData}/>
             <Route path="/search" component={
               (routerProps) => <Search searchResults={this.state.searchResults} {...routerProps} />

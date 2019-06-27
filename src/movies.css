@@ -30,6 +30,7 @@
   .movie__content-title {
     text-overflow: ellipsis;
     overflow: hidden;
+    font-size: 3rem;
   }
   
   .movie__content-overview {
@@ -42,4 +43,4 @@
     padding: 0;
     margin: 0;
   }
-  
+
