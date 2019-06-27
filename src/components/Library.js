@@ -5,9 +5,9 @@ import PropTypes from 'prop-types'
 const Library = (props) => {
   const { movieLibrary, selectMovie, filterMoviesCallback } = props;
 
-  const movieCards = props.movieLibrary.map((movie, i) => {
+  const movieCards = movieLibrary.map((movie, i) => {
     return (
-        <MovieCard key={i} movie={movie} filterMoviesCallback={props.filterMoviesCallback} selectMovie={() => {props.selectMovie(movie)}} />
+        <MovieCard key={i} movie={movie} filterMoviesCallback={filterMoviesCallback} selectMovie={() => {selectMovie(movie)}} />
       )
   })
   return (

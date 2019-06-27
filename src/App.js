@@ -46,6 +46,7 @@ class App extends Component {
       console.log(response)
       let success = `${movie.title} was successfully added to rental library!`;
       this.setState({userMessages: [success]})
+      // setstate with new movie
     })
     .catch(error => console.log(error))
   }
@@ -62,8 +63,7 @@ class App extends Component {
       });
   }
 
-  filterMovies(title) {
-    console.log(this)
+  filterMovies = (title) => {
     const library = this.state.movieLibrary
     const movieExists = library.filter(movie => movie.title === title);
     if (movieExists.length > 0) {
