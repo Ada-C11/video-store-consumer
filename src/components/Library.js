@@ -8,11 +8,13 @@ const Library = (props) => {
   const movieCollection = props.library.map((movie, i) => {
     return <Movie key={i} 
             movie={movie} 
+            // isDetailsClicked={props.isDetailsClicked}
+            // viewMovieDetails={props.expandedMovies} 
             viewMovieDetails={props.expandedMovies[movie.id]} 
             onClickDetailsCallback={props.onClickDetailsCallback} 
             onSelectMovieCallback={props.onSelectMovieCallback}/>
    });
-   
+   console.log(props.expandedMovies);
   return (
     <section className="library_container">
       <h1>Library</h1>
