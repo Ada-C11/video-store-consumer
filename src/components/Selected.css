@@ -6,3 +6,6 @@
     box-shadow: 4px 4px 4px;
 }
 
+.card-header.bg-blue{
+    border: blue;
+}

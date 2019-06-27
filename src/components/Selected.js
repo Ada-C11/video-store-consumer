@@ -1,12 +1,25 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
-import {Card, Button} from 'react-bootstrap'
+import {Card, Button, Accordion} from 'react-bootstrap'
 import axios from 'axios';
 import moment from 'moment';
 
 import listErrors from '../listErrors.js';
 import './Selected.css';
 class Selected extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            opened: true,
+        };
+    }
+
+    toggleCollapse = () => {
+        this.setState(
+            { 
+                opened: !this.state.opened,
+            });
+    }
  
     onReserveButtonClick = () =>{
         if (this.props.movie && this.props.customer) {
@@ -32,9 +45,7 @@ class Selected extends Component {
                     if (error.response && error.response.data && error.response.data.errors) {
                         errorList = listErrors(error.response.data.errors);
                     }
-                    console.log(errorList);
-                    this.props.
-                    addNotificationCallback (
+                    this.props.addNotificationCallback (
                         {
                             toastTitle: "Error!",
                             toastMessage:`Could not create rental: ${ error.message}.`,
@@ -58,24 +69,32 @@ class Selected extends Component {
        
     }
     render() {
-    
         return (
             <div className="selections">
-                <Card style={{ width: '18rem' }}>
-                <Card.Header as="h5">Your Selections</Card.Header>
-                <Card.Body>
-                    <Card.Title>Customer:</Card.Title>
-                    <Card.Text>{this.props.customer ? this.props.customer.name: "No Customer Selected"}</Card.Text>
-                    <Card.Title>Movie:</Card.Title>
-                    <Card.Text>{this.props.movie ? this.props.movie.title: "No Movie Selected"}</Card.Text>
-                </Card.Body>
-                <Button onClick={ this.onReserveButtonClick }
-              variant='primary'
-            >Reserve Movie</Button>
-            </Card>
+                <Accordion>
+                    <Card style={{ width: '18rem' }} >
+                            <Accordion.Toggle as={Card.Header}eventKey="0">
+                            Your Selections
+                            </Accordion.Toggle>
+                        <Accordion.Collapse eventKey="0">
+                            <Card.Body>
+                                <Card.Title>Customer:</Card.Title>
+                                <Card.Text>
+                                    {this.props.customer ? this.props.customer.name: "No Customer Selected"}
+                                </Card.Text>
+                                <Card.Title>Movie:</Card.Title>
+                                <Card.Text>
+                                    {this.props.movie ? this.props.movie.title: "No Movie Selected"}
+                                </Card.Text>
+                                <Button onClick={ this.onReserveButtonClick } variant='primary'>
+                                Reserve Movie
+                            </Button>
+                            </Card.Body>
+                        </Accordion.Collapse>
+                    </Card>
+                </Accordion>
             </div>
-            
-        )
+        );
     }
 }
 
