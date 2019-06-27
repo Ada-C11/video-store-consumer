@@ -87,48 +87,68 @@ class App extends Component {
 
   render() {
     const notification = this.state.notification
+    let selectedCustomer = "None";
+    if (this.state.selected_customer != "none") {
+      selectedCustomer = this.state.selected_customer["name"];
+    }
+    let selectedMovie = "None";
+    if (this.state.selected_movie != "none") {
+      selectedMovie = this.state.selected_movie.title;
+    }
     return (
       <div>
       <Router>
-        <div>
-          <nav>
-            <ul className="navbar">
-               <li>
-               <Link to="/">Home</Link>
-              </li>
-               <li>
-              <Link to="/search/">Search Movies</Link>
-            </li>
-           <li>
-            <Link to="/library/">Library</Link>
-          </li>
-          <li>
-            <Link to="/customers/">Customers</Link>
-          </li>
-          <li>
-            Selected Customer: {this.state.selected_customer["name"]}
-          </li>
-          <li>
-            Selected Movie: {this.state.selected_movie.title}
-          </li>
-          <li>
-            <button className="" onClick={this.onCheckOut}>
-            Check Out</button>
-          </li>
-          <li>
-            {notification}
-          </li>
-        </ul>
-      </nav>
-{/* <Route path="/" exact component={Index} /> */}
-      <Route path="/search/" component={Search} />
-      <Route path="/library/" render={
+          <div>
+            <nav className="navbar navbar-expand-sm bg-dark navbar-dark">
+              <div className="navbar-brand">Movie Rentals</div>
+              <ul className="navbar-nav">
+                <li className="nav-item">
+                  <Link className="nav-link" to="/">Home</Link>
+                </li>
+                <li className="nav-item">
+                  <Link className="nav-link" to="/search/">Search Movies</Link>
+                </li>
+                <li className="nav-item">
+                  <Link className="nav-link" to="/library/">Library</Link>
+                </li>
+                <li className="nav-item">
+                  <Link className="nav-link" to="/customers/">Customers</Link>
+                </li>
+                <li className="nav-item">
+                  <div className="navbar-text">
+                  Selected Customer: {selectedCustomer}
+                  </div>
+                </li>
+                <li className="nav-item">
+                  <div className="navbar-text">
+                    Selected Movie: {this.state.selected_movie.title}
+                  </div>
+                </li>
+                <li className="nav-item">
+                  <div className="form-inline">
+                    <button className="btn btn-outline-success" onClick={this.onCheckOut}>
+                      Check Out
+                    </button>
+                  </div>
+                </li>
+                <li className="nav-item">
+                  <div className="navbar-text">
+                    {notification}
+                  </div>
+                </li>
+              </ul>
+            </nav>
+      <div className="bg-success text-white">
+        {/* <Route path="/" exact component={Index} /> */}
+        <Route path="/search/" component={Search} />
+        <Route path="/library/" render={
         (props) => <Library {...props}
                       library={this.state.library}
                       selectMovieCallBack={this.state.selectMovieCallBack} 
                     />
-      } />
-      <Route path="/customers/" render={(props) => <Customers {...props} customers={this.state.customers} selectCustomerCallBack={this.state.selectCustomerCallBack} />} />
+        } />
+        <Route path="/customers/" render={(props) => <Customers {...props} customers={this.state.customers} selectCustomerCallBack={this.state.selectCustomerCallBack} />} />
+      </div>
       </div>
       </Router>
       </div>
