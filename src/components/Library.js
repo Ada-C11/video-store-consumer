@@ -38,12 +38,12 @@ class Library extends React.Component {
         external_id={movie.external_id}/>
     });
     return (
-      <div>
+      <main>
         <h1>Rewind Movies Library</h1>
         <section className="library-container">
           {movieCollection}
         </section>
-      </div>
+      </main>
     )
   }
 

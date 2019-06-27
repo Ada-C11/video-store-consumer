@@ -88,7 +88,7 @@ class MovieSearch extends React.Component {
    });
 
    return (
-     <section>
+     <main>
        <h1>Search for New Inventory</h1>
        <div className="search-form-container">
          <form onSubmit={this.onFormSubmit}>
@@ -104,7 +104,7 @@ class MovieSearch extends React.Component {
        <div className="search-results-container">
          {searchResults}
        </div>
-     </section>
+     </main>
    );
  }
 }

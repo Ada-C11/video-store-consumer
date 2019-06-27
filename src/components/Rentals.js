@@ -57,15 +57,9 @@ class Rentals extends Component {
     }
 
    return (
-     <section>
+     <main>
        <h1> Rewind Rentals </h1>
-       <section>
-         <h4> Current Customer ID: {this.props.customerID ? this.props.customerID : 'none'}</h4>
-         <h4> Reserved movie: {this.props.movie ? this.props.movie : 'none selected'}</h4>
-         <div hidden={makeReservation}>
-            
-         </div>
-       </section>
+  
        <table className="table table-striped table-hover table-sm"> 
        <thead>
          <tr>
@@ -79,7 +73,7 @@ class Rentals extends Component {
           {rentalCollection}
         </tbody>
        </table>
-     </section>
+     </main>
    )
  }
 }
