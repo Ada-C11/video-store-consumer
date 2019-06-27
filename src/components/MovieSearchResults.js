@@ -34,7 +34,7 @@ class MovieSearchResults extends Component {
     const collection = this.props.movies.map((movie, i) => {
       return (
         <Movie 
-          key={i}
+          key={movie.id}
           id={movie.id}
           title={movie.title}
           overview={movie.overview}

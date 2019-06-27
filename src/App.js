@@ -48,6 +48,14 @@ class App extends Component {
       librayMovies: [...this.state.librayMovies, ...movieList]
     });
   };
+  addSingleMovietoLibrary = movie => {
+    let newState = this.state.librayMovies
+    newState.push(movie)
+    this.setState({
+      librayMovies: newState
+
+    })
+  }
 
   setDisplay = () => {
     this.setState({ showResults: false });
@@ -93,7 +101,8 @@ class App extends Component {
       searchResults = (
         <MovieSearchResults
           movies={this.state.movies}
-          addMovietoLibrayCallback={this.addMovietoLibray}
+          // addMovietoLibrayCallback={this.addMovietoLibray}
+          addMovietoLibrayCallback={this.addSingleMovietoLibrary}
         />
       );
     }
