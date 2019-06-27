@@ -54,7 +54,7 @@ class Customers extends Component {
 
         const customerComponents = this.state.customers.map((customer, index) => {
             return (
-                <li key={index}>
+                <li className='customer-card' key={index}>
                    <Customer name={customer.name} id={customer.id} selectCustomerCallback={this.selectCustomer} />
                 </li>
             )
