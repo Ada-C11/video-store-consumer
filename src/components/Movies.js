@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import Movie from './Movie';
+import './Movies.css';
 
 const Movies = (props) => {
   const displayMovies = props.movieList.flatMap(
@@ -28,7 +29,7 @@ const Movies = (props) => {
 
   
   return (
-    <div>
+    <div class="row">
       { displayMovies }
     </div>
   )

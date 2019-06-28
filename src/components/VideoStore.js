@@ -28,7 +28,7 @@ class VideoStore extends Component {
       feedbackMessage: ""
     };
   }
-  url = "https://enigmatic-chamber-40825.herokuapp.com/"
+  url = "http://localhost:5000/"
 
   componentDidMount() {
     this.getCustomers();
@@ -53,7 +53,7 @@ class VideoStore extends Component {
 
       const feedbackMessage = `Successfully loaded ${customerList.length} customers!`
 
-      this.setState({ customerList });
+      this.setState({ customerList, feedbackMessage });
      })
       .catch((error) => {
         const feedbackMessage = `Error loading customers`
@@ -157,8 +157,9 @@ class VideoStore extends Component {
 
     axios.post(addMovieURL, titleOfMovieToAdd)
     .then((response) => {
-      const newMovie = response.data[0];
-      newMovie.id = response.data[0].id;
+      console.log(response.data)
+      const newMovie = response.data;
+      console.log(newMovie)
 
       const newMovieList = [newMovie, ...this.state.movieList];
       const feedbackMessage = `Successfully added ${newMovie.title} to library!`
@@ -228,7 +229,7 @@ class VideoStore extends Component {
                 <Link to="/customers/">Customers</Link>
               </li>
             </ul>
-          </nav>
+          </div>
 
           <StatusBar 
             currentCustomer={this.state.currentCustomer}
