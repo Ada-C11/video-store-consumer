@@ -112,7 +112,7 @@ class Search extends Component {
           <div className="search-movie">
               <h1>Search for new Movies</h1>
           </div>
-          <div className="search-label">
+          <div className="search-label search-space">
               <label className="search-form-item-label"
                 htmlFor="title">Movie Title:</label>
               <input className="search-form-item-form"
@@ -125,7 +125,7 @@ class Search extends Component {
           
           
       </form>
-      <div>
+      <div className="row">
         {results}
       </div>
     </div>

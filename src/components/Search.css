@@ -3,6 +3,10 @@
     font-family: 'Nunito', sans-serif;
 }
 
+.search-space {
+    margin-bottom: 3rem;
+}
+
 .search-label {
     margin-top: 1em;
     font-size: 1.4rem;
