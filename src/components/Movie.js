@@ -15,7 +15,7 @@ const Movie = (props) => {
   }
 
   const onDeselectMovie = () => {
-    props.onDeselectMovieCallback()
+    props.onDeselectMovieCallback(props.movie.id)
   }
 
   let movieDescription = <div>
@@ -52,6 +52,7 @@ const Movie = (props) => {
                   </div>
   }
   
+  console.log(props.selectedMovie);
   return (
     
     <tr>

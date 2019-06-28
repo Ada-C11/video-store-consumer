@@ -73,12 +73,17 @@ class App extends Component {
 
   onSelectMovieCallback = (id) => {
     const selectedMovie = this.state.movies.find(movie => movie.id === id);
-    this.setState({ rentedMovie: selectedMovie });
+    this.setState({ 
+      rentedMovie: selectedMovie,
+      deselectedMovie: null
+     });
   }
 
-  onDeselectMovieCallback = () => {
+  onDeselectMovieCallback = (id) => {
+    const deselectedMovie = this.state.movies.find(movie => movie.id === id);
+
     this.setState({
-      deselectedMovie: this.state.rentedMovie,
+      deselectedMovie: deselectedMovie,
       rentedMovie: null,
     });
   }
@@ -248,6 +253,7 @@ class App extends Component {
                 library={this.state.movies} 
                 isDetailsClicked = {this.state.isDetailsClicked}
                 expandedMovies={this.state.expandedMovies} 
+                onClickMovieDetailsCallback={this.onClickMovieDetailsCallback}
                 onSelectMovieCallback={this.onSelectMovieCallback}
                 onDeselectMovieCallback={this.onDeselectMovieCallback} 
                 deselectedMovie={this.state.deselectedMovie} 
