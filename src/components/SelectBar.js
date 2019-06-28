@@ -45,7 +45,7 @@ const SelectBar = (props) => {
         </li>
         <li>
           <button
-            className="select-button"
+            className="select-button button"
             type="button"
             onClick={() => { checkoutCallback() }}
           >Checkout Rental</button>

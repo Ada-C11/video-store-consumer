@@ -8,8 +8,7 @@
 }
 
 .popup-body {
-  /* display: flex; */
-  /* flex-direction: row; */
+  padding-top: 1rem;
 }
 
 .popup-body ul {
@@ -46,4 +45,5 @@
 } */
 .popup-content {
   min-height: 18rem;
+  
 }

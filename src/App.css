@@ -21,6 +21,7 @@ ul {
 }
 
 .nav-bar {
+  padding-top: 3rem;
   height: 100%;
   width: 14rem;
   position: fixed;
@@ -35,15 +36,16 @@ ul {
   /* text-align: start */
 }
 
-li {
+.nav-list li {
+
   font-family: 'Lato', sans-serif;
   text-transform: uppercase;
   letter-spacing: .2rem;
-  margin-bottom: 1rem;
+  margin-bottom: 1.5rem;
   text-align: right;
 }
 
-li:last-child {
+.nav-list>li:last-child {
   position: fixed;
   left: 0;
   bottom: 0;
