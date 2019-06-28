@@ -3,6 +3,10 @@
     font-family: 'Nunito', sans-serif;
 }
 
+.search-space {
+    margin-bottom: 3rem;
+}
+
 .search-label {
     margin-top: 1em;
     font-size: 1.4rem;
@@ -14,5 +18,13 @@
 
 .search-form-item-form {
     margin-right: 1em;
+}
+
+.row {
+    display: flex;
+}
+
+.search-movie {
+    font-weight: bolder;
 }
 

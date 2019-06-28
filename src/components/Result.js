@@ -7,16 +7,17 @@ const Result = (props) => {
 
   return (
     <div className="result card">
-        <div className="result__section">
-          <h3 className="result__title">{props.title}</h3>
-            <img className="image" src={props.image_url} alt="this is an image"/>
+        <div className="result__section card-body">
+          <h3 className="result__title card-title">{props.title}</h3>
+            <img className="image card-img-top" src={props.image_url} alt="this is an image"/>
             <div className="middle">
-              <div className="text">{props.overview}</div>
+              <div className="text card-text">{props.overview}</div>
             </div>
           <div className="result__info">
             <span>
-              <button onClick={() => props.addMovieCallback(props)}>
+              <button className="select__result btn btn-dark"> <a href="#" onClick={() => props.addMovieCallback(props)}>
                 Add to Rental Library
+                </a>
               </button>
             </span> 
           </div>
