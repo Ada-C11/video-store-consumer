@@ -179,7 +179,7 @@ class App extends Component {
                 <Link className="nav-option" to='/customerlist' onClick={this.clearSearchResults}><span>Customers</span> </Link>
               </li>
               <li>
-                <Link className="nav-option" to='/search' onClick={this.clearSearchResults}><span>Search</span></Link>
+                <Link className="nav-option " placeholder="Search" to='/search' onClick={this.clearSearchResults}><span>Search</span></Link>
               </li>
             </ul>
           </nav>

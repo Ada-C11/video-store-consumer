@@ -31,6 +31,8 @@ class Search extends Component {
         <form>
           <div className='search-input'>
             <input
+            type="search"
+            className="form-control mr-sm-2"
             name='search'
             placeholder='Search'
             value={this.state.searchInput}
@@ -39,10 +41,10 @@ class Search extends Component {
           </div>
 
           <div className='search-submission-form__submit'>
-            <input className="btn btn-primary"type='submit' value='Search' onClick={this.onSearchButton}>
-            </input>
+            <button className="btn btn-primary" type='button' onClick={this.onSearchButton}>
+              Search
+            </button>
           </div>
-
         </form>
       </div>
     )
