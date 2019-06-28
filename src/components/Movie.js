@@ -2,9 +2,6 @@ import React, { Component } from "react";
 import "./Movie.css";
 
 class Movie extends Component {
-  constructor(props) {
-    super(props);
-  }
 
   onSelectedClick = () => {
     this.props.sendToLibrayCallback(this.props);
@@ -26,7 +23,7 @@ class Movie extends Component {
             <p className="card-text">Release Date: {this.props.releaseDate}</p>
             <button
               type="button"
-              className="btn btn-danger"
+              className="block"
               aria-label="Close"
               onClick={this.onSelectedClick}
             >

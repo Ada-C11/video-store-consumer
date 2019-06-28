@@ -24,6 +24,7 @@ class MovieSearchForm extends Component {
       .then(response => {
         const movies = response.data.results;
         this.setState({ text: "" });
+        
         this.props.getresultcallback(movies);
       })
       .catch(error => {

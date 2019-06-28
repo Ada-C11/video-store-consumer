@@ -21,8 +21,9 @@ class App extends Component {
       hasMovie: null,
       hasCustomer: null,
       showResults: false,
-      librayMovies: []
-      
+      librayMovies: [],
+      customerList: [],
+      checkoutStatus: false
     };
   }
 
@@ -42,23 +43,28 @@ class App extends Component {
   };
 
   addMovietoLibray = movies => {
-    // Movies could be single or array of movies
-    const movieList = Array.isArray(movies) ? movies : [movies];
     this.setState({
-      librayMovies: [...this.state.librayMovies, ...movieList]
+      librayMovies: movies
     });
   };
-  addSingleMovietoLibrary = movie => {
-    let newState = this.state.librayMovies
-    newState.push(movie)
-    this.setState({
-      librayMovies: newState
 
-    })
-  }
+  addCustomers = customers => {
+    this.setState({
+      customerList: customers
+    });
+  };
 
   setDisplay = () => {
-    this.setState({ showResults: false });
+    this.setState({ showResults: false, checkoutStatus: false });
+  };
+
+  hasCheckedOut = (movie, customer) => {
+    this.setState({
+      customerList: [],
+      hasMovie: null,
+      hasCustomer: null,
+      checkoutStatus: true
+    });
   };
 
   render() {
@@ -76,6 +82,8 @@ class App extends Component {
       optionalComponent = (
         <CustomerList
           rentMovieWithCustomerCallback={this.rentMovieWithCustomer}
+          addCustomersCallback={this.addCustomers}
+          customerList={this.state.customerList}
         />
       );
     }
@@ -85,26 +93,9 @@ class App extends Component {
       optionalSearch = <MovieSearchForm getresultcallback={this.getresult} />;
     }
 
-    let rentalMovie;
-
-    if (this.state.hasMovie || this.state.hasCustomer) {
-      rentalMovie = (
-        <RentalCheckout
-          selectedMovie={this.state.hasMovie}
-          selectedCustomer={this.state.hasCustomer}
-        />
-      );
-    }
-
     let searchResults;
     if (this.state.showResults) {
-      searchResults = (
-        <MovieSearchResults
-          movies={this.state.movies}
-          // addMovietoLibrayCallback={this.addMovietoLibray}
-          addMovietoLibrayCallback={this.addSingleMovietoLibrary}
-        />
-      );
+      searchResults = <MovieSearchResults movies={this.state.movies} />;
     }
 
     return (
@@ -116,7 +107,12 @@ class App extends Component {
         </header>
 
         <section className="App-main">
-          {rentalMovie}
+          <RentalCheckout
+            selectedMovie={this.state.hasMovie}
+            selectedCustomer={this.state.hasCustomer}
+            hasCheckedOutCallback={this.hasCheckedOut}
+            checkoutStatus={this.state.checkoutStatus}
+          />
           <Link to="/MovieLibrary">
             <button
               type="button"

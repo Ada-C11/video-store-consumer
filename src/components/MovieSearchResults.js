@@ -29,19 +29,27 @@ class MovieSearchResults extends Component {
       });
 
       this.props.addMovietoLibrayCallback(movie);
-      axios.post(`http://localhost:3001/movies`, { title: movie.title, overview: movie.overview, release_date: movie.release_date, inventory: 5 })
-        .then((response) => {
-          return response.data
-        })
+      axios
+      .post(`http://localhost:3001/movies`, {
+        title: movie.title,
+        overview: movie.overview,
+        release_date: movie.release_date,
+        image_url: "https://image.tmdb.org/t/p/w185/" + movie.image,
+        inventory: 5
+      })
+      .then(response => {
+        return response.data;
+      })
+      .catch(error => {
+        console.log(error.messages);
+        alert("Error happened");
+        this.setState({ error: error.message });
+      });
 
-        .catch(error => {
-          console.log(error.messages);
-          alert("Error happened");
-          this.setState({ error: error.message });
-        });
 
     })
     
+
   };
 
   render() {
@@ -62,8 +70,12 @@ class MovieSearchResults extends Component {
     return (
       <React.Fragment>
         <p className="send-to-library">{this.state.sendToLibraryIndicator} </p>
+<<<<<<< HEAD
         <h2>Movie search results</h2>
         <h2>{this.state.error}</h2>
+=======
+        <h2>Movie Search Results</h2>
+>>>>>>> f7bf4544bb7fa49ef29a8796146b12b50b23725f
         <section className="movie-grid">{collection}</section>
       </React.Fragment>
     );

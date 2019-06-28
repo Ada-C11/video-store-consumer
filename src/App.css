@@ -16,12 +16,12 @@
   padding-top: 8rem;
   padding-bottom: 5rem;
   text-align: center;
-  background-color: #c5d86d;
+  background-color: #a4af69;
+  font-size: 12px;
 }
 
 .App-title a {
   text-align: center;
-  font-size: 1.5em;
   color: #fff;
   text-decoration: none;
 }
@@ -29,6 +29,7 @@
 .movie-display {
   max-width: 50rem;
   margin: auto;
+  font-size: 12px;
 }
 
 .movie-body {
