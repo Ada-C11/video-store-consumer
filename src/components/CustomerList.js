@@ -69,7 +69,7 @@ class CustomerList extends Component {
   render() {
     return(
       <section>
-        <h3>All Customers</h3>
+        <h3 className="customers-title">Customers</h3>
         {this.displayCustomers()}
       </section>
     )

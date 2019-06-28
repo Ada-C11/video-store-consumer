@@ -1,33 +1,89 @@
 .App {
   width: 100%;
-  min-height: 900vh;
+  min-height: 100vh;
   display: grid;
   grid-template-columns: 250px auto;
-  grid-template-rows: 60px 300px auto;
+  grid-template-rows: 70px  60px 200px auto;
   grid-template-areas:
     "navigation navigation" 
+    "message1 message2"
     "checkout site "
-    "message site"
+    "side site"
 }
 
-.site-content {
+.site-content- {
+  grid-row: 2/5;
+  grid-column: 2;
+  background-image: url("https://cdn.pixabay.com/photo/2016/06/03/12/42/popcorn-1433332_1280.jpg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.site-content-result {
+  grid-row: 2/5;
+  grid-column: 2;
+  background-image: url("https://cdn.pixabay.com/photo/2016/06/03/12/42/popcorn-1433332_1280.jpg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.site-content-message {
   grid-area: site;
-  background-color: #F7FFF7;
+  background-image: url("https://cdn.pixabay.com/photo/2016/06/03/12/42/popcorn-1433332_1280.jpg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.table {
+  background-color:  #F7FFF7;
+}
+
+.site-content-free {
+  grid-row: 2/5;
+  grid-column: 2;
+  background-image: url("https://cdn.pixabay.com/photo/2016/06/03/12/42/popcorn-1433332_1280.jpg"); 
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.site-content-home {
+  grid-row: 2/6;
+  grid-column: 1/6;
+  background-image: url("https://youtu.be/1roy4o4tqQM"); 
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.side-area {
+  grid-area: side;
+  background-color:  #1A535C;
 }
 
 .checkout {
   grid-area: checkout;
+  width: 250px;
+  height: 300px;
+  top: 70px;
+  padding-top: 40px;
   background-color: #1A535C;
   grid-column-start: 1; 
   grid-row-start: 2; 
   box-sizing: border-box;
-  padding-top: 40px;
-  padding-left: px;
+  position: fixed;
 }
 
 nav {
   grid-area: navigation;
   background-color: #39968F;
+  position: fixed; 
+  top: 0; 
+  width: 100%;
+  height: 70px;
 }
 
 li {
@@ -39,12 +95,6 @@ li {
 .home-link {
   float: left;
 }
-
-.home-page {
-  grid-area: site;
-  background-color: red;
-}
-
 
 .nav-option {
   display: block;
@@ -87,14 +137,8 @@ li {
   right: 0;
 }
 
-.result-message-{
-  grid-area: message;
-  background-color: #1A535C;
-  font-size: 30px;
-}
-
 .result-message-display{
-  grid-area: message;
+  grid-area: message2 ;
   background-color: #E86262;
   color: white;
   text-align: center;

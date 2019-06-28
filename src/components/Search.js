@@ -27,10 +27,10 @@ class Search extends Component {
 
   render() {
     return(
-      <div className='search-bar'>
-        <form>
+      <div >
+        <form className='search-bar'>
           <div className='search-input'>
-            <input
+            <input className="text-box"
             name='search'
             placeholder='Search'
             value={this.state.searchInput}
@@ -39,10 +39,9 @@ class Search extends Component {
           </div>
 
           <div className='search-submission-form__submit'>
-            <input className="btn btn-primary"type='submit' value='Search' onClick={this.onSearchButton}>
+            <input className="search-btn btn btn-primary"type='submit' value='Search' onClick={this.onSearchButton}>
             </input>
           </div>
-
         </form>
       </div>
     )
