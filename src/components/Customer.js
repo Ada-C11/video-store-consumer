@@ -28,23 +28,23 @@ const Customer = (props) => {
       <td><Button variant="outline-primary" size="sm" onClick={onViewRentals}>Customer Rentals</Button></td>
        
   return (
-    <tr>
-      <td>{props.customer.name}</td>
-      {selectButton}
-      {rentalButton}
-      {props.viewCustomerRental && <Card>
-        <Card.Body>
-          <Card.Title>
-            {props.customer.name}'s Rentals
-          </Card.Title>
-          <Card.Text>
-            <table>
-              <CustomerRentals rentals={props.findRentalsCallback(props.customer.id)}/>
-            </table>
-          </Card.Text>
-        </Card.Body>
-      </Card>}
-    </tr>
+      <tr>
+        <td>{props.customer.id}</td>
+        <td>{props.customer.name}</td>
+        {selectButton}
+        {rentalButton}
+        {props.viewCustomerRental && 
+        <Card>
+          <Card.Body>
+            <Card.Title>
+              {props.customer.name}'s Rentals
+            </Card.Title>
+            <Card.Text>
+                <CustomerRentals rentals={props.findRentalsCallback(props.customer.id)}/>
+            </Card.Text>
+          </Card.Body>
+        </Card>}
+      </tr>
   )
 }
 
