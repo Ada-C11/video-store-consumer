@@ -4,12 +4,14 @@
 
 body {
   font-family: Arial, Helvetica, sans-serif;
+  margin-left: 3%;
+  margin-right: 3%;
 }
 
 /* Float four columns side by side */
 .column {
   float: left;
-  width: 25%;
+  width: 20%;
   padding: 0 10px;
 }
 
@@ -22,6 +24,16 @@ body {
   text-align: center;
   background-color: #f1f1f1;
   height: 35em;
+  margin-bottom: 2em;
+  font-size: 15px;
+}
+
+.cardTitle {
+  font-size: 22px;
+}
+
+.in-library-button {
+  font-size: 15px;
 }
 
 .card:hover {

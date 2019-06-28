@@ -28,7 +28,7 @@ class VideoStore extends Component {
       feedbackMessage: ""
     };
   }
-  url = "http://localhost:5000/"
+  url = "https://enigmatic-chamber-40825.herokuapp.com/"
 
   componentDidMount() {
     this.getCustomers();
@@ -229,7 +229,7 @@ class VideoStore extends Component {
                 <Link to="/customers/">Customers</Link>
               </li>
             </ul>
-          </div>
+          </nav>
 
           <StatusBar 
             currentCustomer={this.state.currentCustomer}

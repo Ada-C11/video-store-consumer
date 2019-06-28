@@ -19,6 +19,7 @@ const StatusBar = (props) => {
       <button 
         onClick={props.onRentalCheckout}
         disabled={disableCheckoutButton}
+        className="checkout-button"
         >
         Checkout
       </button>
