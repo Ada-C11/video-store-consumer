@@ -14,7 +14,7 @@ const URL_MOVIES = 'http://localhost:4000/movies';
 const URL_CUSTOMERS = 'http://localhost:4000/customers';
 
 class App extends Component {
-  constructor(){
+  constructor() {
     super();
     this.state = {
       selectedCustomerName: '',
@@ -42,7 +42,7 @@ class App extends Component {
       this.setState({movieLibrary, });
     })
     .catch((error) => {
-      this.displayMessages(error.message)
+      this.displayMessages(error.message);
     })
 
     const allCustomers = [];
@@ -67,8 +67,7 @@ class App extends Component {
     } else {
       axios.get(URL_MOVIES, {params: {query: searchInput}})
       .then((response) => {
-        console.log(response)
-        this.displaySearchResults(response.data)
+        this.displaySearchResults(response.data);
       })
       .catch((error) => {
         const apiErrorMessage = error.data || error.message
@@ -79,7 +78,7 @@ class App extends Component {
     }
     this.setState({
       searchResults: undefined,
-    })
+    });
   }
 
   displaySearchResults = (result) => {
@@ -101,22 +100,22 @@ class App extends Component {
       ...movieToAdd
     }
 
-    addedMovieData.image_url = (addedMovieData.image_url).replace('https://image.tmdb.org/t/p/w185','')
+    addedMovieData.image_url = (addedMovieData.image_url).replace('https://image.tmdb.org/t/p/w185','');
 
     let repeated = 0;
     this.state.movieLibrary.map((v) => {
-        if (v.external_id === addedMovieData.external_id){
-          repeated += 1
-        }
+      if (v.external_id === addedMovieData.external_id) {
+        repeated += 1;
+      }
     })
     
-    if (repeated === 0){
+    if (repeated === 0) {
       axios.post(URL_MOVIES, addedMovieData)
       .then((response) => {
         this.displayMessages(`${response.data.title} added to movie library`)
       })
-      .catch((error)=>{
-        console.log(error)
+      .catch((error)=> {
+        console.log(error);
       })
     } else {
       let repeatedMovieMessage = `${movieToAdd.title} is already in the movie library`
@@ -223,10 +222,8 @@ class App extends Component {
 
   
   render() {
-
     return (
       <div className="App">
-        
         <Router>
           <nav>
             <ul>

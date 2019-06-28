@@ -1,8 +1,7 @@
-import React, {component} from 'react'
+import React from 'react'
 import './Home.css'
 
 const Home = (props) => {
-
 	return(
 		<div className="h-section">
 			<div id="cf">
@@ -14,7 +13,6 @@ const Home = (props) => {
 			</div>
 		</div>
 	)
-    
 }
 
 export default Home;    
