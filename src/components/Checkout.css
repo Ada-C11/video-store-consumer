@@ -3,7 +3,7 @@
 	margin: 10px;
 	text-align: center;
 	background-color: #FFEC94; 
-  border:2px solid #E2C044;
+  	border:2px solid #E2C044;
 	border-radius:10px;
 }
 
@@ -15,8 +15,8 @@
 .checkout-title {
 	margin: 15px;
 	color:Black;
-  font-family: 'Raleway', sans-serif;
-  letter-spacing:1px;
+  	font-family: 'Raleway', sans-serif;
+  	letter-spacing:1px;
 }
 
 .checkout-info {

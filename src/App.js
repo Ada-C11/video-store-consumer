@@ -27,7 +27,7 @@ class App extends Component {
       behaviorMessage: '',
       messageStatus: false,
       siteAreaStatus: 'free',
-      welcomeMessage: 'ME-tFlix movie rental ',
+      welcomeMessage: 'RentFlix movie rental ',
       displaySideBar: false,
     }
   }
@@ -125,23 +125,18 @@ class App extends Component {
   }
 
   selectMovie = (movie) => {
-    // recieve the whole object
     this.setState({
-      // take the title of the object
-      selectedMovie: movie, // take the whole object
-
+      selectedMovie: movie,
     });
-    // send the whole object to a new function to render the movie details 
-    // this.displayMovieDetails(movie)
   }
 
   displayMovieDetails = (movie) => {
     console.log(movie)
     return (
       <section className="side-area">
-        <section className={"selected-movie-details"}>
-          {/* <p>{movie.title}</p> */}
-          <p>{movie.title}</p>
+        <section className="selected-movie-details">
+          <img className="movie-details-img" src={movie.image_url}/>
+          <p><strong>{movie.title}</strong></p>
           <p>{movie.overview}</p>
         </section>
       </section>
