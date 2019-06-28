@@ -7,13 +7,6 @@ const MovieCard = (props) => {
         addMovieCallback(props);
     }
     return (
-        // <tr>
-        //     <td><img src={image_url} alt={title}/></td>
-        //     <td>{title}</td>
-        //     <td>{overview}</td>
-        //     <td>{release_date}</td>
-        //     <td><Button onClick={addMovie}>Add to Library</Button></td>
-        // </tr>
 
         <tr>
             <td className="movie_container">
@@ -21,7 +14,7 @@ const MovieCard = (props) => {
             <div className="movie_description">
                 <h3 className="title">{title}</h3>
                 <p><span className="bold_words">Release Date: </span>{release_date}</p>
-                <p><span className="bold_words">Overview: </span>{overview.length > 200 ? `${overview.substring(0, 150)}...` : overview}</p>
+                <p><span className="bold_words">Overview: </span>{overview}</p>
                 <Button onClick={addMovie}>Add to Library</Button>
             </div>
             </td>

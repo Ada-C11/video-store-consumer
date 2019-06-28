@@ -18,6 +18,7 @@ class App extends Component {
       expandedMovies: {},
       customers: [],
       expandedCustomers: {},
+      isDetailsClicked: false,
       rentedMovie: undefined,
       chosenCustomer: undefined,
       dueDate: undefined,
@@ -70,7 +71,7 @@ class App extends Component {
   }
 
   onSelectMovieCallback = (id) => {
-    const selectedMovie = this.state.movies[id - 1]
+    const selectedMovie = this.state.movies.find(movie => movie.id === id);
     this.setState({ rentedMovie: selectedMovie });
   }
 
@@ -84,7 +85,7 @@ class App extends Component {
   }
 
   onSelectCustomerCallback = (id) => {
-    const selectedCustomer = this.state.customers[id - 1]
+    const selectedCustomer = this.state.customers.find(customer => customer.id === id);
     this.setState({ chosenCustomer: selectedCustomer });
   }
 
@@ -220,6 +221,7 @@ class App extends Component {
   }
 
   render() {
+
     const errorSection = (this.state.error) ?
     (<section>Error: {this.state.error}</section>) : null;
 
@@ -255,9 +257,11 @@ class App extends Component {
             render={() => (
               <Library 
                 library={this.state.movies} 
+                isDetailsClicked = {this.state.isDetailsClicked}
                 expandedMovies={this.state.expandedMovies} 
                 onSelectMovieCallback={this.onSelectMovieCallback} 
                 onClickMovieDetailsCallback={this.onClickMovieDetailsCallback} 
+                selectedMovie={this.state.rentedMovie}
               />
             )} 
           />

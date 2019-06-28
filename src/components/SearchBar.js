@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
 import Form from 'react-bootstrap/Form';
 import FormControl from 'react-bootstrap/FormControl';
-import Button from 'react-bootstrap/Button';
 import './SearchBar.css';
 
 
@@ -25,7 +24,7 @@ class SearchBar extends Component {
         return (
             <div className="search_bar">
                 <Form>
-                    <FormControl type="text" placeholder="Search"
+                    <FormControl placeholder="Search"
                         name="search"
                         type="text"
                         value={this.state.queryString}

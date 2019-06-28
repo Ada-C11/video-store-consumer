@@ -1,4 +1,5 @@
 .movie_container {
+    height: 300px;
     display: flex;
     flex-direction: row;
 }
@@ -14,4 +15,15 @@
 
 .bold_words {
     font-weight: bold;
+}
+
+
+.description {
+    display: flex;
+    flex-direction: column;
+    /* flex-wrap: wrap; */
+}
+
+.select_movie-button {
+    margin-top: 1rem;
 }

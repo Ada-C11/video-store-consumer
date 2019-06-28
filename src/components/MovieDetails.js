@@ -1,21 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Card from 'react-bootstrap/Card';
-// import './MovieDetails.css';
+import './MovieDetails.css';
 
 const MovieDetails = (props) => {
-  console.log(props)
   const movieDetails = () => {
     return (
-      <Card>
-        <Card.Body>
-          {/* <Card.Title>Title: {props.title}</Card.Title> */}
-          <Card.Text>Overview: {props.overview} </Card.Text>
-          <li>Id: {props.id}</li>
-          {/* <li>Release Date: {props.release_date}</li> */}
-          <li>External Id: {props.external_id}</li>
-        </Card.Body>
-      </Card>
+      <div>
+        <h3 className="title">{props.title}</h3>
+        <p><span className="bold_words">Release Date: </span>{props.release_date}</p>
+        <p><span className="bold_words">Overview: </span>{props.overview}</p>
+      </div>
     )
   };
 
