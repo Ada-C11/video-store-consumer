@@ -30,8 +30,11 @@ li a:hover:not(.active) {
   background-color: #111;
 }
 
-.active {
+.active-title {
   background-color: red;
+  margin-right: 180px;
+  font-size: 30px;
+  font-family: 'Audiowide';
 }
 
 /* Customers */
@@ -43,7 +46,6 @@ li a:hover:not(.active) {
 .customers-table {
   margin-left: 20%;
   font-family: arial, sans-serif;
-  border-collapse: collapse;
   width: 60%;
   background-color: #333;
   opacity: 0.7;
