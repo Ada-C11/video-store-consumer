@@ -54,11 +54,11 @@
   /* Do an horizontal flip when you move the mouse over the flip box container */
   .flip-card:hover .flip-card-inner {
     transform: rotateY(180deg);
-    border: solid 1px #175561;
+    border: solid 1px #cef2f9;
     border-radius: 5px;
     -moz-box-shadow: 1px 1px 10px #175561;
     -webkit-box-shadow: 5px 5px 5px #175561;
-        box-shadow: 5px 5px 5px #999;
+        box-shadow: 5px 5px 5px #175561;
     /* border-style: solid;
     border-width: 5px;
     border-color: #175561; */
@@ -95,6 +95,11 @@ h4{
 }
 
 .movie-title{
-    color: rgb(129, 131, 133);
-    padding-top: 5px;
-  }
+  color: rgb(129, 131, 133);
+  padding-top: 5px;
+}
+
+.overview-text{
+  
+}
+
