@@ -229,7 +229,7 @@ class VideoStore extends Component {
                 <Link to="/customers/">Customers</Link>
               </li>
             </ul>
-          </div>
+          </nav>
 
           <StatusBar 
             currentCustomer={this.state.currentCustomer}
