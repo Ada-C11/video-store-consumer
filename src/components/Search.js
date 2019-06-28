@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import axios from 'axios';
-// import { nullLiteral } from '@babel/types';
-
 
 import './Search.css';
 
@@ -103,15 +101,12 @@ class Search extends Component {
             return (
                 <div className="card" key={external_id}>
                     <img src={image_url} alt="movie poster" className="card-img-top" />
-                    <ul className="list-group list-group-flush">
-                        <li className="list-group-item"><strong>{title}</strong></li>
+                    <ul className="card_data-ul">
+                        <li className="card_data-li"><strong>{title}</strong></li>
 
-                        <li className="list-group-item">{release_date}</li>
-                        <li className="list-group-item">{overview}</li>
-
-                        <ul className="list-group list-group-flush">
-                            <button className="" onClick={() => this.addToLibraryCallback(title, overview, image_url, release_date)}>Add Movie to Library</button>
-                        </ul>
+                        <li className="card_data-li">{release_date}</li>
+                        <li className="card_data-li">{overview}</li>
+                        <button className="" onClick={() => this.addToLibraryCallback(title, overview, image_url, release_date)}>Add to library</button>
                     </ul>
                 </div>
             )
@@ -139,6 +134,14 @@ class Search extends Component {
 
 
     render() {
+        const hasResultsToShow = this.state.returnedMovies.length !== 0;
+        const showSearchResults =
+            <div className="content_container">
+                <h1 className="green_text">Search Results</h1>
+                <div className="card_container">
+                    {this.displayMovies(this.state.returnedMovies)}
+                </div>
+            </div>;
         return (
             <div className="search_page">
                 {this.addtoLibraryMessage()}
@@ -151,10 +154,7 @@ class Search extends Component {
 
                         <button type="submit">Search</button>
                     </form>
-
-                    <div className="card_container">
-                        {this.displayMovies(this.state.returnedMovies)}
-                    </div>
+                    {hasResultsToShow ? showSearchResults : ""}
                 </div>
 
             </div>

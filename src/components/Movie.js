@@ -44,10 +44,10 @@ class Movie extends Component {
           <img src={image_url} alt="movie poster" className="card-img-top" />
           <ul className="card_data-ul">
             <li className="card_data-li">{id}</li>
-            <li className="card_data-li">{title}</li>
+            <li className="card_data-li"><strong>{title}</strong></li>
             <li className="card_data-li">Overview: {overview}</li>
             <li className="card_data-li">Release date: {release_date}</li>
-            <button className="" onClick={this.props.currentMovieCallback(movie)} > Select this Movie </button>
+            <button className="" onClick={this.props.currentMovieCallback(movie)} >Select</button>
           </ul>
         </div>
       )
@@ -55,9 +55,9 @@ class Movie extends Component {
     return (
       <div className="content_container">
         <h1 className="green_text">Movies</h1>
-        <section className="card_container">
+        <div className="card_container">
           {displayMovies}
-        </section>
+        </div>
       </div>
     )
   }
