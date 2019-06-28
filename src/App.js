@@ -124,10 +124,28 @@ class App extends Component {
     }
   }
 
-  selectMovie = (movieTitle) => {
+  selectMovie = (movie) => {
+    // recieve the whole object
     this.setState({
-      selectedMovie: movieTitle,
+      // take the title of the object
+      selectedMovie: movie, // take the whole object
+
     });
+    // send the whole object to a new function to render the movie details 
+    // this.displayMovieDetails(movie)
+  }
+
+  displayMovieDetails = (movie) => {
+    console.log(movie)
+    return (
+      <section className="side-area">
+        <section className={"selected-movie-details"}>
+          {/* <p>{movie.title}</p> */}
+          <p>{movie.title}</p>
+          <p>{movie.overview}</p>
+        </section>
+      </section>
+    )
   }
 
   clearSelected = () => {
@@ -163,7 +181,6 @@ class App extends Component {
       siteAreaStatus: 'message',
       messageStatus: true,
     })
-    
   }
 
   display =() => {
@@ -210,7 +227,7 @@ class App extends Component {
                 <Checkout 
                   selectedCustomerName={this.state.selectedCustomerName}
                   selectedCustomerId={this.state.selectedCustomerId}
-                  selectedMovie={this.state.selectedMovie}
+                  selectedMovie={this.state.selectedMovie.title}
                   clearSelectedCallback={this.clearSelected}
                   displayMessages={this.displayMessages}
                   refreshList={this.componentDidMount}
@@ -245,9 +262,9 @@ class App extends Component {
 
             {this.state.messageStatus ? this.display() : ''}
 
-            
-
             {this.state.displaySideBar ? this.displaySideBar() : ''}
+
+            {this.state.selectedMovie ? this.displayMovieDetails(this.state.selectedMovie): ''}
 
             <section className={"site-content-" + this.state.siteAreaStatus}>
                 

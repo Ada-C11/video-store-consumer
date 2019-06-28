@@ -6,7 +6,8 @@ const MovieLibrary = (props) => {
   const updateSelected = (movieId) => {
     props.allMovies.forEach((movie) => {
       if(movie.id === movieId) {
-        props.selectedMovie(movie.title);
+        console.log(movie)
+        props.selectedMovie(movie); // send the whole object
       }
     })
   }
