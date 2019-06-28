@@ -11,6 +11,8 @@ const Library = (props) => {
             viewMovieDetails={props.expandedMovies[movie.id]} 
             onClickMovieDetailsCallback={props.onClickMovieDetailsCallback} 
             onSelectMovieCallback={props.onSelectMovieCallback}
+            onDeselectMovieCallback={props.onDeselectMovieCallback}
+            deselectedMovie={props.deselectedMovie}
             selectedMovie={props.selectedMovie}/>
    });
 

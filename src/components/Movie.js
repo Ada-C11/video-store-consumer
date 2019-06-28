@@ -14,6 +14,10 @@ const Movie = (props) => {
     props.onClickMovieDetailsCallback(props.movie.id)
   }
 
+  const onDeselectMovie = () => {
+    props.onDeselectMovieCallback()
+  }
+
   let movieDescription = <div>
       <h3 className="title">{props.movie.title}</h3>
       <p><span className="bold_words">Release Date: </span>{props.movie.release_date}</p>
@@ -38,8 +42,14 @@ const Movie = (props) => {
 
   if (props.selectedMovie === props.movie) {
     selectButton = <div>
-                      <Button  className="select_movie-button" onClick={onSelectMovie}>Selected</Button>
+                      <Button  variant="danger" className="select_movie-button" onClick={onDeselectMovie}>Deselect</Button>
                     </div>
+  }
+
+  if (props.deselectedMovie === props.movie) {
+    selectButton = <div>
+                      <Button  className="select_movie-button" onClick={onSelectMovie}>Select Movie</Button>
+                  </div>
   }
   
   return (
