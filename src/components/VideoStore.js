@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
-
+import './VideoStore.css'
 import Customer from './Customer';
 import Customers from './Customers';
 import Movies from './Movies';
@@ -175,10 +175,10 @@ class VideoStore extends Component {
     return (
       <div>
         <Router>
-          <nav>
+          <div className="nav">
             <ul>
               <li>
-                <Link to="/">Home</Link>
+                <Link to="/" className="active">BlockbusterBay</Link>
               </li>
               <li>
                 <Link to="/search/">Search</Link>
@@ -190,7 +190,7 @@ class VideoStore extends Component {
                 <Link to="/customers/">Customers</Link>
               </li>
             </ul>
-          </nav>
+          </div>
     
           <section className="checkoutBar">
             <div>Checking out for customer: {this.state.currentCustomer.name}</div>
