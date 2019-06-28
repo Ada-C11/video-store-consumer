@@ -25,8 +25,10 @@ class App extends Component {
       allCustomers: [],
       addConfirmation: true,
       behaviorMessage: '',
-      messageStatus: '', 
+      messageStatus: false,
+      siteAreaStatus: 'free',
       welcomeMessage: 'Welcome to our Movie store',
+      displaySideBar: false,
     }
   }
 
@@ -52,22 +54,26 @@ class App extends Component {
       this.setState({allCustomers, });
     })
     .catch((error) => {
-      this.displayMessages(error.message);
-    });
+      this.displayMessages(error.message)
+    })
   }
 
   onSearchButtonCallback = (searchInput) => {
-    if (searchInput === '') {
-      const emptyMovieMessage = `Empty is not a valid title`;
-      this.displayMessages(emptyMovieMessage);
+
+    if (searchInput === ''){
+      const emptyMovieMessage = `Empty is not a valid title`
+      this.displayMessages(emptyMovieMessage)
+    
     } else {
       axios.get(URL_MOVIES, {params: {query: searchInput}})
       .then((response) => {
         this.displaySearchResults(response.data);
       })
       .catch((error) => {
-        const apiErrorMessage = error.data || error.message;
-        this.displayMessages(apiErrorMessage);
+        const apiErrorMessage = error.data || error.message
+        console.log(error.message)
+        this.displayMessages(apiErrorMessage)
+        
       })
     }
     this.setState({
@@ -78,6 +84,7 @@ class App extends Component {
   displaySearchResults = (result) => {
     this.setState({
       searchResults: result,
+      siteAreaStatus: 'result',
     });
   }
 
@@ -105,15 +112,15 @@ class App extends Component {
     if (repeated === 0) {
       axios.post(URL_MOVIES, addedMovieData)
       .then((response) => {
-        this.displayMessages(`${response.data.title} added to movie library`);
-        this.componentDidMount();
+        this.displayMessages(`${response.data.title} added to movie library`)
       })
       .catch((error)=> {
         console.log(error);
       })
     } else {
-      let repeatedMovieMessage = `${movieToAdd.title} is already in the movie library`;
-      this.displayMessages(repeatedMovieMessage);
+      let repeatedMovieMessage = `${movieToAdd.title} is already in the movie library`
+      
+      this.displayMessages(repeatedMovieMessage)
     }
   }
 
@@ -134,24 +141,85 @@ class App extends Component {
   clearSearchResults = () => {
     this.setState({
       searchResults: undefined,
-      welcomeMessage: '',
     })
   }
 
   displayMessages = (message) => {
-    if (message == 'Network Error') {
-      message += ' - Make sure the API is running!';
+    console.log(message)
+ 
+    if (message === 'Network Error'){
+      message += ' - Make sure the API is running!'
+      
     } else {
-      setTimeout(() => {this.setState({behaviorMessage: '', messageStatus: ''})}, 3000);
+      setTimeout(() => {this.setState({
+        behaviorMessage: '',
+        messageStatus: false,
+        siteAreaStatus: '',
+       })}, 3000);
     }
+    
     this.setState({
       behaviorMessage: message,
-      messageStatus: 'display'
-    });
-    return (
-      <p>{message}</p>
-    );
+      siteAreaStatus: 'message',
+      messageStatus: true,
+    })
+    
   }
+
+  display =() => {
+    return (
+      <section className={"result-message-display"}>
+      <p>{this.state.behaviorMessage}</p>
+      </section>)
+  }
+
+  setSiteAreaBusy = () => {
+    this.setState({
+      searchResults: undefined,
+      siteAreaStatus: '',
+      welcomeMessage: '',
+      displaySideBar: true
+    })
+    this.displaySideBar()
+  }
+
+  setSiteAreaFree = () => {
+    this.setState({
+      searchResults: undefined,
+      siteAreaStatus: 'free',
+      welcomeMessage: '',
+      displaySideBar: true,
+    })
+    this.displaySideBar()
+  }
+
+  homeBanner = () => {
+    this.setState({
+      siteAreaStatus: 'home',
+      welcomeMessage: 'We have some good movies!',
+      searchResults: undefined,
+      displaySideBar: false,
+
+    })
+  }
+
+  displaySideBar = () => {
+    return (
+      <section className="side-area">
+            <section className="checkout">
+                <Checkout 
+                  selectedCustomerName={this.state.selectedCustomerName}
+                  selectedCustomerId={this.state.selectedCustomerId}
+                  selectedMovie={this.state.selectedMovie}
+                  clearSelectedCallback={this.clearSelected}
+                  displayMessages={this.displayMessages}
+                  refreshList={this.componentDidMount}
+                  />
+              </section>
+          </section>
+    )
+  }
+
   
   render() {
     return (
@@ -160,51 +228,43 @@ class App extends Component {
           <nav>
             <ul>
               <li className="home-link">
-                <Link className="nav-option" to='/' onClick={this.clearSearchResults}><span>Home</span></Link>
+                <Link className="nav-option" to='/' onClick={this.homeBanner}><span>Home</span></Link>
               </li>
              
               <li>
-                <Link className="nav-option" to='/movielibrary' onClick={this.clearSearchResults}><span>Movies</span></Link>
+                <Link className="nav-option" to='/movielibrary' onClick={this.clearSearchResults &&this.setSiteAreaBusy}><span>Movies</span></Link>
               </li>
               <li>
-                <Link className="nav-option" to='/customerlist' onClick={this.clearSearchResults}><span>Customers</span> </Link>
+                <Link className="nav-option" to='/customerlist' onClick={this.clearSearchResults &&this.setSiteAreaBusy}><span>Customers</span> </Link>
               </li>
               <li>
-                <Link className="nav-option " placeholder="Search" to='/search' onClick={this.clearSearchResults}><span>Search</span></Link>
+                <Link className="nav-option" to='/search' onClick={this.clearSearchResults && this.setSiteAreaFree}><span>Search</span></Link>
               </li>
             </ul>
           </nav>
 
-          <section className="checkout">
-            <Checkout 
-              selectedCustomerName={this.state.selectedCustomerName}
-              selectedCustomerId={this.state.selectedCustomerId}
-              selectedMovie={this.state.selectedMovie}
-              clearSelectedCallback={this.clearSelected}
-              displayMessages={this.displayMessages}
-              refreshList={this.componentDidMount}
-              />
-          </section>
+            {this.state.messageStatus ? this.display() : ''}
 
-          <section className={"result-message-" + this.state.messageStatus}>
-            {this.state.behaviorMessage} 
-          </section>
+            
 
-          <section className="site-content">
-            <Route path="/" render={(props) => <Home welcomeMessage={this.state.welcomeMessage} />}/>
-            <Route path="/movielibrary" render={(props) => <MovieLibrary {...props} 
-                                                            allMovies={this.state.movieLibrary} 
-                                                            selectedMovie={this.selectMovie} />} 
-                                                            />
-            <Route path="/search" render={(props) => <Search onSearchButtonCallback={this.onSearchButtonCallback}/>} />
-            <Route path="/customerlist" render={(props) => <CustomerList {...props} 
-                                                            allCustomers={this.state.allCustomers} 
-                                                            selectedCustomer={this.selectCustomer} 
-                                                            displayMessages={this.displayMessages}/>} 
-                                                            />
-            <SearchResult result= {this.state.searchResults} addMovieToLibraryCallback={this.addMovieToLibraryCallback}/>
-          </section>
-        </Router>   
+            {this.state.displaySideBar ? this.displaySideBar() : ''}
+
+            <section className={"site-content-" + this.state.siteAreaStatus}>
+                
+              <Route exact path="/" render={(props) => <Home welcomeMessage={this.state.welcomeMessage}/>}/>
+
+              <Route path="/movielibrary" render={(props) => <MovieLibrary {...props} allMovies={this.state.movieLibrary} selectedMovie={this.selectMovie}/>} />
+
+              <Route path="/search" render={(props) => <Search onSearchButtonCallback={this.onSearchButtonCallback}/>} />
+
+              <Route path="/customerlist" render={(props) => <CustomerList {...props} allCustomers={this.state.allCustomers} selectedCustomer={this.selectCustomer} displayMessages={this.displayMessages} />} />
+
+             
+                <SearchResult result= {this.state.searchResults} addMovieToLibraryCallback={this.addMovieToLibraryCallback} />
+              
+
+            </section>
+        </Router> 
       </div>
     )
   }

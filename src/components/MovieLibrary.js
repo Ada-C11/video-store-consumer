@@ -26,14 +26,14 @@ const MovieLibrary = (props) => {
     return displayedMovies;
   }
 
-  return (
-    <section className="site-content">
-      <h3 className="movie-library">Movie Library</h3>
-      <div className="all-movies">
-        {displayMovies()}
-      </div>
-    </section>
-  );
+ 
+    return (
+      <section className="site-content-">
+        <div className="all-movies">
+          {displayMovies()}
+        </div>
+      </section>)
+  
 }
 
 export default MovieLibrary;

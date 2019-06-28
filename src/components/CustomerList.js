@@ -45,7 +45,7 @@ const CustomerList = (props) => {
 
   return (
     <section>
-      <h3>All Customers</h3>
+      <h3 className="customers-title">All Customers</h3>
       {displayCustomers()}
     </section>
   );
