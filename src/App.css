@@ -22,7 +22,7 @@
   text-decoration-line: none;
   margin-left: 1rem;
   text-align: center;
-  padding-top: 35px;
+  margin-top: 20px;
   font-family: 'Limelight', cursive;
 }
 
@@ -61,7 +61,10 @@
 
 .currently-selected {
   text-align: center;
+  margin-left: 500px;
+  margin-right: 500px;
+  background-color: #FEE1A8;
+  border: 4px dotted black;
   margin-top: 1rem;
+  padding: 15px;
 }
-
-
