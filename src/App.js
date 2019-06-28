@@ -65,7 +65,6 @@ class App extends Component {
   onClickMovieDetailsCallback = (id) => {
     const movie = this.state.movies.find(movie => movie.id === id);
     const title = movie.title;
-    // const id = movie.id;
 
     axios.get("http://localhost:3001/movies/" + title)
       .then((response) => {
@@ -78,13 +77,6 @@ class App extends Component {
       .catch((error) => {
         this.setState({error: error.message})
       });
-
-    // this.setState((prevState) => ({ 
-    //   expandedMovies: {
-    //     ...prevState.expandedMovies, 
-    //     [id]: !prevState.expandedMovies[id],
-    //   }
-    // }));
   }
 
   onCloseMovieDetailsCallback = () => {
@@ -220,7 +212,7 @@ class App extends Component {
   onCustomerRentalsCallback = (customerID) => {
     let uniqueRentals = {}
 
-    axios.get('http://localhost:3001/rentals')
+    axios.get('http://localhost:3001/rentals/overdue')
     .then((response) => {
       response.data.forEach((rental, i) => {
         if (rental !== null) {
