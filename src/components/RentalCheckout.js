@@ -8,23 +8,23 @@ class RentalCheckout extends Component {
 
     this.state = {
       checkout: {},
-      checkoutStatus: false
     };
   }
-
-  
 
   checkout = (movie, customer) => {
     this.setState({
       checkout: { customer: customer, movie: movie },
-      checkoutStatus: true
     });
     let dueDate = new Date();
-    dueDate.setDate(dueDate.getDate() + 7)
-    
-    axios.post(`http://localhost:3001/rentals/${movie.title}/check-out`, { customer_id: customer.id, due_date: dueDate})
-      .then((response) => {
-        return response.data
+    dueDate.setDate(dueDate.getDate() + 7);
+
+    axios
+      .post(`http://localhost:3001/rentals/${movie.title}/check-out`, {
+        customer_id: customer.id,
+        due_date: dueDate
+      })
+      .then(response => {
+        return response.data;
       })
 
       .catch(error => {
@@ -32,14 +32,14 @@ class RentalCheckout extends Component {
         alert("Error happened");
         this.setState({ error: error.message });
       });
-    
-    this.props.hasCheckedOutCallback(movie,customer)
+
+    this.props.hasCheckedOutCallback(movie, customer);
   };
 
   render() {
     let checkoutText = "";
 
-    if (this.state.checkoutStatus) {
+    if (this.props.checkoutStatus) {
       checkoutText = `${
         this.state.checkout.customer.name
       } has check out the following movie: ${this.state.checkout.movie.title}`;
@@ -61,8 +61,6 @@ class RentalCheckout extends Component {
 
     return (
       <div>
-        <p>{checkoutText} </p>
-
         <header className="App__header">
           <h2>
             <p>
@@ -78,6 +76,7 @@ class RentalCheckout extends Component {
           </h2>
         </header>
         <p>{checkoutRental} </p>
+        <p>{checkoutText} </p>
       </div>
     );
   }

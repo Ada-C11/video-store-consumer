@@ -39,7 +39,9 @@ class CustomerList extends Component {
   }
 
   componentDidUpdate() {
-    this.fetchCustomers();
+    if (this.props.customerList.length === 0) {
+      this.fetchCustomers();
+    }
   }
 
   render() {
