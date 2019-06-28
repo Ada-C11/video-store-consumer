@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Nav from 'react-bootstrap/Nav';
+import Button from 'react-bootstrap/Button';
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import Search from './components/Search';
 import Library from './components/Library';
@@ -244,15 +245,27 @@ class App extends Component {
     const errorSection = (this.state.error) ?
     (<section>Error: {this.state.error}</section>) : null;
 
+    const currentlySelected = (this.state.rentedMovie || this.state.chosenCustomer) ?
+      <div className="currently-selected">
+        <h4>Currently Selected: </h4>
+        { this.state.rentedMovie && <p>Movie Selection: {this.state.rentedMovie.title}</p> }
+
+        { this.state.chosenCustomer && <p>Customer Selection: {this.state.chosenCustomer.name}</p> }
+        
+        { this.state.chosenCustomer && this.state.rentedMovie && <Button onClick={this.rentMovie}>Rent Movie</Button>}
+      </div> : null
+
     return (
       <Router>
         <div>
           <Header />
-          { this.state.rentedMovie && <p>Movie Selection: {this.state.rentedMovie.title}</p> }
 
-          { this.state.chosenCustomer && <p>Customer Selection: {this.state.chosenCustomer.name}</p> }
-          
-          { this.state.chosenCustomer && this.state.rentedMovie && <button onClick={this.rentMovie}>Rent Movie</button>}
+            {currentlySelected}
+            {/* { this.state.rentedMovie && <p>Movie Selection: {this.state.rentedMovie.title}</p> }
+
+            { this.state.chosenCustomer && <p>Customer Selection: {this.state.chosenCustomer.name}</p> }
+            
+            { this.state.chosenCustomer && this.state.rentedMovie && <button onClick={this.rentMovie}>Rent Movie</button>} */}
 
           {this.state.currentRental.count && <div>Rental #{this.state.currentRental.count}: "{this.state.currentRental.movie}" checked out by Customer #{this.state.currentRental.customer}</div>} 
           {this.state.currentRental.count && <button onClick={this.checkinMovie}>Check-in Movie</button>}
