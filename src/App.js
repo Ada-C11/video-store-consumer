@@ -12,7 +12,13 @@ import './App.css';
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 
 function Index() {
-  return <h3>Home</h3>;
+  return(
+    <div className="video-store-title">
+      <div id="splash">
+        Virtual Videos
+      </div>
+    </div>
+  );
 }
 
 const VIDEO_STORE_API_URL = 'https://video-store-api-sh.herokuapp.com/';

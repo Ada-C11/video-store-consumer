@@ -30,15 +30,20 @@ class SearchForm extends Component {
   render() {
     return (
       <section>
-        <h3>Search our Database</h3>
         <form onSubmit={this.onSubmit}>
-          <label>Search</label>
           <input name="search"
             type="text"
             value={this.state.queryString}
             onChange={this.queryChanged}
+            placeholder="Type in a Movie Title"
           />
-          <input type="submit" name="submit" value="search" />
+          <br /><br />
+          <button 
+            type="submit" 
+            name="submit" 
+            value="search"
+            className="button"
+          >Search</button>
         </form>
       </section>
     );

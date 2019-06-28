@@ -66,6 +66,7 @@ class Search extends Component {
     const movies = this.props.generateMovieComponentsCallback(this.state.movies, false, this.postMovieToLibrary);
     return (
       <section>
+        <div className="video-store-title">Search our Database</div>
         <SearchForm
           searchCallback={this.searchCallback}
         />

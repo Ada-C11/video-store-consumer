@@ -8,7 +8,7 @@ const showClearButton = (selection, callback) => {
     console.log(selection);
     return (
       <div className="selection">
-        {selection.title ? selection.title : selection.name}
+        { selection.title ? selection.title : selection.name }
         <button
           onClick={() => { callback(selection) }}
           href="#"
