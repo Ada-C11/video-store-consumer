@@ -29,26 +29,25 @@ const Movie = (props) => {
     </div>
 
   let movieDetails = null;
-  let showButton = <Button size="sm" className="movie-button" variant="outline-info" onClick={onViewMovieDetails}>Show More</Button>
-  let selectButton =  <Button  size="sm" className="movie-button" onClick={onSelectMovie}>Select Movie</Button>
+  let showButton = <Button size="sm" className="movie-button" variant="outline-dark" onClick={onViewMovieDetails}>Show More</Button>
+  let selectButton =  <Button variant="dark" size="sm" className="movie-button" onClick={onSelectMovie}>Select Movie</Button>
 
   if (props.viewMovieDetails) {
     if (props.viewMovieDetails.title === props.movie.title) {
       movieDescription = null;
       movieDetails = <MovieDetails {...props.viewMovieDetails} />
               
-      showButton =  <Button size="sm" className="movie-button" variant="outline-info" onClick={onCloseMovieDetails}>Show Less</Button>
+      showButton =  <Button size="sm" className="movie-button" variant="outline-dark" onClick={onCloseMovieDetails}>Show Less</Button>
                   
     }
   }
-  // console.log(props.viewMovieDetails);
 
   if (props.selectedMovie === props.movie) {
-    selectButton = <Button  size="sm" variant="danger" className="movie-button" onClick={onDeselectMovie}>Deselect</Button>
+    selectButton = <Button variant="danger"  size="sm" className="movie-button" onClick={onDeselectMovie}>Deselect</Button>
   }
 
   if (props.deselectedMovie === props.movie) {
-    selectButton = <Button  size="sm" className="movie-button" onClick={onSelectMovie}>Select Movie</Button>
+    selectButton = <Button variant="dark"  size="sm" className="movie-button" onClick={onSelectMovie}>Select Movie</Button>
   }
   
   return (
