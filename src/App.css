@@ -209,6 +209,7 @@ animation: home .1s ease infinite;
   margin: 50px 100px;
   display: inline-block;
   height: 60px;
-  padding-right: 0;
+  padding-left: 97%;
   position: relative;
+  /* padding: 300px; */
 }
