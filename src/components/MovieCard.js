@@ -26,7 +26,7 @@ const MovieCard = (props) => {
         </div>
 
         <div className="flip-card-back">
-          <p classname="overview-text">{ overview }</p>
+          <p id="overview-text">{ overview }</p>
           {displayButton}
         </div>
       </div>
