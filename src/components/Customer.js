@@ -48,13 +48,13 @@ class Customer extends Component {
       return (
         <div key={id} className="card" >
           <ul className="card_data-ul">
-            <li className=""><strong>{id}. {name}</strong></li>
+            <li className=""><h5><strong>{name}</strong></h5></li>
             <li className="card_data-li">{address}</li>
             <li className="card_data-li">{city} {postal_code}</li>
             <li className="card_data-li">{phone}</li>
             <li className="card_data-li"><strong>Account credit:</strong> ${account_credit}</li>
             <li className="card_data-li"><strong>Movies checked out:</strong> {movies_checked_out_count}</li>
-            <button className="select_customer_button" onClick={this.props.currentCustomerCallback(customer)}>Select this Customer</button>
+            <button className="select_customer_button" onClick={this.props.currentCustomerCallback(customer)}>Select</button>
           </ul>
         </div>
       )

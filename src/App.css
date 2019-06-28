@@ -46,6 +46,10 @@ a.nav-link:hover {
   align-items: baseline;
 }
 
+.navbar-expand-lg ul {
+  justify-content: flex-end;
+}
+
 button {
   border: 3px solid rgb(0, 49, 245);
   background-color: transparent;
@@ -65,7 +69,8 @@ button:hover {
 div.current_selections {
   display: inline-block;
   padding: 1rem 2rem;
-  color: rgb(0, 153, 255);
+  width: 100%;
+  background-color: rgba(255, 192, 203, 0.295);
 }
 
 h1, h2, h3, h4 {
@@ -77,10 +82,6 @@ h1 {
     margin-left: 2rem;
     text-decoration-line: underline;
     text-decoration-color: pink 
-}
-
-p {
-  color: rgb(0, 226, 207)
 }
 
 .alert_text {
@@ -97,12 +98,11 @@ div.status_message {
 }
 
 .card_container {
-  margin: 2rem;
+  margin: 2rem 1.5rem;
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  grid-gap: 3rem;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-gap: 2rem;
 }
-
 
 
 ul {
@@ -131,13 +131,15 @@ div.card {
   background: transparent;
 }
 
-/* .search_page {
+.search-movie {
 text-align: center;
-} */
+}
 
 .search_h2 {
   padding-bottom: 2rem;
 }
+
+
 
 input {
   width: 70%;
@@ -169,6 +171,7 @@ input {
   justify-content: center;
   align-items: center;
   margin: 2rem;
+  margin-bottom: 4rem;
 }
 
 .search-movie button {

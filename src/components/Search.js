@@ -102,7 +102,7 @@ class Search extends Component {
                 <div className="card" key={external_id}>
                     <img src={image_url} alt="movie poster" className="card-img-top" />
                     <ul className="card_data-ul">
-                        <li className="card_data-li"><strong>{title}</strong></li>
+                        <li className="card_data-li"><h5><strong>{title}</strong></h5></li>
 
                         <li className="card_data-li">{release_date}</li>
                         <li className="card_data-li">{overview}</li>
@@ -154,8 +154,9 @@ class Search extends Component {
 
                         <button type="submit">Search</button>
                     </form>
-                    {hasResultsToShow ? showSearchResults : ""}
                 </div>
+                {hasResultsToShow ? showSearchResults : ""}
+
 
             </div>
         )

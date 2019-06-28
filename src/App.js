@@ -58,22 +58,18 @@ class App extends Component {
       });
   }
 
-  showButton = () => {
-    if (this.state.currentMovie && this.state.currentCustomer) {
-      return true;
-    }
-  }
-
   showRentalSection = () => {
+    const showButton = this.state.currentMovie && this.state.currentCustomer;
+    const checkoutButton = <button
+      onClick={this.checkoutButtonClick}>Checkout</button>;
+    
     if (this.state.currentCustomer || this.state.currentMovie) {
       return (
         <div className="current_selections">
-          <p><strong className="alert_text">Selected Customer:</strong> {this.state.currentCustomer.name}</p>
-          <p><strong className="alert_text">Selected Movie:</strong> {this.state.currentMovie.title}</p>
+          <p><strong>Selected Customer:</strong> {this.state.currentCustomer.name}</p>
+          <p><strong>Selected Movie:</strong> {this.state.currentMovie.title}</p>
 
-          <button
-            onClick={this.checkoutButtonClick}
-            disabled={this.showButton ? false : true}>Checkout</button>
+          {showButton ? checkoutButton : ""}
         </div>
       )
     }
