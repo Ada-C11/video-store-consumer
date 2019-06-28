@@ -132,7 +132,7 @@ class App extends Component {
     axios.post(`${URL}/movies`, movie)
       .then((response) => {
         let currentMovieList = this.state.movies;
-        currentMovieList.push(movie)
+        currentMovieList.unshift(movie)
 
         this.setState({
           movies: currentMovieList,

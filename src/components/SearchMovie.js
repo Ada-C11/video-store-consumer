@@ -62,18 +62,20 @@ class SearchMovie extends Component {
     }
 
     clearMessage = () => {
+
       this.setState({
         message: '',
       })
     };
 
     render() {
-        const { message } = this.state
+        const { message, allSearchResults, searchTerm } = this.state
+        const { movieList, addSearchToLibraryCallback } = this.props
         
-        const listSearchResults = this.state.allSearchResults.map((movieFromSearch, i) => {
+        const listSearchResults = allSearchResults.map((movieFromSearch, i) => {
         let alreadyInLibrary = false
 
-          this.props.movieList.forEach((movie) => {
+          movieList.forEach((movie) => {
             if (movie.external_id === movieFromSearch.external_id) {
               alreadyInLibrary = true;
             }
@@ -83,7 +85,7 @@ class SearchMovie extends Component {
             <li key={i}>
               <Movie 
                 movie={movieFromSearch} 
-                addSearchToLibraryCallback={this.props.addSearchToLibraryCallback} 
+                addSearchToLibraryCallback={addSearchToLibraryCallback} 
                 isSearchResult={true} 
                 alreadyInLibrary={alreadyInLibrary}
               />
@@ -109,7 +111,7 @@ class SearchMovie extends Component {
                   id="movie-search-area"
                   className='form-control'
                   name='text'
-                  value={this.state.searchTerm}
+                  value={searchTerm}
                   placeholder='Ex: "Clueless"'
                   type='text'
                   onChange={this.onChangeHandler} 
@@ -122,7 +124,8 @@ class SearchMovie extends Component {
             </div>
 
             <section className="search-results">
-                {this.state.allSearchResults.length !== 0 && <ul className='search-movie-list'>{listSearchResults}</ul>}
+                {allSearchResults.length !== 0 && <ul className='search-movie-list'>{listSearchResults}</ul>}
+                {allSearchResults.length === 0 && <p>Loading Results...</p>}
             </section>
         </div>
       );
