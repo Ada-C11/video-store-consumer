@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import axios  from 'axios'
 import Customer from './Customer';
 import Message from './Message.js'
+import './Customers.css'
 
 class Customers extends Component {
     constructor(props) {
@@ -33,6 +34,12 @@ class Customers extends Component {
                 const customerEntry = {
                     id: customer.id,
                     name: customer.name,
+                    address: customer.address,
+                    city: customer.city,
+                    state: customer.state,
+                    postalCode: customer.postal_code,
+                    phone: customer.postal_code,
+                    accountCredit: customer.account_credit
                 }
 
                 return customerEntry;
@@ -53,8 +60,17 @@ class Customers extends Component {
 
         const customerComponents = this.state.customers.map((customer, index) => {
             return (
-                <li key={index}>
-                   <Customer name={customer.name} id={customer.id} selectCustomerCallback={this.selectCustomer} />
+                <li className='customer-card' key={index}>
+                   <Customer 
+                     name={customer.name} 
+                     id={customer.id} 
+                     address={customer.address}
+                     city={customer.city}
+                     state={customer.state}
+                     postalCode={customer.postal_code}
+                     phone={customer.phone}
+                     accountCredit={customer.account_credit}
+                     selectCustomerCallback={this.selectCustomer} />
                 </li>
             )
         })
