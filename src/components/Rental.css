@@ -1,0 +1,77 @@
+.rental-movie {
+  display: flex;
+  flex-direction: column;
+  border-style: groove;
+  border-width: 1px;
+  border-color: lightslategray;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  padding: 2px 16px;
+  transition: 0.3s;
+  width: 225px;
+  background-color: #F4f2d6;
+  float: right;
+  padding: 0 10px;
+}
+
+.rental-customer {
+ 
+  border-style: groove;
+  border-width: 1px;
+  border-color: lightslategray;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  /* padding: 2px 16px; */
+  padding: 10px;
+  transition: 0.3s;
+  width: 225px;
+  background-color: #F4f2d6;
+  float: right;
+  padding: 0 10px;
+  margin-top: 15px;
+}
+
+.checkout-button {
+  width: 125px;
+  background-color: #39ff14;
+  align-self: center;
+  margin-bottom: 10px;
+  font-family: 'Press Start 2P', cursive;
+  font-size: 8pt;
+  float: right;
+  /* width: 20%; */
+  padding: 0 10px;
+}
+
+.rental-info {
+  margin-top: 80px;
+  margin-right: 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  /* position: absolute; */
+  /* top: 0;
+  right: 0; */
+}
+
+.checkout-button {
+  margin-top: 15px;
+}
+
+.rental-movie-title {
+  font-weight: bold;
+}
+
+.rental-movie-release-date {
+  margin-top: 10pt;
+}
+
+.rental-movie-overview {
+  margin-top: 10pt;
+}
+
+.rental-customer div {
+  margin-top: 10pt;
+}
+
+span {
+  font-weight: bold;
+}

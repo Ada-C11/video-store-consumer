@@ -1,8 +1,46 @@
+@import url('https://fonts.googleapis.com/css?family=Monoton&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Press+Start+2P&display=swap');
+
 .App {
   text-align: center;
 }
 
-.App-logo {
+body {
+  background: rgb(238,174,202);
+  background: radial-gradient(circle, rgba(238,174,202,1) 0%, rgba(148,187,233,1) 100%);
+}
+
+.home-page {
+  display: flex;
+  flex-direction: column;
+}
+
+.title {
+  font-family: 'Monoton', cursive;
+  text-align: center;
+  font-size: 50px;
+  padding-top: 4.5em;
+}
+
+.sub-heading {
+  text-align: center;
+}
+
+
+.nav ul{
+  list-style: none;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  font-family: 'Press Start 2P', cursive;
+}
+
+/* .nav ul li{
+  padding-left: 8em;
+} */
+
+
+/* .App-logo {
   animation: App-logo-spin infinite 20s linear;
   height: 80px;
 }
@@ -25,4 +63,4 @@
 @keyframes App-logo-spin {
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
-}
+} */

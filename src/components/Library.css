@@ -1,0 +1,43 @@
+@import url('https://fonts.googleapis.com/css?family=Press+Start+2P&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Monoton&display=swap');
+
+.library-title {
+    text-align: center;
+    font-size: 30pt;
+    font-family: 'Monoton', cursive;
+}
+
+.library-display-movies {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.library-card {
+    border: solid lightslategray 1pt;
+    display: flex;
+    flex-direction: column;
+    margin-left: 35px;
+    margin-bottom: 35px;
+    width: 225px;
+    border-radius: 2px;
+    align-content: center;
+    background-color: #f4f2d6;
+}
+
+.library-movie-title {
+    font-size: 14pt;
+    font-weight: bold;
+    text-align: center;
+}
+
+.library-select-movie {
+    width: 125px;
+    background-color: #39ff14;
+    align-self: center;
+    margin-bottom: 10px;
+    font-family: 'Press Start 2P', cursive;
+    font-size: 8pt;
+}
+

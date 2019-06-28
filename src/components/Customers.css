@@ -1,0 +1,9 @@
+.customers-table {
+  width: 50%;
+  text-align: center;
+}
+
+th, td {
+  border-bottom: 1px groove #ddd;
+  padding: 5px;
+}
