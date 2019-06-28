@@ -70,12 +70,8 @@ class MovieSearchResults extends Component {
     return (
       <React.Fragment>
         <p className="send-to-library">{this.state.sendToLibraryIndicator} </p>
-<<<<<<< HEAD
         <h2>Movie search results</h2>
         <h2>{this.state.error}</h2>
-=======
-        <h2>Movie Search Results</h2>
->>>>>>> f7bf4544bb7fa49ef29a8796146b12b50b23725f
         <section className="movie-grid">{collection}</section>
       </React.Fragment>
     );
