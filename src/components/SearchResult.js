@@ -12,11 +12,11 @@ class SearchResult extends Component {
 	}
 
 	displaySearchResults = () => {
-		if (this.props.result !== undefined){
+		if (this.props.result !== undefined) {
 			const moviesFound = this.props.result.map((movie, i) => {
 				return (
 					<SearchMovie key={i} movieData={movie} addMovieToLibraryCallback={this.state.addMovieToLibraryCallback}/>
-				)
+				);
 			})
 		
 			return (
@@ -30,7 +30,7 @@ class SearchResult extends Component {
 						{moviesFound}
 					</tbody>
 				</table>
-			)
+			);
 		}
 	}
 
@@ -39,7 +39,7 @@ class SearchResult extends Component {
 			<section>
         {this.displaySearchResults()}
       </section>
-		)
+		);
 	}
 }
 
