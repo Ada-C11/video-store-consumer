@@ -8,6 +8,7 @@ class RentalCheckout extends Component {
 
     this.state = {
       checkout: {},
+      error: ""
     };
   }
 
@@ -31,6 +32,7 @@ class RentalCheckout extends Component {
         console.log(error.messages);
         alert("Error happened");
         this.setState({ error: error.message });
+
       });
 
     this.props.hasCheckedOutCallback(movie, customer);
@@ -62,6 +64,7 @@ class RentalCheckout extends Component {
     return (
       <div>
         <header className="App__header">
+          <p>{this.state.error}</p>
           <h2>
             <p>
               {this.props.selectedMovie

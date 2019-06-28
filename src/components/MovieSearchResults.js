@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import Movie from "./Movie";
 import "./MovieSearchResults.css";
 import axios from "axios";
-import Axios from "axios";
+
 
 class MovieSearchResults extends Component {
   constructor(props) {
@@ -27,8 +27,6 @@ class MovieSearchResults extends Component {
       this.setState({
         sendToLibraryIndicator: `Added ${movie.title} to the library`
       });
-
-      // this.props.addMovietoLibrayCallback(movie);
       axios
       .post(`http://localhost:3001/movies`, {
         title: movie.title,

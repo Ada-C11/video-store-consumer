@@ -6,7 +6,8 @@ class MovieLibrary extends Component {
     super(props);
 
     this.state = {
-      selectedMovie: ""
+      selectedMovie: "",
+      error: ""
     };
   }
 
@@ -58,7 +59,9 @@ class MovieLibrary extends Component {
     });
     return (
       <React.Fragment>
+        <p>{this.state.error}</p>
         <h2> Movie Library</h2>
+        
         <section className="movie-grid">{movies}</section>
       </React.Fragment>
     );
