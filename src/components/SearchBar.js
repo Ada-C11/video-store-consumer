@@ -12,7 +12,7 @@ const SearchBar = (props) => {
   }
 
   return(
-    <section>
+    <section className="search-field">
       <label>
         Search <input name="search"
                       type="text"

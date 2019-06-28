@@ -3,7 +3,10 @@ body {
   grid-template-rows: 5% auto;
   background-image: url("../images/popcorn.jpg");
   background-color: #cccccc;
+  font-family: 'Titillium Web', sans-serif;
 }
+
+/* Navbar */
 
 ul {
   list-style-type: none;
@@ -24,12 +27,18 @@ li a {
   padding: 14px 16px;
   text-decoration: none;
   font-size: 30px;
+  font-family: 'Righteous';
 }
 
 li a:hover:not(.active) {
   background-color: #111;
 }
 
-.active {
+.active-title {
   background-color: red;
+  margin-right: 180px;
+  font-size: 30px;
+  font-family: 'Audiowide';
 }
+
+

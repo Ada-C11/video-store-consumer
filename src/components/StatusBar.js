@@ -1,19 +1,20 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import './StatusBar.css';
 
 const StatusBar = (props) => {
   const disableCheckoutButton = ((props.currentCustomer && props.currentMovie)) ? false : true
 
   return(
-    <section>
-      <div>
+    <section className="status-bar">
+      <div className="feedback-message">
         {props.feedbackMessage}
       </div>
-      <div>
-        Checking out for customer: {props.currentCustomer.name}
+      <div className="checkout-customer">
+        Checking out for customer: <span className="selected-customer">{props.currentCustomer.name}</span>
       </div>
       <div>
-        Checking out title: {props.currentMovie.title}
+        Checking out title: <span className="selected-title">{props.currentMovie.title}</span>
       </div>
       <button 
         onClick={props.onRentalCheckout}

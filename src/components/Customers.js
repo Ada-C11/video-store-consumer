@@ -1,6 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types';
-
+import './Customers.css';
 import Customer from './Customer';
 
 const Customers = (props) => {
@@ -13,7 +13,10 @@ const Customers = (props) => {
             />
     })
     return (
-      <div>{ displayCustomers }</div>
+      <section className="customers-page">
+        <h2>Customers</h2>
+        { displayCustomers }
+      </section>
     )
 }
 

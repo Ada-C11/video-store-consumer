@@ -214,10 +214,10 @@ class VideoStore extends Component {
     return (
       <div>
         <Router>
-          <div className="nav">
+          <nav className="nav">
             <ul>
               <li>
-                <Link to="/" className="active">BlockbusterBay</Link>
+                <Link to="/" className="active-title">BlockbusterBay</Link>
               </li>
               <li>
                 <Link to="/search/">Search</Link>
