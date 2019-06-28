@@ -85,7 +85,7 @@ class AppRouter extends Component {
                 <span onClick={this.setSelectedPage}><Link to="/search/">Search</Link></span>
               </li>
             </ul>
-            <span className="logo">Clever Video Store Name</span>
+            <span className="logo">Raichu Video</span>
           </nav>
           <main>
             <div className="selected-movie">{this.state.currentMovie ? `Selected Movie: ${this.state.currentMovie.title}` : ""}</div>
