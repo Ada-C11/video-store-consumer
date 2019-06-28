@@ -59,3 +59,9 @@
 .App__button:hover {
   background-color: #2552a8;
 }
+
+.spacer
+{
+    width: 100%;
+    height: 95px;
+}

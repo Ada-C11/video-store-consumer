@@ -152,6 +152,9 @@ class App extends Component {
             </section>
           </nav>
           
+          <div class="spacer">
+               &nbsp;
+          </div>
           <section>
             <Message message={this.state.message}/>
           </section>
