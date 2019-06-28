@@ -70,7 +70,7 @@ Movie.propTypes = {
     release_date:PropTypes.string,
     image_url:PropTypes.string,
     external_id:PropTypes.number,
-    movieTitleCallbackinMovie: PropTypes.func,
+    movieTitleCallback: PropTypes.func,
     
 };
   

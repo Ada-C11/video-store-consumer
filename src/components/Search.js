@@ -20,7 +20,6 @@ class Search extends Component {
       this.getSearch()
     }
 
-    
     getSearch = () => {
         console.log(this.props.location)
         axios.get(`http://localhost:3000/movies${this.props.location.search}`)
