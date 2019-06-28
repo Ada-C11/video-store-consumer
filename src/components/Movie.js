@@ -5,7 +5,7 @@ import './Movie.css';
 
 const Movie = (props) => {
   // Movie from SearchMatches gets onMovieAdd
-  const displayAddButton = ( props.onMovieAdd === undefined) ? <button>Already in Library</button> : <button onClick = {() => props.onMovieAdd(props.id)}>Add Me</button>
+  const displayAddButton = ( props.onMovieAdd === undefined) ? <button className="in-library-button">Already in Library</button> : <button onClick = {() => props.onMovieAdd(props.id)}>Add Me</button>
 
   // Movie from Movies gets onMovieSelect
   const displayClickableTitle = (props.onMovieSelect === undefined) ? <h3>{props.title}</h3> : <h3 onClick={() => props.onMovieSelect(props.id)}>{props.title}</h3>
