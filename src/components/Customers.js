@@ -35,7 +35,7 @@ const Customers = (props) => {
 
   return (
     <body>
-      <section className="header"><b>- Our Community -</b></section>
+      <section id="communityHeader"><b>- Our <i>Community</i> -</b></section>
       <section className="customers_container">
         {customerCollection}
       </section>

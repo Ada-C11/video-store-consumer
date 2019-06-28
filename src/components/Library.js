@@ -19,7 +19,7 @@ const Library = (props) => {
 
   return (
     <section className="library_container">
-      <h1>Library</h1>
+      <h1 id="collectionHeader"><b>- Our <i>Collection</i> -</b></h1>
       
       <Table striped size="sm">
         <tbody>

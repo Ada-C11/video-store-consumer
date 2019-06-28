@@ -1,4 +1,18 @@
 .library_container {
-    margin: 3rem;
+    background: #000;
     text-align: left;
+    padding: 30px;
+}
+
+#collectionHeader {
+    text-align: center;
+    font-size: 3em;
+    color: #fff3c9;
+}
+
+.movie_container {
+    background: white;
+    margin: 5px;
+    margin-left: 40px;
+    margin-right: 40px;
 }
