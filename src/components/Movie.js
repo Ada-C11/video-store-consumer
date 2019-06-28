@@ -12,7 +12,6 @@ const Movie = (props) => {
       <img className="movie__image" src={props.image_url}/>
       <div className="movie__content">
         <h3>{props.title}</h3>
-        <p>{props.overview}</p>
         <p>Release date: {props.release_date}</p>
 
         <input
