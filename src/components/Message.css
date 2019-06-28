@@ -1,5 +1,20 @@
-.message {
-    border: 1px solid black;
-    color: red;
-    height: 2vw;
+.message-container {
+    align-content: center;
 }
+
+.message {
+    /* border: 1px solid black; */
+    font-weight: bold;
+    height: 4vw;
+    width: 20vw;
+    display: inline-block;
+    padding-top: .5vw;
+}
+
+/* .green {
+    color: seagreen;
+}
+
+.red {
+    color: red;
+} */

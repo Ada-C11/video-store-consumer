@@ -5,11 +5,13 @@ import './Message.css'
 const Message = (props) => {
 
   return (
-    <div className="message">
-      {props.message && 
-        <p>{props.message}</p>
-      }
-    </div>
+    <section className="message-container">
+        <div className="message">
+        {props.message && 
+            <p>{props.message}</p>
+        }
+        </div>
+    </section>
     
     )
 }
