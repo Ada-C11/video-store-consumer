@@ -21,11 +21,11 @@ const Customer = (props) => {
     
     const selectButton = (props.chosenCustomer === props.customer) ?
       <td><Button size="sm" variant="danger" onClick={onDeselectCustomer}>Deselect</Button></td> :
-      <td><Button size="sm" onClick={onSelectCustomer}>Select Customer</Button></td>
+      <td><Button size="sm" variant="dark" onClick={onSelectCustomer}>Select Customer</Button></td>
 
     const rentalButton =  (props.viewCustomerRental) ?
       <td><Button variant="danger" size="sm" onClick={onViewRentals}>Close</Button></td> :
-      <td><Button variant="outline-primary" size="sm" onClick={onViewRentals}>Customer Rentals</Button></td>
+      <td><Button variant="outline-dark" size="sm" onClick={onViewRentals}>Customer Rentals</Button></td>
        
   return (
       <tr>
