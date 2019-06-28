@@ -27,7 +27,6 @@ class MovieLibrary extends Component {
         this.props.addMovietoLibrayCallback(movielist);
       })
       .catch(error => {
-        console.log(error);
         alert("Error happened");
         this.setState({ error: error.message });
       });
@@ -37,13 +36,13 @@ class MovieLibrary extends Component {
     const movies = this.props.librayMovies.map(movie => {
       return (
         <section key={movie.id}>
-          <div className="card-body">
+          <div>
             <img
               className="card-img-top"
               src={movie.image_url}
               alt="Card image cap"
             />
-            <h5 className="card-title">{movie.title}</h5>
+            <h5>{movie.title}</h5>
             <button
               type="button"
               className="block"

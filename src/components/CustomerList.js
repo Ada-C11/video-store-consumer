@@ -15,7 +15,7 @@ class CustomerList extends Component {
   selectToCheckoutCustomer = customer => {
     this.setState({
       selectedCustomer: customer,
-      error: "",
+      error: ""
     });
 
     this.props.rentMovieWithCustomerCallback(customer);
@@ -29,7 +29,6 @@ class CustomerList extends Component {
         this.props.addCustomersCallback(customers);
       })
       .catch(error => {
-        console.log(error);
         alert("An error occurred");
         this.setState({ error: error.message });
       });
