@@ -5,7 +5,7 @@ import './Message.css'
 const Message = (props) => {
 
   return (
-    <div>
+    <div className="message">
       {props.message && 
         <p>{props.message}</p>
       }
