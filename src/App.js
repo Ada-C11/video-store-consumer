@@ -85,10 +85,7 @@ class App extends Component {
               <Link to="/" className="navbar-brand">AA Video Rental</Link>
               <Link to="/movies" className="nav-item nav-link">Movies</Link>
               <Link to="/customers" className="nav-item nav-link">Customers</Link>
-              <form className="form-inline my-2 my-lg-0">
-                {/* <input className="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search"></input> */}
-                <Link to="/search"><button id="search-button" className="btn btn-primary nav-item nav-link" type="submit">Search for New Movies</button></Link>
-              </form>
+              <Link to="/search"><button id="search-button" className="btn btn-primary nav-item nav-link" type="submit">Search for New Movies</button></Link>
             </nav>
           </header>
           <main>

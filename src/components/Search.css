@@ -1,0 +1,18 @@
+.search {
+    text-align: center;
+    font-family: 'Nunito', sans-serif;
+}
+
+.search-label {
+    margin-top: 1em;
+    font-size: 1.4rem;
+}
+
+.search-form-item-label {
+    margin-right: 0.25em;
+}
+
+.search-form-item-form {
+    margin-right: 1em;
+}
+

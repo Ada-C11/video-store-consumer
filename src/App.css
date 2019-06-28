@@ -9,6 +9,8 @@
   font-size: 1.25em;
 }
 
+
+
 #search-button {
   border: 1px solid white;
 }
@@ -25,6 +27,7 @@
 
 section {
   margin-top: 5rem;
+  font-family: 'Nunito', sans-serif;
 }
 
 .checkout {
@@ -46,6 +49,7 @@ li {
 
 .homepage {
   text-align: center;
+  font-family: 'Nunito', sans-serif;
 }
 
 .homepage-p {
