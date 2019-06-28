@@ -106,7 +106,7 @@ class App extends Component {
           <div>
             <p>Selected Movie: {this.state.selectedMovie ? this.state.selectedMovie.title : "No movie selected"}</p>
             <p>Selected Customer: {this.state.selectedCustomer ? this.state.selectedCustomer.name : "No customer selected"}</p>
-            <button disabled={!enabledCheckout} type="button" onClick={() => {this.checkoutMovie(this.state.selectedMovie, this.state.selectedCustomer)}}>Checkout Movie</button>
+            <button disabled={!enabledCheckout} type="button" className="btn btn-info"onClick={() => {this.checkoutMovie(this.state.selectedMovie, this.state.selectedCustomer)}}>Checkout Movie</button>
           </div> : ''
 
     return (

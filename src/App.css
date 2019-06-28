@@ -77,6 +77,14 @@ a:before {
   text-shadow:  0 0 1px rgb(255, 255, 255), 0 0 2px rgb(171, 238, 250);
 }
 
+tr {
+  background-color:white;
+}
+
+table {
+  margin: 50px 0 0 0;
+}
+
 .home {
   background-color: rgb(10, 65, 79);
   padding: 325px;
@@ -91,7 +99,7 @@ a:before {
 .home {
 animation: home .1s ease infinite;
 -webkit-animation: home .1s ease infinite;
--webkit-animation-delay: 2s;
+-webkit-animation-delay: 1.5s;
 }
 
 /* .home {
