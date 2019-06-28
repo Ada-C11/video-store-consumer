@@ -188,31 +188,33 @@ class App extends Component {
             {message}
           </section>
 
-          <section className='currently-selected-items'>    
-            {selectedMovie && 
-              <div>
-                <p>Selected Movie: {selectedMovie.title}</p>
-                <button 
-                  className='btn btn-warning' 
-                  onClick={() => { this.setState({ selectedMovie: null}) }}>
-                Remove Movie from Rental
-                </button>
-              </div>
-            }
-            {selectedCustomer &&
-              <div>
-                <p>Selected Customer: {selectedCustomer.name}</p>
-                <button 
-                  className='btn btn-warning' 
-                  onClick={() => { this.setState({ selectedCustomer: null}) }}>
-                Remove Customer from Rental
-                </button>
-              </div>
-            }
+          <section className='currently-selected-items'>   
+            <section className='selected-customer-and-movie'>
+                {selectedMovie && 
+                  <div className='selected-movie'>
+                    <p>Selected Movie: <span className='selected-name'>{selectedMovie.title}</span></p>
+                    <button 
+                      className='btn btn-secondary btn-sm' 
+                      onClick={() => { this.setState({ selectedMovie: null}) }}>
+                    Remove
+                    </button>
+                  </div>
+                }
+                {selectedCustomer &&
+                  <div className='selected-customer'>
+                    <p>Selected Customer: <span className='selected-name'>{selectedCustomer.name}</span></p>
+                    <button 
+                      className='btn btn-secondary btn-sm' 
+                      onClick={() => { this.setState({ selectedCustomer: null}) }}>
+                    Remove
+                    </button>
+                  </div>
+                }
+              </section> 
             {selectedMovie && selectedCustomer && 
-              <div>
+              <div className='checkout-button'>
                 <button 
-                  className='btn btn-success' 
+                  className='btn btn-success btn-sm' 
                   onClick={this.onClickCheckout}>
                 Checkout Rental
                 </button>

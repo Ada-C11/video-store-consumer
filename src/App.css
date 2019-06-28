@@ -54,3 +54,46 @@ ul {
 .vhs-tape {
   height: 425px;
 }
+
+.selected-customer-and-movie {
+  display: flex;
+  justify-content: center
+}
+
+.selected-customer-and-movie div {
+  padding-left: 1em;
+  padding-right: 1em;
+  padding-bottom: 1em;
+}
+
+.selected-movie, .selected-customer {
+  display: flex;
+}
+
+.selected-movie p, .selected-customer p {
+  margin-bottom: 0%;
+  padding-top: 4px;
+  padding-right: 3px
+}
+
+.currently-selected-items {
+  display: flex;
+  justify-content: center
+}
+
+.checkout-button {
+  padding-left: 2%
+}
+
+.checkout-button button {
+  background-color: #266C2F
+}
+
+.checkout-button button:hover {
+  background-color: #15471B
+}
+
+.selected-name {
+  font-weight: bold
+}
+
