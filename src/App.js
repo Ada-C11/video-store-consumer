@@ -6,7 +6,7 @@ import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import Search from './components/Search';
 import Library from './components/Library';
 import Customers from './components/Customers';
-import Log from './components/Log';
+import OverdueMovies from './components/OverdueMovies';
 import axios from 'axios';
 import './App.css';
 
@@ -320,9 +320,9 @@ class App extends Component {
             )} 
           />
           <Route 
-            path="/log" 
+            path="/overdue" 
             render={() => (
-              <Log  
+              <OverdueMovies  
                 overdueMovies={this.state.overdueMovies}
                 setOverdueMoviesCallback={this.setOverdueMoviesCallback}
                 setErrorOverdueCallback={this.setErrorOverdueCallback}
@@ -345,7 +345,7 @@ function Header() {
           <Link className="nav_link" to="/search">Search</Link>
           <Link className="nav_link" to="/library">Library</Link>
           <Link className="nav_link" to="/customers">Customers</Link>
-          <Link className="nav_link" to="/log">Log</Link>
+          <Link className="nav_link" to="/overdue">Log</Link>
         </Nav>
       </nav>
     </header>

@@ -1,9 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import axios from 'axios';
-// import './Log.css';
+import Button from 'react-bootstrap/Button';
+import './OverdueMovies.css';
 
-const Log = (props) => {
+const OverdueMovies = (props) => {
   const overdueMoviesCall = () => {
     axios.get('http://localhost:3001/rentals/overdue')
     .then((response) => {
@@ -17,16 +18,16 @@ const Log = (props) => {
     });
   }
   return (
-    <div>
-      <button onClick={overdueMoviesCall}>Overdue Movies</button>
+    <div className="overdue_container">
+      <Button className="format" variant="dark" onClick={overdueMoviesCall}>View Overdue Movies</Button>
       {props.overdueMovies && <ul>{props.overdueMovies.length > 0 ? props.overdueMovies : "No Movies are Overdue!" }</ul>}
     </div>
   )
 }
 
-Log.propTypes = {
+OverdueMovies.propTypes = {
   setOverdueMoviesCallback: PropTypes.func.isRequired,
   overdueMovies: PropTypes.array,
 };
 
-export default Log;
+export default OverdueMovies;
