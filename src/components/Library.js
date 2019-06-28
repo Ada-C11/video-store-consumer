@@ -8,7 +8,7 @@ const Library = (props) => {
   const movieCards = movieLibrary.map((movie, i) => {
     return (
         <MovieCard key={i} 
-          movie={movie} 
+          movie={movie}
           filterMoviesCallback={filterMoviesCallback}
           selectMovie={() => {selectMovie(movie)}} />
       )

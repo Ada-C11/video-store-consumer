@@ -5,11 +5,20 @@
 
 .card-text {
   padding: 10px;
+  font-style: italic; 
 }
 .card-body {
   text-align: center;
   padding: 0;
+  width: 18em;
+  height: auto;
 }
+
 .card-columns {
+  column-count: 5;
   padding: 25px;
+}
+
+.card-columns .card {
+    width: auto;
 }
