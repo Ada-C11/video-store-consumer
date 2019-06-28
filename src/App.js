@@ -86,8 +86,8 @@ class App extends Component {
               <Link to="/movies" className="nav-item nav-link">Movies</Link>
               <Link to="/customers" className="nav-item nav-link">Customers</Link>
               <form className="form-inline my-2 my-lg-0">
-                <input className="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search"></input>
-                <Link to="/search"><button id="search-button" className="btn btn-primary nav-item nav-link" type="submit">Search</button></Link>
+                {/* <input className="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search"></input> */}
+                <Link to="/search"><button id="search-button" className="btn btn-primary nav-item nav-link" type="submit">Search for New Movies</button></Link>
               </form>
             </nav>
           </header>
@@ -108,9 +108,11 @@ class App extends Component {
             </section>
             <Route
               exact={true} path="/" render={() => (
-                <div>
-                  <h1 className="homepage__title">Welcome to Double A Video Rentals</h1>
-                  <p>Select Customers or Movies at the top to start the checkout process!</p>
+                <div className="homepage">
+                  <h1 className="homepage__title">Welcome to AA Video Rentals</h1>
+                  <p className="homepage-p">Select Customers or Movies at the top to start the rental process!</p>
+                  <p className="homepage-p">If you don't find the video you are looking for, add a new one by using search.</p>
+                  <img src="https://boygeniusreport.files.wordpress.com/2016/03/movies-tiles.jpg?quality=98&strip=all" alt="movies" width="900px" height="600px"/>
                 </div>
             )}/> 
 
