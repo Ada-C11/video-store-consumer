@@ -1,28 +1,202 @@
 .App {
-  text-align: center;
+  width: 100%;
+  min-height: 100vh;
+  display: grid;
+  grid-template-columns: 250px auto;
+  grid-template-rows: 70px  60px 200px auto;
+  grid-template-areas:
+    "navigation navigation" 
+    "message1 message2"
+    "checkout site "
+    "side site"
 }
 
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 80px;
+.site-content- {
+  grid-row: 2/5;
+  grid-column: 2;
+  background-image: url("https://cdn.pixabay.com/photo/2016/06/03/12/42/popcorn-1433332_1280.jpg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
-.App-header {
-  background-color: #222;
-  height: 150px;
+.site-content-result {
+  grid-row: 2/5;
+  grid-column: 2;
+  background-image: url("https://cdn.pixabay.com/photo/2016/06/03/12/42/popcorn-1433332_1280.jpg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.site-content-message {
+  grid-area: site;
+  background-image: url("https://cdn.pixabay.com/photo/2016/06/03/12/42/popcorn-1433332_1280.jpg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.table {
+  background-color:  #F7FFF7;
+}
+
+.site-content-free {
+  grid-row: 2/5;
+  grid-column: 2;
+  background-image: url("https://cdn.pixabay.com/photo/2016/06/03/12/42/popcorn-1433332_1280.jpg"); 
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.site-content-home {
+  grid-row: 2/6;
+  grid-column: 1/6;
+  background-image: url("https://youtu.be/1roy4o4tqQM"); 
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.side-area {
+  grid-area: side;
+  background-color:  #1A535C;
+}
+
+.checkout {
+  grid-area: checkout;
+  width: 250px;
+  height: 300px;
+  top: 70px;
+  padding-top: 40px;
+  background-color: #1A535C;
+  grid-column-start: 1; 
+  grid-row-start: 2; 
+  box-sizing: border-box;
+  position: fixed;
+}
+
+nav {
+  grid-area: navigation;
+  background-color: #39968F;
+  position: fixed; 
+  top: 0; 
+  width: 100%;
+  height: 70px;
+  z-index: 3;
+}
+
+li {
+  list-style: none;
+  float: right;
+  margin-right: 60px;
+}
+
+.home-link {
+  float: left;
+}
+
+.nav-option {
+  display: block;
   padding: 20px;
   color: white;
 }
 
-.App-title {
-  font-size: 1.5em;
+.site-name{
+  display: block;
+  padding: 20px;
+  color: white;
+  font-size: 20px;
+  text-decoration: none;
 }
 
-.App-intro {
-  font-size: large;
+.site-name:hover {  
+  text-decoration: none;
+  color: white;
 }
 
-@keyframes App-logo-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+.nav-option {
+  display: inline-block;
+  border: none;
+  color: #FFFFFF;
+  text-align: left;
+  font-size: 20px;
+  padding: 20px;
+  width: 100px;
+  transition: all 0.5s;
+  cursor: pointer;
 }
+
+.nav-option span {
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  transition: 0.5s;
+}
+
+.nav-option span:after {
+  position: absolute;
+  opacity: 0;
+  top: 0;
+}
+
+.nav-option:hover span {
+  padding: 20px;
+  background-color: #FFE66D;
+}
+
+.nav-option:hover span:after {
+  opacity: 1;
+  right: 0;
+}
+
+.result-message-display{
+  grid-area: message2 ;
+  background-color: #E86262;
+  color: white;
+  text-align: center;
+  padding: 20px;
+  font-size: 20px;
+  font-family: "Courier New", Courier, monospace;
+}
+
+.btn {
+  color: #F7FFF7 !important;
+  background-color: #39968F !important;
+  border-color: #39968F !important;
+}
+.btn:hover {
+  background-color: #A34545 !important;
+  border-color: #A34545 !important;
+}
+
+.selected-movie-details {
+  width: 230px;
+  top: 350px;
+  grid-area: side;
+  align-self: center;
+  padding: 2px;
+  grid-column-start: 2; 
+  grid-row-start: 2; 
+  box-sizing: border-box;
+  position: fixed;
+	margin: 10px;
+	text-align: center;
+	background-color: #FFEC94; 
+  border:2px solid #E2C044;
+	border-radius:10px;
+}
+
+.movie-details-img {
+  height: 60px;
+  border-radius: 20%;
+  align-self: left !important;
+}
+
+
+
+
+
+
+

@@ -1,0 +1,9 @@
+
+.search-result-image {
+  height: 60px;
+  border-radius: 20%;
+}
+
+.search-result-row:hover{
+	background-color: lightgrey;
+}
