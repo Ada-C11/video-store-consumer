@@ -1,0 +1,10 @@
+.search_title {
+    text-align: center;
+    margin-top: 5rem;
+}
+
+.search_container {
+    min-height: 800px;
+    border-top: 10px solid black;
+    background: #DCDCDC;
+}

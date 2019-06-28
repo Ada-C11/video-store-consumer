@@ -1,28 +1,91 @@
-.App {
+@import url('https://fonts.googleapis.com/css?family=Limelight&display=swap');
+
+.nav_container {
+  background: #300701 url("https://i.kinja-img.com/gawker-media/image/upload/s--m9daP_xN--/c_scale,f_auto,fl_progressive,q_80,w_800/unsnbwg2cke5spzlpsuy.jpg") no-repeat center top;
+  background-size: 100% 180%;
+  display: flex;
+  flex-direction: column;
+  height: 15rem;
+}
+
+.brand {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  text-shadow:
+  -1px -1px 0 white,
+  1px -1px 0 white,
+  -1px 1px 0 white,
+  1px 1px 0 white;
+  color: black;
+  font-size: 6rem;
+  text-decoration-line: none;
+  margin-left: 1rem;
   text-align: center;
+  margin-top: 20px;
+  font-family: 'Limelight', cursive;
 }
 
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 80px;
+.nav {
+  display: flex;
+  justify-content: center;
 }
 
-.App-header {
-  background-color: #222;
-  height: 150px;
-  padding: 20px;
+.nav_link {
+  font-family: 'Limelight', cursive;
   color: white;
+  text-shadow:
+  -1px -1px 0 #000,
+  1px -1px 0 #000,
+  -1px 1px 0 #000,
+  1px 1px 0 #000;
+  font-size: 2rem;
+  text-decoration: none;
+  padding-left: 15px;
+  padding-right: 15px;
 }
 
-.App-title {
-  font-size: 1.5em;
+.nav_link:first-child {
+  border-left: none;
 }
 
-.App-intro {
-  font-size: large;
+.nav_link:hover {
+  color: red;
+  text-shadow:
+  -1px -1px 0 #990708,
+  1px -1px 0 #990708,
+  -1px 1px 0 #990708,
+  1px 1px 0 #990708;
+  text-decoration: none;
 }
 
-@keyframes App-logo-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+.brand:hover {
+  color: #990708;
+  text-shadow:
+  -1px -1px 0 red,
+  1px -1px 0 red,
+  -1px 1px 0 red,
+  1px 1px 0 red;
+  text-decoration: none;
+}
+
+#rentalSection {
+  border-top: 10px solid black;
+  background: white;
+  padding-bottom: 15px;
+}
+
+.currently-selected {
+  font-size: 1em;
+  text-align: center;
+  margin-left: 500px;
+  margin-right: 500px;
+  background-color: #FEE1A8;
+  border: 4px dotted black;
+  margin-top: 1rem;
+  padding: 15px;
+}
+
+.rentalHeader {
+  font-size: 2em;
 }

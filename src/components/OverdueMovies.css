@@ -1,0 +1,13 @@
+.overdue_container {
+  border-top: 10px solid black;
+  background: #DCDCDC;
+  padding: 80px;
+  min-height: 800px;
+  display: flex-wrap;
+  text-align: center; 
+  list-style: none;
+}
+
+.overdueMovie {
+  list-style: none;
+}
