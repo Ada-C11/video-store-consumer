@@ -12,7 +12,7 @@ const Movie = (props) => {
     <div className="movie card">
         <div className="movie__section card-body">
           <h3 className="movie__title card-title">{props.title}</h3>
-            <img className="image card-img-top" src={props.image_url} alt="this is an image"/>
+            <img className="card-img-top" src={props.image_url} alt="this is an image"/>
             <div className="middle">
               <div className="text card-text">{props.overview}</div>
             </div>

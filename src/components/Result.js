@@ -15,8 +15,9 @@ const Result = (props) => {
             </div>
           <div className="result__info">
             <span>
-              <button className="select__result btn btn-dark" onClick={() => props.addMovieCallback(props)}>
+              <button className="select__result btn btn-dark"> <a href="#" onClick={() => props.addMovieCallback(props)}>
                 Add to Rental Library
+                </a>
               </button>
             </span> 
           </div>
