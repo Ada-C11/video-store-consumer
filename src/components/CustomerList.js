@@ -75,7 +75,7 @@ class CustomerList extends Component {
   render() {
     return (
       <div>
-        <div id="video-store-title">Customer List</div>
+        <div className="video-store-title">Customer List</div>
         <table className="table" >
           <thead>
             <tr>
