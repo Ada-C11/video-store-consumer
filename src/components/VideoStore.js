@@ -3,12 +3,12 @@ import axios from 'axios';
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 
 import './VideoStore.css'
-import Customer from './Customer';
 
 import Customers from './Customers';
 import Movies from './Movies';
 import SearchBar from './SearchBar';
 import SearchMatches from './SearchMatches';
+import StatusBar from './StatusBar';
 
 class VideoStore extends Component {
   constructor(props) {
@@ -24,8 +24,8 @@ class VideoStore extends Component {
       // SearchBar
       queryString: "",
       searchMatches: [],
-      // Rentals
-      rentalList: [],
+      // StatusBar
+      feedbackMessage: ""
     };
   }
   url = "https://enigmatic-chamber-40825.herokuapp.com/"
@@ -51,10 +51,16 @@ class VideoStore extends Component {
 
       console.log(customerList);
 
+      const feedbackMessage = `Successfully loaded ${customerList.length} customers!`
+
       this.setState({ customerList });
      })
       .catch((error) => {
-        this.setState({ error: error.message })
+        const feedbackMessage = `Error loading customers`
+        this.setState({ 
+          error: error.message,
+          feedbackMessage
+        })
       })
   }
 
@@ -77,11 +83,22 @@ class VideoStore extends Component {
 
       console.log(movieList);
 
-      this.setState({ movieList });
+      const feedbackMessage = `Successfully loaded ${movieList.length} movies!`
+
+      this.setState({ movieList, feedbackMessage });
     })
     .catch((error) => {
-      this.setState({ error: error.message })
+      const feedbackMessage = `Error loading movies`
+      this.setState({ 
+        error: error.message,
+        feedbackMessage
+      })
     })
+  }
+
+  getFeedbackMessage = () => {
+    const feedbackMessage = `Hey`
+    this.setState({ feedbackMessage });
   }
 
   onCustomerSelect = (customerID) => {
@@ -121,7 +138,11 @@ class VideoStore extends Component {
       this.setState({ searchMatches });
     })
     .catch((error) => {
-      this.setState({ error: error.message })
+      const feedbackMessage = `Error loading search items`
+      this.setState({ 
+        error: error.message,
+        feedbackMessage
+      })
     })
     
     this.setState({ queryString });
@@ -140,14 +161,20 @@ class VideoStore extends Component {
       newMovie.id = response.data[0].id;
 
       const newMovieList = [newMovie, ...this.state.movieList];
+      const feedbackMessage = `Successfully added ${newMovie.title} to library!`
 
       this.setState({ 
         movieList: newMovieList,
-        queryString: ""
+        queryString: "",
+        feedbackMessage
        });
     })
     .catch((error) => {
-      this.setState({ error: error.message })
+      const feedbackMessage = `Error adding ${titleOfMovieToAdd}`
+      this.setState({ 
+        error: error.message,
+        feedbackMessage
+      })
     })
   };
 
@@ -165,19 +192,24 @@ class VideoStore extends Component {
     })
     .then ((response) => {
       console.log(`Renting ${currentMovie.title} for ${currentCustomer.name}`)
+      const feedbackMessage = `Successfully rented ${currentMovie.title} for ${currentCustomer.name}!`
+
       this.setState({
         currentCustomer: "",
-        currentMovie: ""
+        currentMovie: "",
+        feedbackMessage
       })
     })
     .catch(error => {
-      this.setState({ error: error.message })
+      const feedbackMessage = `Error renting ${currentMovie.title} for ${currentCustomer.name}`
+      this.setState({ 
+        error: error.message,
+        feedbackMessage
+      })
     });
   };
 
   render() {
-    const disableCheckoutButton = ((this.state.currentCustomer && this.state.currentMovie)) ? false : true
-
     return (
       <div>
         <Router>
@@ -196,18 +228,14 @@ class VideoStore extends Component {
                 <Link to="/customers/">Customers</Link>
               </li>
             </ul>
-          </div>
-    
-          <section className="checkoutBar">
-            <div>Checking out for customer: {this.state.currentCustomer.name}</div>
-            <div>Checking out title: {this.state.currentMovie.title}</div>
-            <button 
-              onClick={this.onRentalCheckout}
-              disabled={disableCheckoutButton}
-              >
-                Checkout
-            </button>
-          </section>
+          </nav>
+
+          <StatusBar 
+            currentCustomer={this.state.currentCustomer}
+            currentMovie={this.state.currentMovie}
+            feedbackMessage={this.state.feedbackMessage}
+            onRentalCheckout={this.onRentalCheckout}
+          />
 
           <Route exact path="/" render={() => (
             <Movies

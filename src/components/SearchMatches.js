@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 import Movie from './Movie';
 
@@ -29,6 +30,11 @@ const SearchMatches = (props) => {
       { displayMovies }
     </div>
   )
+}
+
+SearchMatches.propTypes ={
+  searchMatches: PropTypes.array,
+  onMovieAdd: PropTypes.func,
 }
 
 export default SearchMatches;
