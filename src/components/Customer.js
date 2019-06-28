@@ -27,7 +27,6 @@ const Customer = (props) => {
     <tr>
       <td>{props.customer.name}</td>
       {selectButton}
-      {/* <td><Button onClick={onSelectCustomer}>Select Customer</Button></td> */}
       <td><Button onClick={onViewRentals}>Customer Rentals</Button></td>
 
       {props.viewCustomerRental && <Card>

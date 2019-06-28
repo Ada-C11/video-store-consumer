@@ -11,6 +11,7 @@
 
 .movie_description {
     margin-left: 1rem;
+    font-family: 'Courier New', Courier, monospace;
 }
 
 .bold_words {
@@ -24,6 +25,7 @@
     /* flex-wrap: wrap; */
 }
 
-.select_movie-button {
-    margin-top: 1rem;
+.btn-sm, .btn-group-sm > .btn {
+    margin-right: 1rem;
 }
+

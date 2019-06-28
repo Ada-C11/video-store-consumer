@@ -18,7 +18,6 @@ class App extends Component {
       expandedMovies: {},
       customers: [],
       expandedCustomers: {},
-      // isDetailsClicked: false,
       deselectedMovie: null,
       rentedMovie: undefined,
       chosenCustomer: undefined,
@@ -64,12 +63,34 @@ class App extends Component {
   }
 
   onClickMovieDetailsCallback = (id) => {
-    this.setState((prevState) => ({ 
-      expandedMovies: {
-        ...prevState.expandedMovies, 
-        [id]: !prevState.expandedMovies[id],
-      }
-    }));
+    const movie = this.state.movies.find(movie => movie.id === id);
+    const title = movie.title;
+    // const id = movie.id;
+
+    axios.get("http://localhost:3001/movies/" + title)
+      .then((response) => {
+        this.setState({
+          expandedMovies: {
+            ...response.data,
+          }
+        });
+      })
+      .catch((error) => {
+        this.setState({error: error.message})
+      });
+
+    // this.setState((prevState) => ({ 
+    //   expandedMovies: {
+    //     ...prevState.expandedMovies, 
+    //     [id]: !prevState.expandedMovies[id],
+    //   }
+    // }));
+  }
+
+  onCloseMovieDetailsCallback = () => {
+    this.setState({
+      expandedMovies: null
+    });
   }
 
   onSelectMovieCallback = (id) => {
@@ -227,7 +248,7 @@ class App extends Component {
   }
 
   render() {
-
+    // console.log(this.state.expandedMovies);
     const errorSection = (this.state.error) ?
     (<section>Error: {this.state.error}</section>) : null;
 
@@ -263,9 +284,9 @@ class App extends Component {
             render={() => (
               <Library 
                 library={this.state.movies} 
-                // isDetailsClicked = {this.state.isDetailsClicked}
                 expandedMovies={this.state.expandedMovies} 
                 onClickMovieDetailsCallback={this.onClickMovieDetailsCallback}
+                onCloseMovieDetailsCallback={this.onCloseMovieDetailsCallback}
                 onSelectMovieCallback={this.onSelectMovieCallback}
                 onDeselectMovieCallback={this.onDeselectMovieCallback} 
                 deselectedMovie={this.state.deselectedMovie} 

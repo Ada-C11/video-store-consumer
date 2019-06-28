@@ -9,6 +9,8 @@ const MovieDetails = (props) => {
         <h3 className="title">{props.title}</h3>
         <p><span className="bold_words">Release Date: </span>{props.release_date}</p>
         <p><span className="bold_words">Overview: </span>{props.overview}</p>
+        <p><span className="bold_words">Inventory: </span>{props.inventory}</p>
+        <p><span className="bold_words">Available Inventory: </span>{props.available_inventory}</p>
       </div>
     )
   };
