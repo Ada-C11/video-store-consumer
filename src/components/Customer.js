@@ -18,7 +18,7 @@ class Customer extends Component {
         <td>{moviesCheckedOutCount}</td>
         <td>
           <button
-            className="button btn"
+            className="button"
             value={id}
             onClick={() => { selectACustomerCallback(index) }}
           >

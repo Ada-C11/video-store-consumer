@@ -23,6 +23,7 @@ const MoviePopup = (props) => {
                 <li>Release Date: {release_date}</li>
                 <li>ID: {id}</li>
                 <li>Inventory: {inventory}</li>
+                <li>Overview:</li>
                 <li>{overview}</li>
               </ul>
             </div>
