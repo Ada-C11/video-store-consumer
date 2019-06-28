@@ -6,6 +6,7 @@ body {
   font-family: Arial, Helvetica, sans-serif;
   margin-left: 3%;
   margin-right: 3%;
+
 }
 
 /* Float four columns side by side */
@@ -24,6 +25,7 @@ body {
   text-align: center;
   background-color: #f1f1f1;
   height: 35em;
+
   margin-bottom: 2em;
   font-size: 15px;
 }

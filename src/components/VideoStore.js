@@ -28,7 +28,7 @@ class VideoStore extends Component {
       feedbackMessage: ""
     };
   }
-  url = "https://enigmatic-chamber-40825.herokuapp.com/"
+  url = "http://localhost:5000/"
 
   componentDidMount() {
     this.getCustomers();
