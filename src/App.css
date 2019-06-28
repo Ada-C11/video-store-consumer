@@ -3,17 +3,10 @@
   cursor: url(http://i64.tinypic.com/jb20qd.png), pointer;
   /* margin: 10px; */
   text-align: center;
+  background-color: rgb(236, 252, 252);
 }
-
 * {
   box-sizing: border-box;
-}
-
-.App-header {
-  background-color: #222;
-  height: 150px;
-  padding: 20px;
-  color: white;
 }
 
 .App-title {
@@ -29,18 +22,14 @@
   list-style-type: none;
 }
 
-/* .nav-list li {
-  display: inline;
-} */
-
 .nav-spacer {
   flex-grow: 1;
 }
 
 .store {
-  /* Do we need this? *?
-  /* display: flex;
-  flex-wrap: wrap; */
+
+   display: flex;
+  flex-wrap: wrap; 
   justify-content: center;
   align-items: center;
   margin-right: 10%
@@ -124,5 +113,109 @@ input[type="submit"]:hover {
 
 .library-heading{
   padding-top: 15px;
-  color: #58585A;
+  /* color: #58585A; */
+}
+
+body {
+  font-family: 'Montserrat', sans-serif
+}
+
+.left-nav a {
+  font-size: 2rem;
+}
+
+.right-nav a {
+  font-size: 1.25rem;
+  padding: 20px;
+}
+
+a {
+  position: relative;
+  color: whitesmoke;
+  text-decoration: none;
+}
+
+a:hover {
+  color: whitesmoke;
+}
+
+a:before {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 1px;
+  bottom: 0;
+  left: 0;
+  background-color: whitesmoke;
+  visibility: hidden;
+}
+
+.navbar {
+  justify-content: space-between;
+}
+
+.navbar-brand {
+  font-family: 'Library3am', sans-serif;
+  color: rgb(171, 238, 250);
+  text-shadow:  0 0 1px rgb(255, 255, 255), 0 0 2px rgb(171, 238, 250);
+}
+
+tr {
+  background-color:white;
+}
+
+table {
+  margin: 25px 0 0 0;
+}
+
+.selected-info {
+  /* justify-content: center; */
+  font-size: 1.25rem;
+  padding: 20px;
+  margin: 20px 0 0 0;
+}
+
+.selected-info span {
+  margin: 0 20px 0 0;
+}
+
+.home {
+  background-color: rgb(10, 65, 79);
+  padding: 325px;
+  font-family: 'Library3am', sans-serif;
+  color: rgb(174, 228, 238);
+  font-size: 150px;
+  text-shadow: -.1vw 0vw .1vw rgb(174, 228, 238), -.15vw 0vw .2vw rgb(174, 228, 238), -.2vw 0vw .2vw rgb(174, 228, 238), 
+  -.1vw 0vw 3vw rgb(46, 157, 177), -.2vw 0vw 3vw rgb(46, 157, 177), -.4vw 0vw 3vw rgb(46, 157, 177),
+  -.1vw 0vw 5vw rgb(46, 157, 177), -.2vw 0vw 5vw rgb(46, 157, 177), -.4vw 0vw .8vw rgb(46, 157, 177), .2vw 0vw 10vw rgb(46, 157, 177);
+}
+
+.home {
+animation: home .1s ease infinite;
+-webkit-animation: home .1s ease infinite;
+-webkit-animation-delay: 1.5s;
+}
+
+/* .home {
+  animation: home 1s 0s ease infinite;
+  -webkit-animation: home 1s 0s ease infinite;
+} */
+
+/* animation inspiration from: https://codemyui.com/neon-text-flickering-effect/ */
+@keyframes home {
+  0%,
+  100% {
+  text-shadow: 
+  -.1vw 0vw .1vw rgb(174, 228, 238), -.15vw 0vw .2vw rgb(174, 228, 238), -.2vw 0vw .2vw rgb(174, 228, 238), 
+  -.1vw 0vw 3vw rgb(46, 157, 177), -.2vw 0vw 3vw rgb(46, 157, 177), -.4vw 0vw 3vw rgb(46, 157, 177),
+  -.1vw 0vw 5vw rgb(46, 157, 177), -.2vw 0vw 5vw rgb(46, 157, 177), -.4vw 0vw .8vw rgb(46, 157, 177), .2vw 0vw 10vw rgb(46, 157, 177);
+    color: rgb(174, 228, 238);
+  }
+  50% {
+  text-shadow: 
+  -.1vw 0vw .1vw rgb(44, 88, 99), -.15vw 0vw .2vw rgb(44, 88, 99), -.2vw 0vw .2vw rgb(44, 88, 99), 
+  -.1vw 0vw .1vw rgb(10, 65, 79), -.2vw 0vw .1vw rgb(10, 65, 79), -.4vw 0vw .1vw rgb(10, 65, 79),
+  -.1vw 0vw .2vw rgb(10, 65, 79), -.2vw 0vw .2vw rgb(10, 65, 79), -.4vw 0vw .2vw rgb(10, 65, 79), .2vw 0vw .5vw #5C0704;
+    color: rgb(44, 88, 99);
+  }
 }

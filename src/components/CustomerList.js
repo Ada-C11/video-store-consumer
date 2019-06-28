@@ -7,19 +7,37 @@ const CustomerList = (props) => {
 
   const displayCustomers = customerList.map((customer, i) => {
     return (
-      <p key={i}>{customer.name}
-        <button onClick={() => {props.selectCustomer(customer)}}>
-          Select Customer
-        </button>
-      </p>
+      <tr key={i}>
+        <td>{customer.name}</td>
+        <td>{customer.address}</td>
+        <td>{customer.postal_code}</td>
+        <td>{customer.phone}</td>
+        <td>{customer.account_credit}</td>
+        <td>
+          <button type="button" className="btn btn-info" onClick={() => {props.selectCustomer(customer)}}>
+            Select Customer
+          </button>
+        </td>
+      </tr>
     )
   })
 
   return (
-    <section>
-      <p>Customers:</p>
-      { displayCustomers }
-    </section>
+    <div className="table-responsive">
+        <table class="table cart-table">
+        <thead class="table-info">
+          <th scope="col">Customer Name</th>
+          <th scope="col">Address</th>
+          <th scope="col">Zipcode</th>
+          <th scope="col">Phone Number</th>
+          <th scope="col">Account Balance</th>
+          <th scope="col"></th>
+        </thead>
+        <tbody>
+          { displayCustomers }
+        </tbody>
+        </table> 
+    </div>
   );
 }
 

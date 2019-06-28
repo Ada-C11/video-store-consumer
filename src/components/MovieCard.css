@@ -10,8 +10,12 @@
 .card-body {
   text-align: center;
   padding: 0;
+  width: 18em;
+  height: auto;
 }
+
 .card-columns {
+  column-count: 5;
   padding: 25px;
 }
 
@@ -78,7 +82,7 @@
 
 p {
   padding: 20px;
-  color: #A6A9AC ;
+  /* color: #A6A9AC ; */
 }
 
 h4{

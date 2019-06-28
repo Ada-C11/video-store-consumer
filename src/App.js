@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import './App.css';
 import Search from './components/Search';
 import Library from './components/Library';
+import Home from './components/Home';
 import CustomerList from './components/CustomerList';
 import axios from 'axios';
 
@@ -100,31 +101,29 @@ class App extends Component {
 
   render() {
     const allUserMessages = this.state.userMessages.map((message, i) => {
-      return <p key= {i}>{ message }</p>;
+      return <p class="alert alert-success" role="alert" key= {i}>{ message }</p>;
     })
 
     const enabledCheckout = this.state.selectedCustomer && this.state.selectedMovie !== null
 
     const displaySelectedItems = (this.state.selectedCustomer || this.state.selectedMovie !== null) ?
-          <div>
-            <p>Selected Movie: {this.state.selectedMovie ? this.state.selectedMovie.title : "No movie selected"}</p>
-            <p>Selected Customer: {this.state.selectedCustomer ? this.state.selectedCustomer.name : "No customer selected"}</p>
-            <button disabled={!enabledCheckout} type="button" onClick={() => {this.checkoutMovie(this.state.selectedMovie, this.state.selectedCustomer)}}>Checkout Movie</button>
-          </div> : ''
+          <section className="selected-items">
+            <span><b>Selected Movie:</b> {this.state.selectedMovie ? this.state.selectedMovie.title : <i>Please make a selection.</i>}</span>
+            <span><b>Selected Customer:</b> {this.state.selectedCustomer ? this.state.selectedCustomer.name : <i>Please make a selection.</i>}</span>
+            <button disabled={!enabledCheckout} type="button" className="btn btn-info"onClick={() => {this.checkoutMovie(this.state.selectedMovie, this.state.selectedCustomer)}}>Checkout Movie</button>
+          </section> : ''
 
     return (
       <Router>
         <div className="App">
-          {/* <header>
-              <h1>Video Store Consumer</h1>
-          </header> */}
-
-          <nav className="navbar navbar-expand-lg navbar-light bg-light">
-              <a className="navbar-brand" href="#">crow//video</a>
+          <nav className="navbar navbar-expand-lg bg-info">
+            <div className="left-nav">
+              <span className="navbar-brand"><Link to="/"> crow//video </Link></span>
               <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span className="navbar-toggler-icon"></span>
               </button>
-              <div className="collapse navbar-collapse" id="navbarSupportedContent">
+            </div>
+              <div className="collapse navbar-collapse right-nav" id="navbarSupportedContent">
                 <ul className="navbar-nav mr-auto">
                   <li className="nav-item">
                     <Link to="/library/"> Movies </Link>
@@ -138,29 +137,16 @@ class App extends Component {
                 </ul>
               </div>
           </nav>
-          {/* <nav className="navbar navbar-default navbar-light bg-light">
-            <ul className="nav-list nav-spacer">
-              <li className="nav-item">
-                <Link to="/library/"> Movies </Link>
-              </li>
-              <li className="nav-item">
-                <Link to="/customers/"> Customers </Link>
-              </li>
-              <li className="nav-item">
-                <Link to="/search/"> Search Movies </Link>
-              </li>
-              <li className="nav-item">
-                crow//video
-              </li>
-            </ul>
-            {displaySelectedItems}
-          </nav> */}
 
           <section className="user-messages">
             {allUserMessages}
           </section>
 
           <section className="store">
+            <div className="selected-info">
+            {displaySelectedItems}
+            </div>
+            <Route exact path="/" component={Home} />
             <Route path="/search/"
               render={(props) => <Search {...props} 
               selectMovie={this.selectMovie} 
