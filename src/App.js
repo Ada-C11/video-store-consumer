@@ -246,12 +246,12 @@ class App extends Component {
 
     const currentlySelected = (this.state.rentedMovie || this.state.chosenCustomer) ?
       <div className="currently-selected">
-        <h4><b>ACTIVE SELECTION</b></h4>
+        <h4><b>ACTIVE RENTAL SELECTION</b></h4>
         { this.state.rentedMovie && <p><b>Movie:</b> {this.state.rentedMovie.title}</p> }
 
         { this.state.chosenCustomer && <p><b>Customer:</b> {this.state.chosenCustomer.name}</p> }
         
-        { this.state.chosenCustomer && this.state.rentedMovie && <Button onClick={this.rentMovie}>Rent Movie</Button>}
+        { this.state.chosenCustomer && this.state.rentedMovie && <Button variant="warning" onClick={this.rentMovie}>Rent Movie</Button>}
       </div> : null
 
     return (
@@ -259,22 +259,22 @@ class App extends Component {
         <div>
           <Header />
           
-          <section >
+          <section id="rentalSection">
             {currentlySelected}
 
             {
               this.state.currentRental.count && 
               <div className="currently-selected">
-                Rental #{this.state.currentRental.count}: 
-                "{this.state.currentRental.movie}" checked out by Customer #{this.state.currentRental.customer}
-                {this.state.currentRental.count && <button onClick={this.checkinMovie}>Check-in Movie</button>}
+                <p className="rentalHeader">Rental #{this.state.currentRental.count}</p> 
+                <p>"{this.state.currentRental.movie}" checked out by Customer #{this.state.currentRental.customer}</p>
+                {this.state.currentRental.count && <Button variant="danger" onClick={this.checkinMovie}>Check-in Movie</Button>}
               </div>
             } 
 
             {
               !this.state.chosenCustomer && !this.state.rentedMovie && 
               this.state.currentRental.checkin && 
-              <p className="currently-selected">Movie Successfully Checked-In!</p>
+              <p className="currently-selected rentalHeader">Movie Successfully Checked-In!</p>
             }
 
           </section>

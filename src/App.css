@@ -69,7 +69,14 @@
   text-decoration: none;
 }
 
+#rentalSection {
+  border-top: 10px solid black;
+  background: white;
+  padding-bottom: 15px;
+}
+
 .currently-selected {
+  font-size: 1em;
   text-align: center;
   margin-left: 500px;
   margin-right: 500px;
@@ -77,4 +84,8 @@
   border: 4px dotted black;
   margin-top: 1rem;
   padding: 15px;
+}
+
+.rentalHeader {
+  font-size: 2em;
 }
