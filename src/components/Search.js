@@ -5,6 +5,7 @@ import SearchForm from './SearchForm';
 import MOVIE_DATA from '../data/movie-data.json';
 import axios  from 'axios'
 import Message from './Message.js'
+import './Search.css'
 
 class Search extends Component {
     constructor(props) {
@@ -59,9 +60,13 @@ class Search extends Component {
 
     render() {
         return (
-            <div>
-              <SearchForm movieSearchCallback={this.movieSearchCallback} />
-              <SearchResults movieData={this.state.movies} addMovieCallback={this.addMovieCallback}/>
+            <div className='search'>
+                <SearchForm movieSearchCallback={this.movieSearchCallback} />
+                <div className='search-results'>
+                    <SearchResults 
+                        movieData={this.state.movies} 
+                        addMovieCallback={this.addMovieCallback}/>
+                </div>
             </div>
         );
     }

@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import axios  from 'axios'
 import './Movie.css'
+import './SearchResults.css'
 import Message from './Message.js'
 
 const SearchResults = (props) => {
@@ -13,11 +14,10 @@ const SearchResults = (props) => {
 
     const movies = props.movieData.map((movie, i) => {
         return (
-            <div className="movie" key={i}>
+            <li className="movie" key={i}>
                 <img className="movie__image" src={movie.image_url}/>
                 <div className="movie__content">
-                    <p>{movie.title}</p>
-                    <p>{movie.overview}</p>
+                    <p className='movie__title'>{movie.title}</p>
                     <p>Release Date: {movie.release_date}</p>
                     <button 
                         id={i}
@@ -26,7 +26,7 @@ const SearchResults = (props) => {
                             Add to Library
                     </button>
                 </div>
-            </div>
+            </li>
             )
     });
 
