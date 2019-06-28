@@ -8,16 +8,6 @@ const MovieCard = (props) => {
   <button type="button" className="btn btn-info" onClick={props.selectMovie}>Select Movie</button> : 
   <button type="button" className="btn btn-info" onClick={() => {props.addMovieCallback(props.movie)}}>Add Movie to Library</button>
   return (
-    
-    // <div className="card">
-    //   <div className="card-body">
-    //       <img className="card-img-top" src={image_url} alt={ title } />
-    //       <h4 className="movie-title">{ title }</h4>
-    //       <p className="card-text">{ overview }</p>
-    //       {displayButton}
-    //   </div>
-    // </div>
-
     <div className="flip-card">
       <div className="flip-card-inner">
         <div className="flip-card-front">
