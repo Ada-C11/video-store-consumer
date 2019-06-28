@@ -21,29 +21,28 @@ const Movie = (props) => {
       <p><span className="bold_words">Overview: </span>{props.movie.overview.length > 128 ? `${props.movie.overview.substring(0, 150)}...` : props.movie.overview}</p>
     </div>
 
-  let buttons = <div className="buttons">
-                  <div>
+  let showButton = <div>
                     <Button variant="outline-info" onClick={onClickDetailsButton}>Show More</Button>
                   </div>
-                  <div>
-                    <Button className="select_movie-button" onClick={onClickButton}>Select Movie</Button>
-                  </div>
-                </div>
+  let selectButton = <div>
+                      <Button  className="select_movie-button" onClick={onClickButton}>Select Movie</Button>
+                    </div>
 
   if (props.viewMovieDetails) {
     movieDescription = null;
-    buttons = <div className="buttons">
-                <div>
+    showButton = <div>
                   <Button variant="outline-info" onClick={onClickDetailsButton}>Show Less</Button>
                 </div>
-                <div>
-                  <Button  className="select_movie-button" onClick={onClickButton}>Select Movie</Button>
-                </div>
-              </div>
+                
+  }
+
+
+  if (props.selectedMovie === props.movie) {
+    selectButton = <div>
+                      <Button  className="select_movie-button" onClick={onClickButton}>Selected</Button>
+                    </div>
   }
   
-  console.log("Rendering movie with image URL:", props.movie.image_url);
-
   return (
     
     <tr>
@@ -53,7 +52,10 @@ const Movie = (props) => {
           {movieDescription}
           <div className="description"> 
             {props.viewMovieDetails && <Details {...props.movie} />}
-            {buttons}
+            <div className="buttons">
+                {showButton}
+                {selectButton}
+            </div>
           </div>
         </div>
       </td>

@@ -15,7 +15,6 @@ const MovieCard = (props) => {
                 <h3 className="title">{title}</h3>
                 <p><span className="bold_words">Release Date: </span>{release_date}</p>
                 <p><span className="bold_words">Overview: </span>{overview}</p>
-                {/* <p><span className="bold_words">Overview: </span>{overview.length > 200 ? `${overview.substring(0, 150)}...` : overview}</p> */}
                 <Button onClick={addMovie}>Add to Library</Button>
             </div>
             </td>

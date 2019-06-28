@@ -68,8 +68,8 @@ class App extends Component {
     }));
   }
 
-  onSelectMovieCallback = (index) => {
-    const selectedMovie = this.state.movies[index]
+  onSelectMovieCallback = (id) => {
+    const selectedMovie = this.state.movies.find(movie => movie.id === id);
     this.setState({ rentedMovie: selectedMovie });
   }
 
@@ -160,7 +160,6 @@ class App extends Component {
   }
 
   render() {
-    // console.log(this.state.expandedMovies);
 
     const errorSection = (this.state.error) ?
     (<section>Error: {this.state.error}</section>) : null;
@@ -201,6 +200,7 @@ class App extends Component {
                 expandedMovies={this.state.expandedMovies} 
                 onClickDetailsCallback={this.onClickDetailsCallback} 
                 onSelectMovieCallback={this.onSelectMovieCallback} 
+                selectedMovie={this.state.rentedMovie}
               />
             )} 
           />

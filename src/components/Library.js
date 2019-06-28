@@ -10,9 +10,10 @@ const Library = (props) => {
             movie={movie} 
             viewMovieDetails={props.expandedMovies[movie.id]} 
             onClickDetailsCallback={props.onClickDetailsCallback} 
-            onSelectMovieCallback={props.onSelectMovieCallback}/>
+            onSelectMovieCallback={props.onSelectMovieCallback}
+            selectedMovie={props.selectedMovie}/>
    });
-   console.log(props.expandedMovies);
+
   return (
     <section className="library_container">
       <h1>Library</h1>
