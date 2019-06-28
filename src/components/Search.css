@@ -1,0 +1,15 @@
+.search {
+    text-align: center;
+}
+
+.search-label {
+    font-size: 1.4rem;
+}
+
+.search-form-item-label {
+    margin-right: 0.25em;
+}
+
+.search-form-item-form {
+    margin-right: 1em;
+}

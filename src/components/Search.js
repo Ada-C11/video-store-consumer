@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import axios from 'axios';
 import Result from './Result'
 import Movie from './Movie'
+import "./Search.css"
 
 require('dotenv').config();
 
@@ -106,23 +107,23 @@ class Search extends Component {
       />
     })
     return (
-      <div>
+      <div className="search">
         <form className="search-movie-form" onSubmit={this.onSearch}>
           <div className="search-movie">
-              <h3 className="search-movie__header">Search for new Movie</h3>
+              <h1 className="search-movie__header">Search for new Movies</h1>
           </div>
-          <div>
-              <label 
-                className="search-movie-form__form-label" 
-                htmlFor="title">Movie Title</label>
-              <input className="search-movie-form__form-input"
+          <div className="search-label">
+              <label className="search-form-item-label"
+                htmlFor="title">Movie Title:</label>
+              <input className="search-form-item-form"
                 name="searchTitle"
                 onChange={this.onInputChange}
                 value={this.state.searchTitle}>
               </input>
+              <span><input className="btn btn-primary" type="submit" name="submit" value="Search Movie" /></span>
           </div>
           
-          <input className="search-movie-form__form-button" type="submit" name="submit" value="Search Movie" />
+          
       </form>
       <div>
         {results}
