@@ -1,6 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import './Movie.css';
+
 const Movie = (props) => {
   // Movie from SearchMatches gets onMovieAdd
   const displayAddButton = ( props.onMovieAdd === undefined) ? <button>Already in Library</button> : <button onClick = {() => props.onMovieAdd(props.id)}>Add Me</button>
@@ -9,23 +11,38 @@ const Movie = (props) => {
   const displayClickableTitle = (props.onMovieSelect === undefined) ? <h3>{props.title}</h3> : <h3 onClick={() => props.onMovieSelect(props.id)}>{props.title}</h3>
   
   return (
-    <section>
-      <p>
-        { props.id }.
-      </p>
-      { displayClickableTitle }
-      <p>
-        Overview: {props.overview }
-      </p>
-      <p>
-        Release Date: {props.release_date}
-      </p>
-      <p>
-        External ID: {props.external_id}
-      </p>
-      <img src={props.image_url} alt={props.title} />
-      { displayAddButton }
-    </section>
+    // <section>
+    //   <div class="card-image waves-effect waves-block waves-light">
+    //     <img className="activator" src={props.image_url} alt={props.title} />
+    //   </div>
+    //   <div class="card-content">
+    //     <span class="card-title activator grey-text text-darken-4">{ displayClickableTitle }<i class="material-icons right">more_vert</i></span>
+    //   </div>
+    //   <div class="card-reveal">
+    //     <span class="card-title grey-text text-darken-4">{ props.title }<i class="material-icons right">close</i></span>
+    //     <p>{props.overview}</p>
+    //     <p>{props.release_date}</p>
+    //     <p>{displayAddButton}</p>
+    //   </div>
+    // </section>
+
+
+
+
+  <div class="column">
+    <div class="card">
+      <img src={ props.image_url } alt={ props.title } />
+      <div class="cardTitle">
+        <h6>{ displayClickableTitle }</h6>
+
+      </div>
+      <p>Released: { props.release_date }</p>
+      <div class="card-footer">
+        <p>{displayAddButton}</p>
+      </div>
+    </div>
+  </div>
+
   )
 }
 
