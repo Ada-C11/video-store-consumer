@@ -53,12 +53,10 @@ class App extends Component {
     })
     .catch((error) => {
       this.displayMessages(error.message)
-   
     })
   }
 
   onSearchButtonCallback = (searchInput) => {
-
     if (searchInput === ''){
       const emptyMovieMessage = `Empty is not a valid title`
       this.displayMessages(emptyMovieMessage)
@@ -102,12 +100,12 @@ class App extends Component {
 
     let repeated = 0;
     this.state.movieLibrary.map((v) => {
-        if (v.external_id === addedMovieData.external_id){
-          repeated += 1
-        }
+      if (v.external_id === addedMovieData.external_id) {
+        repeated += 1
+      }
     })
     
-    if (repeated === 0){
+    if (repeated === 0) {
       axios.post(URL_MOVIES, addedMovieData)
       .then((response) => {
         this.displayMessages(`${response.data.title} added to movie library`)

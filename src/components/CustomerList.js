@@ -5,9 +5,9 @@ import './CustomerList.css'
 
 const CustomerList = (props) => {
   const updateSelected = (customerId) => {
-    this.props.allCustomers.forEach((customer) => {
+    props.allCustomers.forEach((customer) => {
       if(customer.id === parseInt(customerId, 10)) {
-        this.props.selectedCustomer(customer.name, customer.id);
+        props.selectedCustomer(customer.name, customer.id);
       }
     })
   }
