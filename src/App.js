@@ -5,10 +5,7 @@ import Search from './components/Search.js'
 import Library from './components/Library'
 import Customers from './components/Customers.js'
 import Message from './components/Message.js'
-
-function Index() {
-  return <h2>Home</h2>;
-}
+import './App.css'
 
 class App extends Component {
   constructor(props) {
@@ -119,31 +116,28 @@ class App extends Component {
 
     return (
       <Router>
-        <div>
+        <div className='App'>
           <nav>
-            <ul>
-              <li>
-                <Link to="/">Home</Link>
+            <ul className='App__nav-ul'>
+              <li className='App__nav-li'>
+                <Link className='App__nav-link' to="/search/">Search</Link>
               </li>
-              <li>
-                <Link to="/search/">Search</Link>
+              <li className='App__nav-li'>
+                <Link className='App__nav-link' to="/library/">Library</Link>
               </li>
-              <li>
-                <Link to="/library/">Library</Link>
-              </li>
-              <li>
-                <Link to="/customers/">Customers</Link>
+              <li className='App__nav-li'>
+                <Link className='App__nav-link' to="/customers/">Customers</Link>
               </li>
             </ul>
-            <section>
-              <div>
+            <section className='App__selection'>
+              <div className='App__selection-p'>
                 {this.state.selectedMovie.length > 0 &&
-                  <p>{this.state.selectedMovie}</p>
+                  <p>Movie: {this.state.selectedMovie}</p>
                 }
               </div>
-              <div>
+              <div className='App__selection-p'>
                 {this.state.selectedCustomer.name &&
-                  <p>{this.state.selectedCustomer.name}</p>
+                  <p>Customer: {this.state.selectedCustomer.name}</p>
                 }
               </div>
               <div>
@@ -151,17 +145,18 @@ class App extends Component {
                   this.state.selectedMovie.length > 0 &&
                   this.state.selectedCustomer.name &&
                   <button
+                    className='App__button'
                     onClick={this.checkOut}>Check Out</button>
                 }
               </div>
             </section>
           </nav>
-
+          
           <section>
             <Message message={this.state.message}/>
           </section>
   
-          <Route path="/" exact component={Index} />
+          <Route path="/" exact component={this.myLibraryComponent} />
           <Route path="/search/" render={this.mySearchComponent} />
           <Route path="/library/" render={this.myLibraryComponent} />
           <Route path="/customers/" render={this.myCustomersComponent} />
@@ -169,10 +164,6 @@ class App extends Component {
       </Router>
     );
   }
-}
-
-function AppRouter() {
-
 }
 
 export default App;
