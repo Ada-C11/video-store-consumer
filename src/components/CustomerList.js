@@ -8,7 +8,6 @@ class CustomerList extends Component {
     super(props);
 
     this.state = {
-      customers: [],
       selectedCustomer: ""
     };
   }
@@ -20,24 +19,31 @@ class CustomerList extends Component {
 
     this.props.rentMovieWithCustomerCallback(customer);
   };
-  componentDidMount() {
+
+  fetchCustomers = () => {
     axios
       .get(`http://localhost:3001/customers`)
       .then(response => {
         const customers = response.data;
-        this.setState({
-          customers: customers
-        });
+        this.props.addCustomersCallback(customers);
       })
       .catch(error => {
         console.log(error);
         alert("An error occurred");
         this.setState({ error: error.message });
       });
+  };
+
+  componentDidMount() {
+    this.fetchCustomers();
+  }
+
+  componentDidUpdate() {
+    this.fetchCustomers();
   }
 
   render() {
-    const customers = this.state.customers.map((customer, i) => {
+    const customers = this.props.customerList.map((customer, i) => {
       return (
         <section className="customer-grid" key={i}>
           <span> Id: {customer.id}</span>
@@ -45,14 +51,14 @@ class CustomerList extends Component {
           <span> # of Rentals: {customer.movies_checked_out_count}</span>
           <span> Account Credit: ${customer.account_credit}</span>
           <span> Contact: {customer.phone}</span>
-            <button
-              type="button"
-              className="block"
-              aria-label="Close"
-              onClick={() => this.selectToCheckoutCustomer(customer)}
-            >
-              SELECT CUSTOMER
-            </button>
+          <button
+            type="button"
+            className="block"
+            aria-label="Close"
+            onClick={() => this.selectToCheckoutCustomer(customer)}
+          >
+            SELECT CUSTOMER
+          </button>
         </section>
       );
     });

@@ -17,12 +17,11 @@ class MovieSearchResults extends Component {
       sendToLibraryIndicator: `Added ${movie.title} to the library`
     });
 
-    this.props.addMovietoLibrayCallback(movie);
+    this.props.addSingleMovieToLibraryCallback(movie);
     axios.post(`http://localhost:3001/movies`, { title: movie.title, overview: movie.overview, release_date: movie.release_date, inventory: 5})
     .then((response) => {
       return response.data
     })
-
     .catch(error => {
       console.log(error.messages);
       alert("Error happened");

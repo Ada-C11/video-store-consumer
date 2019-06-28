@@ -12,6 +12,8 @@ class RentalCheckout extends Component {
     };
   }
 
+  
+
   checkout = (movie, customer) => {
     this.setState({
       checkout: { customer: customer, movie: movie },
@@ -19,7 +21,6 @@ class RentalCheckout extends Component {
     });
     let dueDate = new Date();
     dueDate.setDate(dueDate.getDate() + 7)
-    console.log(dueDate)
     
     axios.post(`http://localhost:3001/rentals/${movie.title}/check-out`, { customer_id: customer.id, due_date: dueDate})
       .then((response) => {
@@ -31,6 +32,8 @@ class RentalCheckout extends Component {
         alert("Error happened");
         this.setState({ error: error.message });
       });
+    
+    this.props.hasCheckedOutCallback(movie,customer)
   };
 
   render() {

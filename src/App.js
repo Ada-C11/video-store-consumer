@@ -21,8 +21,8 @@ class App extends Component {
       hasMovie: null,
       hasCustomer: null,
       showResults: false,
-      librayMovies: []
-      
+      librayMovies: [],
+      customerList: []
     };
   }
 
@@ -42,26 +42,34 @@ class App extends Component {
   };
 
   addMovietoLibray = movies => {
-    // Movies could be single or array of movies
-    const movieList = Array.isArray(movies) ? movies : [movies];
     this.setState({
-      librayMovies: [...this.state.librayMovies, ...movieList]
+      librayMovies: movies
     });
   };
-  addSingleMovietoLibrary = movie => {
-    let newState = this.state.librayMovies
-    newState.push(movie)
-    this.setState({
-      librayMovies: newState
 
-    })
-  }
+  addSingleMovieToLibrary = movie => {
+    this.setState({
+      librayMovies: [...this.state.librayMovies, movie]
+    });
+  };
+
+  addCustomers = customers => {
+    this.setState({
+      customerList: customers
+    });
+  };
 
   setDisplay = () => {
     this.setState({ showResults: false });
   };
 
-  
+  hasCheckedOut = (movie, customer) => {
+    this.setState({
+      customerList: [],
+      hasMovie: null,
+      hasCustomer: null
+    });
+  };
 
   render() {
     let optionalComponent;
@@ -78,6 +86,8 @@ class App extends Component {
       optionalComponent = (
         <CustomerList
           rentMovieWithCustomerCallback={this.rentMovieWithCustomer}
+          addCustomersCallback={this.addCustomers}
+          customerList={this.state.customerList}
         />
       );
     }
@@ -94,6 +104,7 @@ class App extends Component {
         <RentalCheckout
           selectedMovie={this.state.hasMovie}
           selectedCustomer={this.state.hasCustomer}
+          hasCheckedOutCallback={this.hasCheckedOut}
         />
       );
     }
@@ -103,8 +114,7 @@ class App extends Component {
       searchResults = (
         <MovieSearchResults
           movies={this.state.movies}
-          // addMovietoLibrayCallback={this.addMovietoLibray}
-          addMovietoLibrayCallback={this.addSingleMovietoLibrary}
+          addSingleMovieToLibraryCallback={this.addSingleMovieToLibrary}
         />
       );
     }
