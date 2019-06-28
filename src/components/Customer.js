@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import CustomerRentals from './CustomerRentals';
 import Card from 'react-bootstrap/Card';
+import Table from 'react-bootstrap/Table';
 import Button from 'react-bootstrap/Button'
 // import './Customer.css';
 
@@ -40,7 +41,16 @@ const Customer = (props) => {
               {props.customer.name}'s Rentals
             </Card.Title>
             <Card.Text>
+              <Table>
+                <thead>
+                  <tr>
+                    <th>Title</th>
+                    <th>Check-out</th>
+                    <th>Check-in</th>
+                  </tr>
+                </thead>
                 <CustomerRentals rentals={props.findRentalsCallback(props.customer.id)}/>
+                </Table>
             </Card.Text>
           </Card.Body>
         </Card>}
