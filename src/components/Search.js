@@ -50,15 +50,15 @@ class Search extends Component {
     return (
       <div>
         <h3 className="search-header">Search For A Movie</h3>
-        <div id="search-container">
+        <section id="search-container">
             <form onSubmit = {this.onFormSubmit}>
               <div>
                 <input id="search" name="searchResults" value = {this.state.queryString} onChange = {this.queryChanged} type="text" />
               </div>
                 <input id="search_submit" type="submit" value="Search" />
             </form>
-        </div>
-        <section className="card-columns">
+        </section>
+        <section id="search-results">
           {searchResultList}
         </section>  
       </div>

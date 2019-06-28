@@ -183,11 +183,6 @@ animation: home .1s ease infinite;
 -webkit-animation-delay: 1.5s;
 }
 
-/* .home {
-  animation: home 1s 0s ease infinite;
-  -webkit-animation: home 1s 0s ease infinite;
-} */
-
 /* animation inspiration from: https://codemyui.com/neon-text-flickering-effect/ */
 @keyframes home {
   0%,
@@ -211,11 +206,17 @@ animation: home .1s ease infinite;
   margin: 50px 100px;
   display: inline-block;
   height: 60px;
-  padding-left: 97%;
+  padding-left: 80%;
   position: relative;
 }
 
 div.card-columns {
+  column-count: 3;
+  column-gap: 100px;
+  column-width: 200px;
+}
+
+#search-results {
   column-count: 3;
   column-gap: 100px;
   column-width: 200px;
