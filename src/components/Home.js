@@ -5,8 +5,8 @@ const Home = (props) => {
 	return(
 		<div className="h-section">
 			<div id="cf">
-  			<img class="bottom" src="https://cdn.pixabay.com/photo/2016/07/14/20/39/background-1517622_1280.jpg" />
-  			<img class="top" src="https://cdn.pixabay.com/photo/2016/06/03/12/42/popcorn-1433327_1280.jpg" />
+  			<img  src="https://www.blazingcariboustudios.com/wp-content/uploads/2018/01/Arrival_Review_Header.jpg" alt="arrival movie"/>
+  			<img className="top" src="https://drraa3ej68s2c.cloudfront.net/wp-content/uploads/2016/01/07150125/3086769cfa36c94d625e958981bfc6901c2d116dbd80fb864e067e333ba56542-770x443.jpg" alt="ex-machina movie" />
 		</div>
 			<div className='h-text top'>
 				{props.welcomeMessage}

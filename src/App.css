@@ -84,6 +84,7 @@ nav {
   top: 0; 
   width: 100%;
   height: 70px;
+  z-index: 3;
 }
 
 li {
@@ -99,6 +100,19 @@ li {
 .nav-option {
   display: block;
   padding: 20px;
+  color: white;
+}
+
+.site-name{
+  display: block;
+  padding: 20px;
+  color: white;
+  font-size: 20px;
+  text-decoration: none;
+}
+
+.site-name:hover {  
+  text-decoration: none;
   color: white;
 }
 
@@ -158,9 +172,16 @@ li {
 }
 
 .selected-movie-details {
+  width: 250px;
+  height: 300px;
+  top: 300px;
   grid-area: side;
   background-color: white;
   margin-top: 50px;
+  grid-column-start: 2; 
+  grid-row-start: 2; 
+  box-sizing: border-box;
+  position: fixed;
 }
 
 
