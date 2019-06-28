@@ -61,14 +61,9 @@ class Library extends Component {
         )
     })
     return (
-      <div>
-        <section>
-          <Message message={this.state.message} />
-        </section>
         <div className="library">
           { movieComponents }
         </div>
-      </div>
     )
   }
 }

@@ -1,3 +1,11 @@
-/* .message {
-    margin-top: 500px;
-} */
+.message-container {
+    align-content: center;
+}
+
+.message {
+    font-weight: bold;
+    height: 4vw;
+    width: 20vw;
+    display: inline-block;
+    padding-top: .5vw;
+}
