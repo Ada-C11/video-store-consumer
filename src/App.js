@@ -27,7 +27,7 @@ class App extends Component {
       behaviorMessage: '',
       messageStatus: false,
       siteAreaStatus: 'free',
-      welcomeMessage: 'Welcome to our Movie store',
+      welcomeMessage: 'ME-tFlix movie rental ',
       displaySideBar: false,
     }
   }
@@ -213,7 +213,7 @@ class App extends Component {
   homeBanner = () => {
     this.setState({
       siteAreaStatus: 'home',
-      welcomeMessage: 'We have some good movies!',
+      welcomeMessage: 'Rent and Chill!',
       searchResults: undefined,
       displaySideBar: false,
 
@@ -245,14 +245,13 @@ class App extends Component {
           <nav>
             <ul>
               <li className="home-link">
-                <Link className="nav-option" to='/' onClick={this.homeBanner}><span>Home</span></Link>
+                <Link className="site-name" to='/' onClick={this.homeBanner}><span>RentFlix</span></Link>
               </li>
-             
+               <li>
+                <Link className="nav-option" to='/customerlist' onClick={this.clearSearchResults &&this.setSiteAreaBusy}><span>Customers</span> </Link>
+              </li>
               <li>
                 <Link className="nav-option" to='/movielibrary' onClick={this.clearSearchResults &&this.setSiteAreaBusy}><span>Movies</span></Link>
-              </li>
-              <li>
-                <Link className="nav-option" to='/customerlist' onClick={this.clearSearchResults &&this.setSiteAreaBusy}><span>Customers</span> </Link>
               </li>
               <li>
                 <Link className="nav-option" to='/search' onClick={this.clearSearchResults && this.setSiteAreaFree}><span>Search</span></Link>
