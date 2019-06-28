@@ -157,6 +157,11 @@ li {
   border-color: #A34545 !important;
 }
 
+.selected-movie-details {
+  grid-area: side;
+  background-color: white;
+  margin-top: 50px;
+}
 
 
 
