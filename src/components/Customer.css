@@ -1,0 +1,12 @@
+.customer-card button {
+    color: white;
+    background-color: #374B4A;
+    font-size: 1.1em;
+    border-radius: 5px;
+    padding: .25em .5em;
+    margin-top: 1.5vw;
+}
+
+.customer-card button:hover {
+    background-color: #2552a8;
+}

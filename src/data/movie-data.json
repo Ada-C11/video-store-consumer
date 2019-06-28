@@ -1,0 +1,66 @@
+[
+    {
+      "id": 1,
+      "title": "Psycho",
+      "overview": "When larcenous real estate clerk Marion Crane goes on the lam with a wad of cash and hopes of starting a new life, she ends up at the notorious Bates Motel, where manager Norman Bates cares for his housebound mother. The place seems quirky, but fine… until Marion decides to take a shower.",
+      "release_date": "1960-06-16",
+      "image_url": "https://image.tmdb.org/t/p/w185/81d8oyEFgj7FlxJqSDXWr8JH8kV.jpg",
+      "external_id": 539
+    },
+    {
+      "id": 2,
+      "title": "Jaws",
+      "overview": "An insatiable great white shark terrorizes the townspeople of Amity Island, The police chief, an oceanographer and a grizzled shark hunter seek to destroy the bloodthirsty beast.",
+      "release_date": "1975-06-18",
+      "image_url": "https://image.tmdb.org/t/p/w185/l1yltvzILaZcx2jYvc5sEMkM7Eh.jpg",
+      "external_id": 578
+    },
+    {
+      "id": 3,
+      "title": "The Exorcist",
+      "overview": "12-year-old Regan MacNeil begins to adapt an explicit new personality as strange events befall the local area of Georgetown. Her mother becomes torn between science and superstition in a desperate bid to save her daughter, and ultimately turns to her last hope: Father Damien Karras, a troubled priest who is struggling with his own faith.",
+      "release_date": "1973-12-26",
+      "image_url": "https://image.tmdb.org/t/p/w185/4ucLGcXVVSVnsfkGtbLY4XAius8.jpg",
+      "external_id": 9552
+    },
+    {
+      "id": 4,
+      "title": "North by Northwest",
+      "overview": "Advertising man Roger Thornhill is mistaken for a spy, triggering a deadly cross-country chase.",
+      "release_date": "1959-07-07",
+      "image_url": "https://image.tmdb.org/t/p/w185/aNV789h3oHm2pTHK5Bdq5RuiumZ.jpg",
+      "external_id": 213
+    },
+    {
+      "id": 5,
+      "title": "The Silence of the Lambs",
+      "overview": "Clarice Starling is a top student at the FBI's training academy. Jack Crawford wants Clarice to interview Dr. Hannibal Lecter, a brilliant psychiatrist who is also a violent psychopath, serving life behind bars for various acts of murder and cannibalism. Crawford believes that Lecter may have insight into a case and that Starling, as an attractive young woman, may be just the bait to draw him out.",
+      "release_date": "1991-02-01",
+      "image_url": "https://image.tmdb.org/t/p/w185/qjAyTj2BSth1EQ89vNfo0JYVPFN.jpg",
+      "external_id": 274
+    },
+    {
+      "id": 6,
+      "title": "Alien",
+      "overview": "During its return to the earth, commercial spaceship Nostromo intercepts a distress signal from a distant planet. When a three-member team of the crew discovers a chamber containing thousands of eggs on the planet, a creature inside one of the eggs attacks an explorer. The entire crew is unaware of the impending nightmare set to descend upon them when the alien parasite planted inside its unfortunate host is birthed.",
+      "release_date": "1979-05-25",
+      "image_url": "https://image.tmdb.org/t/p/w185/2h00HrZs89SL3tXB4nbkiM7BKHs.jpg",
+      "external_id": 348
+    },
+    {
+      "id": 7,
+      "title": "The Birds",
+      "overview": "Chic socialite Melanie Daniels enjoys a passing flirtation with an eligible attorney in a San Francisco pet shop and, on an impulse, follows him to his hometown bearing a gift of lovebirds. But upon her arrival, the bird population runs amok. Suddenly, the townsfolk face a massive avian onslaught, with the feathered fiends inexplicably attacking people all over Bodega Bay.",
+      "release_date": "1963-03-28",
+      "image_url": "https://image.tmdb.org/t/p/w185/z0iYrJ6GsAMP3abOha7uGMuc5kZ.jpg",
+      "external_id": 571
+    },
+    {
+      "id": 8,
+      "title": "The French Connection",
+      "overview": "Tough narcotics detective 'Popeye' Doyle is in hot pursuit of a suave French drug dealer who may be the key to a huge heroin-smuggling operation.",
+      "release_date": "1971-10-09",
+      "image_url": "https://image.tmdb.org/t/p/w185/xwDi4wF0I1L5bSW08Y8GocDGjJP.jpg",
+      "external_id": 1051
+    }
+  ]

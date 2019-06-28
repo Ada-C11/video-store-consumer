@@ -1,0 +1,21 @@
+div:nth-child(3) {
+    display: flex;
+    align-items: center;
+
+   text-align: center;
+   padding-top: 2vw;
+  }
+
+.customer-card {
+    border: black 1px solid;
+    max-width: 25vw;
+    display: inline-block;
+    padding: 5vw;
+    margin: 1vw;
+
+    list-style-type: none;
+    text-align: center;
+    width: 15%;
+}
+
+    

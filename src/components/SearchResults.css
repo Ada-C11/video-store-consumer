@@ -1,0 +1,16 @@
+.movie {
+  display: inline-block;
+  height: 300px;
+  width: 40%;
+  padding: 2rem;
+  text-align: center;
+}
+
+.movie__content {
+  padding: 50px 0;
+}
+
+.movie__title {
+  padding-top: 2rem;
+  font-weight: bold;
+}
