@@ -19,7 +19,6 @@ class Search extends Component {
     this.setState({
       queryString: input
     });
-    console.log("Input", input)
 
 
     axios.get(this.props.url, { params: { query: input } })
@@ -34,30 +33,26 @@ class Search extends Component {
             id: movie.external_id,
           }
         });
-        // console.log(movieList);
+
         this.setState({
           movies: movieList,
         })
       })
       .catch((error) => {
-        console.log(error);
+        this.props.addErrorMessageCallback("Unable to load movies", "alert-warning")
       })
   };
 
   postMovieToLibrary = (movieIndex) => {
     const url = this.props.url + 'movies/';
-
-    console.log("in post")
     const movie = this.state.movies[movieIndex];
-    console.log(movie.title)
 
     axios.post(url, movie)
       .then((response) => {
         this.props.addErrorMessageCallback("Movie successfully added to Library", "alert-info")
-        console.log(response.data)
       })
       .catch((error) => {
-        console.log(error)
+        this.props.addErrorMessageCallback("Unable to add movie to Library", "alert-warning")
       })
   }
 
