@@ -1,14 +1,14 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+
 import './VideoStore.css'
 import Customer from './Customer';
+
 import Customers from './Customers';
 import Movies from './Movies';
-import Rentals from './Rentals';
 import SearchBar from './SearchBar';
 import SearchMatches from './SearchMatches';
-import Search from './Search'
 
 class VideoStore extends Component {
   constructor(props) {
@@ -28,8 +28,7 @@ class VideoStore extends Component {
       rentalList: [],
     };
   }
-  url = "https://enigmatic-chamber-40825.herokuapp.com"
-  customersURL = "https://enigmatic-chamber-40825.herokuapp.com/customers"
+  url = "https://enigmatic-chamber-40825.herokuapp.com/"
 
   componentDidMount() {
     this.getCustomers();
@@ -37,7 +36,8 @@ class VideoStore extends Component {
   }
 
   getCustomers = () => {
-    axios.get(this.customersURL)
+    const customersURL = `${this.url}customers`
+    axios.get(customersURL)
     .then(response => {
       console.log(response)
 
@@ -99,7 +99,7 @@ class VideoStore extends Component {
   };
 
   searchCallback = (queryString) => {
-    const searchURL = this.url+`movies?query=`+queryString
+    const searchURL = `${this.url}movies?query=${queryString}`
     axios.get(searchURL)
     .then((response) => {
       console.log(response.data)
@@ -130,11 +130,11 @@ class VideoStore extends Component {
   onMovieAdd = (movieID) => {
     const movieToAdd = this.state.searchMatches.find(movie => movie.id === movieID);
     const titleOfMovieToAdd = movieToAdd.title
-    const url = `${this.url}movies/${titleOfMovieToAdd}`;
+    const addMovieURL = `${this.url}movies/${titleOfMovieToAdd}`;
 
-    console.log(`Sending POST to ${url} with payload`, titleOfMovieToAdd);
+    console.log(`Sending POST to ${addMovieURL} with payload`, titleOfMovieToAdd);
 
-    axios.post(url, titleOfMovieToAdd)
+    axios.post(addMovieURL, titleOfMovieToAdd)
     .then((response) => {
       const newMovie = response.data[0];
       newMovie.id = response.data[0].id;
@@ -153,10 +153,9 @@ class VideoStore extends Component {
 
   onRentalCheckout = () => {
     const { currentCustomer, currentMovie } = this.state;
-    const rentalUrl = `https://enigmatic-chamber-40825.herokuapp.com/rentals/${currentMovie.title}/check-out`;
+    const rentalUrl = `${this.url}rentals/${currentMovie.title}/check-out`;
     
-    let dueDate = new Date(Date.now() + 7 * 24*60*60*1000);
-
+    const dueDate = new Date(Date.now() + 7 * 24*60*60*1000);
     
     axios.post(rentalUrl, null, {
       params: {
@@ -164,13 +163,20 @@ class VideoStore extends Component {
         due_date: dueDate
       }
     })
-      .catch(error => {
-        this.setState({ error: error.message })
-      });
+    .then ((response) => {
+      console.log(`Renting ${currentMovie.title} for ${currentCustomer.name}`)
+      this.setState({
+        currentCustomer: "",
+        currentMovie: ""
+      })
+    })
+    .catch(error => {
+      this.setState({ error: error.message })
+    });
   };
 
   render() {
-    const disableCheckoutButton = ((this.state.currentCustomer === "") && (this.state.currentMovie === "")) ? true : false
+    const disableCheckoutButton = ((this.state.currentCustomer && this.state.currentMovie)) ? false : true
 
     return (
       <div>
@@ -217,21 +223,20 @@ class VideoStore extends Component {
               customerList={this.state.customerList}
               currentCustomer={this.state.currentCustomer}
               onCustomerSelect={this.onCustomerSelect}
-            />
+              />
             )}
           />
           <Route path="/search" render={() => (
             <div>
               <SearchBar
-              searchCallback={this.searchCallback}
-              onChange={this.queryChanged}
-              queryString={this.state.queryString} 
-              />
-      
+                searchCallback={this.searchCallback}
+                onChange={this.queryChanged}
+                queryString={this.state.queryString} 
+                />
               <SearchMatches
-              searchMatches={this.state.searchMatches}
-              onMovieAdd={this.onMovieAdd}
-              />
+                searchMatches={this.state.searchMatches}
+                onMovieAdd={this.onMovieAdd}
+                />
             </div>
             )}
           />
