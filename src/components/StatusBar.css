@@ -1,0 +1,27 @@
+.status-bar {
+  margin: 2%;
+  background-color: #333;
+  opacity: 0.9;
+  color: white;
+  font-size: 20px;
+  padding: 20px;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+.status-bar button {
+  font-size: 20px;
+  color: black;
+  margin-top: 20px;
+}
+
+.selected-customer, .selected-title, .feedback-message {
+  color: red;
+}
+
+.feedback-message {
+  margin-bottom: 25px;
+}
+
+.checkout-customer {
+  margin-bottom: 10px;
+}
