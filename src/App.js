@@ -275,18 +275,18 @@ class App extends Component {
 
 function Header() {
   return (
-    <nav className="nav_container">
-      <div>
+    <header>
+      <nav className="nav_container">
         <Link className="brand" to="/search">VIDEO WORLD</Link>
-      </div>
 
-      <Nav>
-        <Link className="nav_link" to="/search">Search</Link>
-        <Link className="nav_link" to="/library">Library</Link>
-        <Link className="nav_link" to="/customers">Customers</Link>
-        <Link className="nav_link" to="/log">Log</Link>
-      </Nav>
-    </nav>
+        <Nav>
+          <Link className="nav_link" to="/search">Search</Link>
+          <Link className="nav_link" to="/library">Library</Link>
+          <Link className="nav_link" to="/customers">Customers</Link>
+          <Link className="nav_link" to="/log">Log</Link>
+        </Nav>
+      </nav>
+    </header>
   );
 }
 

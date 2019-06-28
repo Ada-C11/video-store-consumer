@@ -1,42 +1,40 @@
-@import url('https://fonts.googleapis.com/css?family=Open+Sans');
-
 .nav_container {
-  background-color: #99A0B0;
+  background: #300701 url("https://i.kinja-img.com/gawker-media/image/upload/s--m9daP_xN--/c_scale,f_auto,fl_progressive,q_80,w_800/unsnbwg2cke5spzlpsuy.jpg") no-repeat center top;
+  background-size: 100% 180%;
   display: flex;
-  flex-wrap: wrap;
   flex-direction: column;
   position: relative;
-  height: 12rem;
+  height: 15rem;
 }
 
 .brand {
-  color: white;
-  font-size: 3rem;
+  color: black;
+  font-size: 6rem;
   text-decoration-line: none;
-  font-family: 'Lobster', cursive;
   margin-left: 1rem;
-  /* border: 1px solid black; */
-
+  text-align: center;
+  padding-top: 35px;
 }
 
 .nav {
   position: absolute;
+  left: 35%;
+  margin-left: -80px;
+  bottom: 15px;
   display: flex;
-  flex-direction: row;
-  right: 0;
-
 }
 
 .nav_link {
   color: white;
-  margin-right: 1rem;
-  font-size: 1rem;
+  text-shadow:
+  -1px -1px 0 #000,
+  1px -1px 0 #000,
+  -1px 1px 0 #000,
+  1px 1px 0 #000;
+  font-size: 2rem;
   text-decoration: none;
-  display: inline-block;
-  padding: .1rem 2.1rem;
-  margin-top: 9rem;
-  /* border-left: 2px solid white;; */
-  /* float: right; */
+  padding-left: 15px;
+  padding-right: 15px;
 }
 
 .nav_link:first-child {
@@ -49,7 +47,7 @@
 }
 
 .brand:hover {
-  color: white;
+  color: #990708;
   text-decoration: none;
 
 }
