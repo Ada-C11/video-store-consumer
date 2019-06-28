@@ -1,0 +1,21 @@
+.select-bar {
+  width: 14rem;
+  font-size: 1rem;
+  padding-right: 1.5rem;
+  margin-bottom: 8rem;
+}
+
+.select-bar li:nth-child(even) {
+  text-transform: capitalize;
+  margin: 0px 0px 1rem;
+}
+
+.select-bar li:nth-child(odd) {
+  margin: 0px;
+  letter-spacing: 0;
+  color: #007bff;
+}
+
+.selection {
+  min-height: 10px;
+}
