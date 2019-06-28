@@ -49,8 +49,8 @@ class Search extends Component {
     })
     return (
       <div>
-        <div className="container">
-          <h2>Search For A Movie</h2>
+        <h3 className="search-header">Search For A Movie</h3>
+        <div id="search-container">
             <form onSubmit = {this.onFormSubmit}>
               <div>
                 <input id="border" name="searchResults" value = {this.state.queryString} onChange = {this.queryChanged} type="text" />

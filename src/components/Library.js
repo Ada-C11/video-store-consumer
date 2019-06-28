@@ -14,7 +14,7 @@ const Library = (props) => {
       )
   })
   return (
-    <div className="container">
+    <div>
       <h2 className="heading">Movies</h2>
       <div className="container card-columns">
       {/* <div> */}
