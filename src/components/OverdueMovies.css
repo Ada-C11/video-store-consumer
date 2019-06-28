@@ -2,8 +2,5 @@
   margin: 50px;
   display: flex-wrap;
   text-align: center; 
-}
-
-.overdueMovie {
-  text-decoration: none;
+  list-style: none;
 }

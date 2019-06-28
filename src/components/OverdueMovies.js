@@ -9,7 +9,8 @@ const OverdueMovies = (props) => {
     axios.get('http://localhost:3001/rentals/overdue')
     .then((response) => {
       const overdueMovieCollection = response.data.map((overdueMovie) => {
-        return <li className="overdueMovie">{overdueMovie.title}</li>
+        console.log(overdueMovie)
+        return <li className="overdueMovie">{overdueMovie.title} due {overdueMovie.due_date}</li>
       })
       props.setOverdueMoviesCallback(overdueMovieCollection)
     })
