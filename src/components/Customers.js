@@ -24,7 +24,14 @@ const Customers = (props) => {
 
 
   const customerCollection = props.customers.map((customer, i) => {
-    return <Customer key={i} customer={customer} viewCustomerRental={props.expandedCustomers[customer.id]} findRentalsCallback={findRentalsCallback} onSelectCustomerCallback={props.onSelectCustomerCallback} onCustomerRentalsCallback={props.onCustomerRentalsCallback}/>
+    return <Customer key={i} 
+                    customer={customer} 
+                    viewCustomerRental={props.expandedCustomers[customer.id]} 
+                    findRentalsCallback={findRentalsCallback} 
+                    onSelectCustomerCallback={props.onSelectCustomerCallback} 
+                    chosenCustomer={props.chosenCustomer}
+                    onDeselectCustomerCallback={props.onDeselectCustomerCallback}
+                    onCustomerRentalsCallback={props.onCustomerRentalsCallback}/>
    });
 
   return (

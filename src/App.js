@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Nav from 'react-bootstrap/Nav';
+import Button from 'react-bootstrap/Button';
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import Search from './components/Search';
 import Library from './components/Library';
@@ -18,9 +19,10 @@ class App extends Component {
       expandedMovies: {},
       customers: [],
       expandedCustomers: {},
-      isDetailsClicked: false,
+      deselectedMovie: null,
       rentedMovie: undefined,
       chosenCustomer: undefined,
+      deselectedCustomer: null,
       dueDate: undefined,
       checkoutDate: undefined,
       currentRental: {
@@ -62,18 +64,45 @@ class App extends Component {
   }
 
   onClickMovieDetailsCallback = (id) => {
-    this.setState((prevState) => ({ 
-      expandedMovies: {
-        ...prevState.expandedMovies, 
-        [id]: !prevState.expandedMovies[id],
-      }
-    }));
+    const movie = this.state.movies.find(movie => movie.id === id);
+    const title = movie.title;
+
+    axios.get("http://localhost:3001/movies/" + title)
+      .then((response) => {
+        this.setState({
+          expandedMovies: {
+            ...response.data,
+          }
+        });
+      })
+      .catch((error) => {
+        this.setState({error: error.message})
+      });
+  }
+
+  onCloseMovieDetailsCallback = () => {
+    this.setState({
+      expandedMovies: null
+    });
   }
 
   onSelectMovieCallback = (id) => {
     const selectedMovie = this.state.movies.find(movie => movie.id === id);
-    this.setState({ rentedMovie: selectedMovie });
+    this.setState({ 
+      rentedMovie: selectedMovie,
+      deselectedMovie: null
+     });
   }
+
+  onDeselectMovieCallback = (id) => {
+    const deselectedMovie = this.state.movies.find(movie => movie.id === id);
+
+    this.setState({
+      deselectedMovie: deselectedMovie,
+      rentedMovie: null,
+    });
+  }
+  
 
   onClickCustomerRentalsCallback = (id) => {
     this.setState((prevState) => ({ 
@@ -86,7 +115,18 @@ class App extends Component {
 
   onSelectCustomerCallback = (id) => {
     const selectedCustomer = this.state.customers.find(customer => customer.id === id);
-    this.setState({ chosenCustomer: selectedCustomer });
+    this.setState({ 
+      deselectedCustomer: null,
+      chosenCustomer: selectedCustomer 
+    });
+  }
+
+  onDeselectCustomerCallback = (id) => {
+    const deselectedCustomer = this.state.customers.find(customer => customer.id === id);
+    this.setState({ 
+      chosenCustomer: null,
+      deselectedCustomer
+    });
   }
 
   rentMovie = () => {
@@ -201,19 +241,31 @@ class App extends Component {
   }
 
   render() {
-
+    // console.log(this.state.expandedMovies);
     const errorSection = (this.state.error) ?
     (<section>Error: {this.state.error}</section>) : null;
+
+    const currentlySelected = (this.state.rentedMovie || this.state.chosenCustomer) ?
+      <div className="currently-selected">
+        <h4>Currently Selected: </h4>
+        { this.state.rentedMovie && <p>Movie Selection: {this.state.rentedMovie.title}</p> }
+
+        { this.state.chosenCustomer && <p>Customer Selection: {this.state.chosenCustomer.name}</p> }
+        
+        { this.state.chosenCustomer && this.state.rentedMovie && <Button onClick={this.rentMovie}>Rent Movie</Button>}
+      </div> : null
 
     return (
       <Router>
         <div>
           <Header />
-          { this.state.rentedMovie && <p>Movie Selection: {this.state.rentedMovie.title}</p> }
 
-          { this.state.chosenCustomer && <p>Customer Selection: {this.state.chosenCustomer.name}</p> }
-          
-          { this.state.chosenCustomer && this.state.rentedMovie && <button onClick={this.rentMovie}>Rent Movie</button>}
+            {currentlySelected}
+            {/* { this.state.rentedMovie && <p>Movie Selection: {this.state.rentedMovie.title}</p> }
+
+            { this.state.chosenCustomer && <p>Customer Selection: {this.state.chosenCustomer.name}</p> }
+            
+            { this.state.chosenCustomer && this.state.rentedMovie && <button onClick={this.rentMovie}>Rent Movie</button>} */}
 
           {this.state.currentRental.count && <div>Rental #{this.state.currentRental.count}: "{this.state.currentRental.movie}" checked out by Customer #{this.state.currentRental.customer}</div>} 
           {this.state.currentRental.count && <button onClick={this.checkinMovie}>Check-in Movie</button>}
@@ -237,10 +289,12 @@ class App extends Component {
             render={() => (
               <Library 
                 library={this.state.movies} 
-                isDetailsClicked = {this.state.isDetailsClicked}
                 expandedMovies={this.state.expandedMovies} 
-                onSelectMovieCallback={this.onSelectMovieCallback} 
-                onClickMovieDetailsCallback={this.onClickMovieDetailsCallback} 
+                onClickMovieDetailsCallback={this.onClickMovieDetailsCallback}
+                onCloseMovieDetailsCallback={this.onCloseMovieDetailsCallback}
+                onSelectMovieCallback={this.onSelectMovieCallback}
+                onDeselectMovieCallback={this.onDeselectMovieCallback} 
+                deselectedMovie={this.state.deselectedMovie} 
                 selectedMovie={this.state.rentedMovie}
               />
             )} 
@@ -253,6 +307,8 @@ class App extends Component {
                 expandedCustomers={this.state.expandedCustomers}
                 allRentals={this.state.allRentals} 
                 onSelectCustomerCallback={this.onSelectCustomerCallback}
+                chosenCustomer={this.state.chosenCustomer}
+                onDeselectCustomerCallback={this.onDeselectCustomerCallback}
                 onCustomerRentalsCallback={this.onCustomerRentalsCallback}
               />
             )} 
@@ -277,7 +333,7 @@ function Header() {
   return (
     <header>
       <nav className="nav_container">
-        <Link className="brand" to="/search">VIDEO WORLD</Link>
+        <Nav.Link className="brand" href="/search">VIDEO WORLD</Nav.Link>
 
         <Nav>
           <Link className="nav_link" to="/search">Search</Link>

@@ -10,29 +10,41 @@ const Customer = (props) => {
     props.onSelectCustomerCallback(props.customer.id)
   }
 
+  const onDeselectCustomer = () => {
+    props.onDeselectCustomerCallback(props.customer.id)
+  }
+
   const onViewRentals = () => {
     props.onCustomerRentalsCallback(props.customer.id)
   }
 
-  return (
-    <tr>
-      <td>{props.customer.name}</td>
-      <td><Button onClick={onSelectCustomer}>Select Customer</Button></td>
-      <td><Button onClick={onViewRentals}>Customer Rentals</Button></td>
+    
+    const selectButton = (props.chosenCustomer === props.customer) ?
+      <td><Button size="sm" variant="danger" onClick={onDeselectCustomer}>Deselect</Button></td> :
+      <td><Button size="sm" onClick={onSelectCustomer}>Select Customer</Button></td>
 
-      {props.viewCustomerRental && <Card>
-        <Card.Body>
-          <Card.Title>
-            {props.customer.name}'s Rentals
-          </Card.Title>
-          <Card.Text>
-            <table>
-              <CustomerRentals rentals={props.findRentalsCallback(props.customer.id)}/>
-            </table>
-          </Card.Text>
-        </Card.Body>
-      </Card>}
-    </tr>
+    const rentalButton =  (props.viewCustomerRental) ?
+      <td><Button variant="danger" size="sm" onClick={onViewRentals}>Close</Button></td> :
+      <td><Button variant="outline-primary" size="sm" onClick={onViewRentals}>Customer Rentals</Button></td>
+       
+  return (
+      <tr>
+        <td>{props.customer.id}</td>
+        <td>{props.customer.name}</td>
+        {selectButton}
+        {rentalButton}
+        {props.viewCustomerRental && 
+        <Card>
+          <Card.Body>
+            <Card.Title>
+              {props.customer.name}'s Rentals
+            </Card.Title>
+            <Card.Text>
+                <CustomerRentals rentals={props.findRentalsCallback(props.customer.id)}/>
+            </Card.Text>
+          </Card.Body>
+        </Card>}
+      </tr>
   )
 }
 
