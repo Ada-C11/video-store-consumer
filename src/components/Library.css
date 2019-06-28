@@ -3,3 +3,7 @@
   flex-wrap: wrap;
   justify-content:center;
 }
+
+main {
+  margin-left: 15%;
+}

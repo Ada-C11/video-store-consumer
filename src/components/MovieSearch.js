@@ -88,7 +88,8 @@ class MovieSearch extends React.Component {
    });
 
    return (
-     <section>
+     <main>
+       <h1>Search for New Inventory</h1>
        <div className="search-form-container">
          <form onSubmit={this.onFormSubmit}>
             <input name="title" placeholder="Movie title..." type="text"
@@ -96,6 +97,7 @@ class MovieSearch extends React.Component {
               value={this.state.title}
               onChange={this.onInputChange}
               />
+              <br></br>
             <input type="submit" value="Search" className="btn btn-outline-dark btn-lg"/>
          </form>
        </div>
@@ -103,7 +105,7 @@ class MovieSearch extends React.Component {
        <div className="search-results-container">
          {searchResults}
        </div>
-     </section>
+     </main>
    );
  }
 }

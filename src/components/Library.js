@@ -38,11 +38,15 @@ class Library extends React.Component {
         external_id={movie.external_id}/>
     });
     return (
-      <section className="library-container">
-        <h1> Rewind Movies Library </h1>
-        <div>{this.state.errorMessage ? `An error has occurred: ${this.state.errorMessage}` : null }</div>
-        {movieCollection}
-      </section>
+      <main>
+        <h1>Rewind Movies Library</h1>
+        <div>
+          {this.state.errorMessage ? `An error has occurred: ${this.state.errorMessage}` : null }
+        </div>
+        <section className="library-container">
+          {movieCollection}
+        </section>
+      </main>
     )
   }
 

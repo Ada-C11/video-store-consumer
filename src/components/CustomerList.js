@@ -40,12 +40,14 @@ class CustomerList extends React.Component {
         />
     })
     return (
-      <article>
-        <h1>Customer Registry</h1>
-        <div className="customer-list">
-        {customerList}
-        </div>
-      </article>
+      <main>
+        <article>
+          <h1>Customer Registry</h1>
+          <div className="customer-list">
+          {customerList}
+          </div>
+        </article>
+      </main>
     );
   }
 }
