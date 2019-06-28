@@ -6,6 +6,7 @@ import SearchMovie from './components/SearchMovie';
 import CustomerList from './components/CustomerList';
 import MovieList from './components/MovieList';
 
+// Rails API url saved as a .env key because we were running them on dif ports
 const URL = process.env.REACT_APP_API_URL
 
 class App extends Component {
@@ -59,12 +60,16 @@ class App extends Component {
   }
 
   onSelectMovie = (movie) => {
+      window.scrollTo(0, 0)
+
       this.setState({ 
         selectedMovie: movie
       });
   }
 
   onSelectCustomer = (customer) => {
+      window.scrollTo(0, 0)
+
       this.setState({
         selectedCustomer: customer
       });
@@ -86,7 +91,6 @@ class App extends Component {
     this.setState({
       selectedMovie: updatedState,
       selectedCustomer: updatedState,
-      message: '',
     });
   }
 
@@ -118,9 +122,12 @@ class App extends Component {
           message: error.message
         });
       });
+
+    setTimeout(this.clearMessage, 5000);
   }
 
   addSearchToLibrary = (movie) => {
+    window.scrollTo(0, 0)
     
     axios.post(`${URL}/movies`, movie)
       .then((response) => {
@@ -140,8 +147,16 @@ class App extends Component {
           message: error.message
         });
       });
+
+    setTimeout(this.clearMessage, 5000);
   }
 
+  clearMessage = () => {
+     this.setState({
+       message: '',
+     })
+  };
+   
   render() {
     const { selectedMovie, selectedCustomer, message } = this.state
 
@@ -169,7 +184,7 @@ class App extends Component {
             </ul>
           </nav>
  
-          <section>
+          <section className={ message === '' ? 'no-message' : 'alert alert-dark'}>
             {message}
           </section>
 

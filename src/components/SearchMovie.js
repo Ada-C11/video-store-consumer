@@ -18,10 +18,10 @@ class SearchMovie extends Component {
     };
   
     onChangeHandler = (event) => {
-         const searchTerm = event.target.value
-         this.setState({
-             searchTerm
-         });
+        const searchTerm = event.target.value
+        this.setState({
+            searchTerm
+        });
     };
   
     handleSubmit = (event) => {
@@ -52,6 +52,7 @@ class SearchMovie extends Component {
           .catch((error) => {
             console.log(error.messages)
       
+            // not displaying this message
             this.setState({
               message: error.message
             });
