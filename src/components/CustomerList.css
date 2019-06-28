@@ -1,0 +1,6 @@
+.customer-list {
+    width:900px;
+    display: flex;
+    flex-flow: row wrap;
+    margin:auto;
+}

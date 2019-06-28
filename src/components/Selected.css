@@ -1,0 +1,11 @@
+.selections {
+    position:fixed;
+    bottom:0;
+    right:0;
+    z-index: 5;
+    box-shadow: 4px 4px 4px;
+}
+
+.card-header.bg-blue{
+    border: blue;
+}

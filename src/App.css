@@ -22,7 +22,28 @@
   font-size: large;
 }
 
+.App-notification-list{
+  position:fixed;
+  right:0;
+  top:0;
+  z-index: 5
+}
+
+.home-page{
+  margin-top: 4rem;
+  text-align: center;
+}
+
+.movie-card { 
+  width: 18rem ; 
+  height: 60rem;
+}
+.overview{
+  height: 18rem;
+  overflow-y:scroll;
+}
 @keyframes App-logo-spin {
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
 }
+
