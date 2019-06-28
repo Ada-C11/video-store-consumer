@@ -55,6 +55,8 @@ class Search extends Component {
     }
   }
 
+  callback = () => {}
+
   searchDisplay = () => {
     return this.state.searchList.map((movie) => {
       return (
@@ -67,7 +69,7 @@ class Search extends Component {
             release_date={movie.release_date}
             overview={movie.overview}
             image_url={movie.image_url}
-            addMovieToRentCallback = {this.props.addMovieToRentCallback}
+            addMovieToRentCallback = {this.callback}
           />          
         </tbody>
       )

@@ -81,6 +81,7 @@ class App extends Component {
     return (
       <Router>
         <div onClick = {this.onClickAnywhere}>
+          <img src="https://ww1.prweb.com/prfiles/2005/07/04/258262/24hvsLogo.PR.gif" className="logo"/>
           <p className={this.state.errorClass} >{this.state.error}</p>
           <Header movieTitle={this.state.movieTitle} customerName={this.state.customer.name} onCheckoutClickCallback={this.onCheckoutClick} checkoutButtonClassName={this.state.checkoutButtonClassName}/>
           <Route path="/search" component={Search} />
