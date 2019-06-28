@@ -10,7 +10,7 @@ class Library extends React.Component {
 
     this.state = {
       movies: [],
-      errorMessage: ''
+      errorMessage: null,
     };
   }
 
@@ -40,6 +40,7 @@ class Library extends React.Component {
     return (
       <section className="library-container">
         <h1> Rewind Movies Library </h1>
+        <div>{this.state.errorMessage ? `An error has occurred: ${this.state.errorMessage}` : null }</div>
         {movieCollection}
       </section>
     )

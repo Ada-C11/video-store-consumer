@@ -7,12 +7,8 @@ const Movie = (props) => {
   const onMovieClick = () => {
     props.callback(props.id)
   }
-
-
-
+  
   return (
-
-
     <div className="card width">
       <img className="card-img-top" src={props.imageUrl} alt={props.title} />
       <div className="movie-card card-body">

@@ -7,7 +7,8 @@ class CustomerList extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      customers: []
+      customers: [],
+      errorMessage: null
     };
   }
   
