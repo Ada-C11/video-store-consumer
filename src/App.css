@@ -69,8 +69,13 @@ div.current_selections {
 
 h1, h2, h3, h4 {
   font-weight: 600;
-  margin-left: 2rem;
   margin-bottom: 1rem;
+}
+
+h1 {
+    margin-left: 2rem;
+    text-decoration-line: underline;
+    text-decoration-color: pink 
 }
 
 p {
@@ -114,7 +119,7 @@ ul {
 }
 
 li {
-  margin: 0 0 6px 4px;
+  margin: 0 0 3px 4px;
 }
 
 div.card {
