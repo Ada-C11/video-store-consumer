@@ -29,11 +29,9 @@ const Customer = (props) => {
       <td><Button variant="outline-dark" size="sm" onClick={onViewRentals}>Customer Rentals</Button></td>
        
   return (
-      <tr>
-        <td>{props.customer.id}</td>
-        <td>{props.customer.name}</td>
-        {selectButton}
-        {rentalButton}
+      <div className="avatar">
+        <p className="user">#{props.customer.id}. {props.customer.name}</p>
+        <p className="buttons">{selectButton}{rentalButton}</p>
         {props.viewCustomerRental && 
         <Card>
           <Card.Body>
@@ -54,7 +52,7 @@ const Customer = (props) => {
             </Card.Text>
           </Card.Body>
         </Card>}
-      </tr>
+      </div>
   )
 }
 

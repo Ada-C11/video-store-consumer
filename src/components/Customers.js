@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Customer from './Customer';
-import Table from 'react-bootstrap/Table'
 import './Customers.css';
 
 const Customers = (props) => {
@@ -24,23 +23,23 @@ const Customers = (props) => {
 
 
   const customerCollection = props.customers.map((customer, i) => {
-    return <Customer key={i} 
+    return <div key={i}><Customer  
                     customer={customer} 
                     viewCustomerRental={props.expandedCustomers[customer.id]} 
                     findRentalsCallback={findRentalsCallback} 
                     onSelectCustomerCallback={props.onSelectCustomerCallback} 
                     chosenCustomer={props.chosenCustomer}
                     onDeselectCustomerCallback={props.onDeselectCustomerCallback}
-                    onCustomerRentalsCallback={props.onCustomerRentalsCallback}/>
+                    onCustomerRentalsCallback={props.onCustomerRentalsCallback}/></div>
    });
 
   return (
-    <section className="customers_container">
-      <h1>Customers</h1>
-      <Table striped size="sm">
-        <tbody>{customerCollection}</tbody>
-      </Table>
-    </section>
+    <body>
+      <section className="header"><b>- Our Community -</b></section>
+      <section className="customers_container">
+        {customerCollection}
+      </section>
+    </body>
   )
 }
 
