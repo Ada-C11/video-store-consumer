@@ -156,6 +156,7 @@ class App extends Component {
        message: '',
      })
   };
+
    
   render() {
     const { selectedMovie, selectedCustomer, message } = this.state

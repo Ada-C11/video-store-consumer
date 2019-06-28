@@ -57,9 +57,18 @@ class SearchMovie extends Component {
               message: error.message
             });
           });
+
+      setTimeout(this.clearMessage, 5000);
     }
 
+    clearMessage = () => {
+      this.setState({
+        message: '',
+      })
+    };
+
     render() {
+        const { message } = this.state
         
         const listSearchResults = this.state.allSearchResults.map((movieFromSearch, i) => {
         let alreadyInLibrary = false
@@ -72,13 +81,25 @@ class SearchMovie extends Component {
 
           return (
             <li key={i}>
-              <Movie movie={movieFromSearch} addSearchToLibraryCallback={this.props.addSearchToLibraryCallback} isSearchResult={true} alreadyInLibrary={alreadyInLibrary}/>
+              <Movie 
+                movie={movieFromSearch} 
+                addSearchToLibraryCallback={this.props.addSearchToLibraryCallback} 
+                isSearchResult={true} 
+                alreadyInLibrary={alreadyInLibrary}
+              />
             </li>
           )
         })
+
+    
   
         return (
           <div>
+
+            <section className={ message === '' ? 'no-message' : 'alert alert-dark'}>
+              {message}
+            </section>
+
             <div className='search-movie-form'>
               <h3>Search by Movie Title:</h3>
       
