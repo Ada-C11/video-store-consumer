@@ -140,19 +140,16 @@ class Search extends Component {
 
     render() {
         return (
-            <div className="">
+            <div className="search_page">
                 {this.addtoLibraryMessage()}
                 <div className="search-movie">
-                    <h6 className="search-form__header">
-                        Search for a Movie!
-                </h6>
+                    <h2 className="search_h2">
+                        Find a Movie!
+                </h2>
                     <form className="search_form" onSubmit={this.onFormSubmit}>
-                        <div>
-                            <input type="text" name="title" value={this.state.title} onChange={this.onInputChange} />
-                        </div>
-                        <div>
-                            <button type="submit">Search</button>
-                        </div>
+                        <input type="text" name="title" placeholder="Search by movie title" value={this.state.title} onChange={this.onInputChange} />
+
+                        <button type="submit">Search</button>
                     </form>
 
                     <div className="card_container">

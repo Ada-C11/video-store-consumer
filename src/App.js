@@ -68,8 +68,8 @@ class App extends Component {
     if (this.state.currentCustomer || this.state.currentMovie) {
       return (
         <div className="current_selections">
-          <p><strong>Selected Customer:</strong> {this.state.currentCustomer.name}</p>
-          <p><strong>Selected Movie:</strong> {this.state.currentMovie.title}</p>
+          <p><strong className="alert_text">Selected Customer:</strong> {this.state.currentCustomer.name}</p>
+          <p><strong className="alert_text">Selected Movie:</strong> {this.state.currentMovie.title}</p>
 
           <button
             onClick={this.checkoutButtonClick}
@@ -146,13 +146,13 @@ function Home() {
 function Header() {
   return (
     <nav className="navbar navbar-expand-lg navbar-light bg-light">
-      <Link to="/" className="navbar-brand">VideoStore</Link>
+      <Link to="/" className="navbar-brand">VHS Video</Link>
       <ul className="navbar-nav" >
         <li className="nav-item">
           <Link to="/customers" className="nav-link">Customers</Link>
         </li>
         <li className="nav-item">
-          <Link to="/library" className="nav-link">Library</Link>
+          <Link to="/library" className="nav-link">Movie Library</Link>
         </li>
         <li className="nav-item">
           <Link to="/search" className="nav-link">Search</Link>

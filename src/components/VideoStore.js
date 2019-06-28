@@ -5,9 +5,12 @@ class VideoStore extends Component {
 
     render() {
         return (
-            <h3>
-                Welcome to the Video Store
-            </h3>
+            <div className="homepage_container">
+                <div className="homepage_header">
+                </div>
+                <h1 className="store_name">VHS </h1>
+                <h1 className="store_name">Video</h1>
+            </div>
         )
     }
 }

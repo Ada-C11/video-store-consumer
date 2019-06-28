@@ -53,9 +53,12 @@ class Movie extends Component {
       )
     })
     return (
-      <section className="card_container">
-        {displayMovies}
-      </section>
+      <div className="content_container">
+        <h1 className="green_text">Movies</h1>
+        <section className="card_container">
+          {displayMovies}
+        </section>
+      </div>
     )
   }
 }

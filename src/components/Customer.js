@@ -59,10 +59,12 @@ class Customer extends Component {
       )
     })
     return (
-
-      <section className="card_container" >
-        {displayCustomers}
-      </section>
+      <div className="content_container">
+        <h1 className="green_text">Customers</h1>
+        <section className="card_container" >
+          {displayCustomers}
+        </section>
+      </div>
     )
 
   }
