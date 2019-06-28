@@ -1,34 +1,32 @@
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 
-class Movie extends Component {
-  render() {
-    // Movie from SearchMatches gets onMovieAdd
-    const displayAddButton = (this.props.onMovieAdd === undefined) ? <button>Already in Library</button> : <button onClick = {() => this.props.onMovieAdd(this.props.id)}>Add Me</button>
+const Movie = (props) => {
+  // Movie from SearchMatches gets onMovieAdd
+  const displayAddButton = ( props.onMovieAdd === undefined) ? <button>Already in Library</button> : <button onClick = {() => props.onMovieAdd(props.id)}>Add Me</button>
 
-    // Movie from Movies gets onMovieSelect
-    const displayClickableTitle = (this.props.onMovieSelect === undefined) ? <h3>{this.props.title}</h3> : <h3 onClick={() => this.props.onMovieSelect(this.props.id)}>{this.props.title}</h3>
-    
-    return (
-      <section>
-        <p>
-          { this.props.id }.
-        </p>
-        { displayClickableTitle }
-        <p>
-          Overview: {this.props.overview }
-        </p>
-        <p>
-          Release Date: {this.props.release_date}
-        </p>
-        <p>
-          External ID: {this.props.external_id}
-        </p>
-        <img src={this.props.image_url} alt={this.props.title} />
-        { displayAddButton }
-      </section>
-    )
-  }
+  // Movie from Movies gets onMovieSelect
+  const displayClickableTitle = (props.onMovieSelect === undefined) ? <h3>{props.title}</h3> : <h3 onClick={() => props.onMovieSelect(props.id)}>{props.title}</h3>
+  
+  return (
+    <section>
+      <p>
+        { props.id }.
+      </p>
+      { displayClickableTitle }
+      <p>
+        Overview: {props.overview }
+      </p>
+      <p>
+        Release Date: {props.release_date}
+      </p>
+      <p>
+        External ID: {props.external_id}
+      </p>
+      <img src={props.image_url} alt={props.title} />
+      { displayAddButton }
+    </section>
+  )
 }
 
 Movie.propTypes ={
