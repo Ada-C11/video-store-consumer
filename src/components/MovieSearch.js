@@ -97,6 +97,7 @@ class MovieSearch extends React.Component {
               value={this.state.title}
               onChange={this.onInputChange}
               />
+              <br></br>
             <input type="submit" value="Search" className="btn btn-outline-dark btn-lg"/>
          </form>
        </div>

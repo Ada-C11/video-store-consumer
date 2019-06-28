@@ -46,9 +46,12 @@ class App extends Component {
   showHomePage() {
     return (
       <div className="container">
-        <h1>Rewind Movies</h1>
-          <img src={image} alt="theater"/>
+        <main>
+          <h1>Rewind Movies</h1>
+            <img src={image} alt="theater"/>
+        </main>
       </div>
+
     )
   }
 
@@ -68,13 +71,17 @@ class App extends Component {
    this.setState({...this.cleared});
    this.clearRentalReservation();
   }
+  
 
   showRentalDetails() {
     return (
-      <section hidden={!this.state.rentalCustomerID && !this.state.selectedRental}>
-        <p>Customer: {this.state.rentalCustomerID}</p>
-        <p>Movie to rent: {this.state.selectedRental}</p>
-        <button onClick={this.reserveRental}>Make Reservation</button>
+      <section className="Snapshot">
+        <h3 className="show-title">Current Rental</h3>
+          <div>
+            <p>Selected Customer: {this.state.rentalCustomerID}</p>
+            <p>Selected Movie: {this.state.selectedRental}</p>
+            <button onClick={this.reserveRental}>Make Reservation</button>
+          </div>
       </section>
     )
   }
