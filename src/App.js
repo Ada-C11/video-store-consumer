@@ -78,8 +78,8 @@ class App extends Component {
       <section className="Snapshot">
         <h3 className="show-title">Current Rental</h3>
           <div>
-            <p>Selected Customer: {this.state.rentalCustomerID}</p>
-            <p>Selected Movie: {this.state.selectedRental}</p>
+            <p>Customer: {this.state.rentalCustomerID}</p>
+            <p>Movie: {this.state.selectedRental}</p>
             <button onClick={this.reserveRental}>Make Reservation</button>
           </div>
       </section>
