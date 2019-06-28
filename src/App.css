@@ -26,7 +26,7 @@
 }
 
 section {
-  margin-top: 5rem;
+  margin-top: 1rem;
   font-family: 'Nunito', sans-serif;
 }
 
@@ -62,4 +62,8 @@ li {
 
 img {
   border-radius: 0.25rem;
+}
+
+.error {
+  margin-top: 5rem;
 }

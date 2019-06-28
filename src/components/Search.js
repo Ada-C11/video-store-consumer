@@ -4,6 +4,7 @@ import axios from 'axios';
 import Result from './Result'
 import Movie from './Movie'
 import "./Search.css"
+import { throwStatement } from '@babel/types';
 
 require('dotenv').config();
 
@@ -15,6 +16,7 @@ class Search extends Component {
       result: [],
       searchTitle: "",
       errorMessage: "",
+      success: ""
     }
   }
 
@@ -52,6 +54,7 @@ class Search extends Component {
     
     .then((response) => {
       console.log(response.data)
+      this.setState({success: "This movies was added to the rental library"})
       
       console.log(`successfully added ${response.data.title}`)
     })
@@ -121,6 +124,7 @@ class Search extends Component {
                 value={this.state.searchTitle}>
               </input>
               <span><input className="btn btn-primary" type="submit" name="submit" value="Search Movie" /></span>
+              <div>{this.state.success}</div>
           </div>
           
           

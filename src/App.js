@@ -14,6 +14,7 @@ class App extends Component {
       selectedCustomer: "",
       movieList: [],
       customerList: [],
+      message: "",
     }
   }
 
@@ -68,10 +69,13 @@ class App extends Component {
     axios.post(`http://localhost:3000/rentals/${this.state.selectedMovie.title}/check-out`, params)
     .then((response) => {
       console.log("success");
+      this.setState({
+        message: `Successfully checked out ${this.state.selectedMovie.title}.`
+      })
     })
     .catch((error) => {
       this.setState({
-        errorMessage: error.message
+        message: `${this.state.selectedMovie.title} was not checked out.`
       });
     });
   }
@@ -89,6 +93,7 @@ class App extends Component {
             </nav>
           </header>
           <main>
+            <div className="error">{this.state.message}</div>
             <section>
               <h4>
                 Currently Selected:
