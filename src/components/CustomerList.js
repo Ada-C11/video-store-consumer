@@ -27,9 +27,8 @@ class CustomerList extends Component {
           });
     }
 
-    customerNameCallbackCustomers = (customerName) => {
-    console.log(customerName);
-    this.props.customerNameCallbackCustomers(customerName);
+    customerNameCallbackCustomers = (customer) => {
+    this.props.customerNameCallbackCustomers(customer);
 
    }
 
@@ -46,7 +45,7 @@ class CustomerList extends Component {
           phone={customer.phone}
           account_credit={customer.account_credit}
           created_at={customer.created_at}
-          customerNameCallbackCustomer={this.customerNameCallbackCustomers}/> 
+          customerNameCallbackCustomer={() => this.customerNameCallbackCustomers(customer)}/> 
       });
 
     return (

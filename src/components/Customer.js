@@ -6,7 +6,8 @@ const Customer = (props) => {
 
 const onSelectCustomer = () => {
     console.log(props.name);
-    props.customerNameCallbackCustomer(props.name)
+    console.log(props.id);
+    props.customerNameCallbackCustomer(props.name, props.id)
 }
 
    return (

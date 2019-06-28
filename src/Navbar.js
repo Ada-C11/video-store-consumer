@@ -8,20 +8,26 @@ class Navbar extends Component {
         super(props);
     }
 
-    onCreateRental = ()=>{
-        axios.post('http://localhost:3000/rentals/:title/check-out',{
-            customer : this.props.customer,
-            movie: this.props.customer,
-            due_date : new Date()
-        })
-        .then(function(response){
-                alert("Your rental algo was successful!!.");
-        }).catch(function(error){
-            alert("Sorry an error ocurred, please try again.");
-        });
+    onCreateRental = ()=> {
+    const dueDate = new Date(new Date().setDate(new Date().getDate() + 7)).toISOString().split('T')[0];
+    
+    axios.post(`http://localhost:3000/rentals/${this.props.movie}/check-out`, {
+        customer_id: this.props.customerId,
+        title: this.props.movie,
+        due_date: dueDate
+    }) 
+    .then((response) => {
+        console.log("successfully rented film");
+        alert("yay!")
+      })
+      .catch((error) => {
+        console.log("could not rent film");
+      });
+      
     }
+  
 
-    render() {
+    render(){
         if(this.props.movie!="none" && this.props.customer!="none"){
             return (
                 <nav className="navbar navbar-expand-lg navbar-light bg-light justify-content-center">
@@ -39,7 +45,7 @@ class Navbar extends Component {
                             <SearchForm />
                         </div>
                         <div className="nav-item">
-                            <div>current customer: {this.props.customer}</div>
+                            <div>current customer: {this.props.customer + "yo"}</div>
                         </div>
                         <div className="nav-item">
                             <div>current movie: {this.props.movie}</div>
@@ -68,7 +74,7 @@ class Navbar extends Component {
                             <SearchForm />
                         </div>
                         <div className="nav-item">
-                            <div>current customer: {this.props.customer}</div>
+                            <div>current customer: {this.props.customer, this.props.customer }</div>
                         </div>
                         <div className="nav-item">
                             <div>current movie: {this.props.movie}</div>
