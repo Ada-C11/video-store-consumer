@@ -80,7 +80,6 @@ class AppRouter extends Component {
     const { selectedMovie, selectedCustomer } = this.state;
 
     if (selectedMovie && selectedCustomer) {
-      console.log(selectedMovie, selectedCustomer);
 
       const checkoutURL = `${VIDEO_STORE_API_URL}rentals/${selectedMovie.title}/check-out?`;
       const customerID = selectedCustomer.id;
@@ -92,7 +91,6 @@ class AppRouter extends Component {
 
       axios.post(checkoutURL, { due_date: dueDate, customer_id: customerID })
         .then((response) => {
-          console.log(`Successfully checked out ${movie}`);
           this.setState({
             selectedMovie: null,
             selectedCustomer: null,
@@ -102,16 +100,13 @@ class AppRouter extends Component {
         .catch((error) => {
 
           this.addErrorMessage(`Unable to check out ${movie} to ${customer}. ${error}`, "alert-warning")
-          console.log(`Unable to check out ${movie} to ${customer}. ${error}`);
         })
     } else {
       this.addErrorMessage('Need to select a movie and customer.', "alert-warning")
-      console.log(`Need to select a movie and customer.`);
     }
   }
 
   clearSelection = (selection) => {
-    console.log('Cleared Selection:', selection);
     selection.title ? this.setState({ selectedMovie: null }) : this.setState({ selectedCustomer: null });
   };
 

@@ -5,8 +5,6 @@ import './MoviePopup2.css'
 const MoviePopup = (props) => {
   const { movie, buttonText } = props;
   const { index, title, overview, release_date, image_url, id, inventory, callbackFunction } = movie;
-  console.log("inside popup")
-  // console.log("Inventory", inventory)
   return (
     <div>
       <Popup
@@ -27,11 +25,6 @@ const MoviePopup = (props) => {
                 <li>{overview}</li>
               </ul>
             </div>
-
-            {/* <ul>
-                <li>{release_date}</li>
-                <li>{overview}</li>
-              </ul> */}
 
             <button
               className="button"

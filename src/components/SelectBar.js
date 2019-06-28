@@ -5,7 +5,6 @@ import './SelectBar.css'
 
 const showClearButton = (selection, callback) => {
   if (selection) {
-    console.log(selection);
     return (
       <div className="selection">
         { selection.title ? selection.title : selection.name }
