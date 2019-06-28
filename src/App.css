@@ -26,3 +26,23 @@
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
 }
+
+header {
+  text-align: center;
+  color: white;
+}
+
+h1, h2, h3 {
+  font-family: 'Abril Fatface', cursive;
+}
+
+main {
+  background: linear-gradient(to bottom, #660066 0%, #ff99cc 100%);
+  min-height: 50rem;
+  margin: 50px;
+  font-family: 'ABeeZee', sans-serif;
+}
+
+.navbar {
+  background-color: pink;
+}
