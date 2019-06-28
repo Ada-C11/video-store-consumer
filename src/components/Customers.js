@@ -5,8 +5,26 @@ import Table from 'react-bootstrap/Table'
 import './Customers.css';
 
 const Customers = (props) => {
+
+  const findRentalsCallback = (customerID) => {
+    const rentals = []
+    for (let key in props.allRentals) {
+      if (props.allRentals[key]["customer"] === customerID) {
+        rentals.push(
+          {
+            "movie": props.allRentals[key]["movie"],
+            "checkout_date": props.allRentals[key]["checkout_date"],
+            "due_date": props.allRentals[key]["due_date"]
+          }
+        )
+      }
+    }
+    return rentals
+  }
+
+
   const customerCollection = props.customers.map((customer, i) => {
-    return <Customer key={i} customer={customer} viewCustomerRental={props.expandedCustomers[customer.id]} customerRentals={props.customerRentals} onSelectCustomerCallback={props.onSelectCustomerCallback} onCustomerRentalsCallback={props.onCustomerRentalsCallback}/>
+    return <Customer key={i} customer={customer} viewCustomerRental={props.expandedCustomers[customer.id]} findRentalsCallback={findRentalsCallback} onSelectCustomerCallback={props.onSelectCustomerCallback} onCustomerRentalsCallback={props.onCustomerRentalsCallback}/>
    });
 
   return (

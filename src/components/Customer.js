@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import CustomerRentals from './CustomerRentals';
 import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/Button'
 // import './Customer.css';
@@ -11,14 +12,6 @@ const Customer = (props) => {
 
   const onViewRentals = () => {
     props.onCustomerRentalsCallback(props.customer.id)
-  }
-
-  const customerRentals = () => {
-    const rentalHTML = props.customerRentals.map((rental, i) => {
-      return <tr key={i}><td>{rental["movie"]}</td><td>{rental["checkout_date"]}</td><td>{rental["due_date"]}</td></tr>
-    })
-
-    return rentalHTML
   }
 
   return (
@@ -34,7 +27,7 @@ const Customer = (props) => {
           </Card.Title>
           <Card.Text>
             <table>
-              {customerRentals()}
+              <CustomerRentals rentals={props.findRentalsCallback(props.customer.id)}/>
             </table>
           </Card.Text>
         </Card.Body>

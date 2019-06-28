@@ -30,7 +30,7 @@ class App extends Component {
         checkin: false,
       },
       allRentals: undefined,
-      customerRentals: undefined,
+      // customerRentals: undefined,
       overdueMovies: undefined,
       error: null,
     };
@@ -170,26 +170,6 @@ class App extends Component {
     });
   }
 
-  findCustomerRentals = (customerID) => {
-    const rentals = []
-
-    for (let key in this.state.allRentals) {
-      if (this.state.allRentals[key]["customer"] === customerID) {
-        rentals.push(
-          {
-            "movie": this.state.allRentals[key]["movie"],
-            "checkout_date": this.state.allRentals[key]["checkout_date"],
-            "due_date": this.state.allRentals[key]["due_date"]
-          }
-        )
-      }
-    }
-
-    this.setState({
-      customerRentals: rentals,
-    });
-  }
-
   onCustomerRentalsCallback = (customerID) => {
     let uniqueRentals = {}
 
@@ -210,7 +190,7 @@ class App extends Component {
         allRentals: uniqueRentals
       })
 
-      this.findCustomerRentals(customerID)
+      // this.findCustomerRentals(customerID)
       this.onClickCustomerRentalsCallback(customerID)
     })
     .catch((error) => {
@@ -271,7 +251,7 @@ class App extends Component {
               <Customers 
                 customers={this.state.customers}
                 expandedCustomers={this.state.expandedCustomers}
-                customerRentals={this.state.customerRentals} 
+                allRentals={this.state.allRentals} 
                 onSelectCustomerCallback={this.onSelectCustomerCallback}
                 onCustomerRentalsCallback={this.onCustomerRentalsCallback}
               />
