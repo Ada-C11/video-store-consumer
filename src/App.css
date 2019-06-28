@@ -43,3 +43,15 @@ section {
 li {
   margin-bottom: 1.5rem;
 }
+
+.homepage {
+  text-align: center;
+}
+
+.homepage-p {
+  font-size: 1.5rem;
+}
+
+img {
+  border-radius: 0.25rem;
+}
