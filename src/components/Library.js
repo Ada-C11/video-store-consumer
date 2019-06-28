@@ -15,7 +15,6 @@ const Library = (props) => {
   })
   return (
     <div>
-      <h2 className="library-heading">Movies</h2>
       <div className="container card-columns">
         { movieCards }
       </div>

@@ -3,14 +3,11 @@
   padding-top: 10px;
 }
 
-.card-columns {
+.card .card-columns {
   width: 50%;
+  column-count: auto;
 }
 
 #library-container{
   padding: 10px;
-}
-
-.store.container{
-  margin-left: 0px;
 }
