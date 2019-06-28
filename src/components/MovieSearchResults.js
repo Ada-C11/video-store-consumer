@@ -17,22 +17,28 @@ class MovieSearchResults extends Component {
       sendToLibraryIndicator: `Added ${movie.title} to the library`
     });
 
-    this.props.addSingleMovieToLibraryCallback(movie);
-    axios.post(`http://localhost:3001/movies`, { title: movie.title, overview: movie.overview, release_date: movie.release_date, inventory: 5})
-    .then((response) => {
-      return response.data
-    })
-    .catch(error => {
-      console.log(error.messages);
-      alert("Error happened");
-      this.setState({ error: error.message });
-    });
+    axios
+      .post(`http://localhost:3001/movies`, {
+        title: movie.title,
+        overview: movie.overview,
+        release_date: movie.release_date,
+        image_url: "https://image.tmdb.org/t/p/w185/" + movie.image,
+        inventory: 5
+      })
+      .then(response => {
+        return response.data;
+      })
+      .catch(error => {
+        console.log(error.messages);
+        alert("Error happened");
+        this.setState({ error: error.message });
+      });
   };
 
   render() {
     const collection = this.props.movies.map((movie, i) => {
       return (
-        <Movie 
+        <Movie
           key={movie.id}
           id={movie.id}
           title={movie.title}

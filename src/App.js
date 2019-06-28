@@ -47,12 +47,6 @@ class App extends Component {
     });
   };
 
-  addSingleMovieToLibrary = movie => {
-    this.setState({
-      librayMovies: [...this.state.librayMovies, movie]
-    });
-  };
-
   addCustomers = customers => {
     this.setState({
       customerList: customers
@@ -111,12 +105,7 @@ class App extends Component {
 
     let searchResults;
     if (this.state.showResults) {
-      searchResults = (
-        <MovieSearchResults
-          movies={this.state.movies}
-          addSingleMovieToLibraryCallback={this.addSingleMovieToLibrary}
-        />
-      );
+      searchResults = <MovieSearchResults movies={this.state.movies} />;
     }
 
     return (
