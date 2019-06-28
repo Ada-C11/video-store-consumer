@@ -3,11 +3,18 @@
   background-size: 100% 180%;
   display: flex;
   flex-direction: column;
-  position: relative;
   height: 15rem;
 }
 
 .brand {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  text-shadow:
+  -1px -1px 0 white,
+  1px -1px 0 white,
+  -1px 1px 0 white,
+  1px 1px 0 white;
   color: black;
   font-size: 6rem;
   text-decoration-line: none;
@@ -17,11 +24,8 @@
 }
 
 .nav {
-  position: absolute;
-  left: 35%;
-  margin-left: -80px;
-  bottom: 15px;
   display: flex;
+  justify-content: center;
 }
 
 .nav_link {
@@ -49,7 +53,6 @@
 .brand:hover {
   color: #990708;
   text-decoration: none;
-
 }
 
 
