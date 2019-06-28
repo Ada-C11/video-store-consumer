@@ -1,28 +1,198 @@
-.App {
+* {
+  font-family: 'Anonymous Pro', monospace;
+  color: rgb(0, 49, 245);
+}
+
+body {
+  background-color: rgb(249, 252, 255);
+  border: 20px solid blue;
+}
+
+div.homepage_container {
+  height: 30rem;
+  padding: 1.5rem;
+  margin-top: 2rem;
+}
+
+.store_name {
+  font-size: 15rem;
+  line-height: 14rem;
+  text-shadow: 7px 7px rgb(0, 226, 207);
+  margin-left: 1rem;
+}
+
+.navbar-light .navbar-nav .nav-link {
+  color: rgb(0, 49, 245);
+  font-size: 1.1rem;
+  margin: 0 1rem;
+}
+
+a.nav-link:hover {
+  text-decoration-line: underline;
+  color: rgb(0, 226, 207);
+}
+:visited {
+  color: rgb(0, 226, 207);
+}
+
+.navbar-brand {
+  text-shadow: 2px 2px rgb(0, 226, 207);
+  font-size: 1.5rem;
+  margin: 1rem;
+}
+
+.navbar navbar-expand-lg navbar-light bg-light, .bg-light {
+  background-color: transparent !important;
+  align-items: baseline;
+}
+
+.navbar-expand-lg ul {
+  justify-content: flex-end;
+}
+
+button {
+  border: 3px solid rgb(0, 49, 245);
+  background-color: transparent;
+  color: rgb(0, 49, 245);
+  font-weight: 600;
+  padding: 6px;
+  margin-top: .5rem;
+}
+
+button:hover {
+  border: 3px solid rgb(0, 226, 207);
+  background-color: transparent;
+  color: rgb(0, 226, 207);
+  padding: 6px;
+}
+
+div.current_selections {
+  display: inline-block;
+  padding: 1rem 2rem;
+  width: 100%;
+  background-color: rgba(255, 192, 203, 0.295);
+}
+
+h1, h2, h3, h4 {
+  font-weight: 600;
+  margin-bottom: 1rem;
+}
+
+h1 {
+    margin-left: 2rem;
+    text-decoration-line: underline;
+    text-decoration-color: pink 
+}
+
+.alert_text {
+  color: rgb(0, 226, 207);
+}
+
+div.status_message {
+  padding-left: 2rem;
+
+}
+
+.content_container {
+  margin: 2rem;
+}
+
+.card_container {
+  margin: 2rem 1.5rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-gap: 2rem;
+}
+
+
+ul {
+  margin: 0;
+  list-style-type: none;
+  display: flex;
+  flex-flow: column wrap;
+  justify-content: space-evenly;
+  margin-inline-start: 0;
+  margin-inline-end: 0;
+  padding-inline-start: 0;
+}
+
+.card_data-li {
+  border: none;
+}
+
+li {
+  margin: 0 0 3px 4px;
+}
+
+div.card {
+  width: 18em;
+  height: auto;
+  border: none;
+  background: transparent;
+}
+
+.search-movie {
+text-align: center;
+}
+
+.search_h2 {
+  padding-bottom: 2rem;
+}
+
+
+
+input {
+  width: 70%;
+  border-bottom: solid 1px rgb(0, 49, 245);
+  border-top: solid transparent;
+  border-left: solid 0px transparent;
+  border-right: solid transparent;
+  background-color: transparent;
+  padding-bottom: .5rem;
   text-align: center;
+  font-size: 1.25rem;
+  }
+  
+  ::placeholder {
+    color: rgb(0, 226, 207);
+    opacity: 0.7;
+  }
+
+.search-movie {
+  display: block;
+  margin: 5rem;
+  align-items: center;
+  justify-content: center;
 }
 
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 80px;
+.search_form {
+  display: flex;
+  flex-flow: column wrap;
+  justify-content: center;
+  align-items: center;
+  margin: 2rem;
+  margin-bottom: 4rem;
 }
 
-.App-header {
-  background-color: #222;
-  height: 150px;
-  padding: 20px;
-  color: white;
+.search-movie button {
+  margin-top: 3.5rem;
+  width: 50%;
+  font-size: 1.25rem;
 }
 
-.App-title {
-  font-size: 1.5em;
+img {
+  margin-bottom: 1rem;
 }
 
-.App-intro {
-  font-size: large;
+.heart {
+  font-size: 2rem;
+  color: pink;
 }
 
-@keyframes App-logo-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+footer {
+  display: block;
+  text-align: center;
+  padding: 2rem;
+  background-color: blue;
+  margin-top: 2rem;
 }
