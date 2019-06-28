@@ -33,6 +33,7 @@ class Search extends Component {
       this.setState({searchList})
     })
   }
+  
   onMovieSelect = (movie) => {
     return () => {
     axios.post('http://localhost:3090/movies', 
