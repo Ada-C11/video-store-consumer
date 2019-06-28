@@ -22,6 +22,7 @@ class App extends Component {
       deselectedMovie: null,
       rentedMovie: undefined,
       chosenCustomer: undefined,
+      deselectedCustomer: null,
       dueDate: undefined,
       checkoutDate: undefined,
       currentRental: {
@@ -100,7 +101,18 @@ class App extends Component {
 
   onSelectCustomerCallback = (id) => {
     const selectedCustomer = this.state.customers.find(customer => customer.id === id);
-    this.setState({ chosenCustomer: selectedCustomer });
+    this.setState({ 
+      deselectedCustomer: null,
+      chosenCustomer: selectedCustomer 
+    });
+  }
+
+  onDeselectCustomerCallback = (id) => {
+    const deselectedCustomer = this.state.customers.find(customer => customer.id === id);
+    this.setState({ 
+      chosenCustomer: null,
+      deselectedCustomer
+    });
   }
 
   rentMovie = () => {
@@ -251,7 +263,7 @@ class App extends Component {
             render={() => (
               <Library 
                 library={this.state.movies} 
-                isDetailsClicked = {this.state.isDetailsClicked}
+                // isDetailsClicked = {this.state.isDetailsClicked}
                 expandedMovies={this.state.expandedMovies} 
                 onClickMovieDetailsCallback={this.onClickMovieDetailsCallback}
                 onSelectMovieCallback={this.onSelectMovieCallback}
@@ -269,6 +281,8 @@ class App extends Component {
                 expandedCustomers={this.state.expandedCustomers}
                 allRentals={this.state.allRentals} 
                 onSelectCustomerCallback={this.onSelectCustomerCallback}
+                chosenCustomer={this.state.chosenCustomer}
+                onDeselectCustomerCallback={this.onDeselectCustomerCallback}
                 onCustomerRentalsCallback={this.onCustomerRentalsCallback}
               />
             )} 

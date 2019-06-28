@@ -10,14 +10,24 @@ const Customer = (props) => {
     props.onSelectCustomerCallback(props.customer.id)
   }
 
+  const onDeselectCustomer = () => {
+    props.onDeselectCustomerCallback(props.customer.id)
+  }
+
   const onViewRentals = () => {
     props.onCustomerRentalsCallback(props.customer.id)
   }
 
+    
+    const selectButton = (props.chosenCustomer === props.customer) ?
+      <td><Button variant="danger" onClick={onDeselectCustomer}>Deselect</Button></td> :
+      <td><Button onClick={onSelectCustomer}>Select Customer</Button></td>
+
   return (
     <tr>
       <td>{props.customer.name}</td>
-      <td><Button onClick={onSelectCustomer}>Select Customer</Button></td>
+      {selectButton}
+      {/* <td><Button onClick={onSelectCustomer}>Select Customer</Button></td> */}
       <td><Button onClick={onViewRentals}>Customer Rentals</Button></td>
 
       {props.viewCustomerRental && <Card>
