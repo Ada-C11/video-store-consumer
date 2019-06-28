@@ -156,12 +156,14 @@ table {
 
 .selected-info {
   font-size: 1.25rem;
-  /* padding: 30px; */
-  /* margin: 20px 0 0 0; */
 }
 
 .selected-info span {
   margin: 20px;
+}
+
+.selected-items {
+  padding: 30px;
 }
 
 .home {
@@ -211,4 +213,10 @@ animation: home .1s ease infinite;
   height: 60px;
   padding-right: 0;
   position: relative;
+}
+
+div.card-columns {
+  column-count: 3;
+  column-gap: 100px;
+  column-width: 200px;
 }

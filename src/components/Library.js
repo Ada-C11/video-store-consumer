@@ -15,7 +15,7 @@ const Library = (props) => {
   })
   return (
     <div>
-      <div className="container card-columns">
+      <div className="card-columns">
         { movieCards }
       </div>
     </div>
