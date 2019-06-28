@@ -158,9 +158,16 @@ li {
 }
 
 .selected-movie-details {
+  width: 250px;
+  height: 300px;
+  top: 300px;
   grid-area: side;
   background-color: white;
   margin-top: 50px;
+  grid-column-start: 2; 
+  grid-row-start: 2; 
+  box-sizing: border-box;
+  position: fixed;
 }
 
 
