@@ -1,0 +1,7 @@
+.selected-info {
+    background-color: lightyellow;
+    border: 2px rgb(15, 32, 185) solid;
+    height: auto;
+    padding: 20px;
+
+  }

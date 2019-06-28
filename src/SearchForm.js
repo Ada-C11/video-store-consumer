@@ -11,7 +11,7 @@ class SearchForm extends Component {
     }
 
     onSearchChange = (event) => { 
-        event.preventDefault()
+        // event.preventDefault()
         this.setState({
             searchTerm: event.target.value,
         });

@@ -28,8 +28,9 @@ class MovieList extends Component {
       });
     }
   
-    movieTitleCallback = (title) => {
-    console.log(title);
+    movieTitleCallbackinMovieList = (title) => {
+      console.log("movie list" + title);
+      this.props.movieTitleCallbackinMovieList(title);
     }
 
     render() {
@@ -42,7 +43,7 @@ class MovieList extends Component {
           release_date={movie.release_date}
           image_url={movie.image_url}
           external_id={movie.external_id}
-          movieTitleCallback={this.movieTitleCallback}/>
+          movieTitleCallbackinMovie={this.movieTitleCallbackinMovieList}/>
       });
   
       return (
@@ -56,7 +57,7 @@ class MovieList extends Component {
   }
   
   MovieList.propTypes = {
-    movieTitleCallback: PropTypes.func,
+    movieTitleCallbackinMovieList: PropTypes.func,
   };
   
   export default MovieList;

@@ -2,7 +2,7 @@
     background-color: pink;
   
     padding: 1em 0;
-    margin: 0.5rem;
+    margin: 1rem;
   
     min-height: 250px;
     min-width: 225px;
@@ -11,7 +11,7 @@
     border-radius: 5px;
   
     display: grid;
-    grid-template-columns: 1fr 5fr 1fr;
+    grid-template-columns: 1fr 6fr;
     align-items: center;
   }
   
@@ -22,6 +22,7 @@
     display: flex;
     flex-direction: column;
     justify-content: space-around;
+    margin: 3rem;
   
     text-align: center;
     font-weight: 100;
@@ -34,15 +35,22 @@
   }
   
   .movie__content-overview {
-    font-size: 2rem;
+    font-size: 1rem;
     padding: 0;
     margin: 0;
   }
 
-  .movie__content-release_date, .movie_content-image_url {
+  .movie__content-release_date {
     font-size: 1rem;
-    
     padding: 0;
     margin: 0;
   }
   
+   .movie_content-image_url img {
+    padding: 2rem;
+  }
+
+  .select__movie {
+    grid-column-start: 1;
+    margin: 0.5rem;
+  }
