@@ -213,7 +213,7 @@ class App extends Component {
   onCustomerRentalsCallback = (customerID) => {
     let uniqueRentals = {}
 
-    axios.get('http://localhost:3001/rentals/overdue')
+    axios.get('http://localhost:3001/rentals')
     .then((response) => {
       response.data.forEach((rental, i) => {
         if (rental !== null) {
