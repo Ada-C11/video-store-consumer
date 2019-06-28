@@ -97,17 +97,17 @@ class App extends Component {
 
   render() {
     const allUserMessages = this.state.userMessages.map((message, i) => {
-      return <p key= {i}>{ message }</p>;
+      return <p class="alert alert-success" role="alert" key= {i}>{ message }</p>;
     })
 
     const enabledCheckout = this.state.selectedCustomer && this.state.selectedMovie !== null
 
     const displaySelectedItems = (this.state.selectedCustomer || this.state.selectedMovie !== null) ?
-          <div>
-            <p>Selected Movie: {this.state.selectedMovie ? this.state.selectedMovie.title : "No movie selected"}</p>
-            <p>Selected Customer: {this.state.selectedCustomer ? this.state.selectedCustomer.name : "No customer selected"}</p>
+          <section className="selected-items">
+            <span><b>Selected Movie:</b> {this.state.selectedMovie ? this.state.selectedMovie.title : <i>Please make a selection.</i>}</span>
+            <span><b>Selected Customer:</b> {this.state.selectedCustomer ? this.state.selectedCustomer.name : <i>Please make a selection.</i>}</span>
             <button disabled={!enabledCheckout} type="button" className="btn btn-info"onClick={() => {this.checkoutMovie(this.state.selectedMovie, this.state.selectedCustomer)}}>Checkout Movie</button>
-          </div> : ''
+          </section> : ''
 
     return (
       <Router>
@@ -139,7 +139,9 @@ class App extends Component {
           </section>
 
           <section className="store">
+            <div className="selected-info">
             {displaySelectedItems}
+            </div>
             <Route exact path="/" component={Home} />
             <Route path="/search/"
               render={(props) => <Search {...props} 

@@ -23,7 +23,7 @@ const CustomerList = (props) => {
   })
 
   return (
-    <section>
+    <div className="table-responsive">
         <table class="table cart-table">
         <thead class="table-info">
           <th scope="col">Customer Name</th>
@@ -34,10 +34,10 @@ const CustomerList = (props) => {
           <th scope="col"></th>
         </thead>
         <tbody>
-        { displayCustomers }
+          { displayCustomers }
         </tbody>
         </table> 
-    </section>
+    </div>
   );
 }
 
