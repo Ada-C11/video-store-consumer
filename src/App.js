@@ -105,32 +105,33 @@ class App extends Component {
       <section className="site_container">
         <Router>
           <Header />
-          
+
           {this.showRentalSection()}
           {statusMessage}
-            <div className="site_content_container">
-              <Route exact path="/" component={Home} />
-              <Route
-                path="/customers"
-                render={(routeProps) => (
-                  <Customer {...routeProps}
-                    currentCustomerCallback={this.currentCustomerCallback} />
-                )}
-              />
-              <Route
-                path="/library"
-                render={(routeProps) => (
-                  <Movie {...routeProps}
-                    currentMovieCallback={this.currentMovieCallback} />
-                )} />
-              <Route path="/search"
-                render={(routeProps) => (
-                  <Search {...routeProps} />
-                )} />
+          <div className="site_content_container">
+            <Route exact path="/" component={Home} />
+            <Route
+              path="/customers"
+              render={(routeProps) => (
+                <Customer {...routeProps}
+                  currentCustomerCallback={this.currentCustomerCallback} />
+              )}
+            />
+            <Route
+              path="/library"
+              render={(routeProps) => (
+                <Movie {...routeProps}
+                  currentMovieCallback={this.currentMovieCallback} />
+              )} />
+            <Route path="/search"
+              render={(routeProps) => (
+                <Search {...routeProps} />
+              )} />
 
-            </div>
+          </div>
         </Router>
 
+        <Footer />
 
       </section>
     );
@@ -161,7 +162,17 @@ function Header() {
     </nav>
 
   );
+}
 
+function Footer() {
+  return (
+    <footer>
+      <p className="heart">&hearts;</p>
+      <p>Riyo Perry + Amy Phung</p>
+      <p><a href="adadevelopersacademy.org"></a>Ada Developers Academy | C11</p>
+      <p>06.27.19</p>
+    </footer>
+  )
 }
 
 export default App;

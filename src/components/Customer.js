@@ -49,7 +49,8 @@ class Customer extends Component {
         <div key={id} className="card" >
           <ul className="card_data-ul">
             <li className=""><strong>{id}. {name}</strong></li>
-            <li className="card_data-li">{address}, {city} {postal_code}</li>
+            <li className="card_data-li">{address}</li>
+            <li className="card_data-li">{city} {postal_code}</li>
             <li className="card_data-li">{phone}</li>
             <li className="card_data-li"><strong>Account credit:</strong> ${account_credit}</li>
             <li className="card_data-li"><strong>Movies checked out:</strong> {movies_checked_out_count}</li>
