@@ -3,6 +3,7 @@
   margin: 1rem;
   width: 235px;
   max-width: 260px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.25), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   /* min-width: 200px; */
 
 }
@@ -19,4 +20,8 @@
 }
 .button-row {
   vertical-align : bottom;
+}
+
+.card-body img {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.25), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
