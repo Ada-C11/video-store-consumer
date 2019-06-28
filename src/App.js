@@ -328,7 +328,7 @@ function Header() {
   return (
     <header>
       <nav className="nav_container">
-        <Link className="brand" to="/search">VIDEO WORLD</Link>
+        <Nav.Link className="brand" href="/search">VIDEO WORLD</Nav.Link>
 
         <Nav>
           <Link className="nav_link" to="/search">Search</Link>
