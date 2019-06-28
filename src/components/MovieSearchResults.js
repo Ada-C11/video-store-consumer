@@ -28,7 +28,7 @@ class MovieSearchResults extends Component {
         sendToLibraryIndicator: `Added ${movie.title} to the library`
       });
 
-      this.props.addMovietoLibrayCallback(movie);
+      // this.props.addMovietoLibrayCallback(movie);
       axios
       .post(`http://localhost:3001/movies`, {
         title: movie.title,
