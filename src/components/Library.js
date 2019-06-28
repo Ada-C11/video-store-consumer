@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import Movie from './Movie';
 import Table from 'react-bootstrap/Table';
@@ -9,7 +9,7 @@ const Library = (props) => {
     return <Movie key={i} 
             movie={movie} 
             viewMovieDetails={props.expandedMovies[movie.id]} 
-            onClickDetailsCallback={props.onClickDetailsCallback} 
+            onClickMovieDetailsCallback={props.onClickMovieDetailsCallback} 
             onSelectMovieCallback={props.onSelectMovieCallback}/>
    });
    
@@ -36,8 +36,9 @@ const Library = (props) => {
 
 Library.propTypes = {
   library: PropTypes.array.isRequired,
-  onClickDetailsCallback: PropTypes.func.isRequired,
+  expandedMovies: PropTypes.object,
   onSelectMovieCallback: PropTypes.func.isRequired,
+  onClickMovieDetailsCallback: PropTypes.func.isRequired,
 };
 
 export default Library;

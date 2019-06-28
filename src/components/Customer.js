@@ -1,19 +1,19 @@
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
+import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/Button'
-import axios from 'axios';
 // import './Customer.css';
 
 const Customer = (props) => {
   const onSelectCustomer = () => {
-    props.onSelectCustomerCallback(props.id - 1)
+    props.onSelectCustomerCallback(props.customer.id)
   }
 
   const onViewRentals = () => {
-    props.onCustomerRentalsCallback(props.id)
+    props.onCustomerRentalsCallback(props.customer.id)
   }
 
-  const showCustomerRentals = () => {
+  const customerRentals = () => {
     const rentalHTML = props.customerRentals.map((rental, i) => {
       return <tr key={i}><td>{rental["movie"]}</td><td>{rental["checkout_date"]}</td><td>{rental["due_date"]}</td></tr>
     })
@@ -23,18 +23,30 @@ const Customer = (props) => {
 
   return (
     <tr>
-      <td>{props.name}</td>
+      <td>{props.customer.name}</td>
       <td><Button onClick={onSelectCustomer}>Select Customer</Button></td>
-      <td><Button onClick={onViewRentals}>Rentals</Button></td>
-      {props.customerRentals && <table><tr><th>Movie</th><th>Checked Out</th><th>Due On</th></tr>{showCustomerRentals()}</table>}
+      <td><Button onClick={onViewRentals}>Customer Rentals</Button></td>
+
+      {props.viewCustomerRental && <Card>
+        <Card.Body>
+          <Card.Title>
+            {props.customer.name}'s Rentals
+          </Card.Title>
+          <Card.Text>
+            <table>
+              {customerRentals()}
+            </table>
+          </Card.Text>
+        </Card.Body>
+      </Card>}
     </tr>
   )
 }
 
 Customer.propTypes = {
-  id: PropTypes.number.isRequired,
-  name: PropTypes.string.isRequired,
-  allRentals: PropTypes.array,
+  customer: PropTypes.object.isRequired,
+  viewCustomerRental: PropTypes.bool,
+  customerRentals: PropTypes.array,
   onSelectCustomerCallback: PropTypes.func.isRequired,
   onCustomerRentalsCallback: PropTypes.func.isRequired,
 };

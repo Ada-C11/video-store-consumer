@@ -1,10 +1,10 @@
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import Card from 'react-bootstrap/Card';
-import './Details.css';
-// import './Library.css';
+// import './MovieDetails.css';
 
-const Details = (props) => {
+const MovieDetails = (props) => {
+  console.log(props)
   const movieDetails = () => {
     return (
       <Card>
@@ -22,8 +22,13 @@ const Details = (props) => {
   return movieDetails();
 }
 
-Details.propTypes = {
-  // showMovie: PropTypes.array.isRequired,
+MovieDetails.propTypes = {
+  external_id: PropTypes.number.isRequired,
+  id: PropTypes.number.isRequired,
+  image_url: PropTypes.string.isRequired,
+  overview: PropTypes.string.isRequired,
+  release_date: PropTypes.string.isRequired,
+  title: PropTypes.string.isRequired,
 };
 
-export default Details;
+export default MovieDetails;

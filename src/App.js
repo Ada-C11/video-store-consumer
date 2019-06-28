@@ -15,11 +15,9 @@ class App extends Component {
 
     this.state = {
       movies: [],
-      customers: [],
-      allRentals: undefined,
-      customerRentals: undefined,
-      overdueMovies: undefined,
       expandedMovies: {},
+      customers: [],
+      expandedCustomers: {},
       rentedMovie: undefined,
       chosenCustomer: undefined,
       dueDate: undefined,
@@ -30,6 +28,9 @@ class App extends Component {
         customer: undefined,
         checkin: false,
       },
+      allRentals: undefined,
+      customerRentals: undefined,
+      overdueMovies: undefined,
       error: null,
     };
   }
@@ -37,7 +38,7 @@ class App extends Component {
   componentDidMount() {
     axios.get('http://localhost:3001/movies')
     .then((response) => {
-      this.setState({ movies: response.data});
+      this.setState({ movies: response.data });
     })
     .catch((error) => {
       this.setState({ error: error.message });
@@ -59,7 +60,7 @@ class App extends Component {
     });
   }
 
-  onClickDetailsCallback = (id) => {
+  onClickMovieDetailsCallback = (id) => {
     this.setState((prevState) => ({ 
       expandedMovies: {
         ...prevState.expandedMovies, 
@@ -68,20 +69,29 @@ class App extends Component {
     }));
   }
 
-  onSelectMovieCallback = (index) => {
-    const selectedMovie = this.state.movies[index]
+  onSelectMovieCallback = (id) => {
+    const selectedMovie = this.state.movies[id - 1]
     this.setState({ rentedMovie: selectedMovie });
   }
 
-  onSelectCustomerCallback = (index) => {
-    const selectedCustomer = this.state.customers[index]
+  onClickCustomerRentalsCallback = (id) => {
+    this.setState((prevState) => ({ 
+      expandedCustomers: {
+        ...prevState.expandedCustomers, 
+        [id]: !prevState.expandedCustomers[id],
+      }
+    }));
+  }
+
+  onSelectCustomerCallback = (id) => {
+    const selectedCustomer = this.state.customers[id - 1]
     this.setState({ chosenCustomer: selectedCustomer });
   }
 
   rentMovie = () => {
     const checkoutDate = new Date();
     const dueDate = new Date();
-    dueDate.setDate(dueDate.getDate() + 7 );
+    dueDate.setDate(dueDate.getDate() + 1 );
   
     const url = `http://localhost:3001/rentals/${this.state.rentedMovie.title}/check-out`;
 
@@ -159,36 +169,6 @@ class App extends Component {
     });
   }
 
-
-  gatherAllRentals = (customerID) => {
-    let uniqueRentals = {}
-
-    axios.get('http://localhost:3001/rentals')
-    .then((response) => {
-      response.data.forEach((rental, i) => {
-        if (rental !== null) {
-          uniqueRentals[i] = {
-            "customer": rental.customer_id,
-            "movie": rental.title,
-            "checkout_date": rental.checkout_date,
-            "due_date": rental.due_date
-          }
-        }
-      })
-
-      this.setState({ 
-        allRentals: uniqueRentals
-      })
-
-      this.findCustomerRentals(customerID)
-    })
-    .catch((error) => {
-      this.setState({ 
-        error: error.message
-      });
-    });
-  }
-
   findCustomerRentals = (customerID) => {
     const rentals = []
 
@@ -210,7 +190,33 @@ class App extends Component {
   }
 
   onCustomerRentalsCallback = (customerID) => {
-    this.gatherAllRentals(customerID)
+    let uniqueRentals = {}
+
+    axios.get('http://localhost:3001/rentals')
+    .then((response) => {
+      response.data.forEach((rental, i) => {
+        if (rental !== null) {
+          uniqueRentals[i] = {
+            "customer": rental.customer_id,
+            "movie": rental.title,
+            "checkout_date": rental.checkout_date,
+            "due_date": rental.due_date
+          }
+        }
+      })
+
+      this.setState({ 
+        allRentals: uniqueRentals
+      })
+
+      this.findCustomerRentals(customerID)
+      this.onClickCustomerRentalsCallback(customerID)
+    })
+    .catch((error) => {
+      this.setState({ 
+        error: error.message
+      });
+    });
   }
 
   render() {
@@ -250,8 +256,8 @@ class App extends Component {
               <Library 
                 library={this.state.movies} 
                 expandedMovies={this.state.expandedMovies} 
-                onClickDetailsCallback={this.onClickDetailsCallback} 
                 onSelectMovieCallback={this.onSelectMovieCallback} 
+                onClickMovieDetailsCallback={this.onClickMovieDetailsCallback} 
               />
             )} 
           />
@@ -259,9 +265,9 @@ class App extends Component {
             path="/customers" 
             render={() => (
               <Customers 
-                // allRentals={this.state.allRentals}
-                customerRentals={this.state.customerRentals}
-                customers={this.state.customers} 
+                customers={this.state.customers}
+                expandedCustomers={this.state.expandedCustomers}
+                customerRentals={this.state.customerRentals} 
                 onSelectCustomerCallback={this.onSelectCustomerCallback}
                 onCustomerRentalsCallback={this.onCustomerRentalsCallback}
               />
@@ -272,9 +278,6 @@ class App extends Component {
             render={() => (
               <Log  
                 overdueMovies={this.state.overdueMovies}
-                allRentals={this.state.allRentals}
-                setAllRentals={this.setAllRentals}
-                setAllRentalsError={this.setAllRentalsError}
                 setOverdueMoviesCallback={this.setOverdueMoviesCallback}
                 setErrorOverdueCallback={this.setErrorOverdueCallback}
               />
