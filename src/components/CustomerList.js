@@ -27,9 +27,11 @@ class CustomerList extends Component {
           });
     }
 
-    customerNameCallback = (customerName) => {
+    customerNameCallbackCustomers = (customerName) => {
     console.log(customerName);
-    }
+    this.props.customerNameCallbackCustomers(customerName);
+
+   }
 
     render() {
     const allCustomers = this.state.customers.map((customer) => {
@@ -44,7 +46,7 @@ class CustomerList extends Component {
           phone={customer.phone}
           account_credit={customer.account_credit}
           created_at={customer.created_at}
-          customerNameCallback={this.customerNameCallback}/> 
+          customerNameCallbackCustomer={this.customerNameCallbackCustomers}/> 
       });
 
     return (
@@ -59,7 +61,7 @@ class CustomerList extends Component {
 
 
 CustomerList.propTypes = {
-  customerNameCallback: PropTypes.func,
+  customerNameCallbackCustomers: PropTypes.func,
 };
 
 export default CustomerList;

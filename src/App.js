@@ -46,18 +46,18 @@ class App extends Component {
        <img src={"https://i.ibb.co/9pdVTpY/5a67a1b701d15068bdfe87c6.png"} className="App-logo" alt="Rilakkuma" />
       <h1 className="App-title">Rilakkuma's Video Store</h1>
        </header>
-       <Navbar />
+       <Navbar customer={this.state.currentCustomer} movie={this.state.currentMovie}/>
+       
       
           <div>
             <Route exact path="/" render={ (routerprops) => <MovieList {...routerprops}
-          movieTitleCallback={this.movieToRent } /> }
+          movieTitleCallbackinMovieList={this.movieToRent } /> }
           />
             <Route exact path="/customers"
           render={ (routerprops) => <CustomerList {...routerprops}
-          customerNameCallback={this.customerRenting} /> }
+          customerNameCallbackCustomers={this.customerRenting} /> }
           />
-            <Route path="/search" component={
-              (routerProps) => <Search searchResults={this.state.searchResults} {...routerProps} />
+            <Route path="/search" component={(routerProps) => <Search {...routerProps} />
             }/>
           </div>
         </div>

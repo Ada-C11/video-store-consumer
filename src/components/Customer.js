@@ -5,7 +5,8 @@ import CustomerStyles from './Customer.css';
 const Customer = (props) => {
 
 const onSelectCustomer = () => {
-    props.customerNameCallback(props.name)
+    console.log(props.name);
+    props.customerNameCallbackCustomer(props.name)
 }
 
    return (
@@ -36,7 +37,7 @@ Customer.propTypes = {
   phone:PropTypes.string,
   account_credit:PropTypes.number,
   created_at:PropTypes.instanceOf(Date),
-  customerNameCallback:PropTypes.func,
+  customerNameCallbackCustomer:PropTypes.func,
 };
 
 export default Customer;
