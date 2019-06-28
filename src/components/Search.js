@@ -106,11 +106,9 @@ class Search extends Component {
                 {errorSection}
                 {successSection}
                 <Table>
-                        {/* {tableHeader} */}
                     <tbody>
                         {movieCards}
                     </tbody>
-                
                 </Table>
 
             </section>

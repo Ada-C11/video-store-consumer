@@ -4,5 +4,7 @@
 }
 
 .search_container {
-    margin: 1rem;
+    min-height: 800px;
+    border-top: 10px solid black;
+    background: #DCDCDC;
 }
