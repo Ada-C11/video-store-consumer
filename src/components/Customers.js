@@ -1,4 +1,6 @@
 import React from 'react'
+import PropTypes from 'prop-types';
+
 import Customer from './Customer';
 
 const Customers = (props) => {
@@ -18,6 +20,11 @@ const Customers = (props) => {
     )
 }
 
+Customers.propTypes ={
+  customerList: PropTypes.array,
+  currentCustomer: PropTypes.object,
+  onCustomerSelect: PropTypes.func,
+}
 
 
 export default Customers;

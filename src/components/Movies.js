@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 import Movie from './Movie';
 
@@ -25,14 +26,18 @@ const Movies = (props) => {
       }
   })
 
-  const displayCurrMovie = (props.currentMovie === undefined) ? "None" : props.currentMovie.title
   
   return (
     <div>
-      Currently selected movie: { displayCurrMovie }
       { displayMovies }
     </div>
   )
+}
+
+Movies.propTypes ={
+  movieList: PropTypes.array,
+  currentMovie: PropTypes.object,
+  onMovieSelect: PropTypes.func,
 }
 
 export default Movies;

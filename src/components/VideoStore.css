@@ -5,6 +5,8 @@ body {
   background-color: #cccccc;
 }
 
+/* Navbar */
+
 ul {
   list-style-type: none;
   margin: 0;
@@ -24,6 +26,7 @@ li a {
   padding: 14px 16px;
   text-decoration: none;
   font-size: 30px;
+  font-family: 'Righteous';
 }
 
 li a:hover:not(.active) {
@@ -41,6 +44,7 @@ li a:hover:not(.active) {
 
 .customers-page h2 {
   margin-left: 20%;
+  font-family: 'Righteous';
 }
 
 .customers-table {
