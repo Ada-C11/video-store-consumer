@@ -33,3 +33,33 @@ li a:hover:not(.active) {
 .active {
   background-color: red;
 }
+
+/* Customers */
+
+.customers-page h2 {
+  margin-left: 20%;
+}
+
+.customers-table {
+  margin-left: 20%;
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 60%;
+  background-color: #333;
+  opacity: 0.7;
+  color: white;
+}
+
+.customers-table-id {
+  text-align: center;
+  width: 50px;
+}
+
+.customers-table-name {
+  text-align: left;
+}
+
+.customers-table:hover{
+  opacity: 0.9;
+}
+

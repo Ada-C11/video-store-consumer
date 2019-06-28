@@ -1,5 +1,4 @@
 import React from 'react'
-// import axios from 'axios';
 import Customer from './Customer';
 
 const Customers = (props) => {
@@ -12,7 +11,10 @@ const Customers = (props) => {
             />
     })
     return (
-      <div>{ displayCustomers }</div>
+      <section className="customers-page">
+        <h2>Customers</h2>
+        { displayCustomers }
+      </section>
     )
 }
 
