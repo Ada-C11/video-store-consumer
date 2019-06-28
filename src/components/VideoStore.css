@@ -3,6 +3,7 @@ body {
   grid-template-rows: 5% auto;
   background-image: url("../images/popcorn.jpg");
   background-color: #cccccc;
+  font-family: 'Titillium Web', sans-serif;
 }
 
 /* Navbar */
@@ -40,32 +41,4 @@ li a:hover:not(.active) {
   font-family: 'Audiowide';
 }
 
-/* Customers */
-
-.customers-page h2 {
-  margin-left: 20%;
-  font-family: 'Righteous';
-}
-
-.customers-table {
-  margin-left: 20%;
-  font-family: arial, sans-serif;
-  width: 60%;
-  background-color: #333;
-  opacity: 0.7;
-  color: white;
-}
-
-.customers-table-id {
-  text-align: center;
-  width: 50px;
-}
-
-.customers-table-name {
-  text-align: left;
-}
-
-.customers-table:hover{
-  opacity: 0.9;
-}
 

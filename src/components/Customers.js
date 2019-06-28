@@ -1,6 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types';
-
+import './Customers.css';
 import Customer from './Customer';
 
 const Customers = (props) => {
