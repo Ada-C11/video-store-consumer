@@ -50,12 +50,22 @@
 }
 
 .nav_link:hover {
-  color: white;
+  color: red;
+  text-shadow:
+  -1px -1px 0 #990708,
+  1px -1px 0 #990708,
+  -1px 1px 0 #990708,
+  1px 1px 0 #990708;
   text-decoration: none;
 }
 
 .brand:hover {
   color: #990708;
+  text-shadow:
+  -1px -1px 0 red,
+  1px -1px 0 red,
+  -1px 1px 0 red,
+  1px 1px 0 red;
   text-decoration: none;
 }
 

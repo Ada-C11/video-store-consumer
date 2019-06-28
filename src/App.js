@@ -343,8 +343,8 @@ function Header() {
 
         <Nav>
           <Link className="nav_link" to="/search">Search</Link>
-          <Link className="nav_link" to="/library">Library</Link>
-          <Link className="nav_link" to="/customers">Customers</Link>
+          <Link className="nav_link" to="/library">Collection</Link>
+          <Link className="nav_link" to="/customers">Community</Link>
           <Link className="nav_link" to="/overdue">Log</Link>
         </Nav>
       </nav>
