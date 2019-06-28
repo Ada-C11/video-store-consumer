@@ -1,8 +1,6 @@
 import React, { Component } from "react";
-import ReactDOM from "react-dom";
 
 import "./App.css";
-import registerServiceWorker from "./registerServiceWorker";
 import { Route, Link, BrowserRouter as Router } from "react-router-dom";
 
 import MovieLibrary from "./components/MovieLibrary";

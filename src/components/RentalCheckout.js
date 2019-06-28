@@ -14,7 +14,7 @@ class RentalCheckout extends Component {
 
   checkout = (movie, customer) => {
     this.setState({
-      checkout: { customer: customer, movie: movie },
+      checkout: { customer: customer, movie: movie }
     });
     let dueDate = new Date();
     dueDate.setDate(dueDate.getDate() + 7);
@@ -29,7 +29,6 @@ class RentalCheckout extends Component {
       })
 
       .catch(error => {
-        console.log(error.messages);
         alert("Error happened");
         this.setState({ error: error.message });
 

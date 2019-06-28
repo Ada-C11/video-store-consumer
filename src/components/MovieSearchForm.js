@@ -24,7 +24,7 @@ class MovieSearchForm extends Component {
       .then(response => {
         const movies = response.data.results;
         this.setState({ text: "" });
-        
+
         this.props.getresultcallback(movies);
       })
       .catch(error => {
@@ -46,8 +46,8 @@ class MovieSearchForm extends Component {
   render() {
     return (
       <section>
-        <form className="new-card-form__form" onSubmit={this.searchMovie}>
-          <h2 className="new-card-form__header">Search for a movie</h2>
+        <form onSubmit={this.searchMovie}>
+          <h2> Search for a movie</h2>
           <label>
             Text:
             <input
