@@ -1,0 +1,37 @@
+.customer-thumbnail {
+  width: 100px;
+  height: 100px;
+}
+
+.customer-item {
+  width: 120px;
+  min-height: 120px;
+  background-color: white;
+  padding: 20px;
+  margin: 20px;
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  border-radius: 20px;
+  box-shadow: 2px 2px 2px 2px grey;
+}
+
+/* .movie-item img {
+  display: block;
+  align-self: center;
+  margin-bottom: 20px;
+} */
+
+.select-customer-button {
+  background-color: teal;
+  padding: 15px;
+  border-radius: 10px;
+  text-align: center;
+  color: white;
+  margin-top: auto;
+}
+
+.select-customer-button:hover {
+  cursor: pointer;
+  background-color: rgb(44, 194, 194);
+}

@@ -1,0 +1,13 @@
+.add-movie-button {
+  background-color: teal;
+  padding: 15px;
+  border-radius: 10px;
+  text-align: center;
+  color: white;
+  margin-top: auto;
+}
+
+.add-movie-button {
+  cursor: pointer;
+  background-color: rgb(44, 194, 194);
+}
