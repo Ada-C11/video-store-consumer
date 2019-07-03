@@ -1,0 +1,7 @@
+.customer-list {
+  width:80%;
+  display: flex;
+  flex-flow: row wrap;
+  margin:auto;
+  justify-content:space-around;
+}
