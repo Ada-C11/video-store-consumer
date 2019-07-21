@@ -9,12 +9,14 @@
 }
 
 .App-header {
+  /* url(https://fonts.googleapis.com/css?family=Walter+Turncoat); */
   display: flex;
   align-items: center;
   background-color: white;
   height: 250px;
   padding: 20px;
-  color: rgb(15, 32, 185);
+  color:white;
+  font-family: "Walter Turncoat", cursive;
 }
 
 .App-title {
@@ -23,7 +25,7 @@
   vertical-align: middle;
   text-align: center;
   font-size: 3.5em;
-  height: 80px;
+  height: 150px;
   margin: 0 75px;
   /* width: 85%; */
 }
@@ -34,4 +36,5 @@
 
 .nav-btn {
   width: 130px;
+  background-color: rgb(75, 114, 9);
 }

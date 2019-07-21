@@ -54,16 +54,28 @@ class Navbar extends Component {
         }
         else{
             return (
-                <nav className="navbar navbar-expand-lg navbar-light bg-light justify-content-center">
+                <nav className="navbar navbar-expand-lg navbar-light bg-success justify-content-center">
                     <div className="navbar-nav nav-fill justify-content-between" id="navbarSupportedContent">
                         <div className="nav-item px-5">
-                            <Link to="/customers" className="nav-link btn btn-outline-primary">customers<span className="sr-only">(current)</span></Link>
+                            <Link to="/customers" className="nav-link btn btn-outline-primary">sound on<span className="sr-only">(current)</span></Link>
                         </div>
                         <div className="nav-item">
-                            <Link to="/" className="nav-link btn btn-outline-primary">rental library</Link>
+                            <Link to="/" className="nav-link btn btn-outline-primary">animation on</Link>
+                        </div>
+                        <div className="nav-item">
+                            <Link to="/" className="nav-link btn btn-outline-primary">choose</Link>
+                        </div>
+                        {/* <div className="nav-item px-5">
+                            <SearchForm />
+                        </div> */}
+                        <div className="nav-item px-5">
+                            <Link to="/customers" className="nav-link btn btn-outline-primary">new board<span className="sr-only">(current)</span></Link>
                         </div>
                         <div className="nav-item px-5">
-                            <SearchForm />
+                            <Link to="/customers" className="nav-link btn btn-outline-primary">my dashboard<span className="sr-only">(current)</span></Link>
+                        </div>
+                        <div className="nav-item">
+                            <Link to="/" className="nav-link btn btn-outline-primary">log out</Link>
                         </div>
                         {/* <div className="nav-item">
                             <div>current customer: {this.props.customer, this.props.customer}</div>

@@ -1,19 +1,18 @@
 import React, { Component } from 'react';
 import { Route, Link } from 'react-router-dom';
-import logo from './logo.svg';
-import './App.css';
-import Navbar from './Navbar';
-import SelectedInfo from './components/SelectedInfo'
-import Customer from './components/Customer.js';
-import CustomerList from './components/CustomerList.js';
-import Search from './components/Search';
+import logo from '../logo.svg';
+import '../App.css';
+import Navbar from '../Navbar';
+import SelectedInfo from '../components/SelectedInfo'
+import Customer from '../components/Customer.js';
+import CustomerList from '../components/CustomerList.js';
+import Search from '../components/Search';
 import { withRouter } from "react-router";
-import MovieList from './components/MovieList.js';
-import StickerBoard from './components/StickerBoard.js';
-import Home from './components/Home.js';
-import Login from './components/Login.js';
+import MovieList from '../components/MovieList.js';
+import StickerBoard from '../components/StickerBoard.js';
 
-class App extends Component {
+
+class Home extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -40,11 +39,8 @@ class App extends Component {
 
   render() {
     return (
-        <div className="App">
-          {/* <Route exact path="/" component={Login}/> */}
-          <Route /*path="/home"*/ component={Home}/>
-
-          {/* <header className="App-header">
+        <div>
+          <header className="App-header">
             <img src={"https://i.ibb.co/6PZqtHk/Screen-Shot-2019-07-19-at-11-22-08-AM.png"} className="App-logo" alt="chalkboard" />
             <h1 className="App-title">
             <img src={"https://i.ibb.co/TvRxPGd/eb822bd15530836fa9508123006bd24a.png"} className="App-title" alt="Sticker Star" /></h1>
@@ -61,10 +57,10 @@ class App extends Component {
             customerNameCallbackCustomers={this.customerRenting} /> }
             />
             <Route path="/search" component={(routerProps) => <Search {...routerProps} />}/>
-          </div> */}
+          </div>
         </div>
     );
   }
 }
 
-export default withRouter(App);
+export default withRouter(Home);
