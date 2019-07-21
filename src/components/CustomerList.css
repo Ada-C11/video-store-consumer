@@ -1,0 +1,11 @@
+#table-rows {
+  cursor: pointer;
+}
+
+.table tr {
+  width: auto;
+}
+
+.table {
+  text-align: left;
+}
