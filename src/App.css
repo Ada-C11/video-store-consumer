@@ -3,26 +3,38 @@
 }
 
 .App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 80px;
+  align-items: left;
+  /* animation: App-logo-spin infinite 20s linear; */
+  height: 180px;
 }
 
 .App-header {
-  background-color: #222;
-  height: 150px;
+  /* url(https://fonts.googleapis.com/css?family=Walter+Turncoat); */
+  display: flex;
+  align-items: center;
+  background-color: white;
+  height: 250px;
   padding: 20px;
-  color: white;
+  color:white;
+  font-family: "Walter Turncoat", cursive;
 }
 
 .App-title {
-  font-size: 1.5em;
+  align-items: center;
+  font-family: 'Aclonica';
+  vertical-align: middle;
+  text-align: center;
+  font-size: 3.5em;
+  height: 150px;
+  margin: 0 75px;
+  /* width: 85%; */
 }
 
 .App-intro {
   font-size: large;
 }
 
-@keyframes App-logo-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+.nav-btn {
+  width: 130px;
+  background-color: rgb(75, 114, 9);
 }
