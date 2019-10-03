@@ -1,0 +1,32 @@
+.form-group {
+    margin: 30px;
+}
+
+.select-link {
+    display: inline;
+    size: small;
+    color: #ff7657;
+    background-color: black;
+    border-color: black;
+    font-weight: 400;
+    font-size: 0.875rem;
+    border-radius: 0.2rem;
+    margin: 0.25rem 0.5rem;
+    margin-top: 3rem;
+}
+
+.movie-name {
+    display: inline;
+    padding: 20px;
+    padding-bottom: 300px;
+}
+
+.classname-message {
+    display: none;
+
+}
+
+.classname-message-display {
+    display: block;
+    margin: 30px;
+}

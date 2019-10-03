@@ -1,0 +1,13 @@
+.table-hover tbody tr:hover td {
+  background: #defcfc;
+}
+
+tr {
+  color: #33314F;
+  background-color: #f4dada;
+}
+
+img {
+  width: 200px;
+  height: 200px;
+}

@@ -1,0 +1,55 @@
+
+nav.navbar.sticky-top {
+    display: grid;
+    grid-template-columns: 3fr 1fr 1fr;
+    font-size: 1.2em;
+    margin-top: -20px;
+}
+
+.navbar-nav {
+    display: flex;
+    flex-direction: row;
+    align-content: center;
+
+}
+
+.navbar-nav li {
+    margin: 30px;
+}
+
+.navbar-nav li a {
+    color: black;
+    font-family: 'Alegreya', serif;
+
+}
+
+nav {
+    background-color: #ff7657
+}
+.rental-container {
+    grid-column: 2;
+    background-color: #ff7657;
+}
+.rental-body {
+    margin-bottom: 0.5rem;
+    color: black;
+    border-color: black;
+}
+
+.rental-header {
+    color: black;
+    border-color: black;
+    font-size: 1em;
+    
+}
+
+.btn {
+    grid-column: 2 / 3;
+    color: #ff7657;
+    background-color: black;
+    border-color: black;
+}
+
+.button-container {
+    background-color: #ff7657;
+}
