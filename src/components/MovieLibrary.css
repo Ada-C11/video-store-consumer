@@ -1,0 +1,16 @@
+.movie-grid {
+  display: grid;
+  grid-template: 1fr / repeat(auto-fit, minmax(200px, 1fr));
+  grid-gap: 5px;
+}
+
+
+.block {
+  width: 100%;
+  border: none;
+  background-color: #EDE580;
+  padding: 14px 28px;
+  font-size: 16px;
+  cursor: pointer;
+  text-align: center;
+}
