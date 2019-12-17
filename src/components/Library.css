@@ -1,0 +1,28 @@
+
+.movie__title {
+    font-size: 2.5em;
+}
+.movie__section {
+    max-height: 600px;
+    max-width: 350px;
+    text-align: center;
+    font-weight: 100;
+    overflow: hidden;
+    margin: 20px;
+}
+
+#movie_container {
+    display: flex; 
+    flex-wrap: wrap;
+    justify-content: space-around;
+
+}
+
+.cover {
+    vertical-align: middle;
+
+}
+
+.movie__info{
+    word-break: break-all;
+}

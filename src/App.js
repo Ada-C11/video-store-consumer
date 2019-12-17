@@ -1,19 +1,47 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
+import { BrowserRouter as Router, Link } from "react-router-dom";
+import blockbuster from './images/blockbuster.jpg';
+import NavBar from './components/NavBar';
+import CustomerCollection from './components/CustomerCollection';
+import axios from 'axios';
 import './App.css';
+import Search from './components/Search';
+
 
 class App extends Component {
+  constructor() {
+    super();
+
+    this.state = {
+      movies: [],
+      customers: [],
+      selectedCustomer: null,
+      selectedMovie: null,
+      errorMessage: null,
+    };
+  }
+
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
-      </div>
+      
+      <Router>
+      <body className="App">
+      <header className="App-header">
+          <h1 className="App-title">Welcome to</h1>  
+          <img src={ blockbuster } className="App-logo" alt="logo" />    
+      <nav >
+        <h2 className="big-words">Movie Portal</h2>
+        <ul className="Nav-header">
+          <NavBar 
+          allCustomers={<Link to="/customers">Customers</Link>}          
+          allMovies={<Link to="/library">Library</Link>}          
+          search={<Link to="/search">Search</Link>}
+          />
+        </ul>
+      </nav>
+      </header>
+      </body>
+    </Router>
     );
   }
 }

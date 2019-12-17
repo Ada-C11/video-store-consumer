@@ -1,28 +1,67 @@
-.App {
+
+
+/* body {
   text-align: center;
+  background-image: url("./images/background.jpg");
+  background-repeat: repeat;
+  height: 100%;
+  color: yellow;
+
+} */
+
+body {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: auto auto auto auto;
+  margin: 0 auto;
+  text-align: center;
+  background-image: url("./images/background.jpg");
+  background-repeat: repeat;
+  height: 100%;
+  color: yellow;
 }
 
-.App-logo {
+nav {
+  width: 100%;
+  font-family: "Merriweather", serif;
+}
+
+nav ul {
+  position: relative;
+  z-index: 100;
+  margin: 0;
+  padding: 0;
+}
+
+a {
+  color:yellow;
+}
+
+/* .App-logo {
   animation: App-logo-spin infinite 20s linear;
   height: 80px;
+} */
+.Nav-header {
+  list-style: none;
 }
 
+.App-header h1 {
+  color: black;
+  float: left;
+  margin-left: 300px;
+  font-size: 2em;
+}
 .App-header {
-  background-color: #222;
   height: 150px;
-  padding: 20px;
-  color: white;
+  /* padding: 20px; */
+  list-style: none;
+  background-color: grey;
 }
 
 .App-title {
   font-size: 1.5em;
 }
 
-.App-intro {
-  font-size: large;
-}
-
-@keyframes App-logo-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+.big-words {
+  font-size: 2em;
 }
